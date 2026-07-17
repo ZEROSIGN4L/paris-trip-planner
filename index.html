@@ -4574,6 +4574,14 @@
         </ul>
       </div>
       <div class="card">
+        <h3>Confirmation</h3>
+        <p style="margin-bottom:8px">A generic confirmation document is available below.</p>
+        <button id="viewDocBtn">View document</button>
+        <div id="docWrap" class="hidden" style="margin-top:8px">
+          <iframe src="document.pdf" style="width:100%;height:400px;border:1px solid var(--border);" title="Document preview"></iframe>
+        </div>
+      </div>
+      <div class="card">
         <h3>Opening Hours (verified July 2026)</h3>
         <table class="tt-table">
           <thead>
@@ -8085,6 +8093,16 @@
         const ni = Math.max(0, Math.min(MOBILE_SECTIONS.length - 1, i + dir));
         if (ni !== i) show(MOBILE_SECTIONS[ni]);
       }
+      // document viewer toggle
+      const viewBtn = document.getElementById("viewDocBtn");
+      if (viewBtn) {
+        viewBtn.addEventListener("click", () => {
+          const w = document.getElementById("docWrap");
+          if (!w) return;
+          w.classList.toggle("hidden");
+          viewBtn.textContent = w.classList.contains("hidden") ? "View document" : "Hide document";
+        });
+      }
       let deferredPrompt;
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
@@ -8191,7 +8209,7 @@
       })();
 
       function setDynamicMapLinks() {
-        document.querySelectorAll('a.maplink').forEach((link) => {
+        document.querySelectorAll("a.maplink").forEach((link) => {
           const place =
             link.dataset.place || link.textContent.replace(/\s+/g, " ").trim();
           if (!place) return;
@@ -8208,7 +8226,10 @@
           .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, " ")
           .replace(/\b(?:Option|Best|For)\b[^:]*:\s*/gi, "")
           .replace(/\s*\([^)]*\)\s*/g, " ")
-          .replace(/\b(?:sparkle|quiet|view|views|best|free|great|nice|good|famous|classic|scenic|night|sunset|evening)\b/gi, " ")
+          .replace(
+            /\b(?:sparkle|quiet|view|views|best|free|great|nice|good|famous|classic|scenic|night|sunset|evening)\b/gi,
+            " ",
+          )
           .replace(/\s*(?:—|-|:|\()\s*/g, " ")
           .replace(/\s+/g, " ")
           .trim();
@@ -8217,30 +8238,39 @@
 
       function addDynamicPlaceLinks() {
         const addLink = (element, text) => {
-          if (!element || element.querySelector('.maplink') || element.closest('.maplink')) return;
+          if (
+            !element ||
+            element.querySelector(".maplink") ||
+            element.closest(".maplink")
+          )
+            return;
           const raw = cleanPlaceText(text);
           if (!raw || raw.length < 3) return;
           const normalized = raw.toLowerCase();
-          const skip = /^(Wake up|Breakfast|Shower|Bed|Pack|Check|Quick snack|Froggy rest|Explore neighbourhood|First French café stop|Bench rest|Dinner|Apartment|Evening walk|Head to dinner|Farewell Walk|Quick lunch|Gate rest|Flight|Arrive|Morning free|Viewpoint rest|Afternoon free|Lunch|Rooftop rest|Metro to|Evening stroll|Shuttle|Check out|Head to|Taxi to)/i;
-          const nonLocation = /\b(?:taxi|security|supplies|departure gate|check-in|boarding|flight|luggage|toilets|airport|metro|shuttle|check out|head to|arrive|wake up|breakfast|shower|pack|bed|dinner|lunch|snack|explore|rest|walk|stroll)\b/i;
+          const skip =
+            /^(Wake up|Breakfast|Shower|Bed|Pack|Check|Quick snack|Froggy rest|Explore neighbourhood|First French café stop|Bench rest|Dinner|Apartment|Evening walk|Head to dinner|Farewell Walk|Quick lunch|Gate rest|Flight|Arrive|Morning free|Viewpoint rest|Afternoon free|Lunch|Rooftop rest|Metro to|Evening stroll|Shuttle|Check out|Head to|Taxi to)/i;
+          const nonLocation =
+            /\b(?:taxi|security|supplies|departure gate|check-in|boarding|flight|luggage|toilets|airport|metro|shuttle|check out|head to|arrive|wake up|breakfast|shower|pack|bed|dinner|lunch|snack|explore|rest|walk|stroll)\b/i;
           if (skip.test(raw) || nonLocation.test(normalized)) return;
-          const link = document.createElement('a');
-          link.className = 'maplink';
+          const link = document.createElement("a");
+          link.className = "maplink";
           link.dataset.place = raw;
-          link.href = '#';
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
+          link.href = "#";
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
           link.textContent = `Open ${raw} on Maps`;
-          element.insertAdjacentElement('afterend', link);
+          element.insertAdjacentElement("afterend", link);
         };
 
-        document.querySelectorAll('.ti .tn').forEach((title) => {
+        document.querySelectorAll(".ti .tn").forEach((title) => {
           addLink(title, title.textContent);
         });
 
-        document.querySelectorAll('.act-item .aname, .res-item .rname').forEach((item) => {
-          addLink(item, item.textContent);
-        });
+        document
+          .querySelectorAll(".act-item .aname, .res-item .rname")
+          .forEach((item) => {
+            addLink(item, item.textContent);
+          });
       }
 
       setDynamicMapLinks();
