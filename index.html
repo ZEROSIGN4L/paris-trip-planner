@@ -4575,10 +4575,16 @@
       </div>
       <div class="card">
         <h3>Confirmation</h3>
-        <p style="margin-bottom:8px">A generic confirmation document is available below.</p>
+        <p style="margin-bottom: 8px">
+          A generic confirmation document is available below.
+        </p>
         <button id="viewDocBtn">View document</button>
-        <div id="docWrap" class="hidden" style="margin-top:8px">
-          <iframe src="document.pdf" style="width:100%;height:400px;border:1px solid var(--border);" title="Document preview"></iframe>
+        <div id="docWrap" class="hidden" style="margin-top: 8px">
+          <iframe
+            src="document.pdf"
+            style="width: 100%; height: 400px; border: 1px solid var(--border)"
+            title="Document preview"
+          ></iframe>
         </div>
       </div>
       <div class="card">
@@ -8057,6 +8063,27 @@
         // keep mobile select in sync
         const m = document.getElementById("mobileNav");
         if (m) m.value = id;
+        // if opening Louvre and it's the booking date, reveal the document
+        (function () {
+          try {
+            const LOUVRE_BOOKING_DATE = "2026-07-23"; // YYYY-MM-DD
+            const t = new Date();
+            const todayStr =
+              t.getFullYear() +
+              "-" +
+              String(t.getMonth() + 1).padStart(2, "0") +
+              "-" +
+              String(t.getDate()).padStart(2, "0");
+            if (id === "louvre" && todayStr === LOUVRE_BOOKING_DATE) {
+              const w = document.getElementById("docWrap");
+              const b = document.getElementById("viewDocBtn");
+              if (w) w.classList.remove("hidden");
+              if (b) b.textContent = "Hide document";
+            }
+          } catch (e) {
+            /* noop */
+          }
+        })();
         document
           .getElementById(id)
           .scrollIntoView({ behavior: "smooth", block: "start" });
@@ -8100,9 +8127,32 @@
           const w = document.getElementById("docWrap");
           if (!w) return;
           w.classList.toggle("hidden");
-          viewBtn.textContent = w.classList.contains("hidden") ? "View document" : "Hide document";
+          viewBtn.textContent = w.classList.contains("hidden")
+            ? "View document"
+            : "Hide document";
         });
       }
+      // auto-open when it's the booking date
+      (function autoOpenOnBooking() {
+        try {
+          const LOUVRE_BOOKING_DATE = "2026-07-23";
+          const today = new Date();
+          const todayStr =
+            today.getFullYear() +
+            "-" +
+            String(today.getMonth() + 1).padStart(2, "0") +
+            "-" +
+            String(today.getDate()).padStart(2, "0");
+          if (todayStr === LOUVRE_BOOKING_DATE) {
+            const w = document.getElementById("docWrap");
+            const b = document.getElementById("viewDocBtn");
+            if (w) w.classList.remove("hidden");
+            if (b) b.textContent = "Hide document";
+          }
+        } catch (e) {
+          /* noop */
+        }
+      })();
       let deferredPrompt;
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
