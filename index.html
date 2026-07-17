@@ -473,6 +473,33 @@
       .tabs::-webkit-scrollbar {
         display: none;
       }
+
+      /* Mobile: hide wide tabs and show compact select for thumb navigation */
+      .mobile-nav {
+        display: none;
+      }
+      @media (max-width: 640px) {
+        .tabs {
+          display: none;
+        }
+        .mobile-nav {
+          display: block;
+          background: #fff;
+          padding: 8px 12px;
+          border-bottom: 1px solid var(--border);
+          position: sticky;
+          top: 56px; /* below header */
+          z-index: 99;
+        }
+        #mobileNav {
+          width: 100%;
+          padding: 10px 12px;
+          font-size: 1rem;
+          border-radius: 8px;
+          border: 1px solid var(--border);
+          background: var(--card);
+        }
+      }
       .tab {
         flex: none;
         padding: 11px 13px;
@@ -1581,6 +1608,21 @@
       <button class="tab" data-s="pack">Packing</button>
       <button class="tab" data-s="french">French</button>
       <button class="tab" data-s="tips">Tips</button>
+    </div>
+    <!-- Mobile navigation: dropdown for quick section jumps -->
+    <div class="no-print mobile-nav" aria-hidden="false">
+      <select id="mobileNav" aria-label="Jump to section">
+        <option value="overview">Overview</option>
+        <option value="day1">Day 1</option>
+        <option value="day2">Day 2</option>
+        <option value="day3">Day 3</option>
+        <option value="day4">Day 4</option>
+        <option value="louvre">Louvre</option>
+        <option value="timetable">Timetables</option>
+        <option value="pack">Packing</option>
+        <option value="french">French</option>
+        <option value="tips">Tips</option>
+      </select>
     </div>
     <!-- OVERVIEW -->
     <div id="overview" class="sec active" data-t="Trip Overview">
@@ -8004,6 +8046,9 @@
         document.querySelectorAll(".tab").forEach((t) => {
           if (t.dataset.s === id) t.classList.add("active");
         });
+        // keep mobile select in sync
+        const m = document.getElementById("mobileNav");
+        if (m) m.value = id;
         document
           .getElementById(id)
           .scrollIntoView({ behavior: "smooth", block: "start" });
@@ -8012,6 +8057,34 @@
       document
         .querySelectorAll(".tab")
         .forEach((t) => t.addEventListener("click", () => show(t.dataset.s)));
+      // mobile nav handler
+      const MOBILE_SECTIONS = [
+        "overview",
+        "day1",
+        "day2",
+        "day3",
+        "day4",
+        "louvre",
+        "timetable",
+        "pack",
+        "french",
+        "tips",
+      ];
+      const mobileNav = document.getElementById("mobileNav");
+      if (mobileNav) {
+        mobileNav.addEventListener("change", (e) => show(e.target.value));
+      }
+
+      // add Prev/Next helper for mobile (thumb-friendly)
+      function mobileJump(dir) {
+        const active = document.querySelector(".sec.active");
+        if (!active) return;
+        const id = active.id;
+        const i = MOBILE_SECTIONS.indexOf(id);
+        if (i === -1) return;
+        const ni = Math.max(0, Math.min(MOBILE_SECTIONS.length - 1, i + dir));
+        if (ni !== i) show(MOBILE_SECTIONS[ni]);
+      }
       let deferredPrompt;
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
