@@ -499,6 +499,15 @@
           border: 1px solid var(--border);
           background: var(--card);
         }
+        /* Highlighted document button on booking day */
+        .highlight-doc-btn {
+          background: var(--accent) !important;
+          color: #fff !important;
+          padding: 10px 14px !important;
+          border-radius: 8px !important;
+          font-weight: 700 !important;
+          box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        }
       }
       .tab {
         flex: none;
@@ -8063,27 +8072,6 @@
         // keep mobile select in sync
         const m = document.getElementById("mobileNav");
         if (m) m.value = id;
-        // if opening Louvre and it's the booking date, reveal the document
-        (function () {
-          try {
-            const LOUVRE_BOOKING_DATE = "2026-07-23"; // YYYY-MM-DD
-            const t = new Date();
-            const todayStr =
-              t.getFullYear() +
-              "-" +
-              String(t.getMonth() + 1).padStart(2, "0") +
-              "-" +
-              String(t.getDate()).padStart(2, "0");
-            if (id === "louvre" && todayStr === LOUVRE_BOOKING_DATE) {
-              const w = document.getElementById("docWrap");
-              const b = document.getElementById("viewDocBtn");
-              if (w) w.classList.remove("hidden");
-              if (b) b.textContent = "Hide document";
-            }
-          } catch (e) {
-            /* noop */
-          }
-        })();
         document
           .getElementById(id)
           .scrollIntoView({ behavior: "smooth", block: "start" });
@@ -8132,8 +8120,8 @@
             : "Hide document";
         });
       }
-      // auto-open when it's the booking date
-      (function autoOpenOnBooking() {
+      // highlight the document button on the booking date so it's easy to find
+      (function highlightDocButton() {
         try {
           const LOUVRE_BOOKING_DATE = "2026-07-23";
           const today = new Date();
@@ -8144,10 +8132,12 @@
             "-" +
             String(today.getDate()).padStart(2, "0");
           if (todayStr === LOUVRE_BOOKING_DATE) {
-            const w = document.getElementById("docWrap");
             const b = document.getElementById("viewDocBtn");
-            if (w) w.classList.remove("hidden");
-            if (b) b.textContent = "Hide document";
+            if (b) {
+              b.classList.add("highlight-doc-btn");
+              // keep the label simple
+              b.textContent = "Show confirmation";
+            }
           }
         } catch (e) {
           /* noop */
