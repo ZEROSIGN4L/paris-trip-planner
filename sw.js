@@ -1,8 +1,10 @@
-const CACHE_NAME = 'paris-trip-v3';
+const CACHE_NAME = 'paris-trip-v4';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
   './ticket-page1.png',
   './ticket-page2.png',
   './document.pdf'

@@ -2309,8 +2309,11 @@
     <!-- OVERVIEW -->
     <div id="overview" class="sec active" data-t="Trip Overview">
       <div class="inst no-print" id="installBanner">
-        <span>Install for offline access</span
-        ><button onclick="installApp()">Install</button>
+        <div style="flex:1">
+          <span>Install this app on your phone</span>
+          <div style="font-size:0.7rem;opacity:0.8;margin-top:3px" id="installHint"></div>
+        </div>
+        <button onclick="installApp()" id="installBtnAction">Install</button>
       </div>
       <div class="card" id="liveCard" style="text-align:center;padding:20px 16px;"></div>
       <div class="igrid">
@@ -5322,6 +5325,18 @@
       <div class="card" style="cursor:pointer" onclick="show('tips')">
         <h3><i class="fa-solid fa-lightbulb fa-icon"></i> Tips & Tricks</h3>
         <p style="font-size:0.78rem;color:var(--muted)">Safety, sensory guide, packing, budget</p>
+      </div>
+      <div class="card" style="cursor:pointer" onclick="show('metro')">
+        <h3><i class="fa-solid fa-train-subway fa-icon"></i> Metro Guide</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Lines, stations & how to use Paris metro</p>
+      </div>
+      <div class="card" style="cursor:pointer" onclick="show('meals')">
+        <h3><i class="fa-solid fa-utensils fa-icon"></i> Meals & Restaurants</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Where to eat, prices, honest reviews</p>
+      </div>
+      <div class="card" style="cursor:pointer" onclick="show('budget')">
+        <h3><i class="fa-solid fa-coins fa-icon"></i> Budget Guide</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Daily costs, categories & money-saving tips</p>
       </div>
     </div>
 
@@ -9106,7 +9121,31 @@
         deferredPrompt = e;
         document.getElementById("installMenuBtn").classList.remove("hidden");
         document.getElementById("installBanner").classList.add("show");
+        document.getElementById("installBtnAction").textContent = "Install";
+        document.getElementById("installHint").textContent = "";
       });
+      // Show install banner on iOS (no beforeinstallprompt) and as fallback
+      if (!deferredPrompt) {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        const isAndroid = /Android/.test(navigator.userAgent);
+        const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+        if (!isStandalone) {
+          document.getElementById("installBanner").classList.add("show");
+          if (isIOS) {
+            document.getElementById("installBtnAction").textContent = "How?";
+            document.getElementById("installBtnAction").onclick = function() {
+              alert("On iPhone/iPad:\n\n1. Tap the Share button (square with arrow) at the bottom\n2. Scroll down and tap 'Add to Home Screen'\n3. Tap 'Add' in the top right\n\nThe app will appear on your home screen!");
+            };
+            document.getElementById("installHint").textContent = "Tap Share → Add to Home Screen";
+          } else if (isAndroid) {
+            document.getElementById("installBtnAction").textContent = "How?";
+            document.getElementById("installBtnAction").onclick = function() {
+              alert("On Android:\n\n1. Tap the three dots menu (⋮) in Chrome\n2. Tap 'Install app' or 'Add to Home Screen'\n3. Confirm installation\n\nThe app will appear on your home screen!");
+            };
+            document.getElementById("installHint").textContent = "Tap ⋮ menu → Install app";
+          }
+        }
+      }
       function installApp() {
         if (deferredPrompt) {
           deferredPrompt.prompt();
