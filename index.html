@@ -527,7 +527,7 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 28px rgba(233, 69, 96, 0.22);
       }
-      /* Floating site-wide button that appears on booking day */
+      /* Floating site-wide ticket button */
       #floatingDocBtn {
         position: fixed;
         right: 18px;
@@ -541,10 +541,10 @@
         font-weight: 800;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         cursor: pointer;
-        display: none;
+        display: block;
+        opacity: 0.96;
       }
       #floatingDocBtn.show {
-        display: block;
         animation: floatPulse 2.2s infinite;
       }
       @keyframes floatPulse {
@@ -8199,12 +8199,32 @@
           try {
             const iframe = document.querySelector("#docWrap iframe");
             const src = iframe ? iframe.src : "document.pdf";
-            // open in new tab so user can view/print on phone or desktop
             const w = window.open(src, "_blank");
             if (w) {
               try {
                 w.focus();
-                // attempt to trigger print when the new tab loads (may be blocked by browser)
+                w.onload = function () {
+                  try {
+                    w.print();
+                  } catch (e) {}
+                };
+              } catch (e) {}
+            }
+          } catch (e) {
+            /* noop */
+          }
+        });
+      }
+      const floatingDocBtn = document.getElementById("floatingDocBtn");
+      if (floatingDocBtn) {
+        floatingDocBtn.addEventListener("click", () => {
+          try {
+            const iframe = document.querySelector("#docWrap iframe");
+            const src = iframe ? iframe.src : "document.pdf";
+            const w = window.open(src, "_blank");
+            if (w) {
+              try {
+                w.focus();
                 w.onload = function () {
                   try {
                     w.print();
@@ -8234,28 +8254,11 @@
               b.classList.add("highlight-doc-btn");
               b.textContent = "Open ticket";
             }
-            // reveal a site-wide floating button so it's easy to open from any section
+            // reveal a site-wide floating button so it's easy to open your ticket from any section
             let f = document.getElementById("floatingDocBtn");
             if (f) {
               f.classList.add("show");
               f.setAttribute("aria-hidden", "false");
-              f.addEventListener("click", () => {
-                try {
-                  const iframe = document.querySelector("#docWrap iframe");
-                  const src = iframe ? iframe.src : "document.pdf";
-                  const w2 = window.open(src, "_blank");
-                  if (w2) {
-                    try {
-                      w2.focus();
-                      w2.onload = function () {
-                        try {
-                          w2.print();
-                        } catch (e) {}
-                      };
-                    } catch (e) {}
-                  }
-                } catch (err) {}
-              });
             }
           }
         } catch (e) {
