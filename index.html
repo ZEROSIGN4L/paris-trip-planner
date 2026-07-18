@@ -328,9 +328,10 @@
         background: var(--card-bg);
       }
       .hdr-dropdown button i {
-        width: 18px;
+        width: 16px;
         text-align: center;
         color: var(--muted);
+        flex-shrink: 0;
       }
       .today-btn {
         animation: pulse 2s infinite;
@@ -2295,11 +2296,11 @@
           <i class="fa-solid fa-moon"></i>
         </button>
         <button onclick="goToday()" id="todayBtn" title="Jump to today's day">
-          <i class="fa-solid fa-crosshairs"></i>
+          <i class="fa-solid fa-calendar-check"></i>
         </button>
         <span id="hdrMenuBtn" style="position:relative">
           <button title="Print, Export & more" onclick="document.getElementById('hdrDropdown').classList.toggle('open')">
-            <i class="fa-solid fa-tower-observation"></i> <span class="btn-label">More</span>
+            <i class="fa-solid fa-bars"></i> <span class="btn-label">More</span>
           </button>
           <div class="hdr-dropdown" id="hdrDropdown">
             <button onclick="window.print()"><i class="fa-solid fa-print"></i> Print Itinerary</button>
