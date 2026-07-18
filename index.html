@@ -790,10 +790,6 @@
           font-weight: 700;
           color: var(--text);
         }
-        .sched { gap: 6px; }
-        .sched-row { padding: 8px 10px; font-size: 0.78rem; }
-        .sched-stop { gap: 3px; }
-        .sched-time { font-size: 0.8rem; }
         .maplink {
           display: inline-flex;
           align-items: center;
@@ -2067,8 +2063,8 @@
       }
       .sched-row {
         display: flex;
-        align-items: center;
-        gap: 2px;
+        align-items: stretch;
+        gap: 0;
         overflow-x: auto;
         white-space: nowrap;
         scrollbar-width: thin;
@@ -2101,6 +2097,85 @@
         color: var(--muted);
         margin: 0 3px;
         font-size: 0.6rem;
+      }
+      @media (max-width: 640px) {
+        .sched {
+          background: var(--card);
+          border-radius: 10px;
+          border: 1px solid var(--border);
+          padding: 10px 12px;
+          gap: 0;
+        }
+        .sched-row {
+          flex-direction: column;
+          gap: 0;
+          overflow: visible;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--border);
+          position: relative;
+        }
+        .sched-row:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+        .sched-row:first-child {
+          padding-top: 0;
+        }
+        .sched-label {
+          font-size: 0.6rem;
+          color: var(--blue);
+          background: rgba(0,35,149,0.08);
+          padding: 1px 6px;
+          border-radius: 4px;
+          width: auto;
+          text-align: left;
+          margin-bottom: 6px;
+        }
+        .sched-stop {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 5px 0 5px 16px;
+          position: relative;
+          font-size: 0.8rem;
+        }
+        .sched-stop::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--blue);
+          border: 2px solid var(--card);
+          box-shadow: 0 0 0 1px var(--blue);
+          transform: translateY(-50%);
+          z-index: 1;
+        }
+        .sched-stop:first-child::before {
+          background: var(--blue);
+        }
+        .sched-time {
+          font-size: 0.82rem;
+          min-width: 42px;
+        }
+        .sched-name {
+          opacity: 1;
+          font-weight: 500;
+        }
+        .sched-arr {
+          display: none;
+        }
+        .sched-stop + .sched-stop::after {
+          content: "";
+          position: absolute;
+          left: 3px;
+          top: -6px;
+          width: 2px;
+          height: 6px;
+          background: var(--border);
+        }
       }
       .fa-icon {
         display: inline-block;
