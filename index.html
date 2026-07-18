@@ -233,53 +233,112 @@
       .hdr {
         background: linear-gradient(135deg, var(--blue), #16213e);
         color: #fff;
-        padding: 20px 16px;
+        padding: 16px 16px;
         position: sticky;
         top: 0;
         z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        transition: transform 0.3s ease;
+      }
+      .hdr.hidden {
+        transform: translateY(-100%);
+      }
+      .hdr-left {
+        min-width: 0;
       }
       .hdr h1 {
-        font-size: 1.4rem;
+        font-size: 1.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .hdr-sub {
-        font-size: 0.78rem;
-        opacity: 0.8;
-        margin-top: 4px;
+        font-size: 0.72rem;
+        opacity: 0.7;
+        margin-top: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .hdr-btns {
         display: flex;
-        gap: 8px;
-        margin-top: 10px;
-        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+        flex-shrink: 0;
       }
       .hdr-btns button {
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         color: #fff;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.72rem;
+        padding: 7px 10px;
+        border-radius: 10px;
+        font-size: 0.85rem;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
       }
       .hdr-btns button:hover {
         background: rgba(255, 255, 255, 0.25);
       }
+      /* Today button - prominent */
       #todayBtn {
         font-weight: 700;
+        background: rgba(255, 255, 255, 0.22);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+      /* More menu (dropdown trigger) */
+      #hdrMenuBtn {
+        position: relative;
+      }
+      .hdr-dropdown {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        right: 0;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        min-width: 160px;
+        z-index: 200;
+        overflow: hidden;
+      }
+      .hdr-dropdown.open {
+        display: block;
+      }
+      .hdr-dropdown button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        padding: 10px 14px;
+        border: none;
+        background: none;
+        color: var(--text);
+        font-size: 0.82rem;
+        cursor: pointer;
+        text-align: left;
+      }
+      .hdr-dropdown button:hover {
+        background: var(--card-bg);
+      }
+      .hdr-dropdown button i {
+        width: 18px;
+        text-align: center;
+        color: var(--muted);
       }
       .today-btn {
         animation: pulse 2s infinite;
       }
       @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.08);
-        }
-        100% {
-          transform: scale(1);
-        }
+        0% { transform: scale(1); }
+        50% { transform: scale(1.08); }
+        100% { transform: scale(1); }
       }
       .energy-badge {
         display: inline-block;
@@ -479,31 +538,83 @@
       .mobile-nav {
         display: none;
       }
+      /* Bottom navigation bar (mobile) */
+      .bottom-nav {
+        display: none;
+      }
+      /* Day prev/next arrows */
+      .day-nav {
+        display: none;
+      }
       @media (max-width: 640px) {
         body {
-          padding-bottom: 96px;
+          padding-bottom: 180px;
         }
         .tabs {
           display: none;
         }
-        .mobile-nav {
-          display: block;
-          background: #fff;
-          padding: 8px 12px;
-          border-bottom: 1px solid var(--border);
-          position: sticky;
-          top: 56px; /* below header */
-          z-index: 99;
+        /* Compact header on mobile */
+        .hdr {
+          padding: 10px 14px;
         }
-        #mobileNav {
-          width: 100%;
-          padding: 10px 12px;
-          font-size: 1rem;
-          border-radius: 8px;
+        .hdr h1 {
+          font-size: 1.05rem;
+        }
+        .hdr-sub {
+          display: none;
+        }
+        .hdr-btns button {
+          padding: 6px 8px;
+          font-size: 0.8rem;
+        }
+        .hdr-btns .btn-label {
+          display: none;
+        }
+        .mobile-nav {
+          display: none;
+        }
+        /* Day prev/next arrows */
+        .day-nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 8px 20px;
+          background: var(--card);
+          border-top: 1px solid var(--border);
+          position: fixed;
+          bottom: 56px;
+          left: 0;
+          right: 0;
+          z-index: 999;
+        }
+        .day-nav button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
           border: 1px solid var(--border);
           background: var(--card);
+          color: var(--blue);
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: all 0.2s;
         }
-        /* Highlighted document button on booking day (mobile override kept) */
+        .day-nav button:active {
+          transform: scale(0.9);
+          background: var(--blue);
+          color: #fff;
+        }
+        .day-nav button.disabled {
+          opacity: 0.25;
+          pointer-events: none;
+        }
+        .day-nav-label {
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: var(--text);
+        }
         .highlight-doc-btn {
           background: var(--accent) !important;
           color: #fff !important;
@@ -512,20 +623,307 @@
           font-weight: 700 !important;
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
         }
+        /* Bottom navigation bar */
+        .bottom-nav {
+          display: flex;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: var(--card);
+          border-top: 1px solid var(--border);
+          z-index: 1000;
+          padding: 6px 0 env(safe-area-inset-bottom, 6px);
+          box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+        }
+        .bottom-nav button {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+          padding: 6px 2px;
+          border: none;
+          background: none;
+          color: var(--muted);
+          font-size: 0.6rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: color 0.2s;
+          position: relative;
+        }
+        .bottom-nav button i {
+          font-size: 1.1rem;
+        }
+        .bottom-nav button.active {
+          color: var(--blue);
+          font-weight: 700;
+        }
+        .bottom-nav button .badge {
+          position: absolute;
+          top: 2px;
+          right: calc(50% - 16px);
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--accent);
+        }
         #topBtn {
           right: 14px;
-          bottom: 18px;
+          bottom: 72px;
           width: 42px;
           height: 42px;
         }
+        #topBtn.above-daynav {
+          bottom: 124px;
+        }
         #floatingDocBtn {
           right: 12px;
-          bottom: 70px;
+          bottom: 178px;
           padding: 10px 14px;
           font-size: 0.9rem;
           max-width: calc(100vw - 24px);
         }
       }
+      /* === Collapsible timeline items (mobile) === */
+      @media (max-width: 640px) {
+        .sec { padding: 10px 12px; padding-bottom: 40px; }
+        body { padding-bottom: 160px; }
+        .tl { padding-left: 22px; }
+        .tl::before { left: 6px; }
+        .ti::before { left: -20px; width: 9px; height: 9px; }
+        .sec .ti {
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          border-radius: 12px;
+          padding: 12px 14px 12px 10px;
+          margin-bottom: 8px;
+          background: var(--card);
+          border: 1px solid var(--border);
+          box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+          position: relative;
+          transition: background 0.15s;
+        }
+        .ti:active { background: var(--card-bg); }
+        .ti::after {
+          content: "\f078";
+          font-family: "Font Awesome 6 Free";
+          font-weight: 900;
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          font-size: 0.55rem;
+          color: var(--muted);
+          transition: transform 0.25s ease;
+        }
+        .ti.expanded::after { transform: rotate(180deg); }
+        .sec .ti > .td,
+        .sec .ti > .th,
+        .sec .ti > .steps,
+        .sec .ti > .bath,
+        .sec .ti > .backup,
+        .sec .ti > .prep,
+        .sec .ti > .calm,
+        .sec .ti > .hbox,
+        .sec .ti > .maplink,
+        .sec .ti > .res-grid,
+        .sec .ti > .act-grid,
+        .sec .ti > .btn,
+        .sec .ti > a.btn,
+        .sec .ti > .route-flow,
+        .sec .ti > .res-item,
+        .sec .ti > .res-header,
+        .sec .ti > .act-item {
+          display: none;
+        }
+        .sec .ti.expanded > .td,
+        .sec .ti.expanded > .th,
+        .sec .ti.expanded > .steps,
+        .sec .ti.expanded > .bath,
+        .sec .ti.expanded > .backup,
+        .sec .ti.expanded > .prep,
+        .sec .ti.expanded > .calm,
+        .sec .ti.expanded > .hbox,
+        .sec .ti.expanded > .maplink,
+        .sec .ti.expanded > .res-grid,
+        .sec .ti.expanded > .act-grid,
+        .sec .ti.expanded > .btn,
+        .sec .ti.expanded > a.btn,
+        .sec .ti.expanded > .route-flow,
+        .sec .ti.expanded > .res-item,
+        .sec .ti.expanded > .res-header,
+        .sec .ti.expanded > .act-item {
+          display: block;
+          margin-top: 8px;
+          padding-top: 8px;
+          border-top: 1px solid var(--border);
+          animation: fadeSlideIn 0.2s ease;
+        }
+        .ti.expanded > .maplink {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+        }
+        .ti.expanded > .res-grid {
+          display: grid !important;
+          gap: 6px;
+          margin-top: 6px;
+        }
+        .ti > .tn { margin-right: 20px; }
+        .ti.expanded > .tn { margin-right: 20px; }
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(-4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .ti.rest, .ti.brk { cursor: pointer; }
+        .ti.rest::after, .ti.brk::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 10px; top: 12px; font-size: 0.55rem; color: var(--muted); transition: transform 0.25s ease; display: block; }
+        .ti.rest.expanded::after, .ti.brk.expanded::after { transform: rotate(180deg); }
+        .ti.rest > .td:first-child, .ti.brk > .td:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+        .day-div {
+          font-size: 0.82rem;
+          padding: 10px 12px;
+          background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+          border-radius: 10px;
+          margin-bottom: 10px;
+          text-transform: none;
+          letter-spacing: 0;
+          font-weight: 700;
+          color: var(--text);
+        }
+        .sched { gap: 6px; }
+        .sched-row { padding: 8px 10px; font-size: 0.78rem; }
+        .sched-stop { gap: 3px; }
+        .sched-time { font-size: 0.8rem; }
+        .maplink {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          color: var(--blue);
+          text-decoration: none;
+          font-size: 0.8rem;
+          font-weight: 600;
+          padding: 8px 0;
+          min-height: 44px;
+          margin-top: 4px;
+          transition: opacity 0.12s;
+        }
+        .maplink:active { opacity: 0.6; }
+        .route-flow { padding: 8px 10px; margin: 6px 0; border-radius: 8px; }
+        .card { padding: 12px; margin-bottom: 8px; }
+        .card h3 { font-size: 0.85rem; }
+        .card p, .card li { font-size: 0.8rem; line-height: 1.55; }
+        .ck li { padding: 8px 0; font-size: 0.8rem; }
+        .ck input[type="checkbox"] { width: 20px; height: 20px; }
+        .fs { font-size: 0.72rem; margin: 12px 0 6px; }
+        .ph-grid { gap: 5px; }
+        .ph { padding: 8px; }
+        .ph .fr { font-size: 0.82rem; }
+        .ph .en { font-size: 0.72rem; }
+        .cal { min-width: 520px; font-size: 0.65rem; }
+        .cal-hdr { padding: 6px 2px; font-size: 0.65rem; }
+        .cal-time { padding: 4px 2px; font-size: 0.6rem; }
+        .cal-cell { padding: 3px 3px; min-height: 26px; }
+        .cal-act { font-size: 0.6rem; }
+        .expand-all-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          width: 100%;
+          padding: 8px;
+          margin-bottom: 8px;
+          background: var(--card);
+          border: 1px dashed var(--border);
+          border-radius: 10px;
+          color: var(--muted);
+          font-size: 0.75rem;
+          font-weight: 600;
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          transition: background 0.15s, color 0.15s;
+        }
+        .expand-all-btn:active { background: var(--card-bg); color: var(--text); }
+      }
+      /* === End mobile collapsible === */
+      /* === Now marker & time progress === */
+      .ti.now {
+        border-left: 3px solid #16a34a !important;
+        background: rgba(22,163,74,0.06);
+        z-index: 2;
+      }
+      .ti.now::before {
+        background: #16a34a !important;
+        box-shadow: 0 0 0 2px #16a34a, 0 0 8px rgba(22,163,74,0.4) !important;
+        animation: nowPulse 2s ease-in-out infinite;
+      }
+      @keyframes nowPulse {
+        0%, 100% { box-shadow: 0 0 0 2px #16a34a, 0 0 6px rgba(22,163,74,0.3); }
+        50% { box-shadow: 0 0 0 2px #16a34a, 0 0 12px rgba(22,163,74,0.6); }
+      }
+      .now-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #16a34a;
+        background: rgba(22,163,74,0.1);
+        padding: 2px 8px;
+        border-radius: 8px;
+        margin-left: 8px;
+        vertical-align: middle;
+        animation: nowBadgePulse 2s ease-in-out infinite;
+      }
+      @keyframes nowBadgePulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+      }
+      .now-badge::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #16a34a;
+      }
+      .now-track {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: rgba(22,163,74,0.12);
+        border-radius: 0 0 10px 10px;
+        overflow: hidden;
+      }
+      .now-track-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #16a34a, #22c55e);
+        border-radius: 0 0 10px 10px;
+        transition: width 60s linear;
+      }
+      .ti.past {
+        opacity: 0.55;
+      }
+      .ti.past .tn {
+        text-decoration: line-through;
+        text-decoration-color: rgba(0,0,0,0.2);
+      }
+      @media (max-width: 640px) {
+        .ti.now {
+          border-left: 3px solid #16a34a !important;
+          box-shadow: 0 0 8px rgba(22,163,74,0.12);
+        }
+        .now-badge {
+          font-size: 0.55rem;
+          padding: 2px 6px;
+        }
+        .ti.past {
+          opacity: 0.45;
+        }
+      }
+      /* === End now marker === */
       /* More prominent default styling for the inline document button */
       #viewDocBtn {
         background: linear-gradient(90deg, var(--accent), #ff6b81);
@@ -558,10 +956,13 @@
         font-weight: 800;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         cursor: pointer;
-        display: block;
-        opacity: 0.96;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s;
       }
       #floatingDocBtn.show {
+        display: block;
+        opacity: 0.96;
         animation: floatPulse 2.2s infinite;
       }
       @keyframes floatPulse {
@@ -873,6 +1274,11 @@
         border-collapse: collapse;
         font-size: 0.76rem;
         margin-top: 6px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 6px 0;
       }
       .tt-table th {
         text-align: left;
@@ -1369,7 +1775,8 @@
         .tabs,
         .hdr-btns,
         .inst,
-        .no-print {
+        .no-print,
+        .bottom-nav {
           display: none !important;
         }
         .sec {
@@ -1709,23 +2116,29 @@
   </head>
   <body>
     <div class="hdr">
-      <h1>Paris Trip Planner</h1>
-      <div class="hdr-sub">
-        Wed 22 — Sat 25 July 2026 | 4 Days | 2 Travellers | Manchester - Paris
-        Beauvais
+      <div class="hdr-left">
+        <h1>Paris Trip Planner</h1>
+        <div class="hdr-sub">
+          Wed 22 — Sat 25 July 2026 | 4 Days | 2 Travellers | Manchester - Paris Beauvais
+        </div>
       </div>
       <div class="hdr-btns no-print">
         <button onclick="toggleDark()" id="darkBtn" title="Toggle dark mode">
-          <i class="fa-solid fa-moon fa-icon"></i>
+          <i class="fa-solid fa-moon"></i>
         </button>
-        <button onclick="window.print()">Print Itinerary</button>
         <button onclick="goToday()" id="todayBtn" title="Jump to today's day">
-          <i class="fa-regular fa-calendar fa-icon"></i> Today
+          <i class="fa-solid fa-crosshairs"></i>
         </button>
-        <button onclick="exportICS()"><i class="fa-regular fa-calendar fa-icon"></i> Export Calendar</button>
-        <button id="installBtn" onclick="installApp()" class="hidden">
-          Install App
-        </button>
+        <span id="hdrMenuBtn" style="position:relative">
+          <button title="Print, Export & more" onclick="document.getElementById('hdrDropdown').classList.toggle('open')">
+            <i class="fa-solid fa-tower-observation"></i> <span class="btn-label">More</span>
+          </button>
+          <div class="hdr-dropdown" id="hdrDropdown">
+            <button onclick="window.print()"><i class="fa-solid fa-print"></i> Print Itinerary</button>
+            <button onclick="exportICS()"><i class="fa-solid fa-download"></i> Export Calendar</button>
+            <button id="installMenuBtn" onclick="installApp()" class="hidden"><i class="fa-solid fa-arrow-down"></i> Install App</button>
+          </div>
+        </span>
       </div>
     </div>
     <div class="tabs no-print" id="tabBar">
@@ -1740,27 +2153,13 @@
       <button class="tab" data-s="french">French</button>
       <button class="tab" data-s="tips">Tips</button>
     </div>
-    <!-- Mobile navigation: dropdown for quick section jumps -->
-    <div class="no-print mobile-nav" aria-hidden="false">
-      <select id="mobileNav" aria-label="Jump to section">
-        <option value="overview">Overview</option>
-        <option value="day1">Day 1</option>
-        <option value="day2">Day 2</option>
-        <option value="day3">Day 3</option>
-        <option value="day4">Day 4</option>
-        <option value="louvre">Louvre</option>
-        <option value="timetable">Timetables</option>
-        <option value="pack">Packing</option>
-        <option value="french">French</option>
-        <option value="tips">Tips</option>
-      </select>
-    </div>
     <!-- OVERVIEW -->
     <div id="overview" class="sec active" data-t="Trip Overview">
       <div class="inst no-print" id="installBanner">
         <span>Install for offline access</span
         ><button onclick="installApp()">Install</button>
       </div>
+      <div class="card" id="liveCard" style="text-align:center;padding:20px 16px;"></div>
       <div class="igrid">
         <div class="icard">
           <div class="icon">&#10069;</div>
@@ -2027,6 +2426,7 @@
       </div>
       <div class="card">
         <h3>Calendar Overview</h3>
+        <div class="table-wrap">
         <div class="cal">
           <div class="cal-hdr"></div>
           <div class="cal-hdr">Wed 22</div>
@@ -2227,6 +2627,7 @@
             <div class="cal-act chill"><i class="fa-solid fa-box fa-icon"></i> Pack + <i class="fa-solid fa-bed fa-icon"></i></div>
           </div>
           <div class="cal-cell empty"></div>
+        </div>
         </div>
         <div style="margin-top: 6px; font-size: 0.68rem; color: var(--muted)">
           <span
@@ -2611,7 +3012,7 @@
               <div class="rf-dot rf-end"></div>
               <div class="rf-name">Miromesnil</div>
             </div>
-            <div class="calm ti">
+            <div class="calm">
               <i class="fa-solid fa-brain fa-icon"></i> Transition: Quiet shuttle → busy metro station. L1 is automated
               (quieter, AC). The transfer at FDR is underground with crowds —
               follow signs, don't rush. You'll be at the apartment in 15 min.
@@ -2929,7 +3330,7 @@
           <div class="tt">23:30</div>
           <div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div>
           <div class="td">Big Louvre day tomorrow!</div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-comment fa-icon"></i> Debrief: What was the highlight of your day? One thing that
             surprised you. Let your brain close the day before sleep.
           </div>
@@ -3217,7 +3618,7 @@
             target="_blank"
             >Passage Richelieu Entrance</a
           >
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-brain fa-icon"></i> Transition: Quiet garden → busy museum courtyard (bright, hot,
             crowded) → cool quiet interior. The entrance courtyard is the
             hardest part — once you're through security, the museum is calm and
@@ -3708,7 +4109,7 @@
           <div class="td">
             Montmartre tomorrow — funicular instead of climbing!
           </div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-comment fa-icon"></i> Debrief: Highlight of the day? (Louvre moment, GL rooftop,
             dinner, sparkle?) What would you go back to see? One thing that was
             easier than you expected.
@@ -4041,7 +4442,7 @@
             min ride, saves 222 steps. Runs every 5-10 min in summer.
             <b>Two lines:</b> take the one on the right (faster, less crowded).
           </div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-brain fa-icon"></i> Transition: Metro station → outdoor funicular queue (bright,
             warm, busy). The queue looks long but moves fast — 90 sec cable car.
             At the top: you step out into a huge open view. Take 10 sec to
@@ -4150,7 +4551,7 @@
             Touristy but charming. Watch artists at work. You can get a
             caricature drawn (€10-20, takes 10 min).
           </div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-brain fa-icon"></i> Transition: Silent basilica → loud artist square. This is the
             most chaotic spot today. If you feel overwhelmed: walk 30 sec down
             Rue Norvins — it gets quiet almost instantly. Stay in the side
@@ -4380,7 +4781,7 @@
           <div class="tt">23:45</div>
           <div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div>
           <div class="td">Last night in Paris — departure tomorrow!</div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-comment fa-icon"></i> Debrief: Highlight of the day? (Flower market, Sacré-Cœur,
             artists, lunch?) Funniest moment today. Something you'll remember in
             a year.
@@ -4538,7 +4939,7 @@
           <div class="td">
             Check out of apartment. Final bathroom at apartment.
           </div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Panic about forgetting something? You have passports + phones +
             wallet. Everything else can be replaced. The apartment check-out is
             2 hours before shuttle — no rush. Take 3 slow breaths before opening
@@ -4562,7 +4963,7 @@
             boulangerie. Eat on a bench — savour the last moments. Budget €5-8
             for two.
           </div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-brain fa-icon"></i> Transition: You're leaving the apartment, heading into metro,
             then shuttle. This is the most emotionally loaded moment — last
             Paris lunch. Eat slowly. Sit 10 extra min if you want. The shuttle
@@ -4642,7 +5043,7 @@
           <div class="th">
             Already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i>. Runs every 30-60 min. Last shuttle ~23:00.
           </div>
-          <div class="calm ti">
+          <div class="calm">
             <i class="fa-solid fa-comment fa-icon"></i> Final debrief — Froggy's question: What was your favourite place
             of the whole trip? And your highlight of today? What was the moment
             you felt most Parisian? What would you do differently next time?
@@ -4690,6 +5091,31 @@
             Taxi home from airport. Au revoir, Paris!
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- GUIDE — remaining pages -->
+    <div id="guide" class="sec" data-t="Travel Guide">
+      <div class="day-div">Travel Guide</div>
+      <div class="card" style="cursor:pointer" onclick="show('louvre')">
+        <h3><i class="fa-solid fa-landmark fa-icon"></i> Louvre Guide</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Booking info, entrance, what to see, route</p>
+      </div>
+      <div class="card" style="cursor:pointer" onclick="show('timetable')">
+        <h3><i class="fa-solid fa-clock fa-icon"></i> Timetables</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Metro hours, opening times, shuttle schedules</p>
+      </div>
+      <div class="card" style="cursor:pointer" onclick="show('pack')">
+        <h3><i class="fa-solid fa-suitcase fa-icon"></i> Packing Checklist</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">What to bring, what to leave</p>
+      </div>
+      <div class="card" style="cursor:pointer" onclick="show('french')">
+        <h3><i class="fa-solid fa-comment fa-icon"></i> French Phrasebook</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Essential phrases, pronunciation guide</p>
+      </div>
+      <div class="card" style="cursor:pointer" onclick="show('tips')">
+        <h3><i class="fa-solid fa-lightbulb fa-icon"></i> Tips & Tricks</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Safety, sensory guide, packing, budget</p>
       </div>
     </div>
 
@@ -6197,6 +6623,7 @@
           Know before you go — so nothing surprises you. Use this to decide what
           you're in the mood for.
         </p>
+        <div class="table-wrap">
         <table class="tt-table">
           <thead>
             <tr>
@@ -6339,6 +6766,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
           <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Overstimulated?</b> Find the nearest church (free, silent, cool)
           or park bench. Paris has one every 500m. Sit for 5 min with no input.
@@ -8204,6 +8632,37 @@
       </div>
     </div>
 
+    <!-- Day prev/next arrows (mobile, only on day sections) -->
+    <div class="day-nav no-print" id="dayNav" style="display:none">
+      <button class="day-nav-prev" onclick="jumpDay(-1)">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <span class="day-nav-label" id="dayNavLabel">Day 1</span>
+      <button class="day-nav-next" onclick="jumpDay(1)">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Bottom navigation bar (mobile) -->
+    <nav class="bottom-nav no-print" id="bottomNav">
+      <button onclick="show('overview')" data-nav="overview">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </button>
+      <button onclick="goToday()" data-nav="days" id="bottomDaysBtn">
+        <i class="fa-solid fa-calendar-day"></i>
+        <span>Days</span>
+      </button>
+      <button onclick="show('louvre')" data-nav="louvre">
+        <i class="fa-solid fa-landmark"></i>
+        <span>Louvre</span>
+      </button>
+      <button onclick="show('guide')" data-nav="guide">
+        <i class="fa-solid fa-compass"></i>
+        <span>Guide</span>
+      </button>
+    </nav>
+
     <button
       onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
       id="topBtn"
@@ -8213,56 +8672,64 @@
     </button>
 
     <script>
+      const MOBILE_SECTIONS = [
+        "overview", "day1", "day2", "day3", "day4",
+        "louvre", "timetable", "pack", "french", "tips"
+      ];
+      const BOTTOM_NAV_MAP = {
+        overview: "overview", day1: "days", day2: "days",
+        day3: "days", day4: "days", louvre: "guide",
+        timetable: "guide", pack: "guide",
+        french: "guide", tips: "guide"
+      };
       function show(id) {
-        document
-          .querySelectorAll(".sec")
-          .forEach((s) => s.classList.remove("active"));
-        document
-          .querySelectorAll(".tab")
-          .forEach((t) => t.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
+        document.querySelectorAll(".sec").forEach((s) => s.classList.remove("active"));
+        document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add("active");
         document.querySelectorAll(".tab").forEach((t) => {
           if (t.dataset.s === id) t.classList.add("active");
         });
-        // keep mobile select in sync
-        const m = document.getElementById("mobileNav");
-        if (m) m.value = id;
-        document
-          .getElementById(id)
-          .scrollIntoView({ behavior: "smooth", block: "start" });
+        // sync day nav — only show on day sections
+        const isDay = id.startsWith("day");
+        const dayNav = document.getElementById("dayNav");
+        if (dayNav) {
+          dayNav.style.display = isDay ? "" : "none";
+          if (isDay) {
+            const labels = { day1:"Day 1 — Wed 22 Jul", day2:"Day 2 — Thu 23 Jul", day3:"Day 3 — Fri 24 Jul", day4:"Day 4 — Sat 25 Jul" };
+            document.getElementById("dayNavLabel").textContent = labels[id] || id;
+            const di = ["day1","day2","day3","day4"].indexOf(id);
+            dayNav.querySelector(".day-nav-prev").classList.toggle("disabled", di <= 0);
+            dayNav.querySelector(".day-nav-next").classList.toggle("disabled", di >= 3);
+          }
+        }
+        // sync bottom nav
+        const navKey = BOTTOM_NAV_MAP[id] || "overview";
+        document.querySelectorAll(".bottom-nav button").forEach((b) => {
+          b.classList.toggle("active", b.dataset.nav === navKey);
+        });
+        // scroll to top
         window.scrollTo(0, 0);
+        // toggle floating ticket button — show only on Louvre section or Day 2
+        const fDoc = document.getElementById("floatingDocBtn");
+        if (fDoc) {
+          const showDoc = id === "louvre" || id === "day2";
+          fDoc.classList.toggle("show", showDoc);
+          fDoc.setAttribute("aria-hidden", showDoc ? "false" : "true");
+        }
+        // update now marker for day sections
+        if (typeof updateNowMarker === "function") updateNowMarker();
       }
-      document
-        .querySelectorAll(".tab")
-        .forEach((t) => t.addEventListener("click", () => show(t.dataset.s)));
-      // mobile nav handler
-      const MOBILE_SECTIONS = [
-        "overview",
-        "day1",
-        "day2",
-        "day3",
-        "day4",
-        "louvre",
-        "timetable",
-        "pack",
-        "french",
-        "tips",
-      ];
-      const mobileNav = document.getElementById("mobileNav");
-      if (mobileNav) {
-        mobileNav.addEventListener("change", (e) => show(e.target.value));
-      }
-
-      // add Prev/Next helper for mobile (thumb-friendly)
-      function mobileJump(dir) {
-        const active = document.querySelector(".sec.active");
-        if (!active) return;
-        const id = active.id;
-        const i = MOBILE_SECTIONS.indexOf(id);
-        if (i === -1) return;
-        const ni = Math.max(0, Math.min(MOBILE_SECTIONS.length - 1, i + dir));
-        if (ni !== i) show(MOBILE_SECTIONS[ni]);
-      }
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        const dd = document.getElementById("hdrDropdown");
+        const btn = document.getElementById("hdrMenuBtn");
+        if (dd && btn && !btn.contains(e.target)) dd.classList.remove("open");
+      });
+      // Desktop tab clicks
+      document.querySelectorAll(".tab").forEach((t) =>
+        t.addEventListener("click", () => show(t.dataset.s)));
       // document viewer toggle
       const viewBtn = document.getElementById("viewDocBtn");
       if (viewBtn) {
@@ -8317,6 +8784,31 @@
       if (floatingDocBtn) {
         floatingDocBtn.addEventListener("click", showTicketPreview);
       }
+      // Collapsible timeline items (mobile tap to expand)
+      if (window.innerWidth <= 640) {
+        // Add expand/collapse all button to each day section
+        document.querySelectorAll(".sec[id^='day'] .tl").forEach((tl) => {
+          const btn = document.createElement("button");
+          btn.className = "expand-all-btn";
+          btn.innerHTML = '<i class="fa-solid fa-arrows-up-down"></i> Expand all';
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const items = tl.querySelectorAll(".ti");
+            const allExpanded = [...items].every((ti) => ti.classList.contains("expanded"));
+            items.forEach((ti) => ti.classList.toggle("expanded", !allExpanded));
+            btn.innerHTML = allExpanded
+              ? '<i class="fa-solid fa-arrows-up-down"></i> Expand all'
+              : '<i class="fa-solid fa-arrows-up-down"></i> Collapse all';
+          });
+          tl.parentElement.insertBefore(btn, tl);
+        });
+        document.querySelectorAll(".tl .ti").forEach((ti) => {
+          ti.addEventListener("click", (e) => {
+            if (e.target.closest("a") || e.target.closest("input") || e.target.closest("button")) return;
+            ti.classList.toggle("expanded");
+          });
+        });
+      }
       // highlight the document button on the booking date so it's easy to find
       (function highlightDocButton() {
         try {
@@ -8334,12 +8826,6 @@
               b.classList.add("highlight-doc-btn");
               b.textContent = "Open ticket";
             }
-            // reveal a site-wide floating button so it's easy to open your ticket from any section
-            let f = document.getElementById("floatingDocBtn");
-            if (f) {
-              f.classList.add("show");
-              f.setAttribute("aria-hidden", "false");
-            }
           }
         } catch (e) {
           /* noop */
@@ -8349,7 +8835,7 @@
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        document.getElementById("installBtn").classList.remove("hidden");
+        document.getElementById("installMenuBtn").classList.remove("hidden");
         document.getElementById("installBanner").classList.add("show");
       });
       function installApp() {
@@ -8441,6 +8927,54 @@
           show(days[day - 22]);
         } else show("day1");
       }
+      // Day prev/next navigation
+      function jumpDay(dir) {
+        const active = document.querySelector(".sec.active");
+        if (!active) return;
+        const days = ["day1","day2","day3","day4"];
+        const i = days.indexOf(active.id);
+        if (i === -1) return;
+        const ni = Math.max(0, Math.min(3, i + dir));
+        if (ni !== i) show(days[ni]);
+      }
+      // Live countdown / trip status card
+      (function () {
+        const card = document.getElementById("liveCard");
+        if (!card) return;
+        const TRIP_START = new Date(2026, 6, 22); // Jul 22 2026
+        const TRIP_END = new Date(2026, 6, 25, 23, 59);
+        const now = new Date();
+        const diff = TRIP_START - now;
+        const dayDiff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        const days = ["day1","day2","day3","day4"];
+        const dayNames = ["Day 1 — Wed 22 Jul","Day 2 — Thu 23 Jul","Day 3 — Fri 24 Jul","Day 4 — Sat 25 Jul"];
+        const daySummaries = [
+          "Arrive Paris 14:25, shuttle to Opéra, settle into apartment, explore neighbourhood, Eiffel sparkle at night.",
+          "Morning free, Palais Royal, Louvre 14:00, Galeries Lafayette rooftop, dinner & sparkle.",
+          "Flower market 09:00, Montmartre & Sacré-Cœur, afternoon options, farewell dinner.",
+          "Farewell morning walk, last Paris moments, shuttle 13:15, flight 17:35 home."
+        ];
+        if (now < TRIP_START) {
+          // Before trip — countdown
+          card.innerHTML =
+            '<div style="font-size:2.2rem;font-weight:800;color:var(--blue);margin-bottom:4px">' + dayDiff + '</div>' +
+            '<div style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px">day' + (dayDiff !== 1 ? 's' : '') + ' until Paris</div>' +
+            '<div style="font-size:0.75rem;color:var(--muted)">Wed 22 — Sat 25 July 2026</div>';
+        } else if (now <= TRIP_END) {
+          // During trip — show current day
+          const di = Math.min(3, Math.max(0, Math.floor((now - TRIP_START) / (1000 * 60 * 60 * 24))));
+          card.innerHTML =
+            '<div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:6px">Currently in Paris</div>' +
+            '<div style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px">' + dayNames[di] + '</div>' +
+            '<div style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;line-height:1.5">' + daySummaries[di] + '</div>' +
+            '<button onclick="show(\'' + days[di] + '\')" style="background:var(--blue);color:#fff;border:none;padding:10px 24px;border-radius:20px;font-size:0.85rem;font-weight:700;cursor:pointer">Go to ' + dayNames[di].split(' — ')[0] + ' <i class="fa-solid fa-arrow-right" style="margin-left:6px"></i></button>';
+        } else {
+          // After trip — show last day
+          card.innerHTML =
+            '<div style="font-size:0.9rem;color:var(--muted);margin-bottom:4px">Hope Paris was amazing!</div>' +
+            '<div style="font-size:0.75rem;color:var(--muted)">22 — 25 July 2026</div>';
+        }
+      })();
       // Highlight today button if within trip
       (function () {
         const d = new Date();
@@ -8791,11 +9325,100 @@
       });
       saveB();
 
-      // Scroll to top button visibility
+      // Now marker — marks current activity in day timelines
+      const TRIP_DATES = {
+        day1: new Date(2026, 6, 22),
+        day2: new Date(2026, 6, 23),
+        day3: new Date(2026, 6, 24),
+        day4: new Date(2026, 6, 25)
+      };
+      function parseTT(text) {
+        text = text.replace(/~/g, "").trim();
+        const rangeMatch = text.match(/^(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})$/);
+        if (rangeMatch) {
+          return {
+            startH: +rangeMatch[1], startM: +rangeMatch[2],
+            endH: +rangeMatch[3], endM: +rangeMatch[4]
+          };
+        }
+        const singleMatch = text.match(/^(\d{1,2}):(\d{2})/);
+        if (singleMatch) {
+          const h = +singleMatch[1], m = +singleMatch[2];
+          return { startH: h, startM: m, endH: h + 1, endM: m };
+        }
+        return null;
+      }
+      function updateNowMarker() {
+        const active = document.querySelector(".sec.active");
+        if (!active || !active.id.startsWith("day")) return;
+        const tripDate = TRIP_DATES[active.id];
+        if (!tripDate) return;
+        const now = new Date();
+        const todayStr = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
+        const tripStr = tripDate.getFullYear() + "-" + (tripDate.getMonth()+1) + "-" + tripDate.getDate();
+        const items = active.querySelectorAll(".tl .ti");
+        let foundNow = false;
+        items.forEach((ti) => {
+          ti.classList.remove("past", "now");
+          const existingBadge = ti.querySelector(".now-badge");
+          if (existingBadge) existingBadge.remove();
+          const existingTrack = ti.querySelector(".now-track");
+          if (existingTrack) existingTrack.remove();
+          if (todayStr !== tripStr) return;
+          const ttEl = ti.querySelector(".tt");
+          if (!ttEl) return;
+          const range = parseTT(ttEl.textContent);
+          if (!range) return;
+          const nowMin = now.getHours() * 60 + now.getMinutes();
+          const startMin = range.startH * 60 + range.startM;
+          const endMin = range.endH * 60 + range.endM;
+          if (nowMin >= startMin && nowMin <= endMin && !foundNow) {
+            ti.classList.add("now");
+            foundNow = true;
+            const badge = document.createElement("span");
+            badge.className = "now-badge";
+            badge.textContent = "Now";
+            ttEl.appendChild(badge);
+            const track = document.createElement("div");
+            track.className = "now-track";
+            const fill = document.createElement("div");
+            fill.className = "now-track-fill";
+            fill.style.width = Math.min(100, Math.max(0, ((nowMin - startMin) / (endMin - startMin)) * 100)) + "%";
+            track.appendChild(fill);
+            ti.style.position = "relative";
+            ti.appendChild(track);
+            if (document.getElementById("dayNav") && document.getElementById("dayNav").style.display !== "none") {
+              setTimeout(() => ti.scrollIntoView({ behavior: "smooth", block: "center" }), 300);
+            }
+          } else if (nowMin > endMin) {
+            ti.classList.add("past");
+          }
+        });
+      }
+      updateNowMarker();
+      setInterval(updateNowMarker, 60000);
+
+      // Scroll: top button + header hide/show on day sections
+      let lastScrollY = 0;
+      let headerHidden = false;
       window.addEventListener("scroll", () => {
-        document
-          .getElementById("topBtn")
-          .classList.toggle("show", window.scrollY > 300);
+        const y = window.scrollY;
+        document.getElementById("topBtn").classList.toggle("show", y > 300);
+        const dayNav = document.getElementById("dayNav");
+        const isDayView = dayNav && dayNav.offsetHeight > 0;
+        document.getElementById("topBtn").classList.toggle("above-daynav", isDayView);
+        const hdr = document.querySelector(".hdr");
+        const isMobile = window.innerWidth <= 640;
+        if (!isDayView || isMobile) { hdr.classList.remove("hidden"); headerHidden = false; lastScrollY = y; return; }
+        const delta = y - lastScrollY;
+        if (delta > 10 && !headerHidden && y > 120) {
+          hdr.classList.add("hidden");
+          headerHidden = true;
+        } else if (delta < -10 && headerHidden) {
+          hdr.classList.remove("hidden");
+          headerHidden = false;
+        }
+        lastScrollY = y;
       });
     </script>
     <button id="floatingDocBtn" class="no-print" aria-hidden="true">
