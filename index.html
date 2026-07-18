@@ -479,6 +479,9 @@
         display: none;
       }
       @media (max-width: 640px) {
+        body {
+          padding-bottom: 96px;
+        }
         .tabs {
           display: none;
         }
@@ -507,6 +510,19 @@
           border-radius: 8px !important;
           font-weight: 700 !important;
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        }
+        #topBtn {
+          right: 14px;
+          bottom: 18px;
+          width: 42px;
+          height: 42px;
+        }
+        #floatingDocBtn {
+          right: 12px;
+          bottom: 70px;
+          padding: 10px 14px;
+          font-size: 0.9rem;
+          max-width: calc(100vw - 24px);
         }
       }
       /* More prominent default styling for the inline document button */
@@ -1023,6 +1039,7 @@
       }
       .steps li {
         margin-bottom: 2px;
+        overflow-wrap: anywhere;
       }
 
       .backup {
@@ -1228,15 +1245,16 @@
       .route-flow {
         display: inline-flex;
         align-items: center;
-        gap: 0;
+        flex-wrap: wrap;
+        gap: 4px;
         margin: 4px 0 6px;
         padding: 5px 10px;
         background: linear-gradient(135deg, #e8f0fe, #f0f4ff);
         border-radius: 20px;
         border: 1.5px solid #c5d5f5;
         font-size: 0.72rem;
-        line-height: 1;
-        white-space: nowrap;
+        line-height: 1.2;
+        white-space: normal;
         vertical-align: middle;
       }
       .route-flow .rf-dot {
