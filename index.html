@@ -280,6 +280,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 6px;
         transition: background 0.2s;
       }
       .hdr-btns button:hover {
@@ -855,25 +856,6 @@
         .cal-time { padding: 4px 2px; font-size: 0.6rem; }
         .cal-cell { padding: 3px 3px; min-height: 26px; }
         .cal-act { font-size: 0.6rem; }
-        .expand-all-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          width: 100%;
-          padding: 8px;
-          margin-bottom: 8px;
-          background: var(--card);
-          border: 1px dashed var(--border);
-          border-radius: 10px;
-          color: var(--muted);
-          font-size: 0.75rem;
-          font-weight: 600;
-          cursor: pointer;
-          -webkit-tap-highlight-color: transparent;
-          transition: background 0.15s, color 0.15s;
-        }
-        .expand-all-btn:active { background: var(--card-bg); color: var(--text); }
       }
       /* === End mobile collapsible === */
       /* === Now marker & time progress === */
@@ -9088,22 +9070,6 @@
       }
       // Collapsible timeline items (mobile tap to expand)
       if (window.innerWidth <= 640) {
-        // Add expand/collapse all button to each day section
-        document.querySelectorAll(".sec[id^='day'] .tl").forEach((tl) => {
-          const btn = document.createElement("button");
-          btn.className = "expand-all-btn";
-          btn.innerHTML = '<i class="fa-solid fa-arrows-up-down"></i> Expand all';
-          btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const items = tl.querySelectorAll(".ti");
-            const allExpanded = [...items].every((ti) => ti.classList.contains("expanded"));
-            items.forEach((ti) => ti.classList.toggle("expanded", !allExpanded));
-            btn.innerHTML = allExpanded
-              ? '<i class="fa-solid fa-arrows-up-down"></i> Expand all'
-              : '<i class="fa-solid fa-arrows-up-down"></i> Collapse all';
-          });
-          tl.parentElement.insertBefore(btn, tl);
-        });
         document.querySelectorAll(".tl .ti").forEach((ti) => {
           ti.addEventListener("click", (e) => {
             if (e.target.closest("a") || e.target.closest("input") || e.target.closest("button")) return;
