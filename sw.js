@@ -1,8 +1,11 @@
-const CACHE_NAME = 'paris-trip-v1';
+const CACHE_NAME = 'paris-trip-v2';
 const ASSETS = [
   './',
   './index.html',
-  './manifest.json'
+  './manifest.json',
+  './ticket-page1.png',
+  './ticket-page2.png',
+  './document.pdf'
 ];
 
 self.addEventListener('install', e => {

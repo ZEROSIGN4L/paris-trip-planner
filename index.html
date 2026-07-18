@@ -2176,6 +2176,27 @@
           height: 6px;
           background: var(--border);
         }
+        .sched-stop.sched-active::before {
+          background: var(--accent) !important;
+          box-shadow: 0 0 0 1px var(--accent), 0 0 8px rgba(233,69,96,0.4) !important;
+          width: 10px;
+          height: 10px;
+          left: -1px;
+          animation: schedPulse 2s ease-in-out infinite;
+        }
+        .sched-stop.sched-active .sched-time {
+          color: var(--accent);
+          font-weight: 800;
+        }
+        .sched-stop.sched-active .sched-name {
+          color: var(--accent);
+          font-weight: 700;
+          opacity: 1;
+        }
+        @keyframes schedPulse {
+          0%, 100% { box-shadow: 0 0 0 1px var(--accent), 0 0 6px rgba(233,69,96,0.3); }
+          50% { box-shadow: 0 0 0 1px var(--accent), 0 0 12px rgba(233,69,96,0.6); }
+        }
       }
       .fa-icon {
         display: inline-block;
@@ -5238,11 +5259,27 @@
           </button>
         </div>
         <div id="docWrap" style="margin-top: 8px">
-          <iframe
-            src="document.pdf"
-            style="width: 100%; height: 400px; border: 1px solid var(--border)"
-            title="Document preview"
-          ></iframe>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="ticket-img-wrap" style="border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer" onclick="openTicketFull('ticket-page1.png')">
+              <div style="padding:6px 10px;background:var(--card-bg);font-size:0.72rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px">
+                <i class="fa-solid fa-frog fa-icon" style="color:var(--frog)"></i> Froggy's ticket <i class="fa-solid fa-expand" style="margin-left:auto;font-size:0.65rem;color:var(--muted)"></i>
+              </div>
+              <img src="ticket-page1.png" alt="Froggy's Louvre ticket" style="width:100%;display:block" loading="lazy" />
+            </div>
+            <div class="ticket-img-wrap" style="border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer" onclick="openTicketFull('ticket-page2.png')">
+              <div style="padding:6px 10px;background:var(--card-bg);font-size:0.72rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px">
+                <i class="fa-solid fa-user fa-icon" style="color:var(--blue)"></i> Your ticket <i class="fa-solid fa-expand" style="margin-left:auto;font-size:0.65rem;color:var(--muted)"></i>
+              </div>
+              <img src="ticket-page2.png" alt="Your Louvre ticket" style="width:100%;display:block" loading="lazy" />
+            </div>
+          </div>
+          <a href="document.pdf" download style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:0.78rem;font-weight:600;color:var(--blue);text-decoration:none">
+            <i class="fa-solid fa-download fa-icon"></i> Download PDF
+          </a>
+        </div>
+        <div id="ticketOverlay" onclick="this.classList.remove('show')" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px;cursor:pointer">
+          <img id="ticketFullImg" src="" alt="Ticket full screen" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:4px" />
+          <button onclick="document.getElementById('ticketOverlay').classList.remove('show')" style="position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
       <div class="hbox blue" style="margin-top: 10px">
@@ -8820,18 +8857,24 @@
       // show QR / print helper
       function showTicketPreview() {
         const w = document.getElementById("docWrap");
-        if (w) w.classList.remove("hidden");
-        const iframe = document.querySelector("#docWrap iframe");
-        if (iframe) {
-          iframe.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (w) {
+          w.classList.remove("hidden");
+          w.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      function openTicketFull(src) {
+        const overlay = document.getElementById("ticketOverlay");
+        const img = document.getElementById("ticketFullImg");
+        if (overlay && img) {
+          img.src = src;
+          overlay.style.display = "flex";
+          overlay.classList.add("show");
         }
       }
       function openTicketPdf() {
-        const iframe = document.querySelector("#docWrap iframe");
-        const src = iframe ? iframe.src : "document.pdf";
         let w;
         try {
-          w = window.open(src, "_blank");
+          w = window.open("document.pdf", "_blank");
         } catch (err) {
           w = null;
         }
@@ -9469,6 +9512,22 @@
             ti.classList.add("past");
           }
         });
+        // Highlight current schedule stop
+        active.querySelectorAll(".sched-stop").forEach(s => s.classList.remove("sched-active"));
+        if (todayStr !== tripStr) return;
+        const schedStops = active.querySelectorAll(".sched-stop");
+        const schedTimes = active.querySelectorAll(".sched-time");
+        const nowMin = now.getHours() * 60 + now.getMinutes();
+        let lastPastIdx = -1;
+        schedTimes.forEach((st, i) => {
+          const range = parseTT(st.textContent);
+          if (!range) return;
+          const startMin = range.startH * 60 + range.startM;
+          if (nowMin >= startMin) lastPastIdx = i;
+        });
+        if (lastPastIdx >= 0 && lastPastIdx < schedStops.length) {
+          schedStops[lastPastIdx].classList.add("sched-active");
+        }
       }
       updateNowMarker();
       setInterval(updateNowMarker, 60000);
