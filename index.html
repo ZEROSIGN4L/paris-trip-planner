@@ -4628,7 +4628,10 @@
         <p style="margin-bottom: 8px">
           A generic confirmation document is available below.
         </p>
-        <button id="viewDocBtn">View document</button>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button id="viewDocBtn">View document</button>
+          <button id="showQrBtn" class="btn" style="background:linear-gradient(90deg,#ff8a9e,#ff6b81);padding:8px 12px;border-radius:8px;font-weight:700">Show QR / Print</button>
+        </div>
         <div id="docWrap" class="hidden" style="margin-top: 8px">
           <iframe
             src="document.pdf"
@@ -4636,6 +4639,13 @@
             title="Document preview"
           ></iframe>
         </div>
+      </div>
+      <div class="hbox blue" style="margin-top:10px">
+        <p>
+          🧘 Security queue moves fast — you have timed entry, so no waiting in the general
+          queue. You're ahead of most visitors today. Breathe: you're about to see the
+          greatest art collection on Earth.
+        </p>
       </div>
       <div class="card">
         <h3>Opening Hours (verified July 2026)</h3>
@@ -8159,6 +8169,31 @@
           viewBtn.textContent = w.classList.contains("hidden")
             ? "View document"
             : "Hide document";
+        });
+      }
+      // show QR / print helper
+      const showQrBtn = document.getElementById("showQrBtn");
+      if (showQrBtn) {
+        showQrBtn.addEventListener("click", () => {
+          try {
+            const iframe = document.querySelector("#docWrap iframe");
+            const src = iframe ? iframe.src : "document.pdf";
+            // open in new tab so user can view/print on phone or desktop
+            const w = window.open(src, "_blank");
+            if (w) {
+              try {
+                w.focus();
+                // attempt to trigger print when the new tab loads (may be blocked by browser)
+                w.onload = function () {
+                  try {
+                    w.print();
+                  } catch (e) {}
+                };
+              } catch (e) {}
+            }
+          } catch (e) {
+            /* noop */
+          }
         });
       }
       // highlight the document button on the booking date so it's easy to find
