@@ -5276,13 +5276,14 @@
             <i class="fa-solid fa-download fa-icon"></i> Download PDF
           </a>
         </div>
-        <div id="ticketOverlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px">
-          <img id="ticketFullImg" src="" alt="Ticket full screen" style="max-width:100%;max-height:calc(100% - 56px);object-fit:contain;border-radius:4px" />
-          <div style="position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.9))">
+        <div id="ticketOverlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px;overflow-y:auto;flex-direction:column">
+          <div id="ticketOverlayImgWrap" style="display:flex;flex-direction:column;gap:12px;max-height:calc(100% - 56px);overflow-y:auto;width:100%;max-width:420px;padding:8px 0">
+          </div>
+          <div style="position:sticky;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.95))">
             <button onclick="document.getElementById('ticketOverlay').style.display='none'" style="padding:10px 20px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
               <i class="fa-solid fa-arrow-left" style="margin-right:6px"></i> Back
             </button>
-            <a id="ticketShareBtn" href="#" target="_blank" download style="padding:10px 20px;border-radius:10px;background:var(--accent);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px;text-decoration:none;display:inline-flex;align-items:center">
+            <a id="ticketShareBtn" href="document.pdf" target="_blank" download style="padding:10px 20px;border-radius:10px;background:var(--accent);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px;text-decoration:none;display:inline-flex;align-items:center">
               <i class="fa-solid fa-up-right-from-square" style="margin-right:6px"></i> Open PDF
             </a>
           </div>
@@ -8852,6 +8853,10 @@
       const viewBtn = document.getElementById("viewDocBtn");
       if (viewBtn) {
         viewBtn.addEventListener("click", () => {
+          if (window.innerWidth <= 640) {
+            openTicketFull("both");
+            return;
+          }
           const w = document.getElementById("docWrap");
           if (!w) return;
           w.classList.toggle("hidden");
@@ -8870,16 +8875,39 @@
       }
       function openTicketFull(src) {
         const overlay = document.getElementById("ticketOverlay");
-        const img = document.getElementById("ticketFullImg");
+        const wrap = document.getElementById("ticketOverlayImgWrap");
         const share = document.getElementById("ticketShareBtn");
-        if (overlay && img) {
+        if (!overlay || !wrap) return;
+        wrap.innerHTML = "";
+        if (src === "both") {
+          ["ticket-page1.png","ticket-page2.png"].forEach((s,i) => {
+            const d = document.createElement("div");
+            d.style.cssText = "border-radius:8px;overflow:hidden;background:#111";
+            const lbl = document.createElement("div");
+            lbl.style.cssText = "padding:6px 10px;font-size:0.72rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px";
+            lbl.innerHTML = i === 0
+              ? '<i class="fa-solid fa-frog fa-icon" style="color:var(--frog)"></i> Froggy\'s ticket'
+              : '<i class="fa-solid fa-user fa-icon" style="color:var(--blue)"></i> Your ticket';
+            const img = document.createElement("img");
+            img.src = s;
+            img.alt = lbl.textContent;
+            img.style.cssText = "width:100%;display:block";
+            d.appendChild(lbl);
+            d.appendChild(img);
+            wrap.appendChild(d);
+          });
+          if (share) share.href = "document.pdf";
+        } else {
+          const img = document.createElement("img");
           img.src = src;
-          overlay.style.display = "flex";
+          img.alt = "Ticket";
+          img.style.cssText = "width:100%;display:block;border-radius:8px";
+          wrap.appendChild(img);
+          if (share) {
+            share.href = src === "ticket-page2.png" ? "document.pdf#page=2" : "document.pdf#page=1";
+          }
         }
-        if (share) {
-          if (src === "ticket-page2.png") share.href = "document.pdf#page=2";
-          else share.href = "document.pdf#page=1";
-        }
+        overlay.style.display = "flex";
       }
       function openTicketPdf() {
         let w;
