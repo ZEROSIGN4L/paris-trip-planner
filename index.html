@@ -8919,20 +8919,15 @@
       const viewBtn = document.getElementById("viewDocBtn");
       if (viewBtn) {
         viewBtn.addEventListener("click", () => {
-          if (window.innerWidth <= 640) {
-            openTicketFull("both");
-            return;
-          }
-          const w = document.getElementById("docWrap");
-          if (!w) return;
-          w.classList.toggle("hidden");
-          viewBtn.textContent = w.classList.contains("hidden")
-            ? "View ticket"
-            : "Hide ticket";
+          openTicketFull("both");
         });
       }
       // show QR / print helper
       function showTicketPreview() {
+        if (window.innerWidth <= 640) {
+          openTicketFull("both");
+          return;
+        }
         const w = document.getElementById("docWrap");
         if (w) {
           w.classList.remove("hidden");
