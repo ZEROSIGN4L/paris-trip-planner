@@ -1107,23 +1107,60 @@
       .icard {
         background: var(--card);
         border-radius: var(--r);
-        padding: 12px;
+        padding: 14px 10px 12px;
         text-align: center;
         border: 2px solid var(--border);
+        position: relative;
+        overflow: hidden;
       }
+      .icard::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+      }
+      .icard:first-child::before { background: var(--accent); }
+      .icard:last-child::before { background: var(--green); }
       .icard .icon {
-        font-size: 1.8rem;
-        margin-bottom: 4px;
+        width: 52px; height: 52px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+        line-height: 1;
       }
+      .icard:first-child .icon { background: rgba(233,69,96,0.12); }
+      .icard:last-child .icon { background: rgba(76,175,80,0.12); }
       .icard .name {
-        font-weight: 600;
-        font-size: 0.84rem;
+        font-weight: 700;
+        font-size: 0.88rem;
+        margin-bottom: 2px;
+      }
+      .icard .vibe {
+        font-size: 0.68rem;
+        color: var(--muted);
+        font-style: italic;
+        margin-bottom: 6px;
       }
       .icard .likes {
-        font-size: 0.7rem;
-        color: var(--muted);
-        margin-top: 3px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        justify-content: center;
+        margin-top: 4px;
       }
+      .icard .likes .tag-chip {
+        font-size: 0.6rem;
+        padding: 2px 7px;
+        border-radius: 99px;
+        background: rgba(128,128,128,0.1);
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .icard:first-child .likes .tag-chip { background: rgba(233,69,96,0.08); color: var(--accent); }
+      .icard:last-child .likes .tag-chip { background: rgba(76,175,80,0.08); color: var(--green); }
       .day-div {
         display: flex;
         align-items: center;
@@ -2295,14 +2332,25 @@
         <div class="icard">
           <div class="icon">&#10069;</div>
           <div class="name">You (!)</div>
-          <div class="likes">Louvre / Art</div>
+          <div class="vibe">The art seeker</div>
+          <div class="likes">
+            <span class="tag-chip">Louvre</span>
+            <span class="tag-chip">Art</span>
+            <span class="tag-chip">Museums</span>
+          </div>
         </div>
         <div class="icard">
           <div class="icon">&#128056;</div>
           <div class="name">Froggy</div>
+          <div class="vibe">The mindful explorer</div>
           <div class="likes">
-            Fashion / Flowers / Bridge / Deco Art / Gardening / French speaker /
-            Buddhist <i class="fa-solid fa-hands-praying fa-icon"></i>
+            <span class="tag-chip">Flowers</span>
+            <span class="tag-chip">Fashion</span>
+            <span class="tag-chip">Bridges</span>
+            <span class="tag-chip">Deco Art</span>
+            <span class="tag-chip">Gardens</span>
+            <span class="tag-chip">French</span>
+            <span class="tag-chip"><i class="fa-solid fa-hands-praying" style="font-size:0.55rem"></i> Buddhist</span>
           </div>
         </div>
       </div>
