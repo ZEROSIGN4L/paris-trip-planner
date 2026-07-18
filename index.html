@@ -8193,49 +8193,38 @@
         });
       }
       // show QR / print helper
+      function openTicketPdf() {
+        const iframe = document.querySelector("#docWrap iframe");
+        const src = iframe ? iframe.src : "document.pdf";
+        let w;
+        try {
+          w = window.open(src, "_blank");
+        } catch (err) {
+          w = null;
+        }
+        if (w) {
+          try {
+            w.focus();
+          } catch (e) {}
+          try {
+            w.onload = function () {
+              try {
+                w.print();
+              } catch (e) {}
+            };
+          } catch (e) {}
+          return;
+        }
+        // Fallback if popup blocked: navigate current tab to the PDF
+        window.location.href = src;
+      }
       const showQrBtn = document.getElementById("showQrBtn");
       if (showQrBtn) {
-        showQrBtn.addEventListener("click", () => {
-          try {
-            const iframe = document.querySelector("#docWrap iframe");
-            const src = iframe ? iframe.src : "document.pdf";
-            const w = window.open(src, "_blank");
-            if (w) {
-              try {
-                w.focus();
-                w.onload = function () {
-                  try {
-                    w.print();
-                  } catch (e) {}
-                };
-              } catch (e) {}
-            }
-          } catch (e) {
-            /* noop */
-          }
-        });
+        showQrBtn.addEventListener("click", openTicketPdf);
       }
       const floatingDocBtn = document.getElementById("floatingDocBtn");
       if (floatingDocBtn) {
-        floatingDocBtn.addEventListener("click", () => {
-          try {
-            const iframe = document.querySelector("#docWrap iframe");
-            const src = iframe ? iframe.src : "document.pdf";
-            const w = window.open(src, "_blank");
-            if (w) {
-              try {
-                w.focus();
-                w.onload = function () {
-                  try {
-                    w.print();
-                  } catch (e) {}
-                };
-              } catch (e) {}
-            }
-          } catch (e) {
-            /* noop */
-          }
-        });
+        floatingDocBtn.addEventListener("click", openTicketPdf);
       }
       // highlight the document button on the booking date so it's easy to find
       (function highlightDocButton() {
