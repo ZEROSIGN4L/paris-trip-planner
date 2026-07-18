@@ -10,6 +10,7 @@
       content="black-translucent"
     />
     <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Paris Trip Planner</title>
     <style>
       :root {
@@ -1000,8 +1001,11 @@
         color: #555;
       }
       .car-tip::before {
-        content: "🚇 ";
-        font-weight: 700;
+        content: "\f239";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 0.3em;
+        font-size: 0.9em;
       }
       .prep {
         font-size: 0.72rem;
@@ -1041,6 +1045,18 @@
         margin-bottom: 2px;
         overflow-wrap: anywhere;
       }
+      .icon-badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--frog);
+        padding: 1px 6px;
+        border-radius: 999px;
+        background: rgba(76, 175, 80, 0.12);
+        border: 1px solid rgba(76, 175, 80, 0.2);
+      }
 
       .backup {
         background: linear-gradient(135deg, #fff3e0, #fff8e1);
@@ -1053,8 +1069,11 @@
         color: #555;
       }
       .backup::before {
-        content: "🔀 ";
-        font-weight: 700;
+        content: "\f074";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 0.3em;
+        font-size: 0.9em;
       }
 
       .bath {
@@ -1063,8 +1082,9 @@
         margin-top: 2px;
       }
       .bath::before {
-        content: "🚻 Toilets: ";
-        font-weight: 600;
+        content: "\f7ed Toilets: ";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
         color: #ff9800;
       }
 
@@ -1077,7 +1097,12 @@
         padding: 3px 0;
       }
       .maplink::before {
-        content: "📍 ";
+        content: "\f3c5";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 0.3em;
+        font-size: 0.9em;
+        color: var(--blue);
       }
       .maplink:hover {
         text-decoration: underline;
@@ -1670,6 +1695,16 @@
         margin: 0 3px;
         font-size: 0.6rem;
       }
+      .fa-icon {
+        display: inline-block;
+        font-size: 1em;
+        vertical-align: middle;
+        margin-right: 0.2em;
+        width: 1em;
+        text-align: center;
+      }
+      h3 .fa-icon { font-size: 0.95em; }
+      .dark .fa-icon { color: var(--text); }
     </style>
   </head>
   <body>
@@ -1681,13 +1716,13 @@
       </div>
       <div class="hdr-btns no-print">
         <button onclick="toggleDark()" id="darkBtn" title="Toggle dark mode">
-          🌙
+          <i class="fa-solid fa-moon fa-icon"></i>
         </button>
         <button onclick="window.print()">Print Itinerary</button>
         <button onclick="goToday()" id="todayBtn" title="Jump to today's day">
-          📅 Today
+          <i class="fa-regular fa-calendar fa-icon"></i> Today
         </button>
-        <button onclick="exportICS()">📅 Export Calendar</button>
+        <button onclick="exportICS()"><i class="fa-regular fa-calendar fa-icon"></i> Export Calendar</button>
         <button id="installBtn" onclick="installApp()" class="hidden">
           Install App
         </button>
@@ -1737,7 +1772,7 @@
           <div class="name">Froggy</div>
           <div class="likes">
             Fashion / Flowers / Bridge / Deco Art / Gardening / French speaker /
-            Buddhist 🙏
+            Buddhist <i class="fa-solid fa-hands-praying fa-icon"></i>
           </div>
         </div>
       </div>
@@ -1815,7 +1850,7 @@
             />
           </div>
           <div class="ki-field">
-            <label>Shuttle booking ref ✅</label
+            <label>Shuttle booking ref <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></label
             ><input
               type="text"
               id="ki_shuttle"
@@ -1864,11 +1899,11 @@
           </div>
         </div>
         <div class="ki-print">
-          <button onclick="printKeyInfo()">🖨️ Print Key Info Card</button>
+          <button onclick="printKeyInfo()"><i class="fa-solid fa-print fa-icon"></i> Print Key Info Card</button>
         </div>
       </div>
       <div class="card">
-        <h3>💰 Budget Tracker</h3>
+        <h3><i class="fa-solid fa-coins fa-icon" style="color:#f59e0b"></i> Budget Tracker</h3>
         <p style="font-size: 0.74rem; margin-bottom: 6px; color: var(--muted)">
           Tap to log what you spend each day — keeps you on budget without math.
         </p>
@@ -2002,24 +2037,24 @@
           <div class="cal-time">08:00</div>
           <div class="cal-cell empty"></div>
           <div class="cal-cell">
-            <div class="cal-act food">☕ Breakfast</div>
+            <div class="cal-act food"><i class="fa-solid fa-mug-hot fa-icon"></i> Breakfast</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act food">☕ Breakfast</div>
+            <div class="cal-act food"><i class="fa-solid fa-mug-hot fa-icon"></i> Breakfast</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act food">☕ Breakfast</div>
+            <div class="cal-act food"><i class="fa-solid fa-mug-hot fa-icon"></i> Breakfast</div>
           </div>
 
           <div class="cal-time">09:00</div>
           <div class="cal-cell">
-            <div class="cal-act food">☕ Breakfast + finish packing</div>
+            <div class="cal-act food"><i class="fa-solid fa-mug-hot fa-icon"></i> Breakfast + finish packing</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act walk">Tuileries Garden 🐸</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act walk">🌸 Flower market</div>
+            <div class="cal-act walk"><i class="fa-solid fa-seedling fa-icon" style="color:#ec4899"></i> Flower market</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act walk">Neighbourhood stroll</div>
@@ -2027,14 +2062,14 @@
 
           <div class="cal-time">10:00</div>
           <div class="cal-cell">
-            <div class="cal-act travel">🚕 Taxi to airport</div>
+            <div class="cal-act travel"><i class="fa-solid fa-taxi fa-icon" style="color:#f59e0b"></i> Taxi to airport</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act walk">Palais Royal 🐸</div>
           </div>
           <div class="cal-cell"><div class="cal-act walk">Notre-Dame</div></div>
           <div class="cal-cell">
-            <div class="cal-act food">☕ Last café stop</div>
+            <div class="cal-act food"><i class="fa-solid fa-mug-hot fa-icon"></i> Last café stop</div>
           </div>
 
           <div class="cal-time">11:00</div>
@@ -2045,7 +2080,7 @@
             <div class="cal-act food">Boulangerie crawl</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act walk">🚶 Montmartre</div>
+            <div class="cal-act walk"><i class="fa-solid fa-person-walking fa-icon"></i> Montmartre</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act walk">Seine / Tuileries + 🐸 Duolingo</div>
@@ -2053,13 +2088,13 @@
 
           <div class="cal-time">12:00</div>
           <div class="cal-cell">
-            <div class="cal-act travel">✈️ Flight departs 12:05</div>
+            <div class="cal-act travel"><i class="fa-solid fa-plane fa-icon"></i> Flight departs 12:05</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act food">Lunch + head to Louvre</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act walk">Funicular ⛰️</div>
+            <div class="cal-act walk">Funicular <i class="fa-solid fa-mountain fa-icon"></i></div>
           </div>
           <div class="cal-cell">
             <div class="cal-act travel">Check out 12:00</div>
@@ -2072,26 +2107,26 @@
           </div>
           <div class="cal-cell"><div class="cal-act walk">Sacré-Cœur</div></div>
           <div class="cal-cell">
-            <div class="cal-act travel">🚶 to Porte Maillot</div>
+            <div class="cal-act travel"><i class="fa-solid fa-person-walking fa-icon"></i> to Porte Maillot</div>
           </div>
 
           <div class="cal-time">14:00</div>
           <div class="cal-cell">
-            <div class="cal-act travel">✈️ Land Beauvais</div>
+            <div class="cal-act travel"><i class="fa-solid fa-plane fa-icon"></i> Land Beauvais</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act museum">🏛️ LOUVRE</div>
+            <div class="cal-act museum"><i class="fa-solid fa-landmark fa-icon"></i> LOUVRE</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act walk">Montmartre village</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act travel">🚌 Shuttle to BVA</div>
+            <div class="cal-act travel"><i class="fa-solid fa-bus fa-icon"></i> Shuttle to BVA</div>
           </div>
 
           <div class="cal-time">15:00</div>
           <div class="cal-cell">
-            <div class="cal-act travel">🚌 Shuttle → Paris</div>
+            <div class="cal-act travel"><i class="fa-solid fa-bus fa-icon"></i> Shuttle → Paris</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act museum">Mona Lisa + Wings</div>
@@ -2100,7 +2135,7 @@
             <div class="cal-act food">Lunch in Montmartre</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act travel">✈️ At Beauvais</div>
+            <div class="cal-act travel"><i class="fa-solid fa-plane fa-icon"></i> At Beauvais</div>
           </div>
 
           <div class="cal-time">16:00</div>
@@ -2117,7 +2152,7 @@
 
           <div class="cal-time">17:00</div>
           <div class="cal-cell">
-            <div class="cal-act rest">🏠 Arrive apartment</div>
+            <div class="cal-act rest"><i class="fa-solid fa-house fa-icon"></i> Arrive apartment</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act travel">Metro → Le Marais</div>
@@ -2126,7 +2161,7 @@
             <div class="cal-act chill">Back to apartment</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act travel">✈️ Flight 17:35</div>
+            <div class="cal-act travel"><i class="fa-solid fa-plane fa-icon"></i> Flight 17:35</div>
           </div>
 
           <div class="cal-time">18:00</div>
@@ -2134,7 +2169,7 @@
             <div class="cal-act rest">🐸 Froggy rest + Duolingo</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act walk">Walk to GL 🏛️</div>
+            <div class="cal-act walk">Walk to GL <i class="fa-solid fa-landmark fa-icon"></i></div>
           </div>
           <div class="cal-cell">
             <div class="cal-act walk">Evening stroll</div>
@@ -2153,9 +2188,9 @@
 
           <div class="cal-time">20:00</div>
           <div class="cal-cell">
-            <div class="cal-act food">☕ Café stop</div>
+            <div class="cal-act food"><i class="fa-solid fa-mug-hot fa-icon"></i> Café stop</div>
           </div>
-          <div class="cal-cell"><div class="cal-act food">Dinner 🍽️</div></div>
+          <div class="cal-cell"><div class="cal-act food">Dinner <i class="fa-solid fa-utensils fa-icon"></i></div></div>
           <div class="cal-cell">
             <div class="cal-act walk">Evening walk</div>
           </div>
@@ -2163,10 +2198,10 @@
 
           <div class="cal-time">21:00</div>
           <div class="cal-cell">
-            <div class="cal-act walk">Seine sunset 🌅</div>
+            <div class="cal-act walk">Seine sunset <i class="fa-solid fa-cloud-sun fa-icon" style="color:#f59e0b"></i></div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act view">Eiffel sparkle ✨</div>
+            <div class="cal-act view">Eiffel sparkle <i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i></div>
           </div>
           <div class="cal-cell">
             <div class="cal-act rest">Evening stroll</div>
@@ -2175,10 +2210,10 @@
 
           <div class="cal-time">22:00</div>
           <div class="cal-cell">
-            <div class="cal-act rest">🏠 Wind down</div>
+            <div class="cal-act rest"><i class="fa-solid fa-house fa-icon"></i> Wind down</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act rest">🏠 Wind down</div>
+            <div class="cal-act rest"><i class="fa-solid fa-house fa-icon"></i> Wind down</div>
           </div>
           <div class="cal-cell">
             <div class="cal-act rest">Evening stroll</div>
@@ -2186,10 +2221,10 @@
           <div class="cal-cell empty"></div>
 
           <div class="cal-time">23:00</div>
-          <div class="cal-cell"><div class="cal-act rest">🛏️ Sleep</div></div>
-          <div class="cal-cell"><div class="cal-act rest">🛏️ Sleep</div></div>
+          <div class="cal-cell"><div class="cal-act rest"><i class="fa-solid fa-bed fa-icon"></i> Sleep</div></div>
+          <div class="cal-cell"><div class="cal-act rest"><i class="fa-solid fa-bed fa-icon"></i> Sleep</div></div>
           <div class="cal-cell">
-            <div class="cal-act chill">📦 Pack + 🛏️</div>
+            <div class="cal-act chill"><i class="fa-solid fa-box fa-icon"></i> Pack + <i class="fa-solid fa-bed fa-icon"></i></div>
           </div>
           <div class="cal-cell empty"></div>
         </div>
@@ -2293,7 +2328,7 @@
             <tr>
               <td>
                 Louvre tickets
-                <span style="color: var(--muted)">(already booked ✅)</span>
+                <span style="color: var(--muted)">(already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i>)</span>
               </td>
               <td>—</td>
             </tr>
@@ -2335,7 +2370,7 @@
     <div id="day1" class="sec" data-t="Day 1 - Wednesday: Arrival">
       <div class="day-div">
         Day 1 — Wednesday 22 July — Travel + Settling In
-        <span class="energy-badge energy-green">🟢 Light</span>
+        <span class="energy-badge energy-green"><i class="fa-solid fa-circle fa-icon" style="color:#16a34a;font-size:0.6em"></i> Light</span>
       </div>
       <div class="sched">
         <div class="sched-row">
@@ -2346,7 +2381,7 @@
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">12:05</span>
-            <span class="sched-name">✈️ Flight departs</span></span
+            <span class="sched-name"><i class="fa-solid fa-plane fa-icon"></i> Flight departs</span></span
           >
         </div>
         <div class="sched-row">
@@ -2371,13 +2406,13 @@
       </div>
       <div class="tl">
         <div class="skip-note">
-          💡 This is your plan, not your boss. Skip anything, linger anywhere,
+          <i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> This is your plan, not your boss. Skip anything, linger anywhere,
           change your mind. The best Paris moments are unplanned.
         </div>
 
         <div class="ti dep">
           <div class="tt">08:30</div>
-          <div class="tn">Wake up + shower 🚿</div>
+          <div class="tn">Wake up + shower <i class="fa-solid fa-shower fa-icon"></i></div>
           <div class="td">
             Morning shower, get fresh for travel day. Check passports, chargers,
             booking confirmations.
@@ -2501,7 +2536,7 @@
                 ~10-12 rides total for both of you
               </li>
               <li class="calm">
-                🧘 Machine not working? Go to the Tabac counter (any corner
+                <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Machine not working? Go to the Tabac counter (any corner
                 shop) — they sell Navigo cards too. Breathe. You just landed in
                 Paris — celebrate.
               </li>
@@ -2525,9 +2560,9 @@
             Toilets in arrivals hall — use before boarding (~75-80 min journey)
           </div>
           <div class="prep">
-            🎒 <span class="lp-bring">Bring:</span> Passports, shuttle booking
+            <i class="fa-solid fa-suitcase fa-icon"></i> <span class="lp-bring">Bring:</span> Passports, shuttle booking
             QR/printout, cash for Navigo Easy (€2 card + tickets), Euros for
-            shuttle if buying on spot | 📝
+            shuttle if buying on spot | <i class="fa-solid fa-pen-to-square fa-icon"></i>
             <span class="lp-note">Prep at Manchester:</span> Screenshot shuttle
             booking, download offline Paris map, ensure phone charged
           </div>
@@ -2543,7 +2578,7 @@
             flight lands.
           </div>
           <div class="th">
-            Already booked ✅. Every 30-60 min depending on flight arrivals.
+            Already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i>. Every 30-60 min depending on flight arrivals.
           </div>
           <div class="backup">
             If shuttle is full or delayed: taxi/Uber from Beauvais to Paris
@@ -2577,7 +2612,7 @@
               <div class="rf-name">Miromesnil</div>
             </div>
             <div class="calm ti">
-              🧠 Transition: Quiet shuttle → busy metro station. L1 is automated
+              <i class="fa-solid fa-brain fa-icon"></i> Transition: Quiet shuttle → busy metro station. L1 is automated
               (quieter, AC). The transfer at FDR is underground with crowds —
               follow signs, don't rush. You'll be at the apartment in 15 min.
             </div>
@@ -2595,7 +2630,7 @@
                 Transfer to <b>Line 9</b> direction <b>Mairie de Montreuil</b>
               </li>
               <li class="calm">
-                🧘 First transfer confused? Step aside, look at the map. Follow
+                <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> First transfer confused? Step aside, look at the map. Follow
                 "Correspondance L9" signs. Every Parisian has been lost here —
                 you're fine.
               </li>
@@ -2679,7 +2714,7 @@
           </div>
           <div class="th">Walking: ~1km (0.6mi) easy pace, flat streets</div>
           <div class="bath">
-            🚻 Public toilets: Sanisette on Rue de la Chaussée-d'Antin (3 min
+            <i class="fa-solid fa-restroom fa-icon"></i> Public toilets: Sanisette on Rue de la Chaussée-d'Antin (3 min
             from apartment, near Miromesnil metro)
           </div>
         </div>
@@ -2693,7 +2728,7 @@
           </div>
           <div class="res-grid">
             <div class="res-item budget">
-              <span class="rname">🎯 Le Miroir — 87 Rue de la Boétie</span
+              <span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> Le Miroir — 87 Rue de la Boétie</span
               ><span class="rdesc"
                 >Stand at the bar for cheaper prices (€2.50 vs €5 sitting). 5
                 min from apartment.</span
@@ -2720,7 +2755,7 @@
             class="th"
             style="color: #d84315; font-style: normal; font-size: 0.75rem"
           >
-            ☀️ Sun still strong at 17:30 — sunscreen on! Hat recommended for the
+            <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> Sun still strong at 17:30 — sunscreen on! Hat recommended for the
             riverside walk. Fill water bottle at any Wallace fountain along the
             way.
           </div>
@@ -2728,7 +2763,7 @@
             class="th"
             style="color: #c62828; font-style: normal; font-size: 0.75rem"
           >
-            ⚠️ Seine riverbank at sunset = PEAK PICKPOCKET time. Tourists
+            <i class="fa-solid fa-triangle-exclamation fa-icon" style="color:#dc2626"></i> Seine riverbank at sunset = PEAK PICKPOCKET time. Tourists
             distracted by views. Keep phone in front pocket, bag zip closed.
             Don't set phone down on benches.
           </div>
@@ -2764,7 +2799,7 @@
             Walking: ~1.5km (0.9mi) flat riverbank. Benches every 50m.
           </div>
           <div class="bath">
-            🚻 Public toilets: Green Sanisette kiosks along the Seine quays —
+            <i class="fa-solid fa-restroom fa-icon"></i> Public toilets: Green Sanisette kiosks along the Seine quays —
             one near Pont Neuf, another near Pont des Arts. Look for the green
             phone-box-style kiosks.
           </div>
@@ -2797,8 +2832,8 @@
           <div class="res-grid">
             <div class="res-item budget">
               <span class="rname"
-                >🎯 Bouillon Chartier
-                <span class="rb">📍 7 Rue du Faubourg Montmartre</span></span
+                ><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> Bouillon Chartier
+                <span class="rb"><i class="fa-solid fa-location-dot fa-icon" style="color:var(--blue)"></i> 7 Rue du Faubourg Montmartre</span></span
               ><span class="rdesc"
                 >Art Nouveau dining hall, €15-20/person. Steak-frites, onion
                 soup, crème caramel. Lively atmosphere.</span
@@ -2875,7 +2910,7 @@
 
         <div class="ti rest">
           <div class="tt">20:30</div>
-          <div class="tn">Shower 🚿</div>
+          <div class="tn">Shower <i class="fa-solid fa-shower fa-icon"></i></div>
           <div class="td">
             Freshen up after travel day. Then relax for the evening.
           </div>
@@ -2892,10 +2927,10 @@
 
         <div class="ti rest">
           <div class="tt">23:30</div>
-          <div class="tn">Bed 🛏️</div>
+          <div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div>
           <div class="td">Big Louvre day tomorrow!</div>
           <div class="calm ti">
-            🗣️ Debrief: What was the highlight of your day? One thing that
+            <i class="fa-solid fa-comment fa-icon"></i> Debrief: What was the highlight of your day? One thing that
             surprised you. Let your brain close the day before sleep.
           </div>
         </div>
@@ -2910,7 +2945,7 @@
     >
       <div class="day-div">
         Day 2 — Thursday 23 July — Louvre + Galeries Lafayette
-        <span class="energy-badge energy-yellow">🟡 Busy but relaxed</span>
+        <span class="energy-badge energy-yellow"><i class="fa-solid fa-circle fa-icon" style="color:#f59e0b;font-size:0.6em"></i> Busy but relaxed</span>
         <span class="energy-note"
           >Louvre is the main event — everything else is nearby and easy</span
         >
@@ -2931,7 +2966,7 @@
           <span class="sched-label">PM</span
           ><span class="sched-stop"
             ><span class="sched-time">14:00</span>
-            <span class="sched-name">🏛️ Louvre</span></span
+            <span class="sched-name"><i class="fa-solid fa-landmark fa-icon"></i> Louvre</span></span
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">18:15</span>
@@ -2943,19 +2978,19 @@
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">22:00</span>
-            <span class="sched-name">✨ Sparkle</span></span
+            <span class="sched-name"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Sparkle</span></span
           >
         </div>
       </div>
       <div class="tl">
         <div class="skip-note">
-          💡 Your call: sleep in, skip Tuileries, leave the Louvre early. No
+          <i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Your call: sleep in, skip Tuileries, leave the Louvre early. No
           one's keeping score. Do what feels good.
         </div>
 
         <div class="ti">
           <div class="tt">08:00</div>
-          <div class="tn">Wake up + shower 🚿</div>
+          <div class="tn">Wake up + shower <i class="fa-solid fa-shower fa-icon"></i></div>
           <div class="td">
             Morning shower, get ready. Relaxed start — no rush this morning!
           </div>
@@ -3004,7 +3039,7 @@
               class="th"
               style="color: #d84315; font-style: normal; font-size: 0.75rem"
             >
-              ☀️ Apply sunscreen before heading out! Morning sun is less intense
+              <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> Apply sunscreen before heading out! Morning sun is less intense
               but you'll be walking in open gardens. Hat on, water bottle
               filled. Shade available under the tree-lined allées.
             </div>
@@ -3012,7 +3047,7 @@
               class="th"
               style="color: #c62828; font-style: normal; font-size: 0.75rem"
             >
-              ⚠️ Tuileries/Louvre area: petition scammers (girls with
+              <i class="fa-solid fa-triangle-exclamation fa-icon" style="color:#dc2626"></i> Tuileries/Louvre area: petition scammers (girls with
               clipboards), ring trick. Politely say "non merci" and keep
               walking. Don't stop to read anything they hand you.
             </div>
@@ -3059,7 +3094,7 @@
 
         <div class="ti brk">
           <div class="tt">12:00</div>
-          <div class="tn">Head to Louvre area + cheap lunch 🐸</div>
+          <div class="tn">Head to Louvre area + cheap lunch <span class="icon-badge">frog</span></div>
           <div class="td">
             <b>Budget tip:</b> Skip the expensive Carrousel food court! Grab a
             <b>jambon-beurre</b> (ham + butter baguette, €4-6) or
@@ -3172,7 +3207,7 @@
                 onclick="showTicketPreview()"
                 style="border: none; background: linear-gradient(90deg, #002395, #3b82f6); color: #fff; font-weight: 700; cursor: pointer; padding: 8px 12px; border-radius: 999px; box-shadow: 0 4px 12px rgba(0, 35, 149, 0.2);"
               >
-                🎫 Show ticket
+                ⌘ Show ticket
               </button>
             </div>
           </div>
@@ -3183,7 +3218,7 @@
             >Passage Richelieu Entrance</a
           >
           <div class="calm ti">
-            🧠 Transition: Quiet garden → busy museum courtyard (bright, hot,
+            <i class="fa-solid fa-brain fa-icon"></i> Transition: Quiet garden → busy museum courtyard (bright, hot,
             crowded) → cool quiet interior. The entrance courtyard is the
             hardest part — once you're through security, the museum is calm and
             air-conditioned. 5 min of chaos for 4 hours of peace.
@@ -3192,7 +3227,7 @@
             class="th"
             style="color: #d84315; font-style: normal; font-size: 0.75rem"
           >
-            ☀️ The Louvre courtyard and glass pyramid area = FULL SUN with no
+            <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> The Louvre courtyard and glass pyramid area = FULL SUN with no
             shade. Apply sunscreen before walking across. Hat essential. Once
             inside, the museum is air-conditioned — relief!
           </div>
@@ -3200,7 +3235,7 @@
             class="th"
             style="color: #c62828; font-style: normal; font-size: 0.75rem"
           >
-            ⚠️ Louvre courtyard & entrance: crowded = pickpocket heaven. People
+            <i class="fa-solid fa-triangle-exclamation fa-icon" style="color:#dc2626"></i> Louvre courtyard & entrance: crowded = pickpocket heaven. People
             hovering near security queues. Keep bag zipped and in front. Don't
             set phone down while showing QR code. Inside: watch your belongings
             near Mona Lisa (distracted crowds).
@@ -3219,9 +3254,9 @@
             </p>
           </div>
           <div class="prep">
-            🎒 <span class="lp-bring">Bring:</span> QR code ready on phone,
+            <i class="fa-solid fa-suitcase fa-icon"></i> <span class="lp-bring">Bring:</span> QR code ready on phone,
             small water bottle (fill at Wallace fountain before entering),
-            sunscreen on, empty pockets (less to scan) | 📝
+            sunscreen on, empty pockets (less to scan) | <i class="fa-solid fa-pen-to-square fa-icon"></i>
             <span class="lp-note">Prep night before:</span> Download offline
             Louvre map, charge battery fully, confirm QR code screenshot is
             saved
@@ -3235,7 +3270,7 @@
               </li>
               <li>Show your booking QR code on phone (or printed copy)</li>
               <li class="calm">
-                🧘 Security queue? It moves fast. You have timed entry — no
+                <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Security queue? It moves fast. You have timed entry — no
                 standing in the general queue. You're already ahead of 90% of
                 visitors today. Breathe, you're about to see the greatest art
                 collection on Earth.
@@ -3281,7 +3316,7 @@
                 the massive paintings on the other walls!
               </li>
               <li class="calm">
-                🧘 Don't queue for Mona Lisa — stand 30 sec, look, move on. The
+                <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Don't queue for Mona Lisa — stand 30 sec, look, move on. The
                 room behind you (Wedding Feast at Cana) is bigger and empty.
                 Breathe, smile.
               </li>
@@ -3302,7 +3337,7 @@
 
         <div class="ti rest">
           <div class="tt">14:30</div>
-          <div class="tn">Froggy bench break + 🐸 Duolingo</div>
+          <div class="tn">Froggy bench break + <span class="icon-badge">frog</span> Duolingo</div>
           <div class="td">
             <span class="ptag ptag-f">Froggy-friendly</span> Benches in every
             gallery. Sit near Winged Victory or in the Italian galleries. 5-10
@@ -3436,7 +3471,7 @@
                 through the peaceful courtyard
               </li>
               <li class="calm">
-                🧘 This is your calm moment. The garden has columns, fountains,
+                <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> This is your calm moment. The garden has columns, fountains,
                 silence. Walk slowly. The museum was stimulating — this is your
                 reset before evening.
               </li>
@@ -3471,7 +3506,7 @@
 
         <div class="ti">
           <div class="tt">18:30</div>
-          <div class="tn">Galeries Lafayette rooftop — sunset views 🐸</div>
+          <div class="tn">Galeries Lafayette rooftop — sunset views <span class="icon-badge">frog</span></div>
           <div class="td">
             Stunning Art Nouveau department store — Froggy will adore the deco
             art details! Gold leaf, stained glass dome, ornate balconies.
@@ -3482,7 +3517,7 @@
             class="th"
             style="color: #d84315; font-style: normal; font-size: 0.75rem"
           >
-            ☀️ Rooftop terrace = FULL SUN, no shade. Sunscreen before going up!
+            <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> Rooftop terrace = FULL SUN, no shade. Sunscreen before going up!
             Bring water. The rooftop bar sells drinks if you forget. Sunset
             glasses/sunglasses essential.
           </div>
@@ -3496,8 +3531,8 @@
             </p>
           </div>
           <div class="prep">
-            🎒 <span class="lp-bring">Bring:</span> Phone (photos!), empty space
-            in bag (might buy something?), water bottle, sunglasses | 📝
+            <i class="fa-solid fa-suitcase fa-icon"></i> <span class="lp-bring">Bring:</span> Phone (photos!), empty space
+            in bag (might buy something?), water bottle, sunglasses | <i class="fa-solid fa-pen-to-square fa-icon"></i>
             <span class="lp-note">Prep:</span> Check rooftop closing time
             (depends on closing — usually same as store), confirm sunset time
             ~21:44
@@ -3506,7 +3541,7 @@
             class="th"
             style="color: #c62828; font-style: normal; font-size: 0.75rem"
           >
-            ⚠️ Galeries Lafayette area: crowded metro station (Havre-Caumartin /
+            <i class="fa-solid fa-triangle-exclamation fa-icon" style="color:#dc2626"></i> Galeries Lafayette area: crowded metro station (Havre-Caumartin /
             Opéra) and busy shopping streets. Watch for pickpockets near metro
             entrances. Inside the store: keep bag zipped. Rooftop: keep phone
             secure while taking photos.
@@ -3567,8 +3602,8 @@
           <div class="res-grid">
             <div class="res-item budget">
               <span class="rname"
-                >🎯 Bouillon Pigalle
-                <span class="rb">📍 22 Bd de Clichy</span></span
+                ><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> Bouillon Pigalle
+                <span class="rb"><i class="fa-solid fa-location-dot fa-icon" style="color:var(--blue)"></i> 22 Bd de Clichy</span></span
               ><span class="rdesc"
                 >Beautiful Art Nouveau interior, surprisingly affordable.
                 Steak-frites, duck confit, crème caramel. Very popular — arrive
@@ -3669,12 +3704,12 @@
 
         <div class="ti rest">
           <div class="tt">23:45</div>
-          <div class="tn">Bed 🛏️</div>
+          <div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div>
           <div class="td">
             Montmartre tomorrow — funicular instead of climbing!
           </div>
           <div class="calm ti">
-            🗣️ Debrief: Highlight of the day? (Louvre moment, GL rooftop,
+            <i class="fa-solid fa-comment fa-icon"></i> Debrief: Highlight of the day? (Louvre moment, GL rooftop,
             dinner, sparkle?) What would you go back to see? One thing that was
             easier than you expected.
           </div>
@@ -3690,7 +3725,7 @@
     >
       <div class="day-div">
         Day 3 — Friday 24 July — Flower Market + Montmartre
-        <span class="energy-badge energy-yellow">🟡 Moderate</span>
+        <span class="energy-badge energy-yellow"><i class="fa-solid fa-circle fa-icon" style="color:#f59e0b;font-size:0.6em"></i> Moderate</span>
       </div>
       <div class="sched">
         <div class="sched-row">
@@ -3701,7 +3736,7 @@
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">09:00</span>
-            <span class="sched-name">🌸 Flower market</span></span
+            <span class="sched-name"><i class="fa-solid fa-seedling fa-icon" style="color:#ec4899"></i> Flower market</span></span
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">10:00</span>
@@ -3709,7 +3744,7 @@
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">10:30</span>
-            <span class="sched-name">🚶 Montmartre</span></span
+            <span class="sched-name"><i class="fa-solid fa-person-walking fa-icon"></i> Montmartre</span></span
           >
         </div>
         <div class="sched-row">
@@ -3733,13 +3768,13 @@
       </div>
       <div class="tl">
         <div class="skip-note">
-          💡 Tired after Montmartre? Nap at the apartment. Want more? Explore
+          <i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Tired after Montmartre? Nap at the apartment. Want more? Explore
           more. This is your last Paris day — do what you want.
         </div>
 
         <div class="ti">
           <div class="tt">08:00</div>
-          <div class="tn">Wake up + shower 🚿</div>
+          <div class="tn">Wake up + shower <i class="fa-solid fa-shower fa-icon"></i></div>
           <div class="td">
             Morning shower, get ready. Apartment breakfast or nearby
             boulangerie.
@@ -3850,7 +3885,7 @@
             class="th"
             style="color: #d84315; font-style: normal; font-size: 0.75rem"
           >
-            ☀️ Market stalls have some shade but the walk there is exposed.
+            <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> Market stalls have some shade but the walk there is exposed.
             Sunscreen on before leaving apartment! Hat recommended. 09:00 sun is
             already warming up.
           </div>
@@ -3947,7 +3982,7 @@
             class="th"
             style="color: #c62828; font-style: normal; font-size: 0.75rem"
           >
-            ⚠️ Metro Line 4 = busy tourist line, pickpockets active. Châtelet
+            <i class="fa-solid fa-triangle-exclamation fa-icon" style="color:#dc2626"></i> Metro Line 4 = busy tourist line, pickpockets active. Châtelet
             and Anvers stations are crowded. Keep Navigo Easy ready, bag in
             front, phone secured. Don't display valuables near turnstiles.
           </div>
@@ -4007,7 +4042,7 @@
             <b>Two lines:</b> take the one on the right (faster, less crowded).
           </div>
           <div class="calm ti">
-            🧠 Transition: Metro station → outdoor funicular queue (bright,
+            <i class="fa-solid fa-brain fa-icon"></i> Transition: Metro station → outdoor funicular queue (bright,
             warm, busy). The queue looks long but moves fast — 90 sec cable car.
             At the top: you step out into a huge open view. Take 10 sec to
             breathe before moving.
@@ -4019,7 +4054,7 @@
                 Queue at the funicular entrance (right side of Sacré-Cœur steps)
               </li>
               <li class="calm">
-                🧘 Queue long? It moves fast — 90 sec cable car. Play a song,
+                <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Queue long? It moves fast — 90 sec cable car. Play a song,
                 feel the Montmartre breeze. You're about to see the best view of
                 Paris.
               </li>
@@ -4046,7 +4081,7 @@
             class="th"
             style="color: #d84315; font-style: normal; font-size: 0.75rem"
           >
-            ☀️ The Basilica terrace and viewpoint = FULL SUN, no shade, elevated
+            <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> The Basilica terrace and viewpoint = FULL SUN, no shade, elevated
             position = stronger UV. Reapply sunscreen! Hat essential. Water
             critical — you've climbed a hill. The Basilica interior is cool and
             shaded — good for a rest.
@@ -4062,9 +4097,9 @@
             </p>
           </div>
           <div class="prep">
-            🎒 <span class="lp-bring">Bring:</span> Sunscreen reapplied, hat,
+            <i class="fa-solid fa-suitcase fa-icon"></i> <span class="lp-bring">Bring:</span> Sunscreen reapplied, hat,
             water bottle, phone charged (photos!), scarf/shawl (for dress code
-            if needed) | 📝 <span class="lp-note">Prep:</span> Check funicular
+            if needed) | <i class="fa-solid fa-pen-to-square fa-icon"></i> <span class="lp-note">Prep:</span> Check funicular
             status (rare closure, but check RATP app), bring coins for wishing
             fountain inside
           </div>
@@ -4116,7 +4151,7 @@
             caricature drawn (€10-20, takes 10 min).
           </div>
           <div class="calm ti">
-            🧠 Transition: Silent basilica → loud artist square. This is the
+            <i class="fa-solid fa-brain fa-icon"></i> Transition: Silent basilica → loud artist square. This is the
             most chaotic spot today. If you feel overwhelmed: walk 30 sec down
             Rue Norvins — it gets quiet almost instantly. Stay in the side
             streets, skip the square.
@@ -4125,7 +4160,7 @@
             class="th"
             style="color: #d84315; font-style: normal; font-size: 0.75rem"
           >
-            ☀️ Place du Tertre = open square, NO SHADE, peak sun at 12:00. Sit
+            <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> Place du Tertre = open square, NO SHADE, peak sun at 12:00. Sit
             at a café under an awning or duck into the narrow streets for shade.
             Reapply sunscreen!
           </div>
@@ -4133,7 +4168,7 @@
             class="th"
             style="color: #c62828; font-style: normal; font-size: 0.75rem"
           >
-            ⚠️ Montmartre & Place du Tertre: MAJOR pickpocket zone. Crowds +
+            <i class="fa-solid fa-triangle-exclamation fa-icon" style="color:#dc2626"></i> Montmartre & Place du Tertre: MAJOR pickpocket zone. Crowds +
             distraction = theft. Watch for "artists" approaching you to draw
             (then demanding payment). Petition scammers active near Sacré-Cœur
             steps. Keep bag in front, phone secured.
@@ -4200,7 +4235,7 @@
           </div>
           <div class="res-grid">
             <div class="res-item mid">
-              <span class="rname">🎯 Le Consulat</span
+              <span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> Le Consulat</span
               ><span class="rdesc"
                 >Iconic white café on Rue Norvins. Picasso, Van Gogh, Soutine
                 used to drink here. Touristy but historic. Steak-frites, onion
@@ -4247,7 +4282,7 @@
           </div>
           <div class="act-grid">
             <div class="act-item">
-              <span class="aname">🎨 Option A: Musée d'Orsay</span
+              <span class="aname"><i class="fa-solid fa-palette fa-icon"></i> Option A: Musée d'Orsay</span
               ><span class="adesc"
                 >Metro L4 Anvers→Saint-Michel (15 min). Massive
                 train-station-turned-museum. Impressionists (Monet, Renoir,
@@ -4257,7 +4292,7 @@
               >
             </div>
             <div class="act-item">
-              <span class="aname">🌳 Option B: Seine + Latin Quarter</span
+              <span class="aname"><i class="fa-solid fa-tree fa-icon" style="color:#16a34a"></i> Option B: Seine + Latin Quarter</span
               ><span class="adesc"
                 >Walk down from Montmartre to Seine (30 min downhill). Cross
                 Pont Neuf to Left Bank. Explore Latin Quarter: narrow medieval
@@ -4268,7 +4303,7 @@
               >
             </div>
             <div class="act-item">
-              <span class="aname">🛍️ Option C: Le Marais window shop</span
+              <span class="aname"><i class="fa-solid fa-bag-shopping fa-icon"></i> Option C: Le Marais window shop</span
               ><span class="adesc"
                 >Metro L4 Anvers→Châtelet→L1 Saint-Paul (20 min). Fashion
                 boutiques, vintage shops, Jewish bakeries (rue des Rosiers — get
@@ -4278,7 +4313,7 @@
               >
             </div>
             <div class="act-item">
-              <span class="aname">🛋️ Option D: Rest at apartment + pack</span
+              <span class="aname"><i class="fa-solid fa-couch fa-icon"></i> Option D: Rest at apartment + pack</span
               ><span class="adesc"
                 >After 3 days of walking, a quiet afternoon is perfectly valid.
                 Metro L4+L9 back (20 min). Nap, pack for tomorrow, Duolingo,
@@ -4289,7 +4324,7 @@
           </div>
           <div class="hbox">
             <p>
-              <b>💡 How to choose:</b> If you're still energetic → Option A or
+              <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> How to choose:</b> If you're still energetic → Option A or
               B. If you want shopping → Option C. If you're tired → Option D (no
               shame, it's been a great trip). You can also start one and switch
               — nothing is locked.
@@ -4328,7 +4363,7 @@
 
         <div class="ti rest">
           <div class="tt">22:30</div>
-          <div class="tn">Shower 🚿</div>
+          <div class="tn">Shower <i class="fa-solid fa-shower fa-icon"></i></div>
           <div class="td">Freshen up. Then finish packing.</div>
         </div>
 
@@ -4343,10 +4378,10 @@
 
         <div class="ti rest">
           <div class="tt">23:45</div>
-          <div class="tn">Bed 🛏️</div>
+          <div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div>
           <div class="td">Last night in Paris — departure tomorrow!</div>
           <div class="calm ti">
-            🗣️ Debrief: Highlight of the day? (Flower market, Sacré-Cœur,
+            <i class="fa-solid fa-comment fa-icon"></i> Debrief: Highlight of the day? (Flower market, Sacré-Cœur,
             artists, lunch?) Funniest moment today. Something you'll remember in
             a year.
           </div>
@@ -4358,7 +4393,7 @@
     <div id="day4" class="sec" data-t="Day 4 - Saturday 25 July: Departure">
       <div class="day-div">
         Day 4 — Saturday 25 July — Departure
-        <span class="energy-badge energy-green">🟢 Light</span>
+        <span class="energy-badge energy-green"><i class="fa-solid fa-circle fa-icon" style="color:#16a34a;font-size:0.6em"></i> Light</span>
       </div>
       <div class="sched">
         <div class="sched-row">
@@ -4376,7 +4411,7 @@
           <span class="sched-label">PM</span
           ><span class="sched-stop"
             ><span class="sched-time">~13:15</span>
-            <span class="sched-name">🚌 Shuttle</span></span
+            <span class="sched-name"><i class="fa-solid fa-bus fa-icon"></i> Shuttle</span></span
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">~15:15</span>
@@ -4384,7 +4419,7 @@
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">17:35</span>
-            <span class="sched-name">✈️ Flight home</span></span
+            <span class="sched-name"><i class="fa-solid fa-plane fa-icon"></i> Flight home</span></span
           >
         </div>
       </div>
@@ -4397,13 +4432,13 @@
       </div>
       <div class="tl">
         <div class="skip-note">
-          💡 Last day — soak it in. Morning free is YOUR time. If you'd rather
+          <i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Last day — soak it in. Morning free is YOUR time. If you'd rather
           sit at a café for 3 hours, do it. The airport will wait.
         </div>
 
         <div class="ti">
           <div class="tt">08:00</div>
-          <div class="tn">Wake up + shower 🚿</div>
+          <div class="tn">Wake up + shower <i class="fa-solid fa-shower fa-icon"></i></div>
           <div class="td">
             Last morning in Paris! Morning shower, get ready. Head to
             boulangerie one last time.
@@ -4436,7 +4471,7 @@
 
         <div class="ti">
           <div class="tt">09:30-12:00</div>
-          <div class="tn">Farewell Walk — last Paris moments 🥐</div>
+          <div class="tn">Farewell Walk — last Paris moments <i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i></div>
           <div class="td">
             A specific last-morning route designed to hit 4 perfect spots, zero
             decisions required. 1.5km total, flat, 1.5-2h with stops.
@@ -4445,7 +4480,7 @@
             class="th"
             style="color: #d84315; font-style: normal; font-size: 0.75rem"
           >
-            ☀️ Last day of sun! Sunscreen, hat, water — don't skip it just
+            <i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i> Last day of sun! Sunscreen, hat, water — don't skip it just
             because you're leaving. You'll be walking outdoors.
           </div>
           <div class="steps">
@@ -4484,7 +4519,7 @@
           </div>
           <div class="hbox">
             <p>
-              <b>💡 Emotional note:</b> This is the walk where it hits you that
+              <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Emotional note:</b> This is the walk where it hits you that
               you're leaving. That's the point. The Madeleine is grand, the
               obelisk is ancient, the Tuileries is peaceful, and Rue Royale is
               the most Parisian street in the city. You're walking through 300
@@ -4504,14 +4539,14 @@
             Check out of apartment. Final bathroom at apartment.
           </div>
           <div class="calm ti">
-            🧘 Panic about forgetting something? You have passports + phones +
+            <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Panic about forgetting something? You have passports + phones +
             wallet. Everything else can be replaced. The apartment check-out is
             2 hours before shuttle — no rush. Take 3 slow breaths before opening
             the door.
           </div>
           <div class="prep">
-            🎒 <span class="lp-bring">Bring:</span> All belongings, passport,
-            phone charger, shuttle booking QR, water bottle filled | 📝
+            <i class="fa-solid fa-suitcase fa-icon"></i> <span class="lp-bring">Bring:</span> All belongings, passport,
+            phone charger, shuttle booking QR, water bottle filled | <i class="fa-solid fa-pen-to-square fa-icon"></i>
             <span class="lp-note">Prep morning:</span> Confirm shuttle departure
             time, pack everything except essentials, check apartment for
             forgotten items (drawers, bathroom, under bed), double-check
@@ -4528,7 +4563,7 @@
             for two.
           </div>
           <div class="calm ti">
-            🧠 Transition: You're leaving the apartment, heading into metro,
+            <i class="fa-solid fa-brain fa-icon"></i> Transition: You're leaving the apartment, heading into metro,
             then shuttle. This is the most emotionally loaded moment — last
             Paris lunch. Eat slowly. Sit 10 extra min if you want. The shuttle
             will wait. You'll be back.
@@ -4548,7 +4583,7 @@
             class="th"
             style="color: #c62828; font-style: normal; font-size: 0.75rem"
           >
-            ⚠️ Porte Maillot metro & shuttle area: transit hub with pickpockets.
+            <i class="fa-solid fa-triangle-exclamation fa-icon" style="color:#dc2626"></i> Porte Maillot metro & shuttle area: transit hub with pickpockets.
             Shuttle queues = distraction opportunity. Keep luggage close, bags
             zipped and in front. Don't let anyone "help" with your bags.
           </div>
@@ -4605,10 +4640,10 @@
             for easier exit at airport.
           </div>
           <div class="th">
-            Already booked ✅. Runs every 30-60 min. Last shuttle ~23:00.
+            Already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i>. Runs every 30-60 min. Last shuttle ~23:00.
           </div>
           <div class="calm ti">
-            🗣️ Final debrief — Froggy's question: What was your favourite place
+            <i class="fa-solid fa-comment fa-icon"></i> Final debrief — Froggy's question: What was your favourite place
             of the whole trip? And your highlight of today? What was the moment
             you felt most Parisian? What would you do differently next time?
             We'll come back.
@@ -4663,13 +4698,13 @@
       <div class="day-div">Louvre — Booking & Guide</div>
       <div class="hbox green">
         <p>
-          <b>✅ Tickets already booked!</b> The Louvre does NOT sell tickets at
+          <b><i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i> Tickets already booked!</b> The Louvre does NOT sell tickets at
           the door. Your booking: Thu 23 Jul, 14:00 entry. Show QR code at
           Passage Richelieu entrance.
         </p>
       </div>
       <div class="card">
-        <h3>✅ Booking Confirmed</h3>
+        <h3><i class="fa-solid fa-circle-check fa-icon"></i> Booking Confirmed</h3>
         <ul style="padding-left: 18px">
           <li>Date: <b>Thu 23 July</b></li>
           <li>Time slot: <b>14:00</b> (late-night opening!)</li>
@@ -4711,7 +4746,7 @@
       </div>
       <div class="hbox blue" style="margin-top: 10px">
         <p>
-          🧘 Security queue moves fast — you have timed entry, so no waiting in
+          <i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Security queue moves fast — you have timed entry, so no waiting in
           the general queue. You're ahead of most visitors today. Breathe:
           you're about to see the greatest art collection on Earth.
         </p>
@@ -4909,7 +4944,7 @@
             </tr>
             <tr>
               <td>Ticket price</td>
-              <td>Already booked ✅</td>
+              <td>Already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
             </tr>
             <tr>
               <td>Frequency</td>
@@ -5504,7 +5539,7 @@
           <div class="en">It's beautiful!</div>
         </div>
       </div>
-      <div class="fs">🙏 Froggy's Buddhist Reflections</div>
+      <div class="fs"><i class="fa-solid fa-hands-praying fa-icon"></i> Froggy's Buddhist Reflections</div>
       <div class="ph-grid">
         <div class="ph">
           <div class="fr" style="color: #8b6914; font-style: italic">
@@ -5799,7 +5834,7 @@
       </div>
 
       <div class="card">
-        <h3>🌧️ If It Rains — Alternate Plans Per Day</h3>
+        <h3><i class="fa-solid fa-cloud-rain fa-icon"></i> If It Rains — Alternate Plans Per Day</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Paris in July is usually dry, but if the forecast changes — here's
           what to do each day instead. No scrambling, no disappointment.
@@ -5878,14 +5913,14 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Rain = fewer crowds.</b> Paris is quieter in the rain. Museum
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Rain = fewer crowds.</b> Paris is quieter in the rain. Museum
           queues shrink. Cafés get cozy under awnings. Don't dread rain — it
           gives you a different, more intimate Paris.
         </p>
       </div>
 
       <div class="card">
-        <h3>🏠 Chill Time at the Apartment</h3>
+        <h3><i class="fa-solid fa-house fa-icon"></i> Chill Time at the Apartment</h3>
         <p style="font-size: 0.8rem; margin-bottom: 8px">
           When you need a break from Paris, here are some ideas for downtime at
           the apartment:
@@ -5899,18 +5934,18 @@
           </thead>
           <tbody>
             <tr>
-              <td>☕ Café crème + croissant</td>
+              <td><i class="fa-solid fa-mug-hot fa-icon"></i> Café crème + croissant</td>
               <td>
                 Grab from the boulangerie, enjoy on the balcony/window. Very
                 Parisian.
               </td>
             </tr>
             <tr>
-              <td>📖 Read on the bed</td>
+              <td><i class="fa-solid fa-book fa-icon"></i> Read on the bed</td>
               <td>Open the windows, let the Paris sounds in. Nap optional.</td>
             </tr>
             <tr>
-              <td>🎵 French music + wine</td>
+              <td><i class="fa-solid fa-music fa-icon"></i> French music + wine</td>
               <td>
                 Put on Edith Piaf or Django Reinhardt. Buy a cheap bottle at the
                 caviste.
@@ -5923,27 +5958,27 @@
               </td>
             </tr>
             <tr>
-              <td>🧘 Meditation / stretching</td>
+              <td><i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Meditation / stretching</td>
               <td>
                 Good for Froggy's knees after a long walking day. Deep
                 breathing.
               </td>
             </tr>
             <tr>
-              <td>📸 Photo review</td>
+              <td><i class="fa-solid fa-camera fa-icon"></i> Photo review</td>
               <td>
                 Go through the day's photos. Pick favourites. Back up to cloud.
               </td>
             </tr>
             <tr>
-              <td>📝 Travel journal</td>
+              <td><i class="fa-solid fa-pen-to-square fa-icon"></i> Travel journal</td>
               <td>
                 Jot down moments, funny things, what you loved. You'll cherish
                 it later.
               </td>
             </tr>
             <tr>
-              <td>🌿 Window garden watching</td>
+              <td><i class="fa-solid fa-leaf fa-icon" style="color:#16a34a"></i> Window garden watching</td>
               <td>
                 Paris has beautiful window boxes. Froggy the gardener will
                 appreciate them!
@@ -5957,7 +5992,7 @@
               </td>
             </tr>
             <tr>
-              <td>💤 Power nap</td>
+              <td><i class="fa-solid fa-moon fa-icon" style="color:#6366f1"></i> Power nap</td>
               <td>
                 20 min max! Set an alarm. You'll feel reborn for the evening.
               </td>
@@ -5967,7 +6002,7 @@
       </div>
 
       <div class="card">
-        <h3>🔋 Things People Always Forget</h3>
+        <h3><i class="fa-solid fa-battery-full fa-icon" style="color:#16a34a"></i> Things People Always Forget</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Quick checklist — cover these before you leave and none of these will
           ruin your trip.
@@ -6060,7 +6095,7 @@
       </div>
 
       <div class="card">
-        <h3>🗣️ Social Scripts — Exactly What to Say</h3>
+        <h3><i class="fa-solid fa-comment fa-icon"></i> Social Scripts — Exactly What to Say</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Walk in knowing exactly what to say and what they'll say back. No
           freezing, no awkward silence.
@@ -6150,14 +6185,14 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Key rule:</b> Always say "Bonjour" FIRST before anything else.
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Key rule:</b> Always say "Bonjour" FIRST before anything else.
           No "bonjour" = rude. Even at a bakery, even if you're in a rush. Say
           it as you walk in.
         </p>
       </div>
 
       <div class="card">
-        <h3>🧠 Sensory Guide — What Each Place Feels Like</h3>
+        <h3><i class="fa-solid fa-brain fa-icon"></i> Sensory Guide — What Each Place Feels Like</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Know before you go — so nothing surprises you. Use this to decide what
           you're in the mood for.
@@ -6176,143 +6211,143 @@
           <tbody>
             <tr>
               <td><b>Apartment</b></td>
-              <td>🔇 Quiet street</td>
-              <td>👤 None</td>
-              <td>💡 Normal</td>
-              <td>🌡️ ~24°C</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Quiet street</td>
+              <td><i class="fa-solid fa-user fa-icon"></i> None</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Normal</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> ~24°C</td>
               <td>Safe, private, your space</td>
             </tr>
             <tr>
               <td><b>Metro (busy line)</b></td>
-              <td>🔊 Loud, screechy trains, announcements</td>
-              <td>👥👥👥 Packed at peak</td>
-              <td>💡 Harsh fluorescent</td>
-              <td>🌡️ Warm, no AC</td>
+              <td><i class="fa-solid fa-volume-high fa-icon"></i> Loud, screechy trains, announcements</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Packed at peak</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Harsh fluorescent</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Warm, no AC</td>
               <td>Fast, impersonal, functional</td>
             </tr>
             <tr>
               <td><b>Metro (L1/L14 new)</b></td>
-              <td>🔇 Quieter, automated beeps</td>
-              <td>👥👥👥 Still busy</td>
-              <td>💡 Bright, modern</td>
-              <td>🌡️ Slightly cool (AC)</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Quieter, automated beeps</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Still busy</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Bright, modern</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Slightly cool (AC)</td>
               <td>Efficient, less stressful</td>
             </tr>
             <tr>
               <td><b>Tuileries Garden</b></td>
-              <td>🔇 Quiet — birds, fountains, distant city hum</td>
-              <td>👥👥 Moderate (tourists + locals)</td>
-              <td>💡 Bright sun, some tree shade</td>
-              <td>🌡️ 27-29°C July</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Quiet — birds, fountains, distant city hum</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Moderate (tourists + locals)</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Bright sun, some tree shade</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> 27-29°C July</td>
               <td>Peaceful, spacious, relaxing</td>
             </tr>
             <tr>
               <td><b>Louvre (inside)</b></td>
-              <td>🔇 Hushed — footsteps, whispers, security beeps</td>
-              <td>👥👥👥 Busy at highlights, quiet wings empty</td>
-              <td>💡 Dim galleries, spotlit art</td>
-              <td>🌡️ AC ~21°C — cool!</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Hushed — footsteps, whispers, security beeps</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Busy at highlights, quiet wings empty</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Dim galleries, spotlit art</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> AC ~21°C — cool!</td>
               <td>Calm, focused vast</td>
             </tr>
             <tr>
               <td><b>Mona Lisa room</b></td>
-              <td>🔊 Hum of crowd, phones clicking</td>
-              <td>👥👥👥👥 Packed (50-100 people)</td>
-              <td>💡 Dim with bright spotlights</td>
-              <td>🌡️ Warm from body heat</td>
+              <td><i class="fa-solid fa-volume-high fa-icon"></i> Hum of crowd, phones clicking</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Packed (50-100 people)</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Dim with bright spotlights</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Warm from body heat</td>
               <td>Chaotic, overstimulating</td>
             </tr>
             <tr>
               <td><b>Palais Royal garden</b></td>
-              <td>🔇 Very quiet — wind, pigeons, footsteps on gravel</td>
-              <td>👤 Few people</td>
-              <td>💡 Soft, shaded by trees + arcades</td>
-              <td>🌡️ Cooler under arcades</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Very quiet — wind, pigeons, footsteps on gravel</td>
+              <td><i class="fa-solid fa-user fa-icon"></i> Few people</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Soft, shaded by trees + arcades</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Cooler under arcades</td>
               <td>Secret, serene, hidden gem</td>
             </tr>
             <tr>
               <td><b>Galeries Lafayette</b></td>
-              <td>🔊 Moderate — chatter, music, escalators</td>
-              <td>👥👥👥 Busy shopping</td>
-              <td>💡 Bright + glittering</td>
-              <td>🌡️ AC ~22°C</td>
+              <td><i class="fa-solid fa-volume-high fa-icon"></i> Moderate — chatter, music, escalators</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Busy shopping</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Bright + glittering</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> AC ~22°C</td>
               <td>Glamorous, dazzling</td>
             </tr>
             <tr>
               <td><b>Galeries rooftop</b></td>
-              <td>🔇 Open air, wind, distant city</td>
-              <td>👥👥 Moderate</td>
-              <td>💡 Full sun (rooftop!)</td>
-              <td>🌡️ 27-29°C + wind</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Open air, wind, distant city</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Moderate</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Full sun (rooftop!)</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> 27-29°C + wind</td>
               <td>Breathtaking, panoramic</td>
             </tr>
             <tr>
               <td><b>Flower Market</b></td>
-              <td>🔇 Gentle — vendors, water drips, birds</td>
-              <td>👥👥 Moderate morning</td>
-              <td>💡 Bright, some canopies</td>
-              <td>🌡️ Warm morning</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Gentle — vendors, water drips, birds</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Moderate morning</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Bright, some canopies</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Warm morning</td>
               <td>Colourful, fragrant, gentle</td>
             </tr>
             <tr>
               <td><b>Sacré-Cœur (inside)</b></td>
-              <td>🔇 Hushed silence — people praying</td>
-              <td>👥👥 Moderate, respectful</td>
-              <td>💡 Dim, warm mosaic glow</td>
-              <td>🌡️ Cool ~20°C</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Hushed silence — people praying</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Moderate, respectful</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Dim, warm mosaic glow</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Cool ~20°C</td>
               <td>Spiritual, calm, grounding</td>
             </tr>
             <tr>
               <td><b>Place du Tertre</b></td>
-              <td>🔊 Loud — chatter, artists calling, music</td>
-              <td>👥👥👥👥 Packed tourist zone</td>
-              <td>💡 Full sun, no shade</td>
-              <td>🌡️ 27-29°C hot</td>
+              <td><i class="fa-solid fa-volume-high fa-icon"></i> Loud — chatter, artists calling, music</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Packed tourist zone</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Full sun, no shade</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> 27-29°C hot</td>
               <td>Chaotic, lively, intense</td>
             </tr>
             <tr>
               <td><b>Montmartre side streets</b></td>
-              <td>🔇 Quiet — footsteps, distant café clatter</td>
-              <td>👥 Few tourists, some locals</td>
-              <td>💡 Narrow streets, soft light</td>
-              <td>🌡️ Cooler in shaded alleys</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Quiet — footsteps, distant café clatter</td>
+              <td><i class="fa-solid fa-users fa-icon"></i> Few tourists, some locals</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Narrow streets, soft light</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Cooler in shaded alleys</td>
               <td>Charming, calm, pretty</td>
             </tr>
             <tr>
               <td><b>Seine riverbank</b></td>
-              <td>🔇 Quiet — water lapping, distant traffic</td>
-              <td>👥👥 Moderate, spread out</td>
-              <td>💡 Golden evening light</td>
-              <td>🌡️ Cooling to ~24°C sunset</td>
+              <td><i class="fa-solid fa-volume-xmark fa-icon"></i> Quiet — water lapping, distant traffic</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Moderate, spread out</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Golden evening light</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Cooling to ~24°C sunset</td>
               <td>Romantic, calming, open</td>
             </tr>
             <tr>
               <td><b>Eiffel Tower area (night)</b></td>
-              <td>🔊 Buildup then hush at sparkle</td>
-              <td>👥👥👥 Many, all facing up</td>
-              <td>💡 Dark + flashing lights</td>
-              <td>🌡️ Cool evening breeze</td>
+              <td><i class="fa-solid fa-volume-high fa-icon"></i> Buildup then hush at sparkle</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Many, all facing up</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Dark + flashing lights</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> Cool evening breeze</td>
               <td>Magical, shared moment</td>
             </tr>
             <tr>
               <td><b>Beauvais Airport</b></td>
-              <td>🔊 Small airport hum</td>
-              <td>👥👥 Moderate</td>
-              <td>💡 Bright fluorescent</td>
-              <td>🌡️ A/C ~22°C</td>
+              <td><i class="fa-solid fa-volume-high fa-icon"></i> Small airport hum</td>
+              <td><i class="fa-solid fa-users fa-icon"></i><i class="fa-solid fa-users fa-icon"></i> Moderate</td>
+              <td><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Bright fluorescent</td>
+              <td><i class="fa-solid fa-temperature-half fa-icon" style="color:#ef4444"></i> A/C ~22°C</td>
               <td>Small, easy, low-stress</td>
             </tr>
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Overstimulated?</b> Find the nearest church (free, silent, cool)
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Overstimulated?</b> Find the nearest church (free, silent, cool)
           or park bench. Paris has one every 500m. Sit for 5 min with no input.
           You'll reset.
         </p>
       </div>
 
       <div class="card">
-        <h3>🧘 Frustration Prevention — Stay Calm & Enjoy</h3>
+        <h3><i class="fa-solid fa-spa fa-icon" style="color:#16a34a"></i> Frustration Prevention — Stay Calm & Enjoy</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           The best trips have moments of frustration. Here's how to catch them
           before they spiral. Use these Buddhist-inspired techniques when things
@@ -6412,7 +6447,7 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>🎵 Calm playlist:</b> "Gymnopédie No.1" (Satie), "Clair de Lune"
+          <b><i class="fa-solid fa-music fa-icon"></i> Calm playlist:</b> "Gymnopédie No.1" (Satie), "Clair de Lune"
           (Debussy), "Weightless" (Marconi Union), "Spiegel im Spiegel" (Arvo
           Pärt), "On the Nature of Daylight" (Max Richter). Download before you
           go — no streaming needed.
@@ -6452,7 +6487,7 @@
         </ul>
       </div>
       <div class="card">
-        <h3>🚋 Station Accessibility (Bad Knees 🐸)</h3>
+        <h3><i class="fa-solid fa-train-tram fa-icon"></i> Station Accessibility (Bad Knees 🐸)</h3>
         <table class="tt-table">
           <thead>
             <tr>
@@ -6466,37 +6501,37 @@
             <tr>
               <td><b>Miromesnil</b></td>
               <td>L9, L13</td>
-              <td>L9 ✅ L13 ❌</td>
+              <td>L9 <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i> L13 <i class="fa-solid fa-circle-xmark fa-icon" style="color:#dc2626"></i></td>
               <td>Use L9 platform when possible</td>
             </tr>
             <tr>
               <td><b>F.D. Roosevelt</b></td>
               <td>L1, L9</td>
-              <td>L1 ✅ L9 ❌</td>
+              <td>L1 <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i> L9 <i class="fa-solid fa-circle-xmark fa-icon" style="color:#dc2626"></i></td>
               <td>Transfer via L1 platform (automated)</td>
             </tr>
             <tr>
               <td><b>Porte Maillot</b></td>
               <td>L1</td>
-              <td>✅</td>
+              <td><i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
               <td>Fully accessible, follow "Lift" signs</td>
             </tr>
             <tr>
               <td><b>Palais Royal</b></td>
               <td>L1, L7</td>
-              <td>✅</td>
+              <td><i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
               <td>L1 is automated with lifts at every station</td>
             </tr>
             <tr>
               <td><b>Châtelet</b></td>
               <td>L1, L4, L7, L14</td>
-              <td>L1+L14 ✅ L4+L7 ❌</td>
+              <td>L1+L14 <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i> L4+L7 <i class="fa-solid fa-circle-xmark fa-icon" style="color:#dc2626"></i></td>
               <td>Use L14 entrance (RER side) — it's modern with lifts</td>
             </tr>
             <tr>
               <td><b>Saint-Paul</b></td>
               <td>L1</td>
-              <td>✅</td>
+              <td><i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
               <td>L1 is fully accessible</td>
             </tr>
             <tr>
@@ -6508,19 +6543,19 @@
             <tr>
               <td><b>Cité</b></td>
               <td>L4</td>
-              <td>❌</td>
+              <td><i class="fa-solid fa-circle-xmark fa-icon" style="color:#dc2626"></i></td>
               <td>Only 1 stop — brief stairs, manageable</td>
             </tr>
             <tr>
               <td><b>Anvers</b></td>
               <td>L4</td>
-              <td>❌</td>
+              <td><i class="fa-solid fa-circle-xmark fa-icon" style="color:#dc2626"></i></td>
               <td>Exit to street level is fine (no deep descent)</td>
             </tr>
             <tr>
               <td><b>Saint-Lazare</b></td>
               <td>L13, L14</td>
-              <td>L14 ✅ L13 ❌</td>
+              <td>L14 <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i> L13 <i class="fa-solid fa-circle-xmark fa-icon" style="color:#dc2626"></i></td>
               <td>Transfer via L14 — modern, lifts everywhere</td>
             </tr>
           </tbody>
@@ -6532,7 +6567,7 @@
         </p>
       </div>
       <div class="card">
-        <h3>🚇 Metro Lines — All Stops (Your Routes)</h3>
+        <h3><i class="fa-solid fa-train-subway fa-icon"></i> Metro Lines — All Stops (Your Routes)</h3>
         <table class="tt-table">
           <thead>
             <tr>
@@ -6634,7 +6669,7 @@
       </div>
 
       <div class="card">
-        <h3>🚇 Best Car for Your Exit</h3>
+        <h3><i class="fa-solid fa-train-subway fa-icon"></i> Best Car for Your Exit</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Which metro car to be in for the easiest exit — saves walking through
           the platform.
@@ -6759,7 +6794,7 @@
       </div>
 
       <div class="card">
-        <h3>🍽️ Restaurant Survival Guide</h3>
+        <h3><i class="fa-solid fa-utensils fa-icon"></i> Restaurant Survival Guide</h3>
         <p style="font-size: 0.78rem; margin-bottom: 6px">
           <b>Service compris</b> = tip already included (by law in France). The
           15% you see on the bill is for the staff. No need to add more unless
@@ -6808,7 +6843,7 @@
       </div>
 
       <div class="card">
-        <h3>📱 Google Wallet — Save These</h3>
+        <h3><i class="fa-solid fa-mobile-screen fa-icon"></i> Google Wallet — Save These</h3>
         <p style="font-size: 0.78rem; margin-bottom: 6px">
           From each app, add the pass to Google Wallet before you travel. No
           signal needed to open saved passes.
@@ -6843,12 +6878,12 @@
               </td>
             </tr>
             <tr>
-              <td><b>Shuttle (outbound)</b> ✅</td>
+              <td><b>Shuttle (outbound)</b> <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
               <td>Shuttle provider email</td>
               <td>Already bought — screenshot booking QR</td>
             </tr>
             <tr>
-              <td><b>Shuttle (return)</b> (25 Jul ~13:15) ✅</td>
+              <td><b>Shuttle (return)</b> (25 Jul ~13:15) <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
               <td>Shuttle provider email</td>
               <td>Already bought — screenshot return QR</td>
             </tr>
@@ -6863,16 +6898,16 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Tip:</b> Take screenshots of EVERYTHING — boarding passes, QR
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Tip:</b> Take screenshots of EVERYTHING — boarding passes, QR
           codes, shuttle tickets, this itinerary page. No roaming? Screenshots
           work offline.
         </p>
       </div>
 
       <div class="card">
-        <h3>📅 Full Itinerary → Google Calendar</h3>
+        <h3><i class="fa-regular fa-calendar fa-icon"></i> Full Itinerary → Google Calendar</h3>
         <p style="font-size: 0.78rem; margin-bottom: 6px">
-          The <b>"📅 Export Calendar"</b> button at the top generates an
+          The <b>"<i class="fa-regular fa-calendar fa-icon"></i> Export Calendar"</b> button at the top generates an
           <code>.ics</code> file with all ~26 events across 4 days. Save it,
           then import into Google Calendar:
         </p>
@@ -6885,7 +6920,7 @@
           "
         >
           <li>
-            Click the <b>📅 Export Calendar</b> button above — file downloads as
+            Click the <b><i class="fa-regular fa-calendar fa-icon"></i> Export Calendar</b> button above — file downloads as
             <code>paris-trip-2026.ics</code>
           </li>
           <li>
@@ -6908,7 +6943,7 @@
           </li>
         </ol>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Can't save to Google Wallet</b> — Wallet is for boarding
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Can't save to Google Wallet</b> — Wallet is for boarding
           passes/tickets/cards. Calendar events go to your calendar app instead.
           The <code>.ics</code> file is the standard way to move events between
           apps.
@@ -6916,7 +6951,7 @@
       </div>
 
       <div class="card">
-        <h3>📋 Daily Pocket Checklists</h3>
+        <h3><i class="fa-solid fa-clipboard-list fa-icon"></i> Daily Pocket Checklists</h3>
         <p style="font-size: 0.78rem; margin-bottom: 8px">
           Print or screenshot — one page per day, quick glance reference.
         </p>
@@ -7098,7 +7133,7 @@
       </div>
 
       <div class="card">
-        <h3>🍽️ Restaurant Decision Flow — When the Menu Overwhelms</h3>
+        <h3><i class="fa-solid fa-utensils fa-icon"></i> Restaurant Decision Flow — When the Menu Overwhelms</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           You're tired, hungry, and looking at a wall of French you
           half-understand. Here's what to do — in order.
@@ -7169,14 +7204,14 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Golden rule:</b> If you're too tired to decide, pick the
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Golden rule:</b> If you're too tired to decide, pick the
           <b>plat du jour</b> (dish of the day). It's always fresh, always what
           the chef cooks best, always good value. Zero decisions needed.
         </p>
       </div>
 
       <div class="card">
-        <h3>🏘️ Your Neighbourhood — Rue du Chevalier de Saint George</h3>
+        <h3><i class="fa-solid fa-building fa-icon"></i> Your Neighbourhood — Rue du Chevalier de Saint George</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           You're in the 8th arrondissement, between Madeleine and
           Saint-Augustin. Here's what's within 5 min of your door.
@@ -7265,7 +7300,7 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 The area:</b> 8th arrondissement = quiet, clean, central.
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> The area:</b> 8th arrondissement = quiet, clean, central.
           Between Champs-Élysées and Opéra. Wide streets, Haussmannian buildings
           (cream stone, black iron balconies, green roofs). This is the Paris
           from every postcard — you're standing in the middle of it.
@@ -7273,7 +7308,7 @@
       </div>
 
       <div class="card">
-        <h3>🦵 Rest & Comfort — Froggy-Friendly Pacing</h3>
+        <h3><i class="fa-solid fa-person-walking fa-icon"></i> Rest & Comfort — Froggy-Friendly Pacing</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Simple reminders so you never push too hard. No drama.
         </p>
@@ -7327,7 +7362,7 @@
       </div>
 
       <div class="card">
-        <h3>📱 Phone & Data Strategy</h3>
+        <h3><i class="fa-solid fa-mobile-screen fa-icon"></i> Phone & Data Strategy</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Your phone is your map, ticket, camera, and lifeline. Here's how to
           keep it alive.
@@ -7403,7 +7438,7 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Roaming:</b> Check with your mobile provider before leaving.
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Roaming:</b> Check with your mobile provider before leaving.
           Most UK/EU plans include roaming in France (post-Brexit rules vary —
           some have fair-use limits like 20GB). If no roaming: buy a French SIM
           at any tabac or Relay shop (€5-15, 10-50GB data). Or use offline-only
@@ -7412,7 +7447,7 @@
       </div>
 
       <div class="card">
-        <h3>🚪 Escape Hatches — Fastest Exit From Every Overwhelming Spot</h3>
+        <h3><i class="fa-solid fa-door-open fa-icon"></i> Escape Hatches — Fastest Exit From Every Overwhelming Spot</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           If you need to leave. No judgement. No questions. Here's the fastest
           way out.
@@ -7532,13 +7567,13 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Principle:</b> You never have to stay anywhere. The second you
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Principle:</b> You never have to stay anywhere. The second you
           want to leave, you can. You don't need a "good reason." Just go.
         </p>
       </div>
 
       <div class="card">
-        <h3>🤫 Quiet Corners — Peace at Every Crowded Spot</h3>
+        <h3><i class="fa-solid fa-volume-xmark fa-icon"></i> Quiet Corners — Peace at Every Crowded Spot</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           The version of each place that nobody knows about. Parallel Paris —
           always within 2 min of the chaos.
@@ -7650,14 +7685,14 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Secret:</b> Crowds follow paths. If you take 2 steps off the
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Secret:</b> Crowds follow paths. If you take 2 steps off the
           main path, you're often alone. Paris is a city of thousands of empty
           benches within meters of millions of people.
         </p>
       </div>
 
       <div class="card">
-        <h3>⏰ The Timing Game — Optimal Moments for Everything</h3>
+        <h3><i class="fa-regular fa-clock fa-icon"></i> The Timing Game — Optimal Moments for Everything</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Most tourists do things at the wrong time. Here's when to be where —
           and why it changes everything.
@@ -7675,7 +7710,7 @@
             <tr>
               <td><b>Louvre</b></td>
               <td>09:00 (opening) or 10:00 (arrival rush)</td>
-              <td><b>14:00</b> (timed entry ✅ already done)</td>
+              <td><b>14:00</b> (timed entry <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i> already done)</td>
               <td>
                 Morning crowds thin out around 13:00. Tour groups leave for
                 lunch. You arrive as they leave. Fewer people in every gallery
@@ -7770,7 +7805,7 @@
             <tr>
               <td><b>Apartment shower</b> (any day)</td>
               <td>Evening (after walking all day)</td>
-              <td><b>Shift to morning</b> — already done ✅</td>
+              <td><b>Shift to morning</b> — already done <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
               <td>
                 Evening showers are crowded (both of you need hot water).
                 Morning showers are already planned — even better: you start the
@@ -7790,14 +7825,14 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Meta-timing rule:</b> Whatever the guidebooks recommend, do the
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Meta-timing rule:</b> Whatever the guidebooks recommend, do the
           opposite, 2 hours earlier, or 2 hours later. Paris rewards the
           anti-schedule.
         </p>
       </div>
 
       <div class="card">
-        <h3>📸 Photo Map — Where to Stand for the Shot</h3>
+        <h3><i class="fa-solid fa-camera fa-icon"></i> Photo Map — Where to Stand for the Shot</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Not "take a photo here." Exactly where to stand, which direction, at
           what time, and what to include in the frame.
@@ -7961,7 +7996,7 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Tip:</b> Hold your phone with <b>both hands</b> and brace your
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Tip:</b> Hold your phone with <b>both hands</b> and brace your
           elbows against your ribs — sharpest photos without a tripod. Wipe the
           lens on your shirt before every photo (pocket dust ruins more Paris
           photos than bad lighting).
@@ -7969,7 +8004,7 @@
       </div>
 
       <div class="card">
-        <h3>🙏 Buddhist Paris — Froggy's Domain</h3>
+        <h3><i class="fa-solid fa-hands-praying fa-icon"></i> Buddhist Paris — Froggy's Domain</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Paris has a Buddhist layer. Temples, Buddha in the Louvre, meditation
           gardens, and the art of looking slowly.
@@ -8070,7 +8105,7 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Froggy tip:</b> The Louvre has a <b>seated Buddha</b> from
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Froggy tip:</b> The Louvre has a <b>seated Buddha</b> from
           Cambodia that faces a window. At 15:00-16:00, the light hits its face
           directly. Quiet gallery, bench in front. You could sit there for 20
           min and nobody would bother you.
@@ -8078,7 +8113,7 @@
       </div>
 
       <div class="card">
-        <h3>🎮 Trip Games — Froggy & You Challenges</h3>
+        <h3><i class="fa-solid fa-gamepad fa-icon"></i> Trip Games — Froggy & You Challenges</h3>
         <p style="font-size: 0.76rem; margin-bottom: 6px; color: var(--muted)">
           Fun things to do together. Silly, memorable, zero pressure. Play some,
           skip some.
@@ -8093,7 +8128,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><b>🔍 Gargoyle Spotting</b></td>
+              <td><b><i class="fa-solid fa-magnifying-glass fa-icon"></i> Gargoyle Spotting</b></td>
               <td>
                 Notre Dame and Sacré-Cœur have the creepiest gargoyles. First to
                 spot a <b>gargoyle eating another gargoyle</b> wins. Loser buys
@@ -8102,7 +8137,7 @@
               <td>Day 3 (Montmartre)</td>
             </tr>
             <tr>
-              <td><b>📸 Photo Bingo</b></td>
+              <td><b><i class="fa-solid fa-camera fa-icon"></i> Photo Bingo</b></td>
               <td>
                 Print bingo cards or make a mental list: a mime, a beret, a
                 baguette under an arm, a dog in a café, a couple kissing,
@@ -8113,7 +8148,7 @@
               <td>Any day</td>
             </tr>
             <tr>
-              <td><b>🥐 Best Croissant Test</b></td>
+              <td><b><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Best Croissant Test</b></td>
               <td>
                 Buy one croissant from two different boulangeries each morning.
                 Cut each in half, share, rate. Keep a running leaderboard. The
@@ -8122,7 +8157,7 @@
               <td>Day 2-4 (mornings)</td>
             </tr>
             <tr>
-              <td><b>🗺️ Wrong Turn Adventure</b></td>
+              <td><b><i class="fa-solid fa-map fa-icon"></i> Wrong Turn Adventure</b></td>
               <td>
                 Once per day: when you reach a corner, one of you picks a
                 direction without looking at the map. Walk 5 min. See what you
@@ -8132,7 +8167,7 @@
               <td>Any day</td>
             </tr>
             <tr>
-              <td><b>🎭 Best People Watcher</b></td>
+              <td><b><i class="fa-solid fa-masks-theater fa-icon"></i> Best People Watcher</b></td>
               <td>
                 Sit at a café for 10 min. Silently invent a backstory for three
                 strangers. The most creative story wins. Froggy will be great at
@@ -8141,7 +8176,7 @@
               <td>Day 1 (café near apartment)</td>
             </tr>
             <tr>
-              <td><b>📖 The Carriage Game</b></td>
+              <td><b><i class="fa-solid fa-book fa-icon"></i> The Carriage Game</b></td>
               <td>
                 On the metro: guess which station most people in your carriage
                 will get off at. Closest guess wins. Teaches you to notice
@@ -8151,7 +8186,7 @@
               <td>Any metro ride</td>
             </tr>
             <tr>
-              <td><b>🏆 Best Memory</b></td>
+              <td><b><i class="fa-solid fa-trophy fa-icon" style="color:#f59e0b"></i> Best Memory</b></td>
               <td>
                 At the end of each day: each pick your single best moment. No
                 debate. Both are right. The other person just listens. Save them
@@ -8162,7 +8197,7 @@
           </tbody>
         </table>
         <p style="font-size: 0.72rem; color: var(--muted); margin-top: 4px">
-          <b>💡 Keep it loose:</b> If a game feels forced, drop it. The only
+          <b><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Keep it loose:</b> If a game feels forced, drop it. The only
           rule is: you're here to enjoy each other's company in Paris.
           Everything else is optional.
         </p>
@@ -8174,7 +8209,7 @@
       id="topBtn"
       title="Scroll to top"
     >
-      ⬆
+      <i class="fa-solid fa-arrow-up"></i>
     </button>
 
     <script>
@@ -8732,12 +8767,12 @@
       // Dark mode
       const dm = localStorage.getItem("dark") === "1";
       if (dm) document.body.classList.add("dark");
-      document.getElementById("darkBtn").textContent = dm ? "☀️" : "🌙";
+      document.getElementById("darkBtn").innerHTML = dm ? '<i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i>' : '<i class="fa-solid fa-moon fa-icon"></i>';
       function toggleDark() {
         document.body.classList.toggle("dark");
         const on = document.body.classList.contains("dark");
         localStorage.setItem("dark", on ? "1" : "0");
-        document.getElementById("darkBtn").textContent = on ? "☀️" : "🌙";
+        document.getElementById("darkBtn").innerHTML = on ? '<i class="fa-solid fa-sun fa-icon" style="color:#f59e0b"></i>' : '<i class="fa-solid fa-moon fa-icon"></i>';
       }
 
       // Budget tracker
