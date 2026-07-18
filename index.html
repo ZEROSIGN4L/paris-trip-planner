@@ -5342,18 +5342,6 @@
             <i class="fa-solid fa-download fa-icon"></i> Download PDF
           </a>
         </div>
-        <div id="ticketOverlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px;overflow-y:auto;flex-direction:column">
-          <div id="ticketOverlayImgWrap" style="display:flex;flex-direction:column;gap:12px;max-height:calc(100% - 56px);overflow-y:auto;width:100%;max-width:420px;padding:8px 0">
-          </div>
-          <div style="position:sticky;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.95))">
-            <button onclick="document.getElementById('ticketOverlay').style.display='none'" style="padding:10px 20px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
-              <i class="fa-solid fa-arrow-left" style="margin-right:6px"></i> Back
-            </button>
-            <a id="ticketShareBtn" href="document.pdf" target="_blank" download style="padding:10px 20px;border-radius:10px;background:var(--accent);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px;text-decoration:none;display:inline-flex;align-items:center">
-              <i class="fa-solid fa-up-right-from-square" style="margin-right:6px"></i> Open PDF
-            </a>
-          </div>
-        </div>
       </div>
       <div class="hbox blue" style="margin-top: 10px">
         <p>
@@ -9657,5 +9645,17 @@
     <button id="floatingDocBtn" class="no-print" aria-hidden="true">
       Open ticket
     </button>
+    <div id="ticketOverlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px;overflow-y:auto;flex-direction:column">
+      <div id="ticketOverlayImgWrap" style="display:flex;flex-direction:column;gap:12px;max-height:calc(100% - 56px);overflow-y:auto;width:100%;max-width:420px;padding:8px 0">
+      </div>
+      <div style="position:sticky;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.95))">
+        <button onclick="document.getElementById('ticketOverlay').style.display='none'" style="padding:10px 20px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
+          <i class="fa-solid fa-arrow-left" style="margin-right:6px"></i> Back
+        </button>
+        <a id="ticketShareBtn" href="document.pdf" target="_blank" download style="padding:10px 20px;border-radius:10px;background:var(--accent);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px;text-decoration:none;display:inline-flex;align-items:center">
+          <i class="fa-solid fa-up-right-from-square" style="margin-right:6px"></i> Open PDF
+        </a>
+      </div>
+    </div>
   </body>
 </html>
