@@ -1,16 +1,23 @@
 {
   "name": "Paris Trip Planner",
   "short_name": "Paris Trip",
-  "description": "3-day Paris trip itinerary and organizer",
+  "description": "4-day Paris trip itinerary and organizer",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1a1a2e",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗼</text></svg>",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
