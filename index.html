@@ -519,7 +519,9 @@
         font-weight: 700;
         cursor: pointer;
         box-shadow: 0 6px 20px rgba(233, 69, 96, 0.18);
-        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        transition:
+          transform 0.12s ease,
+          box-shadow 0.12s ease;
       }
       #viewDocBtn:hover {
         transform: translateY(-2px);
@@ -546,9 +548,15 @@
         animation: floatPulse 2.2s infinite;
       }
       @keyframes floatPulse {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-6px); }
-        100% { transform: translateY(0); }
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+        100% {
+          transform: translateY(0);
+        }
       }
       .tab {
         flex: none;
@@ -4626,11 +4634,24 @@
       <div class="card">
         <h3>Confirmation</h3>
         <p style="margin-bottom: 8px">
-          A generic confirmation document is available below.
+          Tap the ticket button below to open your QR code or print a backup copy.
         </p>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          <button id="viewDocBtn">View document</button>
-          <button id="showQrBtn" class="btn" style="background:linear-gradient(90deg,#ff8a9e,#ff6b81);padding:8px 12px;border-radius:8px;font-weight:700">Show QR / Print</button>
+        <div
+          style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"
+        >
+          <button id="viewDocBtn">Open ticket</button>
+          <button
+            id="showQrBtn"
+            class="btn"
+            style="
+              background: linear-gradient(90deg, #ff8a9e, #ff6b81);
+              padding: 8px 12px;
+              border-radius: 8px;
+              font-weight: 700;
+            "
+          >
+            Show QR / Print
+          </button>
         </div>
         <div id="docWrap" class="hidden" style="margin-top: 8px">
           <iframe
@@ -4640,11 +4661,11 @@
           ></iframe>
         </div>
       </div>
-      <div class="hbox blue" style="margin-top:10px">
+      <div class="hbox blue" style="margin-top: 10px">
         <p>
-          🧘 Security queue moves fast — you have timed entry, so no waiting in the general
-          queue. You're ahead of most visitors today. Breathe: you're about to see the
-          greatest art collection on Earth.
+          🧘 Security queue moves fast — you have timed entry, so no waiting in
+          the general queue. You're ahead of most visitors today. Breathe:
+          you're about to see the greatest art collection on Earth.
         </p>
       </div>
       <div class="card">
@@ -8694,6 +8715,8 @@
           .classList.toggle("show", window.scrollY > 300);
       });
     </script>
-    <button id="floatingDocBtn" class="no-print" aria-hidden="true">Open ticket</button>
+    <button id="floatingDocBtn" class="no-print" aria-hidden="true">
+      Open ticket
+    </button>
   </body>
 </html>
