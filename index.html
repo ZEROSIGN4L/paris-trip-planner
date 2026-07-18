@@ -4634,7 +4634,8 @@
       <div class="card">
         <h3>Confirmation</h3>
         <p style="margin-bottom: 8px">
-          Tap the ticket button below to open your QR code or print a backup copy.
+          Tap the ticket button below to open your QR code or print a backup
+          copy.
         </p>
         <div
           style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"
@@ -4653,7 +4654,7 @@
             Show QR / Print
           </button>
         </div>
-        <div id="docWrap" class="hidden" style="margin-top: 8px">
+        <div id="docWrap" style="margin-top: 8px">
           <iframe
             src="document.pdf"
             style="width: 100%; height: 400px; border: 1px solid var(--border)"
@@ -8188,8 +8189,8 @@
           if (!w) return;
           w.classList.toggle("hidden");
           viewBtn.textContent = w.classList.contains("hidden")
-            ? "View document"
-            : "Hide document";
+            ? "View ticket"
+            : "Hide ticket";
         });
       }
       // show QR / print helper
@@ -8220,7 +8221,11 @@
       }
       const showQrBtn = document.getElementById("showQrBtn");
       if (showQrBtn) {
-        showQrBtn.addEventListener("click", openTicketPdf);
+        showQrBtn.addEventListener("click", () => {
+          const w = document.getElementById("docWrap");
+          if (w) w.classList.remove("hidden");
+          openTicketPdf();
+        });
       }
       const floatingDocBtn = document.getElementById("floatingDocBtn");
       if (floatingDocBtn) {
