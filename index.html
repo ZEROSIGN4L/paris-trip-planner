@@ -1257,6 +1257,26 @@
         white-space: normal;
         vertical-align: middle;
       }
+      @media (max-width: 640px) {
+        .route-flow {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+          padding: 8px 10px;
+          border-radius: 12px;
+        }
+        .route-flow .rf-line {
+          display: none;
+        }
+        .route-flow .rf-dot {
+          display: none;
+        }
+        .route-flow .rf-name,
+        .route-flow .rf-badge {
+          margin: 0;
+        }
+      }
       .route-flow .rf-dot {
         width: 8px;
         height: 8px;
