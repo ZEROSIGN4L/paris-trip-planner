@@ -8922,41 +8922,48 @@
           w.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
+      const TICKET_PAGES = [
+        { src: "ticket-page1.png", label: "Froggy's ticket", pdf: "document.pdf#page=1" },
+        { src: "ticket-page2.png", label: "Your ticket", pdf: "document.pdf#page=2" }
+      ];
+      let ticketIdx = 0;
       function openTicketFull(src) {
         const overlay = document.getElementById("ticketOverlay");
         const wrap = document.getElementById("ticketOverlayImgWrap");
         const share = document.getElementById("ticketShareBtn");
+        const prev = document.getElementById("ticketPrev");
+        const next = document.getElementById("ticketNext");
+        const counter = document.getElementById("ticketCounter");
         if (!overlay || !wrap) return;
-        wrap.innerHTML = "";
         if (src === "both") {
-          ["ticket-page1.png","ticket-page2.png"].forEach((s,i) => {
-            const d = document.createElement("div");
-            d.style.cssText = "border-radius:8px;overflow:hidden;background:#111";
-            const lbl = document.createElement("div");
-            lbl.style.cssText = "padding:6px 10px;font-size:0.72rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px";
-            lbl.innerHTML = i === 0
-              ? '<i class="fa-solid fa-frog fa-icon" style="color:var(--frog)"></i> Froggy\'s ticket'
-              : '<i class="fa-solid fa-user fa-icon" style="color:var(--blue)"></i> Your ticket';
-            const img = document.createElement("img");
-            img.src = s;
-            img.alt = lbl.textContent;
-            img.style.cssText = "width:100%;display:block";
-            d.appendChild(lbl);
-            d.appendChild(img);
-            wrap.appendChild(d);
-          });
-          if (share) share.href = "document.pdf";
+          ticketIdx = 0;
         } else {
-          const img = document.createElement("img");
-          img.src = src;
-          img.alt = "Ticket";
-          img.style.cssText = "width:100%;display:block;border-radius:8px";
-          wrap.appendChild(img);
-          if (share) {
-            share.href = src === "ticket-page2.png" ? "document.pdf#page=2" : "document.pdf#page=1";
-          }
+          ticketIdx = TICKET_PAGES.findIndex(t => t.src === src);
+          if (ticketIdx < 0) ticketIdx = 0;
         }
+        renderTicket();
         overlay.style.display = "flex";
+        function renderTicket() {
+          const t = TICKET_PAGES[ticketIdx];
+          wrap.innerHTML = "";
+          const lbl = document.createElement("div");
+          lbl.style.cssText = "padding:6px 10px;font-size:0.78rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px;width:100%";
+          lbl.innerHTML = ticketIdx === 0
+            ? '<i class="fa-solid fa-frog fa-icon" style="color:var(--frog)"></i> ' + t.label
+            : '<i class="fa-solid fa-user fa-icon" style="color:var(--blue)"></i> ' + t.label;
+          const img = document.createElement("img");
+          img.src = t.src;
+          img.alt = t.label;
+          img.style.cssText = "width:100%;display:block;border-radius:8px";
+          wrap.appendChild(lbl);
+          wrap.appendChild(img);
+          if (share) share.href = t.pdf;
+          if (counter) counter.textContent = (ticketIdx + 1) + " / " + TICKET_PAGES.length;
+          if (prev) prev.style.visibility = ticketIdx === 0 ? "hidden" : "visible";
+          if (next) next.style.visibility = ticketIdx === TICKET_PAGES.length - 1 ? "hidden" : "visible";
+        }
+        if (prev) prev.onclick = function() { if (ticketIdx > 0) { ticketIdx--; renderTicket(); } };
+        if (next) next.onclick = function() { if (ticketIdx < TICKET_PAGES.length - 1) { ticketIdx++; renderTicket(); } };
       }
       function openTicketPdf() {
         let w;
