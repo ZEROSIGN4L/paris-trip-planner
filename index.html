@@ -682,7 +682,7 @@
         }
         #floatingDocBtn {
           right: 12px;
-          bottom: 158px;
+          bottom: 198px;
           padding: 10px 14px;
           font-size: 0.9rem;
           max-width: calc(100vw - 24px);
@@ -974,7 +974,7 @@
       #floatingDocBtn {
         position: fixed;
         right: 18px;
-        bottom: 70px;
+        bottom: 110px;
         z-index: 1200;
         background: linear-gradient(90deg, var(--accent), #ff6b81);
         color: #fff;
@@ -9645,10 +9645,19 @@
     <button id="floatingDocBtn" class="no-print" aria-hidden="true">
       Open ticket
     </button>
-    <div id="ticketOverlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px;overflow-y:auto;flex-direction:column">
-      <div id="ticketOverlayImgWrap" style="display:flex;flex-direction:column;gap:12px;max-height:calc(100% - 56px);overflow-y:auto;width:100%;max-width:420px;padding:8px 0">
+    <div id="ticketOverlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px;flex-direction:column">
+      <div id="ticketOverlayImgWrap" style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:420px;padding:8px 0;align-items:center;justify-content:center;flex:1;overflow:hidden">
       </div>
-      <div style="position:sticky;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.95))">
+      <div style="width:100%;max-width:420px;display:flex;align-items:center;justify-content:center;gap:12px;padding:6px 16px 10px">
+        <button id="ticketPrev" style="padding:10px 16px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span id="ticketCounter" style="color:#fff;font-size:0.8rem;font-weight:600;min-width:40px;text-align:center">1 / 2</span>
+        <button id="ticketNext" style="padding:10px 16px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div style="width:100%;max-width:420px;display:flex;align-items:center;justify-content:center;gap:12px;padding:0 16px 10px">
         <button onclick="document.getElementById('ticketOverlay').style.display='none'" style="padding:10px 20px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
           <i class="fa-solid fa-arrow-left" style="margin-right:6px"></i> Back
         </button>
