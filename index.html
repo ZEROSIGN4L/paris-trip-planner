@@ -3131,10 +3131,10 @@
             <div style="margin-top: 8px; font-weight: 600; color: var(--blue)">
               <button
                 type="button"
-                onclick="openTicketPdf()"
+                onclick="showTicketPreview()"
                 style="border: none; background: linear-gradient(90deg, #002395, #3b82f6); color: #fff; font-weight: 700; cursor: pointer; padding: 8px 12px; border-radius: 999px; box-shadow: 0 4px 12px rgba(0, 35, 149, 0.2);"
               >
-                🎫 Open ticket
+                🎫 Show ticket
               </button>
             </div>
           </div>
@@ -8203,6 +8203,14 @@
         });
       }
       // show QR / print helper
+      function showTicketPreview() {
+        const w = document.getElementById("docWrap");
+        if (w) w.classList.remove("hidden");
+        const iframe = document.querySelector("#docWrap iframe");
+        if (iframe) {
+          iframe.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
       function openTicketPdf() {
         const iframe = document.querySelector("#docWrap iframe");
         const src = iframe ? iframe.src : "document.pdf";
@@ -8230,15 +8238,11 @@
       }
       const showQrBtn = document.getElementById("showQrBtn");
       if (showQrBtn) {
-        showQrBtn.addEventListener("click", () => {
-          const w = document.getElementById("docWrap");
-          if (w) w.classList.remove("hidden");
-          openTicketPdf();
-        });
+        showQrBtn.addEventListener("click", showTicketPreview);
       }
       const floatingDocBtn = document.getElementById("floatingDocBtn");
       if (floatingDocBtn) {
-        floatingDocBtn.addEventListener("click", openTicketPdf);
+        floatingDocBtn.addEventListener("click", showTicketPreview);
       }
       // highlight the document button on the booking date so it's easy to find
       (function highlightDocButton() {
