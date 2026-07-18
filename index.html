@@ -3211,7 +3211,7 @@
           </div>
           <div class="th">Walking: ~1km (0.6mi) easy pace, flat streets</div>
           <div class="bath">
-            <i class="fa-solid fa-restroom fa-icon"></i> Public toilets: Sanisette on Rue de la Chaussée-d'Antin (3 min
+            <i class="fa-solid fa-toilet fa-icon"></i> Public toilets: Sanisette on Rue de la Chaussée-d'Antin (3 min
             from apartment, near Miromesnil metro)
           </div>
         </div>
@@ -3296,7 +3296,7 @@
             Walking: ~1.5km (0.9mi) flat riverbank. Benches every 50m.
           </div>
           <div class="bath">
-            <i class="fa-solid fa-restroom fa-icon"></i> Public toilets: Green Sanisette kiosks along the Seine quays —
+            <i class="fa-solid fa-toilet fa-icon"></i> Public toilets: Green Sanisette kiosks along the Seine quays —
             one near Pont Neuf, another near Pont des Arts. Look for the green
             phone-box-style kiosks.
           </div>
@@ -5280,7 +5280,7 @@
         <div id="ticketOverlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;padding:10px">
           <img id="ticketFullImg" src="" alt="Ticket full screen" style="max-width:100%;max-height:calc(100% - 56px);object-fit:contain;border-radius:4px" />
           <div style="position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.9))">
-            <button onclick="document.getElementById('ticketOverlay').classList.remove('show')" style="padding:10px 20px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
+            <button onclick="document.getElementById('ticketOverlay').style.display='none'" style="padding:10px 20px;border-radius:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px">
               <i class="fa-solid fa-arrow-left" style="margin-right:6px"></i> Back
             </button>
             <a id="ticketShareBtn" href="#" target="_blank" download style="padding:10px 20px;border-radius:10px;background:var(--accent);border:none;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;min-height:44px;min-width:44px;text-decoration:none;display:inline-flex;align-items:center">
@@ -8876,7 +8876,6 @@
         if (overlay && img) {
           img.src = src;
           overlay.style.display = "flex";
-          overlay.classList.add("show");
         }
         if (share) {
           if (src === "ticket-page2.png") share.href = "document.pdf#page=2";
