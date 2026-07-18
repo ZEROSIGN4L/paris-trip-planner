@@ -8219,12 +8219,20 @@
               f.classList.add("show");
               f.setAttribute("aria-hidden", "false");
               f.addEventListener("click", () => {
-                // jump to Louvre section and open the document viewer
                 try {
-                  show("louvre");
-                  const w = document.getElementById("docWrap");
-                  if (w && w.classList.contains("hidden")) w.classList.remove("hidden");
-                  if (b) b.textContent = "Hide document";
+                  const iframe = document.querySelector("#docWrap iframe");
+                  const src = iframe ? iframe.src : "document.pdf";
+                  const w2 = window.open(src, "_blank");
+                  if (w2) {
+                    try {
+                      w2.focus();
+                      w2.onload = function () {
+                        try {
+                          w2.print();
+                        } catch (e) {}
+                      };
+                    } catch (e) {}
+                  }
                 } catch (err) {}
               });
             }
