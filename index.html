@@ -1784,6 +1784,40 @@
       .meal-collapse.expanded .res-grid + span {
         display: grid;
       }
+      .meal-collapse .mc-body { display: none; }
+      .meal-collapse.expanded .mc-body { display: block; }
+      .meal-collapse.expanded .meal-summary .meal-chip {
+        opacity: 0.7;
+      }
+      .qr-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .qr-item {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 10px;
+      }
+      .qr-route {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 4px;
+      }
+      .qr-dest {
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .qr-time {
+        font-size: 0.68rem;
+        color: var(--muted);
+      }
+      @media (max-width: 480px) {
+        .qr-grid { grid-template-columns: 1fr; }
+      }
 
       .cal {
         display: grid;
@@ -1983,26 +2017,74 @@
         margin: 0 2px;
         vertical-align: middle;
       }
-      .route-flow .rf-badge.l1 {
-        background: #f5a623;
+      .route-flow .rf-badge.l1 { background: #f5a623; }
+      .route-flow .rf-badge.l4 { background: #a05eb5; }
+      .route-flow .rf-badge.l7 { background: #e87511; }
+      .route-flow .rf-badge.l9 { background: #c5a039; }
+      .route-flow .rf-badge.l12 { background: #80c850; }
+      .route-flow .rf-badge.l13 { background: #6ecba1; }
+      .route-flow .rf-badge.l3 { background: #f5c346; }
+      .route-flow .rf-badge.l14 { background: #0078d4; }
+      .rf-badge {
+        display: inline-block;
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.65rem;
+        color: #fff;
+        vertical-align: middle;
+        line-height: 1.4;
       }
-      .route-flow .rf-badge.l4 {
-        background: #a05eb5;
+      .rf-badge.l1 { background: #f5a623; }
+      .rf-badge.l4 { background: #a05eb5; }
+      .rf-badge.l9 { background: #c5a039; color: #1a1a2e; }
+      .rf-badge.l12 { background: #80c850; color: #1a1a2e; }
+      .rf-badge.l13 { background: #6ecba1; color: #1a1a2e; }
+      .rf-badge.l14 { background: #0078d4; }
+
+      .station-list {
+        font-size: 0.78rem;
+        line-height: 1.7;
+        color: var(--text);
+        margin: 0 0 8px;
+        padding-left: 14px;
+        text-indent: -14px;
       }
-      .route-flow .rf-badge.l7 {
-        background: #e87511;
+
+      .station-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin: 4px 0 10px;
       }
-      .route-flow .rf-badge.l9 {
-        background: #c5a039;
+      .station-pill {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 600;
+        padding: 2px 7px;
+        border-radius: 10px;
+        border: 1.5px solid #d0d5dd;
+        color: var(--muted);
+        background: transparent;
+        white-space: nowrap;
       }
-      .route-flow .rf-badge.l13 {
-        background: #6ecba1;
+      .station-pill.mine {
+        border-color: transparent;
+        color: #fff;
       }
-      .route-flow .rf-badge.l12 {
-        background: #80c850;
-      }
-      .route-flow .rf-badge.l3 {
-        background: #f5c346;
+      .station-pill.mine.l1 { background: #f5a623; }
+      .station-pill.mine.l4 { background: #a05eb5; }
+      .station-pill.mine.l9 { background: #c5a039; color: #1a1a2e; }
+      .station-pill.mine.l12 { background: #80c850; color: #1a1a2e; }
+      .station-pill.mine.l13 { background: #6ecba1; color: #1a1a2e; }
+      .station-pill.mine.l14 { background: #0078d4; }
+      .station-divider {
+        font-size: 0.62rem;
+        color: var(--muted);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin: 6px 0 4px;
       }
 
       @media print {
@@ -3326,7 +3408,7 @@
           <div class="td">
             <a
               class="maplink"
-              href="https://www.google.com/maps/search/?api=1&query=Beauvais+Airport+shuttle+pickup"
+              href="https://www.google.com/maps/search/?api=1&query=Beauvais+Airport+Paris"
               target="_blank"
               >Beauvais Airport Shuttle Pickup</a
             >
@@ -3424,10 +3506,10 @@
           <a
             class="maplink"
             data-place="9 Rue du Chevalier de Saint George, 75008 Paris"
-            href="#"
+            href="https://www.google.com/maps/search/?api=1&query=9+Rue+du+Chevalier+de+Saint+George+Paris"
             target="_blank"
             rel="noopener noreferrer"
-            >Open apartment in Google Maps</a
+            >Apartment</a
           >
           <div class="backup">
             Or simply WALK! ~25 min, 2km (1.2mi), flat. Head east on Avenue de
@@ -3460,9 +3542,9 @@
           <div class="tn">Froggy rests / Apartment Grocery Run 🛒</div>
           <div class="td">
             Froggy rests in the apartment (elevates legs, drinks water, does 30 mins of Duolingo 🐸). Meanwhile, you slip out to the nearest supermarket (e.g. <b>Franprix at 12 Rue de Surène</b>) to stock up the apartment fridge.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Franprix+12+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Franprix on Maps</a><br>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Franprix+12+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Franprix</a><br>
               <b>Backup if closed:</b> <b>Monoprix Malesherbes</b> — 47 Bd Malesherbes (5 min walk, open until 23:30)<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Monoprix+47+Boulevard+Malesherbes+Paris" target="_blank">Monoprix Malesherbes on Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Monoprix+47+Boulevard+Malesherbes+Paris" target="_blank">Monoprix Malesherbes</a>
           </div>
           <div class="steps">
             <b>Apartment stocking list:</b>
@@ -3677,10 +3759,10 @@
           <a
             class="maplink"
             data-place="9 Rue du Chevalier de Saint George, 75008 Paris"
-            href="#"
+            href="https://www.google.com/maps/search/?api=1&query=9+Rue+du+Chevalier+de+Saint+George+Paris"
             target="_blank"
             rel="noopener noreferrer"
-            >Apartment address</a
+            >Apartment</a
           >
           <a
             class="maplink"
@@ -3964,10 +4046,10 @@
           <a
             class="maplink"
             data-place="Louvre Museum Paris"
-            href="#"
+            href="https://www.google.com/maps/search/?api=1&query=Louvre+Museum+Paris"
             target="_blank"
             rel="noopener noreferrer"
-            >Open Louvre Museum in Maps</a
+            >Louvre Museum</a
           >
           <div class="bath">
             Toilets at metro station — use before entering Louvre (next free
@@ -4000,7 +4082,7 @@
           </div>
           <a
             class="maplink"
-            href="https://www.google.com/maps/search/?api=1&query=Passage+Richelieu+Louvre+entrance+Paris"
+            href="https://www.google.com/maps/search/?api=1&query=Passage+Richelieu+Paris"
             target="_blank"
             >Passage Richelieu Entrance</a
           >
@@ -4275,10 +4357,10 @@
           <a
             class="maplink"
             data-place="Galeries Lafayette Haussmann Paris"
-            href="#"
+            href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Haussmann+Paris"
             target="_blank"
             rel="noopener noreferrer"
-            >Open Galeries Lafayette in Maps</a
+            >Galeries Lafayette</a
           >
           <div class="bath">
             Toilets at Carrousel exit before leaving, or at Galeries Lafayette
@@ -4351,7 +4433,7 @@
           </div>
           <a
             class="maplink"
-            href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+rooftop+terrace+Paris"
+            href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Paris"
             target="_blank"
             >Galeries Lafayette Rooftop</a
           >
@@ -4650,9 +4732,9 @@
           </div>
           <a
             class="maplink"
-            href="https://www.google.com/maps/search/?api=1&query=Cite+metro+station+Paris"
+            href="https://www.google.com/maps/search/?api=1&query=Cite+Paris"
             target="_blank"
-            >Cité Metro Station</a
+            >Cité</a
           >
           <div class="hbox">
             <p>
@@ -5423,10 +5505,10 @@
             <a
               class="maplink"
               data-place="Porte Maillot Paris"
-              href="#"
+              href="https://www.google.com/maps/search/?api=1&query=Porte+Maillot+Paris"
               target="_blank"
               rel="noopener noreferrer"
-              >Open Porte Maillot in Maps</a
+              >Porte Maillot</a
             >
             <a href="#" onclick="event.preventDefault();openGalImg('port-maillot-from-beauvais.jpg','Porte Maillot shuttle hub')" style="display:inline-block;margin:6px 0;font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View Porte Maillot shuttle hub</a>
           </div>
@@ -9102,6 +9184,245 @@
       <div class="day-div">Metro Guide — Your Lines & Stations</div>
 
       <div class="card">
+        <h3><i class="fa-solid fa-bolt fa-icon" style="color:#f59e0b"></i> Quick Reference — Your 4 Key Routes</h3>
+        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:8px">Memorise these and you're set for the whole trip.</p>
+        <div class="qr-grid">
+          <div class="qr-item">
+            <div class="qr-route"><span class="rf-badge l9" style="font-size:0.65rem;background:#c5a039">L9</span> → <span class="rf-badge l1" style="font-size:0.65rem;background:#f5a623">L1</span></div>
+            <div class="qr-dest">Louvre / Tuileries</div>
+            <div class="qr-time">~10 min · 1 transfer at FDR</div>
+          </div>
+          <div class="qr-item">
+            <div class="qr-route"><span class="rf-badge l13" style="font-size:0.65rem;background:#6ecba1">L13</span> → <span class="rf-badge l14" style="font-size:0.65rem;background:#0078d4">L14</span></div>
+            <div class="qr-dest">Châtelet / Notre-Dame</div>
+            <div class="qr-time">~7 min · 1 transfer at St-Lazare</div>
+          </div>
+          <div class="qr-item">
+            <div class="qr-route"><span class="rf-badge l9" style="font-size:0.65rem;background:#c5a039">L9</span></div>
+            <div class="qr-dest">Trocadéro (Eiffel sparkle)</div>
+            <div class="qr-time">~8 min · direct, no transfer</div>
+          </div>
+          <div class="qr-item">
+            <div class="qr-route"><span class="rf-badge l4" style="font-size:0.65rem;background:#a05eb5">L4</span></div>
+            <div class="qr-dest">Montmartre (Anvers)</div>
+            <div class="qr-time">~15 min from Châtelet · direct</div>
+          </div>
+        </div>
+        <div class="card meal-collapse" onclick="this.classList.toggle('expanded')" style="margin-top:6px">
+          <h3 style="font-size:0.82rem"><span class="rf-badge l1" style="font-size:0.65rem;background:#f5a623">L1</span> <span style="font-size:0.72rem;color:var(--muted);font-weight:400">Yellow — La Défense ↔ Château de Vincennes · 24 stations</span></h3>
+          <div class="mc-body">
+            <div class="station-pills">
+              <span class="station-pill">La Défense</span>
+              <span class="station-pill">Esplanade de La Défense</span>
+              <span class="station-pill">Pont de Neuilly</span>
+              <span class="station-pill">Les Sablons</span>
+              <span class="station-pill mine l1">Porte Maillot</span>
+              <span class="station-pill">Argentine</span>
+              <span class="station-pill">Charles de Gaulle–Étoile</span>
+              <span class="station-pill">George V</span>
+              <span class="station-pill mine l1">Franklin D. Roosevelt</span>
+              <span class="station-pill mine l1">Champs-Élysées–Clemenceau</span>
+              <span class="station-pill mine l1">Concorde</span>
+              <span class="station-pill mine l1">Tuileries</span>
+              <span class="station-pill mine l1">Palais Royal–Musée du Louvre</span>
+              <span class="station-pill">Louvre–Rivoli</span>
+              <span class="station-pill mine l1">Saint-Paul</span>
+              <span class="station-pill">Bastille</span>
+              <span class="station-pill">Gare de Lyon</span>
+              <span class="station-pill">Reuilly–Diderot</span>
+              <span class="station-pill">Nation</span>
+              <span class="station-pill">Porte de Vincennes</span>
+              <span class="station-pill">Saint-Mandé–Tourelles</span>
+              <span class="station-pill">Bérault</span>
+              <span class="station-pill">Château de Vincennes</span>
+            </div>
+          </div>
+        </div>
+        <div class="card meal-collapse" onclick="this.classList.toggle('expanded')" style="margin-top:6px">
+          <h3 style="font-size:0.82rem"><span class="rf-badge l4" style="font-size:0.65rem;background:#a05eb5">L4</span> <span style="font-size:0.72rem;color:var(--muted);font-weight:400">Purple — Porte de Clignancourt ↔ Bagneux–Lucie Aubrac · 29 stations</span></h3>
+          <div class="mc-body">
+            <div class="station-pills">
+              <span class="station-pill">Porte de Clignancourt</span>
+              <span class="station-pill">Simplon</span>
+              <span class="station-pill">Marcadet–Poissonniers</span>
+              <span class="station-pill">Château Rouge</span>
+              <span class="station-pill">Barbès–Rochechouart</span>
+              <span class="station-pill mine l4">Gare du Nord</span>
+              <span class="station-pill">Gare de l'Est</span>
+              <span class="station-pill">Château d'Eau</span>
+              <span class="station-pill">Strasbourg–Saint-Denis</span>
+              <span class="station-pill">Réaumur–Sébastopol</span>
+              <span class="station-pill">Étienne Marcel</span>
+              <span class="station-pill">Les Halles</span>
+              <span class="station-pill mine l4">Châtelet</span>
+              <span class="station-pill mine l4">Cité</span>
+              <span class="station-pill">Saint-Michel</span>
+              <span class="station-pill">Odéon</span>
+              <span class="station-pill">Saint-Germain-des-Prés</span>
+              <span class="station-pill">Saint-Sulpice</span>
+              <span class="station-pill">Saint-Placide</span>
+              <span class="station-pill">Montparnasse–Bienvenüe</span>
+              <span class="station-pill">Vavin</span>
+              <span class="station-pill">Raspail</span>
+              <span class="station-pill">Denfert-Rochereau</span>
+              <span class="station-pill">Mouton-Duvernet</span>
+              <span class="station-pill">Alésia</span>
+              <span class="station-pill">Porte d'Orléans</span>
+              <span class="station-pill">Mairie de Montrouge</span>
+              <span class="station-pill">Barbara</span>
+              <span class="station-pill">Bagneux–Lucie Aubrac</span>
+            </div>
+          </div>
+        </div>
+        <div class="card meal-collapse" onclick="this.classList.toggle('expanded')" style="margin-top:6px">
+          <h3 style="font-size:0.82rem"><span class="rf-badge l9" style="font-size:0.65rem;background:#c5a039">L9</span> <span style="font-size:0.72rem;color:var(--muted);font-weight:400">Mustard — Pont de Sèvres ↔ Mairie de Montreuil · 37 stations</span></h3>
+          <div class="mc-body">
+            <div class="station-pills">
+              <span class="station-pill">Pont de Sèvres</span>
+              <span class="station-pill">Billancourt</span>
+              <span class="station-pill">Marcel Sembat</span>
+              <span class="station-pill">Porte de Saint-Cloud</span>
+              <span class="station-pill">Exelmans</span>
+              <span class="station-pill">Michel-Ange–Molitor</span>
+              <span class="station-pill">Michel-Ange–Auteuil</span>
+              <span class="station-pill">Jasmin</span>
+              <span class="station-pill">Ranelagh</span>
+              <span class="station-pill">La Muette</span>
+              <span class="station-pill">Rue de la Pompe</span>
+              <span class="station-pill mine l9">Trocadéro</span>
+              <span class="station-pill">Iéna</span>
+              <span class="station-pill">Alma–Marceau</span>
+              <span class="station-pill mine l9">Franklin D. Roosevelt</span>
+              <span class="station-pill mine l9">Saint-Philippe du Roule</span>
+              <span class="station-pill mine l9">Miromesnil</span>
+              <span class="station-pill">Saint-Augustin</span>
+              <span class="station-pill">Havre–Caumartin</span>
+              <span class="station-pill">Chaussée d'Antin–La Fayette</span>
+              <span class="station-pill">Richelieu–Drouot</span>
+              <span class="station-pill">Grands Boulevards</span>
+              <span class="station-pill">Bonne-Nouvelle</span>
+              <span class="station-pill">Strasbourg–Saint-Denis</span>
+              <span class="station-pill">République</span>
+              <span class="station-pill">Oberkampf</span>
+              <span class="station-pill">Saint-Ambroise</span>
+              <span class="station-pill">Voltaire</span>
+              <span class="station-pill">Charonne</span>
+              <span class="station-pill">Rue des Boulets</span>
+              <span class="station-pill">Nation</span>
+              <span class="station-pill">Buzenval</span>
+              <span class="station-pill">Maraîchers</span>
+              <span class="station-pill">Porte de Montreuil</span>
+              <span class="station-pill">Robespierre</span>
+              <span class="station-pill">Croix de Chavaux</span>
+              <span class="station-pill">Mairie de Montreuil</span>
+            </div>
+          </div>
+        </div>
+        <div class="card meal-collapse" onclick="this.classList.toggle('expanded')" style="margin-top:6px">
+          <h3 style="font-size:0.82rem"><span class="rf-badge l12" style="font-size:0.65rem;background:#80c850">L12</span> <span style="font-size:0.72rem;color:var(--muted);font-weight:400">Green — Mairie d'Issy ↔ Front Populaire · 31 stations</span></h3>
+          <div class="mc-body">
+            <div class="station-pills">
+              <span class="station-pill">Mairie d'Issy</span>
+              <span class="station-pill">Issy–Val de Seine</span>
+              <span class="station-pill">Corentin Celton</span>
+              <span class="station-pill">Porte de Versailles</span>
+              <span class="station-pill">Convention</span>
+              <span class="station-pill">Porte de Vanves</span>
+              <span class="station-pill">Malakoff–Plateau de Vanves</span>
+              <span class="station-pill">Malakoff–Rue Étienne Dolet</span>
+              <span class="station-pill">Châtillon–Montrouge</span>
+              <span class="station-pill">Raspail</span>
+              <span class="station-pill">Denfert-Rochereau</span>
+              <span class="station-pill">Rennes</span>
+              <span class="station-pill">Saint-Sulpice</span>
+              <span class="station-pill">Sèvres–Babylone</span>
+              <span class="station-pill">Mabillon</span>
+              <span class="station-pill">Saint-Germain-des-Prés</span>
+              <span class="station-pill">Saint-Lazare</span>
+              <span class="station-pill">Trinité–d'Estienne d'Orves</span>
+              <span class="station-pill">Notre-Dame-de-Lorette</span>
+              <span class="station-pill">Pigalle</span>
+              <span class="station-pill mine l12">Abbesses</span>
+              <span class="station-pill">Lamarck–Caulaincourt</span>
+              <span class="station-pill">Jules Joffrin</span>
+              <span class="station-pill">Marcadet–Poissonniers</span>
+              <span class="station-pill">Château Rouge</span>
+              <span class="station-pill">Porte de la Chapelle</span>
+              <span class="station-pill">Marx Dormoy</span>
+              <span class="station-pill">Aimé Césaire</span>
+              <span class="station-pill">Front Populaire</span>
+            </div>
+          </div>
+        </div>
+        <div class="card meal-collapse" onclick="this.classList.toggle('expanded')" style="margin-top:6px">
+          <h3 style="font-size:0.82rem"><span class="rf-badge l13" style="font-size:0.65rem;background:#6ecba1">L13</span> <span style="font-size:0.72rem;color:var(--muted);font-weight:400">Light green — Two branches merge south · 32 stations</span></h3>
+          <div class="mc-body">
+            <div class="station-divider">Branch A</div>
+            <div class="station-pills">
+              <span class="station-pill">Saint-Denis–Université</span>
+              <span class="station-pill">Basilique de Saint-Denis</span>
+              <span class="station-pill">Saint-Denis–Porte de Paris</span>
+              <span class="station-pill">Carrefour Pleyel</span>
+              <span class="station-pill">Mairie de Saint-Ouen</span>
+              <span class="station-pill">Garibaldi</span>
+              <span class="station-pill">Porte de Saint-Ouen</span>
+              <span class="station-pill">Guy Môquet</span>
+            </div>
+            <div class="station-divider">Branch B</div>
+            <div class="station-pills">
+              <span class="station-pill">Asnières–Gennevilliers–Les Courtilles</span>
+              <span class="station-pill">Les Agnettes</span>
+              <span class="station-pill">Gabriel Péri</span>
+              <span class="station-pill">Mairie de Clichy</span>
+              <span class="station-pill">Porte de Clichy</span>
+              <span class="station-pill">Brochant</span>
+            </div>
+            <div class="station-divider">Merged section</div>
+            <div class="station-pills">
+              <span class="station-pill">La Fourche</span>
+              <span class="station-pill">Place de Clichy</span>
+              <span class="station-pill">Liège</span>
+              <span class="station-pill mine l13">Saint-Lazare</span>
+              <span class="station-pill mine l13">Miromesnil</span>
+              <span class="station-pill mine l13">Champs-Élysées–Clemenceau</span>
+              <span class="station-pill">Invalides</span>
+              <span class="station-pill">Varenne</span>
+              <span class="station-pill">Saint-François-Xavier</span>
+              <span class="station-pill">Duroc</span>
+              <span class="station-pill">Montparnasse–Bienvenüe</span>
+              <span class="station-pill">Gaîté</span>
+              <span class="station-pill">Pernety</span>
+              <span class="station-pill">Plaisance</span>
+              <span class="station-pill">Porte de Vanves</span>
+              <span class="station-pill">Malakoff–Plateau de Vanves</span>
+              <span class="station-pill">Malakoff–Rue Étienne Dolet</span>
+              <span class="station-pill">Châtillon–Montrouge</span>
+            </div>
+          </div>
+        </div>
+        <div class="card meal-collapse" onclick="this.classList.toggle('expanded')" style="margin-top:6px">
+          <h3 style="font-size:0.82rem"><span class="rf-badge l14" style="font-size:0.65rem;background:#0078d4">L14</span> <span style="font-size:0.72rem;color:var(--muted);font-weight:400">Blue — Saint-Denis–Pleyel ↔ Olympiades · 13 stations</span></h3>
+          <div class="mc-body">
+            <div class="station-pills">
+              <span class="station-pill">Saint-Denis–Pleyel</span>
+              <span class="station-pill">Mairie de Saint-Ouen</span>
+              <span class="station-pill">Porte de Clichy</span>
+              <span class="station-pill">Pont Cardinet</span>
+              <span class="station-pill mine l14">Saint-Lazare</span>
+              <span class="station-pill mine l14">Madeleine</span>
+              <span class="station-pill">Pyramides</span>
+              <span class="station-pill mine l14">Châtelet</span>
+              <span class="station-pill">Gare de Lyon</span>
+              <span class="station-pill">Bercy</span>
+              <span class="station-pill">Cour Saint-Émilion</span>
+              <span class="station-pill">Bibliothèque François Mitterrand</span>
+              <span class="station-pill">Olympiades</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
         <h3><i class="fa-solid fa-ticket fa-icon"></i> Navigo Easy — Your Metro Card</h3>
         <p style="font-size:0.78rem;margin-bottom:6px">
           Navigo Easy is a rechargeable contactless card. Load tickets on the
@@ -9158,15 +9479,14 @@
         </table>
       </div>
 
-      <div class="card">
-        <h3><i class="fa-solid fa-route fa-icon"></i> Your Trip Routes — Line by Line</h3>
-        <p style="font-size:0.76rem;margin-bottom:8px;color:var(--muted)">
-          Every metro journey you'll take, with what to look for at each station.
-        </p>
-
-        <p style="font-size:0.82rem;font-weight:700;color:var(--accent);margin:10px 0 4px">
-          <span class="rf-badge l9" style="font-size:0.7rem;background:#c5a039">L9</span> + <span class="rf-badge l1" style="font-size:0.7rem;background:#f5a623">L1</span>
-        </p>
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
+        <h3><span class="rf-badge l9" style="font-size:0.7rem;background:#c5a039">L9</span> + <span class="rf-badge l1" style="font-size:0.7rem;background:#f5a623">L1</span> — Home to Louvre / Porte Maillot</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">4 routes</span>
+          <span class="meal-chip">1 transfer at FDR</span>
+          <span class="meal-chip">~4-8 min</span>
+        </div>
+        <div class="mc-body">
         <p style="font-size:0.76rem;color:var(--muted);margin:-2px 0 6px">Home to everywhere — Miromesnil ↔ FDR ↔ Louvre / Porte Maillot</p>
         <div class="table-wrap">
         <table class="tt-table">
@@ -9208,10 +9528,17 @@
           (follow "Correspondance L1" signs, ~3 min walk). L1 is fully automated
           — lifts at every station.
         </p>
+        </div>
+      </div>
 
-        <p style="font-size:0.82rem;font-weight:700;color:var(--accent);margin:10px 0 4px">
-          <span class="rf-badge l13" style="font-size:0.7rem;background:#6ecba1">L13</span> + <span class="rf-badge l14" style="font-size:0.7rem;background:#0078d4">L14</span>
-        </p>
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
+        <h3><span class="rf-badge l13" style="font-size:0.7rem;background:#6ecba1">L13</span> + <span class="rf-badge l14" style="font-size:0.7rem;background:#0078d4">L14</span> — Cross-town to Châtelet</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">3 routes</span>
+          <span class="meal-chip">1 transfer at St-Lazare</span>
+          <span class="meal-chip">~2-5 min</span>
+        </div>
+        <div class="mc-body">
         <p style="font-size:0.76rem;color:var(--muted);margin:-2px 0 6px">Cross-town express — Miromesnil ↔ Saint-Lazare ↔ Châtelet</p>
         <div class="table-wrap">
         <table class="tt-table">
@@ -9245,10 +9572,17 @@
           <b>Key:</b> L13 skips Châtelet! Transfer at Saint-Lazare to L14 for
           Châtelet. L14 is driverless with lifts everywhere — the best line.
         </p>
+        </div>
+      </div>
 
-        <p style="font-size:0.82rem;font-weight:700;color:var(--accent);margin:10px 0 4px">
-          <span class="rf-badge l4" style="font-size:0.7rem;background:#a05eb5">L4</span>
-        </p>
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
+        <h3><span class="rf-badge l4" style="font-size:0.7rem;background:#a05eb5">L4</span> — Cité to Montmartre</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">2 routes</span>
+          <span class="meal-chip">Direct from Châtelet</span>
+          <span class="meal-chip">~2-15 min</span>
+        </div>
+        <div class="mc-body">
         <p style="font-size:0.76rem;color:var(--muted);margin:-2px 0 6px">Cité (Notre-Dame) ↔ Montmartre (Anvers)</p>
         <div class="table-wrap">
         <table class="tt-table">
@@ -9276,8 +9610,18 @@
           same. Anvers → Sacré-Cœur: exit and walk 5 min up Rue de Steinkerque,
           or take the funicular.
         </p>
+        </div>
+      </div>
 
-        <p style="font-size:0.82rem;font-weight:700;color:var(--accent);margin:10px 0 4px">
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
+        <h3><span class="rf-badge l9" style="font-size:0.7rem;background:#c5a039">L9</span> — Direct to Trocadéro</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">1 route</span>
+          <span class="meal-chip">No transfer</span>
+          <span class="meal-chip">~8 min</span>
+        </div>
+        <p style="font-size:0.76rem;color:var(--muted);margin:-2px 0 6px">No transfer needed for Eiffel Tower sparkle at night</p>
+        <div class="mc-body">
           <span class="rf-badge l9" style="font-size:0.7rem;background:#c5a039">L9</span> — Direct to Trocadéro
         </p>
         <p style="font-size:0.76rem;color:var(--muted);margin:-2px 0 6px">No transfer needed for Eiffel Tower sparkle at night</p>
@@ -9297,8 +9641,9 @@
         </div>
         <p style="font-size:0.72rem;color:var(--muted);margin:4px 0 8px">
           <b>Key:</b> No transfer needed! L9 goes direct from Miromesnil to
-          Trocadéro. Best for Eiffel Tower sparkle at night.
+          Trocadéro.           Best for Eiffel Tower sparkle at night.
         </p>
+        </div>
       </div>
 
       <div class="card">
@@ -9318,12 +9663,13 @@
             <tr><td><span class="rf-badge l1" style="font-size:0.7rem;background:#f5a623">L1</span></td><td style="color:#f5a623;font-weight:700">Yellow</td><td>Louvre, Tuileries, Champs-Élysées, Concorde, Porte Maillot</td><td><a href="#" onclick="event.preventDefault();openGalImg('metro-l1.png','Paris Metro Line 1')" style="font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View map</a></td></tr>
             <tr><td><span class="rf-badge l4" style="font-size:0.7rem;background:#a05eb5">L4</span></td><td style="color:#a05eb5;font-weight:700">Purple</td><td>Cité (flower market/Notre-Dame), Montmartre (Anvers)</td><td><a href="#" onclick="event.preventDefault();openGalImg('metro-l4.png','Paris Metro Line 4')" style="font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View map</a></td></tr>
             <tr><td><span class="rf-badge l9" style="font-size:0.7rem;background:#c5a039">L9</span></td><td style="color:#c5a039;font-weight:700">Mustard</td><td>Home (Miromesnil), Trocadéro (Eiffel sparkle), F.D. Roosevelt transfer</td><td><a href="#" onclick="event.preventDefault();openGalImg('metro-l9.svg','Paris Metro Line 9')" style="font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View map</a></td></tr>
-            <tr><td><span class="rf-badge l12" style="font-size:0.7rem;background:#007854">L12</span></td><td style="color:#007854;font-weight:700">Green</td><td>Abbesses (Montmartre alternative entrance)</td><td><a href="#" onclick="event.preventDefault();openGalImg('metro-l12.svg','Paris Metro Line 12')" style="font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View map</a></td></tr>
+            <tr><td><span class="rf-badge l12" style="font-size:0.7rem;background:#80c850">L12</span></td><td style="color:#80c850;font-weight:700">Green</td><td>Abbesses (Montmartre alternative entrance)</td><td><a href="#" onclick="event.preventDefault();openGalImg('metro-l12.svg','Paris Metro Line 12')" style="font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View map</a></td></tr>
             <tr><td><span class="rf-badge l13" style="font-size:0.7rem;background:#6ecba1">L13</span></td><td style="color:#6ecba1;font-weight:700">Light green</td><td>Miromesnil ↔ Saint-Lazare (1 stop)</td><td><a href="#" onclick="event.preventDefault();openGalImg('metro-l13.svg','Paris Metro Line 13')" style="font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View map</a></td></tr>
             <tr><td><span class="rf-badge l14" style="font-size:0.7rem;background:#0078d4">L14</span></td><td style="color:#0078d4;font-weight:700">Blue</td><td>Saint-Lazare ↔ Châtelet (driverless, fast, lifts everywhere)</td><td><a href="#" onclick="event.preventDefault();openGalImg('metro-l14.svg','Paris Metro Line 14')" style="font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View map</a></td></tr>
           </tbody>
         </table>
       </div>
+
 
       <div class="card">
         <h3><i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i> Station Accessibility (Froggy's Knees)</h3>
@@ -9348,8 +9694,13 @@
         </p>
       </div>
 
-      <div class="card">
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
         <h3><i class="fa-solid fa-cart-shopping fa-icon"></i> Buying Tickets at the Machine</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">6 steps</span>
+          <span class="meal-chip">Card or coins</span>
+        </div>
+        <div class="mc-body">
         <div class="steps">
           <ol>
             <li>Tap the screen to start (English available)</li>
@@ -9364,10 +9715,16 @@
           <b>Tip:</b> Machines at Beauvais have a queue. Walk to the second
           machine at the far end — nobody uses it.
         </p>
+        </div>
       </div>
 
-      <div class="card">
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
         <h3><i class="fa-solid fa-exclamation-triangle fa-icon" style="color:#f59e0b"></i> Metro Mistakes to Avoid</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">5 common errors</span>
+          <span class="meal-chip">Easy to avoid</span>
+        </div>
+        <div class="mc-body">
         <table class="tt-table">
           <thead><tr><th>Mistake</th><th>What happens</th><th>Fix</th></tr></thead>
           <tbody>
@@ -9378,6 +9735,7 @@
             <tr><td>Peak hour (08:00-09:30, 17:00-19:00)</td><td>Extremely crowded carriages</td><td>Avoid if possible, or stand near doors to exit quickly</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
 
@@ -9504,9 +9862,14 @@
             </div>
             <div class="res-body">
               <b>Maison Landemaine</b> — 26 Rue de Surène (5 min walk)<br>
+              <!-- MAP LINKS: Do NOT change href queries or link text here.
+                   Queries must be plain place names only (no actions like "shuttle pickup",
+                   no descriptors like "rooftop terrace", no arrondissement like "8eme").
+                   Link text = place name only (no "on Maps" / "Open in Maps").
+                   NEVER use href="#" — always include the full Google Maps URL. -->
               Best croissants in the neighbourhood. Grab a pain au chocolat + croissant for ~€3. Opens 07:00. Rated 4.6. Your go-to bakery all trip.
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: croissant + pain au chocolat + café crème</div>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+Paris" target="_blank">Maison Landemaine</a>
             </div>
           </div>
           <div class="res-item">
@@ -9530,7 +9893,7 @@
               Historic Parisian bouillon (since 1896). Fixed-price menus: entrée+plat or plat+dessert from €12-15. Steak-frites €14. Crème brûlée €4.50. Décor: Belle Époque, marble, brass rails. <b>Crowded but worth it</b> — arrive at 18:30 to skip the queue. No reservations.<br>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take:</b> Food is solid (not gourmet), portion sizes are generous, and the atmosphere is unforgettable. It's a Parisian institution — not a tourist trap. The downside: it's loud and service is brisk.</span>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: plat du jour + crème brûlée + carafe d'eau</div>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Chartier+7+Rue+du+Faubourg+Montmartre+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Chartier+7+Rue+du+Faubourg+Montmartre+Paris" target="_blank">Bouillon Chartier</a>
             </div>
           </div>
         </div>
@@ -9556,7 +9919,7 @@
               <b>Maison Landemaine</b> — 26 Rue de Surène (5 min)<br>
               Same as yesterday. Croissant + café crème = ~€4. Opens 07:00. Grab an extra pain au chocolat for the Louvre — you won't find food inside easily.
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: croissant + pain au chocolat + café crème</div>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+Paris" target="_blank">Maison Landemaine</a>
             </div>
           </div>
           <div class="res-item">
@@ -9567,8 +9930,8 @@
             <div class="res-body">
               <b>Marché des Halles area</b> — around Les Halles / Rue de Rivoli<br>
               <b>Coco Palais</b> (12 Rue de Rivoli) — boulangerie with good sandwiches (~€6-8). Or any of the boulangeries along Rue de Rivoli. Eat before the Louvre — museum food is overpriced.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Coco+Palais+12+Rue+de+Rivoli+Paris" target="_blank">Coco Palais on Maps</a><br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Les+Halles+Rue+de+Rivoli+Paris" target="_blank">Les Halles area on Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Coco+Palais+12+Rue+de+Rivoli+Paris" target="_blank">Coco Palais</a><br>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Les+Halles+Paris" target="_blank">Les Halles area</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: jambon-beurre + fruit, eat in Tuileries garden</div>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Tip:</b> Grab from a supermarket and eat in the Tuileries garden before entering. Free, scenic, zero queue.</span>
             </div>
@@ -9581,9 +9944,9 @@
             <div class="res-body">
               <b>Galeries Lafayette food hall</b> (ground floor)<br>
               Walk through after the rooftop — beautiful display, grab a pastry or macaron (~€3-5). Not the cheapest but the experience is worth it.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Paris" target="_blank">Open in Maps</a><br>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Paris" target="_blank">Galeries Lafayette</a><br>
               Or: nearby <b>Café de la Paix</b> for a fancy coffee (€6-8, sit on the terrace).<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+de+la+Paix+Paris" target="_blank">Café de la Paix on Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+de+la+Paix+Paris" target="_blank">Café de la Paix</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: pastry from food hall or café crème at terrace</div>
             </div>
           </div>
@@ -9595,10 +9958,10 @@
             <div class="res-body">
               <b>Le Bouillon Pigalle</b> — 22 Boulevard de Clichy (near Anvers metro, on your way home from GL)<br>
               Same concept as Chartier — classic bouillon, €12-15 for a full menu. Their roast chicken is excellent. Ratatouille €5. Less touristy than Chartier.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Pigalle+22+Boulevard+de+Clichy+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Pigalle+22+Boulevard+de+Clichy+Paris" target="_blank">Bouillon Pigalle</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: roast chicken + ratatouille + carafe d'eau</div>
               <b>Alternative:</b> <b>Bouillon République</b> — 39 Boulevard du Temple (near your route). Same quality, same prices.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+R%C3%A9publique+39+Boulevard+du+Temple+Paris" target="_blank">Bouillon République on Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+R%C3%A9publique+39+Boulevard+du+Temple+Paris" target="_blank">Bouillon République</a>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take:</b> These bouillons are the best value in Paris. Don't expect fine dining — expect generous portions, historic atmosphere, and happy wallets. Perfect after a long museum day.</span>
             </div>
           </div>
@@ -9624,8 +9987,8 @@
             <div class="res-body">
               <b>Café near flower market</b> — Place Louis Lépin / Marché aux Fleurs<br>
               Grab a croissant from the flower market area. <b>Café du Marché</b> (38 Rue de Montorgueil area) for a sit-down café crème (~€4-5). Or walk to <b>Maison Landemaine</b> first, then metro.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+du+March%C3%A9+38+Rue+de+Montorgueil+Paris" target="_blank">Café du Marché on Maps</a><br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Maison Landemaine on Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+du+March%C3%A9+38+Rue+de+Montorgueil+Paris" target="_blank">Café du Marché</a><br>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+Paris" target="_blank">Maison Landemaine</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: croissant + café crème at the terrace</div>
             </div>
           </div>
@@ -9637,10 +10000,10 @@
             <div class="res-body">
               <b>Le Consulat</b> — 18 Rue Norvins (Montmartre)<br>
               Iconic Montmartre café. Famous terrace facing a cobbled square. Plat du jour ~€14. Coffee €4.50. Touristy? Yes. Worth it? Also yes — the atmosphere is postcard-perfect. Sit outside, watch artists, absorb Montmartre.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Consulat+18+Rue+Norvins+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Consulat+18+Rue+Norvins+Paris" target="_blank">Le Consulat</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: plat du jour outside, watch the artists</div>
               <b>Budget option:</b> <b>Café des Deux Moulins</b> (15 Rue Lepic) — the Amélie café. Croque-monsieur €9. Good coffee. More local than touristy.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+des+Deux+Moulins+15+Rue+Lepic+Paris" target="_blank">Café des Deux Moulins on Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+des+Deux+Moulins+15+Rue+Lepic+Paris" target="_blank">Café des Deux Moulins</a>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take about Montmartre dining:</b> Most restaurants around Place du Tertre are overpriced tourist traps (€18 for mediocre pasta). Walk 2 streets away from the square and prices drop 40%. Le Consulat is the exception — it's legit.</span>
             </div>
           </div>
@@ -9663,10 +10026,10 @@
             <div class="res-body">
               <b>Le Petit Cler</b> — 29 Rue Cler (near École Militaire metro L8/L10, on the way to Eiffel Tower)<br>
               Classic French bistro. Warm lighting, wooden tables. Steak-frites €16, duck confit €17. Excellent wine list. Reservations recommended but walk-ins usually work at 18:30.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Petit+Cler+29+Rue+Cler+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Petit+Cler+29+Rue+Cler+Paris" target="_blank">Le Petit Cler</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: steak-frites or confit de canard + a glass of wine</div>
               <b>Alternative (near home):</b> <b>Le Bistrot du 8ème</b> — 8 Rue de Miromesnil (3 min walk!). Small, quiet, €15-20 for a full meal. Your neighbourhood secret.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Bistrot+du+8%C3%A8me+8+Rue+de+Miromesnil+Paris" target="_blank">Le Bistrot du 8ème on Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Bistrot+du+8%C3%A8me+8+Rue+de+Miromesnil+Paris" target="_blank">Le Bistrot du 8ème</a>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take:</b> After the bouillons, a proper bistro dinner feels like a splurge. But it's still affordable by Paris standards. Both options have warm, local energy — not the cold tourist-restaurant vibe.</span>
             </div>
           </div>
@@ -9689,7 +10052,7 @@
             </div>
             <div class="res-body">
               <b>Maison Landemaine</b> — last croissant run! Take one for the road. Or: eat any leftover supermarket fruit/yoghurt. Simple morning — you're leaving.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+Paris" target="_blank">Maison Landemaine</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: last croissant + café crème — you'll miss this!</div>
             </div>
           </div>
@@ -9701,7 +10064,7 @@
             <div class="res-body">
               <b>Boulangerie Julien</b> — 9 Rue de Castellane (4 min walk, near apartment)<br>
               Final jambon-beurre or croque-monsieur for the road. ~€5-7. Or: grab something at Beauvais airport (overpriced but you're on holiday).<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Boulangerie+Julien+9+Rue+de+Castellane+Paris" target="_blank">Open in Maps</a>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Boulangerie+Julien+9+Rue+de+Castellane+Paris" target="_blank">Boulangerie Julien</a>
               <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: jambon-beurre for the road</div>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Tip:</b> Don't skip eating. The shuttle is 75-80 min and you'll be hungry. Eat before boarding.</span>
             </div>
@@ -10471,6 +10834,11 @@
           document.getElementById("todayBtn").classList.add("today-btn");
       })();
 
+      // MAP LINK JS: setDynamicMapLinks reads dataset.place first, falls back to
+      // textContent. addDynamicPlaceLinks sets both. Do NOT change the order of
+      // calls (set → add → set) or remove dataset.place assignment.
+      // cleanPlaceText strips action/descriptor words — add new words there if
+      // dynamic links generate bad queries.
       function setDynamicMapLinks() {
         document.querySelectorAll("a.maplink").forEach((link) => {
           const place =
@@ -10490,7 +10858,7 @@
           .replace(/\b(?:Option|Best|For)\b[^:]*:\s*/gi, "")
           .replace(/\s*\([^)]*\)\s*/g, " ")
           .replace(
-            /\b(?:sparkle|quiet|view|views|best|free|great|nice|good|famous|classic|scenic|night|sunset|evening)\b/gi,
+            /\b(?:sparkle|quiet|view|views|best|free|great|nice|good|famous|classic|scenic|night|sunset|evening|rooftop|terrace|entrance|shuttle|pickup|metro|station|area)\b/gi,
             " ",
           )
           .replace(/\s*(?:—|-|:|\()\s*/g, " ")
@@ -10521,7 +10889,7 @@
           link.href = "#";
           link.target = "_blank";
           link.rel = "noopener noreferrer";
-          link.textContent = `Open ${raw} on Maps`;
+          link.textContent = raw;
           element.insertAdjacentElement("afterend", link);
         };
 
