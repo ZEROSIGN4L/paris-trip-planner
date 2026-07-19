@@ -5470,6 +5470,10 @@
         <h3><i class="fa-solid fa-coins fa-icon"></i> Budget Guide</h3>
         <p style="font-size:0.78rem;color:var(--muted)">Daily costs, categories & money-saving tips</p>
       </div>
+      <div class="card" style="cursor:pointer" onclick="show('recipes')">
+        <h3><i class="fa-solid fa-mug-hot fa-icon"></i> Recipes</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Coffee, tea & how to use the cafetière</p>
+      </div>
     </div>
 
     <!-- LOUVRE -->
@@ -6113,6 +6117,7 @@
           </li>
           <li>
             <label><input type="checkbox" /> Long coffee (2 cups/morning)</label>
+            <span style="font-size:0.72rem;color:var(--muted)"> — cafetière brought by Froggy</span>
           </li>
           <li>
             <label><input type="checkbox" /> British tea bags</label>
@@ -6813,73 +6818,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="card">
-        <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> How to Make Coffee with a Cafetière</h3>
-        <p style="font-size: 0.78rem; margin-bottom: 8px; color: var(--muted)">
-          The apartment has a cafetière (French press). Here's the perfect cup:
-        </p>
-        <div class="recipe">
-          <div class="recipe-step">
-            <span class="recipe-num">1</span>
-            <span>Put <b>1 heaped spoon of ground coffee</b> in the cafetière. Boil the kettle.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">2</span>
-            <span>Pour the hot water into the cafetière over the coffee.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">3</span>
-            <span><b>Stir gently</b> with a spoon to mix.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">4</span>
-            <span>Press the plunger down <b>slowly and steadily</b>.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">5</span>
-            <span>Let it rest a moment. Take the <b>milk</b> out of the fridge.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">6</span>
-            <span>Pour <b>¼ milk</b> into your mug first.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">7</span>
-            <span>Pour the coffee from the cafetière into the mug. <b>Mix</b>. The colour should be <b>brownish</b>.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">8</span>
-            <span>Add <b>1½ tablespoons of sugar</b>. Stir. Enjoy!</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3><i class="fa-solid fa-mug-saucer fa-icon" style="color:#065f46"></i> How to Make Tea</h3>
-        <div class="recipe">
-          <div class="recipe-step">
-            <span class="recipe-num">1</span>
-            <span><b>Boil the kettle</b>.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">2</span>
-            <span>Put the <b>tea bag</b> in your mug.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">3</span>
-            <span>Pour the boiling water over the tea bag. Let it <b>brew 3-4 minutes</b>.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">4</span>
-            <span>Remove the tea bag. Pour in <b>¼ milk</b>.</span>
-          </div>
-          <div class="recipe-step">
-            <span class="recipe-num">5</span>
-            <span>Add <b>1½ tablespoons of sugar</b>. Stir. Enjoy!</span>
-          </div>
-        </div>
       </div>
 
       <div class="card">
@@ -9801,6 +9739,78 @@
       </div>
     </div>
 
+    <!-- RECIPES -->
+    <div id="recipes" class="sec" data-t="Recipes">
+      <div class="day-div">Recipes</div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Cafetière Coffee</h3>
+        <p style="font-size: 0.78rem; margin-bottom: 8px; color: var(--muted)">
+          Froggy is bringing the cafetière. You just need ground coffee, milk, and sugar.
+        </p>
+        <div class="recipe">
+          <div class="recipe-step">
+            <span class="recipe-num">1</span>
+            <span>Put <b>1 heaped spoon of ground coffee</b> in the cafetière. Boil the kettle.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">2</span>
+            <span>Pour the hot water into the cafetière over the coffee.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">3</span>
+            <span><b>Stir gently</b> with a spoon to mix.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">4</span>
+            <span>Press the plunger down <b>slowly and steadily</b>.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">5</span>
+            <span>Let it rest a moment. Take the <b>milk</b> out of the fridge.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">6</span>
+            <span>Pour <b>¼ milk</b> into your mug first.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">7</span>
+            <span>Pour the coffee from the cafetière into the mug. <b>Mix</b>. The colour should be <b>brownish</b>.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">8</span>
+            <span>Add <b>1½ tablespoons of sugar</b>. Stir. Enjoy!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-mug-saucer fa-icon" style="color:#065f46"></i> Tea</h3>
+        <div class="recipe">
+          <div class="recipe-step">
+            <span class="recipe-num">1</span>
+            <span><b>Boil the kettle</b>.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">2</span>
+            <span>Put the <b>tea bag</b> in your mug.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">3</span>
+            <span>Pour the boiling water over the tea bag. Let it <b>brew 3-4 minutes</b>.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">4</span>
+            <span>Remove the tea bag. Pour in <b>¼ milk</b>.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">5</span>
+            <span>Add <b>1½ tablespoons of sugar</b>. Stir. Enjoy!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Day prev/next arrows (mobile, only on day sections) -->
     <div class="day-nav no-print" id="dayNav" style="display:none">
       <button class="day-nav-prev" onclick="jumpDay(-1)">
@@ -9829,6 +9839,10 @@
       <button onclick="show('guide')" data-nav="guide">
         <i class="fa-solid fa-compass"></i>
         <span>Guide</span>
+      </button>
+      <button onclick="show('recipes')" data-nav="recipes">
+        <i class="fa-solid fa-mug-hot"></i>
+        <span>Recipes</span>
       </button>
     </nav>
 
