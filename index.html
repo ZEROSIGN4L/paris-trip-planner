@@ -1583,6 +1583,22 @@
         border-radius: 8px;
         box-shadow: 0 4px 24px rgba(0,0,0,0.5);
       }
+      #imgOverlay .close-btn {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 1;
+      }
+      #imgOverlay .close-btn:hover { background: rgba(255,255,255,0.4); }
 
       .res-grid {
         display: grid;
@@ -2285,7 +2301,7 @@
     </style>
   </head>
   <body>
-    <div id="imgOverlay" onclick="closeZoom()"><img id="zoomImg" src="" alt=""></div>
+    <div id="imgOverlay" onclick="closeZoom()"><button class="close-btn" onclick="closeZoom()">&times;</button><img id="zoomImg" src="" alt=""></div>
     <div class="hdr">
       <div class="hdr-left">
         <h1>4 Jours à Paris</h1>
