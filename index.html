@@ -1566,33 +1566,23 @@
       .maplink:hover {
         text-decoration: underline;
       }
-      img.zoomed {
-        max-width: 92vw !important;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 99999;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      }
-      img.zoomed::after {
-        content: "Tap to close";
-        position: absolute;
-        bottom: -24px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #fff;
-        font-size: 0.7rem;
-      }
       #imgOverlay {
         display: none;
         position: fixed;
         inset: 0;
-        background: rgba(0,0,0,0.7);
-        z-index: 99998;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
         cursor: pointer;
+        align-items: center;
+        justify-content: center;
       }
-      #imgOverlay.show { display: block; }
+      #imgOverlay.show { display: flex; }
+      #imgOverlay img {
+        max-width: 92vw;
+        max-height: 85vh;
+        border-radius: 8px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+      }
 
       .res-grid {
         display: grid;
@@ -2295,7 +2285,7 @@
     </style>
   </head>
   <body>
-    <div id="imgOverlay" onclick="closeZoom()"></div>
+    <div id="imgOverlay" onclick="closeZoom()"><img id="zoomImg" src="" alt=""></div>
     <div class="hdr">
       <div class="hdr-left">
         <h1>4 Jours à Paris</h1>
@@ -9687,12 +9677,14 @@
         french: "guide", tips: "guide"
       };
       function openZoom(el) {
-        el.classList.add('zoomed');
+        var zi = document.getElementById('zoomImg');
+        zi.src = el.src;
+        zi.alt = el.alt;
         document.getElementById('imgOverlay').classList.add('show');
       }
       function closeZoom() {
-        document.querySelectorAll('img.zoomed').forEach(i => i.classList.remove('zoomed'));
         document.getElementById('imgOverlay').classList.remove('show');
+        document.getElementById('zoomImg').src = '';
       }
       function show(id) {
         document.querySelectorAll(".sec").forEach((s) => s.classList.remove("active"));
