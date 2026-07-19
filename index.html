@@ -1450,6 +1450,36 @@
         background: rgba(255, 255, 255, 0.2) !important;
         border-color: rgba(255, 255, 255, 0.5) !important;
       }
+      .recipe {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+      .recipe-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+      .recipe-num {
+        flex-shrink: 0;
+        width: 26px;
+        height: 26px;
+        background: #92400e;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        margin-top: 1px;
+      }
       .car-tip {
         background: #f3e5f5;
         border-left: 3px solid #9c27b0;
@@ -6783,6 +6813,43 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> How to Make Coffee with a Cafetière</h3>
+        <p style="font-size: 0.78rem; margin-bottom: 8px; color: var(--muted)">
+          The apartment has a cafetière (French press). Here's the perfect cup:
+        </p>
+        <div class="recipe">
+          <div class="recipe-step">
+            <span class="recipe-num">1</span>
+            <span>Put <b>1 heaped spoon of ground coffee</b> in the cafetière.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">2</span>
+            <span>Boil <b>1½ cups of water</b> (about 300ml). Let it sit 30 seconds off the boil.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">3</span>
+            <span>Pour the hot water into the cafetière over the coffee.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">4</span>
+            <span><b>Stir gently</b> with a spoon to mix.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">5</span>
+            <span>Wait <b>4 minutes</b>. No cheating.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">6</span>
+            <span>Press the plunger down <b>slowly and steadily</b>.</span>
+          </div>
+          <div class="recipe-step">
+            <span class="recipe-num">7</span>
+            <span>Pour into your cup. Add <b>milk</b> if you like. Enjoy!</span>
+          </div>
+        </div>
       </div>
 
       <div class="card">
