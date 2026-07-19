@@ -10835,6 +10835,7 @@
           cb.type = "checkbox";
           cb.checked = localStorage.getItem(key) === "true";
           if (cb.checked) ti.classList.add("done");
+          label.addEventListener("click", function(e) { e.stopPropagation(); });
           cb.addEventListener("change", function() {
             ti.classList.toggle("done", cb.checked);
             localStorage.setItem(key, cb.checked);
