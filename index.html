@@ -1306,16 +1306,20 @@
       .ti .recap-check {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 5px;
         margin-top: 6px;
         font-size: 0.72rem;
         color: var(--muted);
         cursor: pointer;
         user-select: none;
+        line-height: 1;
       }
       .ti .recap-check input {
         accent-color: #16a34a;
         margin: 0;
+        vertical-align: middle;
+        position: relative;
+        top: 1px;
       }
       .cost {
         width: 100%;
@@ -10838,7 +10842,9 @@
             localStorage.setItem(key, cb.checked);
           });
           label.appendChild(cb);
-          label.appendChild(document.createTextNode(" mark as done"));
+          var txt = document.createElement("span");
+          txt.textContent = " mark as done";
+          label.appendChild(txt);
           td.appendChild(label);
         });
       }
