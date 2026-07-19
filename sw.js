@@ -1,4 +1,4 @@
-const CACHE_NAME = 'paris-trip-v7';
+const CACHE_NAME = 'paris-trip-v8';
 const ASSETS = [
   './',
   './index.html',
@@ -10,7 +10,8 @@ const ASSETS = [
   './document.pdf',
   './Screenshot%202026-07-19%20012546.png',
   './images.jpg',
-  './port-maillot-from-beauvais.jpg'
+  './port-maillot-from-beauvais.jpg',
+  './csm_Plan_site_web_plateforme_GB_juin_2024_0a82a5ca67.png'
 ];
 
 self.addEventListener('install', e => {

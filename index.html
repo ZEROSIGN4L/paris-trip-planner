@@ -1599,6 +1599,33 @@
         z-index: 1;
       }
       #imgOverlay .close-btn:hover { background: rgba(255,255,255,0.4); }
+      #imgOverlay .gal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: #fff;
+        font-size: 2.5rem;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 1;
+      }
+      #imgOverlay .gal-nav:hover { background: rgba(255,255,255,0.35); }
+      #imgOverlay .gal-prev { left: 12px; }
+      #imgOverlay .gal-next { right: 12px; }
+      #imgOverlay .gal-counter {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.7);
+        font-size: 0.8rem;
+        font-family: sans-serif;
+      }
 
       .res-grid {
         display: grid;
@@ -2301,7 +2328,13 @@
     </style>
   </head>
   <body>
-    <div id="imgOverlay" onclick="closeZoom()"><button class="close-btn" onclick="closeZoom()">&times;</button><img id="zoomImg" src="" alt=""></div>
+    <div id="imgOverlay" onclick="closeZoom()">
+      <button class="close-btn" onclick="event.stopPropagation();closeZoom()">&times;</button>
+      <button class="gal-nav gal-prev" onclick="event.stopPropagation();galPrev()">&#8249;</button>
+      <img id="zoomImg" src="" alt="">
+      <button class="gal-nav gal-next" onclick="event.stopPropagation();galNext()">&#8250;</button>
+      <div class="gal-counter" id="galCounter"></div>
+    </div>
     <div class="hdr">
       <div class="hdr-left">
         <h1>4 Jours à Paris</h1>
@@ -3100,7 +3133,8 @@
             Arrival: Beauvais-Tillé Airport (BVA) — Terminal 1
           </div>
           <div class="td">
-            <img src="Screenshot%202026-07-19%20012546.png" alt="FR3722 flight booking" onclick="openZoom(this)" style="display:block;margin:8px 0;max-width:200px;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:max-width 0.3s">
+            <div class="gal-item" data-src="Screenshot%202026-07-19%20012546.png" data-alt="FR3722 flight booking" style="display:none"></div>
+            <a href="#" onclick="event.preventDefault();openGalImg('Screenshot%202026-07-19%20012546.png','FR3722 flight booking')" style="display:inline-block;margin:6px 0;font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View flight booking</a>
           </div>
         </div>
 
@@ -3169,7 +3203,11 @@
               target="_blank"
               >Beauvais Airport Shuttle Pickup</a
             >
-            <img src="images.jpg" alt="Beauvais Airport shuttle pickup area" onclick="openZoom(this)" style="display:block;margin:8px 0;max-width:200px;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:max-width 0.3s">
+            <div class="gal-item" data-src="images.jpg" data-alt="Beauvais Airport shuttle pickup area" style="display:none"></div>
+            <div class="gal-item" data-src="csm_Plan_site_web_plateforme_GB_juin_2024_0a82a5ca67.png" data-alt="Beauvais Airport terminal map" style="display:none"></div>
+            <div class="gal-item" data-src="port-maillot-from-beauvais.jpg" data-alt="Porte Maillot shuttle hub" style="display:none"></div>
+            <a href="#" onclick="event.preventDefault();openGalImg('images.jpg','Beauvais Airport shuttle pickup area')" style="display:inline-block;margin:6px 0;font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View airport map</a><br>
+            <a href="#" onclick="event.preventDefault();openGalImg('csm_Plan_site_web_plateforme_GB_juin_2024_0a82a5ca67.png','Beauvais Airport terminal map')" style="display:inline-block;margin:2px 0;font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View terminal platform map</a>
           </div>
           <div class="bath">
             Toilets in arrivals hall — use before boarding (~75-80 min journey)
@@ -5263,7 +5301,7 @@
               rel="noopener noreferrer"
               >Open Porte Maillot in Maps</a
             >
-            <img src="port-maillot-from-beauvais.jpg" alt="Porte Maillot shuttle hub" onclick="openZoom(this)" style="display:block;margin:8px 0;max-width:200px;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:max-width 0.3s">
+            <a href="#" onclick="event.preventDefault();openGalImg('port-maillot-from-beauvais.jpg','Porte Maillot shuttle hub')" style="display:inline-block;margin:6px 0;font-size:0.78rem;color:var(--blue)"><i class="fa-solid fa-image fa-icon" style="color:#2563eb"></i> View Porte Maillot shuttle hub</a>
           </div>
           <div class="backup">
             Or walk: ~25 min, 2km (1.2mi), flat. Head west on Avenue de Wagram →
@@ -9692,12 +9730,33 @@
         timetable: "guide", pack: "guide",
         french: "guide", tips: "guide"
       };
+      var galImages = [];
+      var galIdx = 0;
       function openZoom(el) {
-        var zi = document.getElementById('zoomImg');
-        zi.src = el.src;
-        zi.alt = el.alt;
+        galImages = [];
+        document.querySelectorAll('.gal-item').forEach(function(g) { galImages.push({src:g.dataset.src, alt:g.dataset.alt}); });
+        var clicked = el.closest('.gal-item');
+        galIdx = galImages.findIndex(function(g){return g.src===clicked.dataset.src;});
+        if(galIdx<0) galIdx=0;
+        showGalImg();
         document.getElementById('imgOverlay').classList.add('show');
       }
+      function openGalImg(src, alt) {
+        galImages = [];
+        document.querySelectorAll('.gal-item').forEach(function(g) { galImages.push({src:g.dataset.src, alt:g.dataset.alt}); });
+        galIdx = galImages.findIndex(function(g){return g.src===src;});
+        if(galIdx<0) galIdx=0;
+        showGalImg();
+        document.getElementById('imgOverlay').classList.add('show');
+      }
+      function showGalImg() {
+        var zi = document.getElementById('zoomImg');
+        zi.src = galImages[galIdx].src;
+        zi.alt = galImages[galIdx].alt;
+        document.getElementById('galCounter').textContent = (galIdx+1)+' / '+galImages.length;
+      }
+      function galPrev() { galIdx=(galIdx-1+galImages.length)%galImages.length; showGalImg(); }
+      function galNext() { galIdx=(galIdx+1)%galImages.length; showGalImg(); }
       function closeZoom() {
         document.getElementById('imgOverlay').classList.remove('show');
         document.getElementById('zoomImg').src = '';
