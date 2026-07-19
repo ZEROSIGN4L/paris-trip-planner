@@ -1566,6 +1566,15 @@
       .maplink:hover {
         text-decoration: underline;
       }
+      img.zoomed {
+        max-width: 95vw !important;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99999;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      }
 
       .res-grid {
         display: grid;
@@ -3065,6 +3074,7 @@
           <div class="th">
             Arrival: Beauvais-Tillé Airport (BVA) — Terminal 1
           </div>
+          <img src="Screenshot%202026-07-19%20012546.png" alt="FR3722 flight booking" onclick="this.classList.toggle('zoomed')" style="display:block;margin:8px 0;max-width:280px;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:max-width 0.3s">
         </div>
 
         <div class="ti">
