@@ -1273,6 +1273,52 @@
         text-decoration: line-through;
         color: var(--muted);
       }
+      .pack-progress {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 12px;
+      }
+      .pack-progress-bar {
+        flex: 1;
+        height: 8px;
+        background: #e0e6ed;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .pack-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #16a34a, #22c55e);
+        border-radius: 4px;
+        transition: width 0.3s;
+        width: 0%;
+      }
+      .pack-progress-text {
+        font-size: 0.72rem;
+        color: var(--muted);
+        white-space: nowrap;
+        font-weight: 600;
+      }
+      .ti.done .tn {
+        text-decoration: line-through;
+        color: var(--muted);
+      }
+      .ti .tn::before {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #d0d5dd;
+        border-radius: 4px;
+        margin-right: 6px;
+        vertical-align: middle;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .ti.done .tn::before {
+        background: #16a34a;
+        border-color: #16a34a;
+      }
       .cost {
         width: 100%;
         border-collapse: collapse;
@@ -6157,7 +6203,11 @@
     <!-- PACKING -->
     <div id="pack" class="sec" data-t="Packing Checklist">
       <div class="day-div">
-        Packing Checklist (checkboxes save to your phone)
+        Packing Checklist
+      </div>
+      <div class="pack-progress">
+        <div class="pack-progress-bar"><div class="pack-progress-fill" id="packFill"></div></div>
+        <span class="pack-progress-text" id="packText">0 / 0 packed</span>
       </div>
       <div class="card">
         <h3>Essentials</h3>
@@ -9747,6 +9797,38 @@
         </table>
         </div>
       </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-shoe-prints fa-icon" style="color:#2563eb"></i> Walking Distance</h3>
+        <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+          <select id="walkFrom" style="flex:1;min-width:120px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);font-size:0.78rem;background:var(--card);color:var(--text)">
+            <option value="apt">Apartment (Rue St-George)</option>
+            <option value="miro">Miromesnil</option>
+            <option value="fdr">Franklin D. Roosevelt</option>
+            <option value="louvre">Louvre</option>
+            <option value="trocadero">Trocadéro</option>
+            <option value="chatelet">Châtelet</option>
+            <option value="sacre">Sacré-Cœur</option>
+            <option value="egl">Galeries Lafayette</option>
+            <option value="stlaz">Saint-Lazare</option>
+            <option value="maillot">Porte Maillot</option>
+          </select>
+          <span style="align-self:center;color:var(--muted);font-size:0.8rem">→</span>
+          <select id="walkTo" style="flex:1;min-width:120px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);font-size:0.78rem;background:var(--card);color:var(--text)">
+            <option value="apt">Apartment (Rue St-George)</option>
+            <option value="miro">Miromesnil</option>
+            <option value="fdr">Franklin D. Roosevelt</option>
+            <option value="louvre">Louvre</option>
+            <option value="trocadero">Trocadéro</option>
+            <option value="chatelet">Châtelet</option>
+            <option value="sacre">Sacré-Cœur</option>
+            <option value="egl">Galeries Lafayette</option>
+            <option value="stlaz">Saint-Lazare</option>
+            <option value="maillot">Porte Maillot</option>
+          </select>
+        </div>
+        <div id="walkResult" style="font-size:0.78rem;color:var(--text);min-height:24px"></div>
+      </div>
     </div>
 
     <!-- MEALS & RESTAURANTS -->
@@ -10713,6 +10795,18 @@
         }
       }
 
+      function updatePackProgress() {
+        const cbs = document.querySelectorAll(".ck input[type=checkbox]");
+        const total = cbs.length;
+        let checked = 0;
+        cbs.forEach(function(cb) { if (cb.checked) checked++; });
+        var pct = total ? Math.round(checked / total * 100) : 0;
+        var fill = document.getElementById("packFill");
+        var txt = document.getElementById("packText");
+        if (fill) fill.style.width = pct + "%";
+        if (txt) txt.textContent = checked + " / " + total + " packed";
+      }
+
       // Packing list with data-key
       document.querySelectorAll(".ck input[type=checkbox]").forEach((cb) => {
         const li = cb.closest("li");
@@ -10721,9 +10815,27 @@
         cb.addEventListener("change", () => {
           localStorage.setItem(key, cb.checked);
           li.classList.toggle("done", cb.checked);
+          updatePackProgress();
         });
         if (cb.checked) li.classList.add("done");
       });
+      updatePackProgress();
+
+      // Day recap tracker
+      function initDayRecap() {
+        document.querySelectorAll(".sec[id^=day] .ti").forEach(function(ti, i) {
+          var key = "recap_" + (ti.closest(".sec") || {}).id + "_" + i;
+          if (!key || key === "recap_undefined_undefined") return;
+          ti.dataset.recapKey = key;
+          if (localStorage.getItem(key) === "true") ti.classList.add("done");
+          ti.querySelector(".tn").addEventListener("click", function() {
+            ti.classList.toggle("done");
+            localStorage.setItem(key, ti.classList.contains("done"));
+          });
+          ti.querySelector(".tn").style.cursor = "pointer";
+        });
+      }
+      initDayRecap();
 
       // Key Info save/load
       function saveKi() {
@@ -11282,6 +11394,59 @@
       }
       updateNowMarker();
       setInterval(updateNowMarker, 60000);
+
+      // Walking distance estimator
+      (function() {
+        var dists = {
+          apt_miro: {km: 0.4, min: 5}, apt_fdr: {km: 0.9, min: 12},
+          apt_louvre: {km: 1.2, min: 15}, apt_trocadero: {km: 2.5, min: 32},
+          apt_chatelet: {km: 1.3, min: 17}, apt_sacre: {km: 2.8, min: 36},
+          apt_egl: {km: 0.7, min: 9}, apt_stlaz: {km: 0.6, min: 8},
+          apt_maillot: {km: 1.4, min: 18},
+          miro_fdr: {km: 0.7, min: 9}, miro_louvre: {km: 1.1, min: 14},
+          miro_trocadero: {km: 2.3, min: 30}, miro_chatelet: {km: 1.2, min: 15},
+          miro_sacre: {km: 3.2, min: 42}, miro_egl: {km: 0.8, min: 10},
+          miro_stlaz: {km: 0.3, min: 4}, miro_maillot: {km: 1.2, min: 15},
+          fdr_louvre: {km: 0.6, min: 8}, fdr_trocadero: {km: 1.8, min: 23},
+          fdr_chatelet: {km: 0.8, min: 10}, fdr_sacre: {km: 2.9, min: 38},
+          fdr_egl: {km: 1.0, min: 13}, fdr_stlaz: {km: 0.6, min: 8},
+          fdr_maillot: {km: 1.6, min: 21},
+          louvre_trocadero: {km: 2.2, min: 28}, louvre_chatelet: {km: 0.5, min: 6},
+          louvre_sacre: {km: 3.3, min: 43}, louvre_egl: {km: 1.5, min: 19},
+          louvre_stlaz: {km: 1.2, min: 15}, louvre_maillot: {km: 1.8, min: 23},
+          trocadero_chatelet: {km: 2.5, min: 32}, trocadero_sacre: {km: 1.2, min: 15},
+          trocadero_egl: {km: 2.8, min: 36}, trocadero_stlaz: {km: 2.5, min: 32},
+          trocadero_maillot: {km: 1.2, min: 15},
+          chatelet_sacre: {km: 3.0, min: 39}, chatelet_egl: {km: 1.5, min: 19},
+          chatelet_stlaz: {km: 1.0, min: 13}, chatelet_maillot: {km: 1.5, min: 19},
+          sacre_egl: {km: 3.0, min: 39}, sacre_stlaz: {km: 3.0, min: 39},
+          sacre_maillot: {km: 2.0, min: 26},
+          egl_stlaz: {km: 0.4, min: 5}, egl_maillot: {km: 1.2, min: 15},
+          stlaz_maillot: {km: 1.0, min: 13}
+        };
+        function getDist(a, b) {
+          if (a === b) return {km: 0, min: 0};
+          var key1 = a + "_" + b, key2 = b + "_" + a;
+          return dists[key1] || dists[key2] || null;
+        }
+        function calc() {
+          var a = document.getElementById("walkFrom").value;
+          var b = document.getElementById("walkTo").value;
+          var res = document.getElementById("walkResult");
+          if (a === b) { res.innerHTML = '<span style="color:var(--muted)">Same place!</span>'; return; }
+          var d = getDist(a, b);
+          if (d) {
+            res.innerHTML = '<b>' + d.km + ' km</b> · ~' + d.min + ' min walk <span style="color:var(--muted)">(or 1 metro stop)</span>';
+          } else {
+            res.innerHTML = '<span style="color:var(--muted)">Use metro for this route</span>';
+          }
+        }
+        var fromEl = document.getElementById("walkFrom");
+        var toEl = document.getElementById("walkTo");
+        if (fromEl) fromEl.addEventListener("change", calc);
+        if (toEl) toEl.addEventListener("change", calc);
+        calc();
+      })();
 
       // Scroll: top button + header hide/show on day sections
       let lastScrollY = 0;
