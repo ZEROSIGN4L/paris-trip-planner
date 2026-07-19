@@ -1635,6 +1635,12 @@
         box-shadow: 0 4px 24px rgba(0,0,0,0.5);
         background: #fff;
         padding: 12px;
+        transition: transform 0.3s;
+      }
+      #imgOverlay img.rotate-90 {
+        transform: rotate(90deg);
+        max-width: 90vh;
+        max-height: 90vw;
       }
       #imgOverlay .close-btn {
         background: rgba(255,255,255,0.2);
@@ -10472,6 +10478,7 @@
         var zi = document.getElementById('zoomImg');
         zi.src = galImages[galIdx].src;
         zi.alt = galImages[galIdx].alt;
+        zi.classList.toggle('rotate-90', /metro-l\d/.test(galImages[galIdx].src));
         document.getElementById('galCounter').textContent = (galIdx+1)+' / '+galImages.length;
         document.getElementById('galTitle').textContent = galImages[galIdx].alt || '';
       }
