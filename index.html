@@ -1303,21 +1303,17 @@
         text-decoration: line-through;
         color: var(--muted);
       }
-      .ti .tn::before {
-        content: '';
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        border: 2px solid #d0d5dd;
-        border-radius: 4px;
-        margin-right: 6px;
-        vertical-align: middle;
+      .ti .recap-check {
+        display: block;
+        margin-top: 6px;
+        font-size: 0.72rem;
+        color: var(--muted);
         cursor: pointer;
-        transition: all 0.2s;
+        user-select: none;
       }
-      .ti.done .tn::before {
-        background: #16a34a;
-        border-color: #16a34a;
+      .ti .recap-check input {
+        margin-right: 4px;
+        accent-color: #16a34a;
       }
       .cost {
         width: 100%;
@@ -10827,12 +10823,21 @@
           var key = "recap_" + (ti.closest(".sec") || {}).id + "_" + i;
           if (!key || key === "recap_undefined_undefined") return;
           ti.dataset.recapKey = key;
-          if (localStorage.getItem(key) === "true") ti.classList.add("done");
-          ti.querySelector(".tn").addEventListener("click", function() {
-            ti.classList.toggle("done");
-            localStorage.setItem(key, ti.classList.contains("done"));
+          var td = ti.querySelector(".td");
+          if (!td) return;
+          var label = document.createElement("label");
+          label.className = "recap-check";
+          var cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.checked = localStorage.getItem(key) === "true";
+          if (cb.checked) ti.classList.add("done");
+          cb.addEventListener("change", function() {
+            ti.classList.toggle("done", cb.checked);
+            localStorage.setItem(key, cb.checked);
           });
-          ti.querySelector(".tn").style.cursor = "pointer";
+          label.appendChild(cb);
+          label.appendChild(document.createTextNode(" mark as done"));
+          td.appendChild(label);
         });
       }
       initDayRecap();
