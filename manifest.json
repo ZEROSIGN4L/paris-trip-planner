@@ -1,6 +1,6 @@
 {
-  "name": "4 Jours à Paris",
-  "short_name": "Paris",
+  "name": "Paris Trip",
+  "short_name": "Paris Trip",
   "description": "4-day Paris trip itinerary and organizer",
   "start_url": "./index.html",
   "display": "standalone",

@@ -11,7 +11,7 @@
     />
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>4 Jours à Paris</title>
+    <title>Paris Trip</title>
     <style>
       :root {
         --blue: #002395;
@@ -2138,6 +2138,42 @@
         text-transform: uppercase;
         margin: 6px 0 4px;
       }
+      .next-widget {
+        display: none;
+        margin-bottom: 16px;
+      }
+      @media (max-width: 640px) {
+        .next-widget {
+          display: block;
+          width: 100%;
+          padding: 12px 14px;
+          background: var(--card);
+          border-radius: 12px;
+          border: 1px solid var(--border);
+          font-size: 0.75rem;
+        }
+      }
+      @media (min-width: 641px) {
+        .next-widget {
+          display: block;
+          padding: 14px 20px;
+          background: var(--card);
+          border-radius: 12px;
+          border: 1px solid var(--border);
+          font-size: 0.82rem;
+          max-width: 500px;
+          margin: 0 auto 16px;
+        }
+      }
+      .next-widget.hidden { display: none; }
+      .nw-day { font-size: 0.65rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+      .nw-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+      .nw-row:last-child { margin-bottom: 0; }
+      .nw-label { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.5px; flex-shrink: 0; }
+      .nw-label.nw-label-now { color: #16a34a; }
+      .nw-label.nw-label-next { color: #ca8a04; }
+      .nw-time { color: var(--muted); font-size: 0.7rem; flex-shrink: 0; }
+      .nw-title { font-weight: 600; color: var(--text); }
 
       @media print {
         .hdr,
@@ -2598,7 +2634,7 @@
     </div>
     <div class="hdr">
       <div class="hdr-left">
-        <h1>4 Jours à Paris</h1>
+        <h1>Paris Trip</h1>
         <div class="hdr-sub">
           Wed 22 — Sat 25 July 2026 | 4 Days | 2 Travellers | Manchester - Paris Beauvais
         </div>
@@ -2644,6 +2680,19 @@
         <button onclick="installApp()" id="installBtnAction">Install</button>
       </div>
       <div class="card" id="liveCard" style="text-align:center;padding:20px 16px;"></div>
+      <div id="nextWidget" class="next-widget">
+        <div class="nw-day" id="nwDay">—</div>
+        <div class="nw-row">
+          <span class="nw-label nw-label-now">NOW</span>
+          <span class="nw-time" id="nwNowTime"></span>
+          <span class="nw-title" id="nwNow">—</span>
+        </div>
+        <div class="nw-row">
+          <span class="nw-label nw-label-next">NEXT</span>
+          <span class="nw-time" id="nwNextTime"></span>
+          <span class="nw-title" id="nwNext">—</span>
+        </div>
+      </div>
       <div class="igrid">
         <div class="icard">
           <div class="icon">&#10069;</div>
@@ -2744,7 +2793,7 @@
             />
           </div>
           <div class="ki-field">
-            <label>Shuttle booking ref <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></label
+            <label>Shuttle ticket</label
             ><input
               type="text"
               id="ki_shuttle"
@@ -3056,7 +3105,7 @@
             <div class="cal-act chill">Back to apartment</div>
           </div>
           <div class="cal-cell">
-            <div class="cal-act travel"><i class="fa-solid fa-plane fa-icon"></i> FR3723 17:35</div>
+            <div class="cal-act travel"><i class="fa-solid fa-plane fa-icon"></i> FR3725 17:35</div>
           </div>
 
           <div class="cal-time">18:00</div>
@@ -3463,8 +3512,9 @@
               class="maplink"
               href="https://www.google.com/maps/search/?api=1&query=Beauvais+Airport+Paris"
               target="_blank"
-              >Beauvais Airport Shuttle Pickup</a
+              >Shuttle bus stop — outside Terminal 1</a
             >
+            <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">Follow "Navettes / Shuttles" signs from arrivals. Ticket counter + machines here, then walk outside to the bus stop (~50m from terminal doors).</div>
             <div class="gal-item" data-src="images.jpg" data-alt="Beauvais Airport shuttle pickup area" style="display:none"></div>
             <div class="gal-item" data-src="csm_Plan_site_web_plateforme_GB_juin_2024_0a82a5ca67.png" data-alt="Beauvais Airport terminal map" style="display:none"></div>
             <div class="gal-item" data-src="port-maillot-from-beauvais.jpg" data-alt="Porte Maillot shuttle hub" style="display:none"></div>
@@ -3488,11 +3538,10 @@
           <div class="td">
             Board the shuttle. Sit near the front for easier exit. Journey:
             ~75-80 min to <b>Porte Maillot</b> (west Paris). Keep bags close.
-            Shuttle runs on a fixed schedule — usually departs ~30 min after
-            flight lands.
+            Shuttle runs every 15 min — departs ~20 min after flight lands.
           </div>
           <div class="th">
-            Already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i>. Every 30-60 min depending on flight arrivals.
+            Buy shuttle ticket at the arrivals desk or <a href="https://www.aerobus.fr/result?retailerPartnerNumber=217310&locale=en&currency=EUR&departureDate=2026-07-22&pax=2&passengers%5B0%5D%5Btype%5D=PNOS&passengers%5B0%5D%5Bpax%5D=1&passengers%5B0%5D%5BmaxAge%5D=99&passengers%5B1%5D%5Btype%5D=PNOS&passengers%5B1%5D%5Bpax%5D=1&passengers%5B1%5D%5BmaxAge%5D=99&seatProduct=false&fastestConnections=false&fareClass=FARE-1&departureArea=FRPARPB&arrivalStation=FRPARABE" target="_blank">buy online</a> — no pre-booking needed. Shuttles every 15 min. <b>Cannot buy from driver</b> — counters/machines only at airport & Porte Maillot. Tickets non-refundable.
           </div>
           <div class="backup">
             If shuttle is full or delayed: taxi/Uber from Beauvais to Paris
@@ -5359,13 +5408,13 @@
           ><span class="sched-arr">→</span
           ><span class="sched-stop"
             ><span class="sched-time">17:35</span>
-            <span class="sched-name"><i class="fa-solid fa-plane fa-icon"></i> FR3723 home</span></span
+            <span class="sched-name"><i class="fa-solid fa-plane fa-icon"></i> FR3725 home</span></span
           >
         </div>
       </div>
       <div class="hbox blue">
         <p>
-          <b>Important:</b> FR3723 departs 17:35. Allow 2.5-3 hours before
+          <b>Important:</b> FR3725 departs 17:35. Allow 2.5-3 hours before
           flight. Shuttle adjusts to your schedule. Metro runs until 01:15
           (Saturday schedule).
         </p>
@@ -5510,13 +5559,13 @@
         </div>
 
         <div class="ti trans">
-          <div class="tt">13:00</div>
+          <div class="tt">12:30</div>
           <div class="tn">Metro to Porte Maillot (shuttle pickup)</div>
           <div class="td">
-            Head to Porte Maillot for the Beauvais shuttle. FR3723 departs 17:35 —
+            Head to Porte Maillot for the Beauvais shuttle. FR3725 departs 17:35 —
             shuttle operator recommends arriving 3h30 before departure. Shuttle
-            takes 75-80 min, so aim for the ~13:15 shuttle to arrive
-            ~14:30-14:45 (~3h before flight).
+            takes ~75 min, so aim for the 12:30 shuttle to arrive
+            ~13:45 (~3h50 before flight).
           </div>
           <div
             class="th"
@@ -5575,14 +5624,13 @@
         </div>
 
         <div class="ti brk">
-          <div class="tt">~13:45</div>
+          <div class="tt">~12:30</div>
           <div class="tn">Shuttle to Beauvais Airport</div>
           <div class="td">
-            Board shuttle at Porte Maillot. Journey: ~75-80 min. Sit near front
-            for easier exit at airport.
+            Buy shuttle ticket at Porte Maillot desk or <a href="https://www.aerobus.fr/result?retailerPartnerNumber=217310&locale=en&currency=EUR&departureDate=2026-07-25&pax=2&passengers%5B0%5D%5Btype%5D=PNOS&passengers%5B0%5D%5Bpax%5D=1&passengers%5B0%5D%5BmaxAge%5D=99&passengers%5B1%5D%5Btype%5D=PNOS&passengers%5B1%5D%5Bpax%5D=1&passengers%5B1%5D%5BmaxAge%5D=99&seatProduct=false&fastestConnections=false&fareClass=FARE-1&departureStation=FRPARABE&arrivalArea=FRPARPB&accommodation=false" target="_blank" >buy online</a>. Journey: ~75 min. Sit near front for easier exit at airport. <b>Cannot buy from driver</b> — counters/machines only. Tickets non-refundable.
           </div>
           <div class="th">
-            Already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i>. Runs every 30-60 min. Last shuttle ~23:00.
+            Shuttles every 30 min (:00 and :30). Last shuttle ~23:00. Counters/machines only — no driver sales.
           </div>
           <div class="calm">
             <i class="fa-solid fa-comment fa-icon"></i> Final debrief — Froggy's question: What was your favourite place
@@ -5626,9 +5674,9 @@
 
         <div class="ti trans">
           <div class="tt">17:35</div>
-          <div class="tn">Flight FR3723 — Paris Beauvais → Manchester (Ryanair)</div>
+          <div class="tn">Flight FR3725 — Paris Beauvais → Manchester (Ryanair)</div>
           <div class="td">
-            Duration: 1h 20min (528km / 328mi). Depart 17:35 Paris time. Arrive ~18:55 Paris / ~17:55 Manchester (UK behind 1hr).
+            Duration: 1h 20min (528km / 328mi). Depart 17:35 Paris time. Arrive ~18:55 Paris / ~17:55 Manchester T3 (UK behind 1hr).
             Taxi home from airport. Au revoir, Paris!
           </div>
         </div>
@@ -5949,11 +5997,11 @@
             </tr>
             <tr>
               <td>Ticket price</td>
-              <td>Already booked <i class="fa-solid fa-circle-check fa-icon" style="color:#16a34a"></i></td>
+              <td>Pay at desk, or <a href="https://www.aerobus.fr/result?retailerPartnerNumber=217310&locale=en&currency=EUR&departureDate=2026-07-22&pax=2&passengers%5B0%5D%5Btype%5D=PNOS&passengers%5B0%5D%5Bpax%5D=1&passengers%5B0%5D%5BmaxAge%5D=99&passengers%5B1%5D%5Btype%5D=PNOS&passengers%5B1%5D%5Bpax%5D=1&passengers%5B1%5D%5BmaxAge%5D=99&seatProduct=false&fastestConnections=false&fareClass=FARE-1&departureArea=FRPARPB&arrivalStation=FRPARABE" target="_blank">buy online</a> (from €9.90 early bird / €17.90 standard)</td>
             </tr>
             <tr>
               <td>Frequency</td>
-              <td>Every 30-60 min (timed to flight arrivals)</td>
+              <td>Every 15 min from airport / Every 30 min from Paris</td>
             </tr>
             <tr>
               <td>Operating hours</td>
@@ -5977,13 +6025,13 @@
             </tr>
             <tr>
               <td>Booking</td>
-              <td>Book online in advance at aeroportdebauvais.com</td>
+              <td>Buy at desk, or <a href="https://www.aerobus.fr/result?retailerPartnerNumber=217310&locale=en&currency=EUR&departureDate=2026-07-22&pax=2&passengers%5B0%5D%5Btype%5D=PNOS&passengers%5B0%5D%5Bpax%5D=1&passengers%5B0%5D%5BmaxAge%5D=99&passengers%5B1%5D%5Btype%5D=PNOS&passengers%5B1%5D%5Bpax%5D=1&passengers%5B1%5D%5BmaxAge%5D=99&seatProduct=false&fastestConnections=false&fareClass=FARE-1&departureArea=FRPARPB&arrivalStation=FRPARABE" target="_blank">buy online</a>. <b>Cannot buy from driver.</b> Non-refundable.</td>
             </tr>
           </tbody>
         </table>
         <p style="font-size: 0.76rem; margin-top: 4px">
           <b>Important:</b> Beauvais is ~85km north of Paris — no train/RER
-          connection. Shuttle or taxi only. Book shuttle in advance!
+          connection. Shuttle or taxi only. Buy shuttle ticket at the desk on arrival.
         </p>
       </div>
 
@@ -6388,8 +6436,8 @@
           </li>
           <li>
             <label
-              ><input type="checkbox" /> Book airport shuttle for return
-              (ratp.fr)</label
+              ><input type="checkbox" /> Book shuttle online at
+              <a href="https://www.aerobus.fr/result?retailerPartnerNumber=217310&locale=en&currency=EUR&departureDate=2026-07-22&pax=2&passengers%5B0%5D%5Btype%5D=PNOS&passengers%5B0%5D%5Bpax%5D=1&passengers%5B0%5D%5BmaxAge%5D=99&passengers%5B1%5D%5Btype%5D=PNOS&passengers%5B1%5D%5Bpax%5D=1&passengers%5B1%5D%5BmaxAge%5D=99&seatProduct=false&fastestConnections=false&fareClass=FARE-1&departureArea=FRPARPB&arrivalStation=FRPARABE" target="_blank" style="font-size:0.72rem;color:var(--blue)">aerobus.fr</a></label
             >
           </li>
           <li>
@@ -7900,7 +7948,7 @@
               </td>
             </tr>
             <tr>
-              <td><b>Flight home</b> — FR3723 (25 Jul 17:35)</td>
+              <td><b>Flight home</b> — FR3725 (25 Jul 17:35)</td>
               <td>Ryanair</td>
               <td>Same — add both boarding passes</td>
             </tr>
@@ -8153,7 +8201,7 @@
               <td><b>Key times:</b></td>
               <td>
                 08:00 wake up → 09:00 check out → 12:10 lunch → 13:00 metro →
-                13:15 shuttle → 17:35 FR3723
+                13:15 shuttle → 17:35 FR3725
               </td>
             </tr>
             <tr>
@@ -8591,7 +8639,7 @@
               <td>Long line, anxiety about missing it</td>
               <td>
                 <b>Ask the driver</b> — sometimes they run double shuttles. Or:
-                the shuttle after yours is 30-60 min later. You have 3h30 before
+                the shuttle after yours is 15 min later. You have 3h30 before
                 your flight — you can afford to wait.
               </td>
               <td>
@@ -10218,6 +10266,24 @@
       <div class="day-div">Budget Guide — What to Expect to Spend</div>
 
       <div class="card">
+        <h3><i class="fa-solid fa-calculator fa-icon" style="color:#2563eb"></i> Expense Tracker</h3>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+          <input id="expAmt" type="number" placeholder="€" style="width:70px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);font-size:0.8rem;background:var(--card);color:var(--text)">
+          <select id="expCat" style="padding:6px 8px;border-radius:8px;border:1px solid var(--border);font-size:0.8rem;background:var(--card);color:var(--text)">
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="museum">Museum</option>
+            <option value="shopping">Shopping</option>
+            <option value="other">Other</option>
+          </select>
+          <input id="expDesc" type="text" placeholder="What?" style="flex:1;min-width:100px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);font-size:0.8rem;background:var(--card);color:var(--text)">
+          <button onclick="addExpense()" style="padding:6px 12px;border-radius:8px;border:none;background:var(--blue);color:#fff;font-size:0.8rem;font-weight:600;cursor:pointer">Add</button>
+        </div>
+        <div id="expTotal" style="font-size:0.78rem;margin-bottom:6px;font-weight:600"></div>
+        <div id="expList" style="max-height:200px;overflow-y:auto"></div>
+      </div>
+
+      <div class="card">
         <h3><i class="fa-solid fa-coins fa-icon"></i> 4-Day Budget Overview (2 People)</h3>
         <p style="font-size:0.76rem;color:var(--muted);margin-bottom:8px">
           Realistic estimates. Not ultra-cheap, not splurging. Based on bouillon
@@ -10472,7 +10538,6 @@
         <i class="fa-solid fa-chevron-right"></i>
       </button>
     </div>
-
     <!-- Bottom navigation bar (mobile) -->
     <nav class="bottom-nav no-print" id="bottomNav">
       <button onclick="show('overview')" data-nav="overview">
@@ -10940,7 +11005,7 @@
           "Arrive Paris 14:25, shuttle to Opéra, settle into apartment, explore neighbourhood, Eiffel sparkle at night.",
           "Morning free, Palais Royal, Louvre 14:00, Galeries Lafayette rooftop, dinner & sparkle.",
           "Flower market 09:00, Montmartre & Sacré-Cœur, afternoon options, farewell dinner.",
-            "Farewell morning walk, last Paris moments, shuttle 13:15, FR3723 17:35 home."
+            "Farewell morning walk, last Paris moments, shuttle 13:15, FR3725 17:35 home."
         ];
         if (now < TRIP_START) {
           // Before trip — countdown
@@ -11250,7 +11315,7 @@
             s: "20260725T131500",
             e: "20260725T143000",
             loc: "Beauvais-Tille Airport BVA",
-            desc: "~75 min. FR3723 departs 17:35.",
+            desc: "~75 min. FR3725 departs 17:35.",
           },
           {
             title: "Flight home",
@@ -11482,6 +11547,202 @@
         }
         lastScrollY = y;
       });
+
+      // Next activity widget
+      (function() {
+        var dayDates = [
+          { day: 1, date: 22 }, // July 22
+          { day: 2, date: 23 },
+          { day: 3, date: 24 },
+          { day: 4, date: 25 }
+        ];
+        var dayLabels = [
+          "Day 1 — Wed 22 Jul",
+          "Day 2 — Thu 23 Jul",
+          "Day 3 — Fri 24 Jul",
+          "Day 4 — Sat 25 Jul"
+        ];
+        var activities = [];
+        for (var d = 1; d <= 4; d++) {
+          var sec = document.getElementById("day" + d);
+          if (!sec) continue;
+          sec.querySelectorAll(".ti").forEach(function(ti) {
+            var tt = ti.querySelector(".tt");
+            var tn = ti.querySelector(".tn");
+            if (!tt || !tn) return;
+            var timeStr = tt.textContent.trim();
+            var m = timeStr.match(/(\d{1,2}):(\d{2})/);
+            if (!m) return;
+            var h = parseInt(m[1]), min = parseInt(m[2]);
+            activities.push({
+              day: d,
+              date: dayDates[d - 1].date,
+              h: h,
+              min: min,
+              title: tn.textContent.trim().replace(/\s+/g, " ")
+            });
+          });
+        }
+        activities.sort(function(a, b) {
+          if (a.day !== b.day) return a.day - b.day;
+          return (a.h * 60 + a.min) - (b.h * 60 + b.min);
+        });
+
+        function fmtTime(h, min) {
+          return (h < 10 ? "0" : "") + h + ":" + (min < 10 ? "0" : "") + min;
+        }
+
+        function update() {
+          var now = new Date();
+          var parisH = (now.getUTCHours() + 2) % 24;
+          var parisMin = now.getUTCMinutes();
+          var parisDate = now.getUTCDate();
+          var parisMonth = now.getUTCMonth();
+
+          var dayEl = document.getElementById("nwDay");
+          var nowTimeEl = document.getElementById("nwNowTime");
+          var nowTitleEl = document.getElementById("nwNow");
+          var nextTimeEl = document.getElementById("nwNextTime");
+          var nextTitleEl = document.getElementById("nwNext");
+
+          // Check if we're on a trip day
+          var onTripDay = false;
+          var currentTripDay = -1;
+          for (var i = 0; i < dayDates.length; i++) {
+            if (parisMonth === 6 && parisDate === dayDates[i].date) {
+              onTripDay = true;
+              currentTripDay = i;
+              break;
+            }
+          }
+
+          if (onTripDay) {
+            dayEl.textContent = dayLabels[currentTripDay];
+            var dayMins = parisH * 60 + parisMin;
+            var dayActivities = activities.filter(function(a) { return a.day === currentTripDay + 1; });
+            var currentIdx = -1;
+            for (var j = 0; j < dayActivities.length; j++) {
+              var aMins = dayActivities[j].h * 60 + dayActivities[j].min;
+              if (aMins <= dayMins) currentIdx = j;
+            }
+            if (currentIdx >= 0) {
+              nowTimeEl.textContent = fmtTime(dayActivities[currentIdx].h, dayActivities[currentIdx].min);
+              nowTitleEl.textContent = dayActivities[currentIdx].title;
+              if (currentIdx + 1 < dayActivities.length) {
+                var nx = dayActivities[currentIdx + 1];
+                nextTimeEl.textContent = fmtTime(nx.h, nx.min);
+                nextTitleEl.textContent = nx.title;
+              } else {
+                nextTimeEl.textContent = "";
+                nextTitleEl.textContent = "Last activity of the day";
+              }
+            } else {
+              nowTimeEl.textContent = "";
+              nowTitleEl.textContent = "Getting ready...";
+              if (dayActivities.length > 0) {
+                var first = dayActivities[0];
+                nextTimeEl.textContent = fmtTime(first.h, first.min);
+                nextTitleEl.textContent = first.title;
+              } else {
+                nextTimeEl.textContent = "";
+                nextTitleEl.textContent = "—";
+              }
+            }
+          } else {
+            // Not on a trip day — find next upcoming trip day
+            var nextDay = -1;
+            for (var k = 0; k < dayDates.length; k++) {
+              if (parisMonth === 6 && parisDate < dayDates[k].date) { nextDay = k; break; }
+            }
+            if (nextDay === -1 && (parisMonth > 6 || (parisMonth === 6 && parisDate > 25))) {
+              dayEl.textContent = "Trip complete!";
+              nowTimeEl.textContent = "";
+              nowTitleEl.textContent = "Hope Paris was amazing";
+              nextTimeEl.textContent = "";
+              nextTitleEl.textContent = "";
+            } else {
+              var dIdx = nextDay >= 0 ? nextDay : 0;
+              dayEl.textContent = "Coming up: " + dayLabels[dIdx];
+              var firstActivities = activities.filter(function(a) { return a.day === dIdx + 1; });
+              if (firstActivities.length > 0) {
+                var fa = firstActivities[0];
+                nowTimeEl.textContent = fmtTime(fa.h, fa.min);
+                nowTitleEl.textContent = fa.title;
+                if (firstActivities.length > 1) {
+                  var fb = firstActivities[1];
+                  nextTimeEl.textContent = fmtTime(fb.h, fb.min);
+                  nextTitleEl.textContent = fb.title;
+                } else {
+                  nextTimeEl.textContent = "";
+                  nextTitleEl.textContent = "";
+                }
+              }
+            }
+          }
+        }
+
+        update();
+        setInterval(update, 60000);
+      })();
+
+      // Expense tracker
+      var expenses = JSON.parse(localStorage.getItem("expenses") || "[]");
+      var expCatIcons = { food: "🍽️", transport: "🚇", museum: "🏛️", shopping: "🛍️", other: "📦" };
+
+      function renderExpenses() {
+        var total = 0;
+        var byDay = {};
+        expenses.forEach(function(e) {
+          total += e.amount;
+          if (!byDay[e.day]) byDay[e.day] = 0;
+          byDay[e.day] += e.amount;
+        });
+        document.getElementById("expTotal").innerHTML =
+          "Total: <b>€" + total.toFixed(0) + "</b> / €400 budget · <span style=\"color:" + (total > 400 ? "#dc2626" : "#16a34a") + "\">" + (400 - total > 0 ? "€" + (400 - total).toFixed(0) + " left" : "€" + (total - 400).toFixed(0) + " over!") + "</span>";
+
+        var html = "";
+        expenses.slice().reverse().forEach(function(e, idx) {
+          var i = expenses.length - 1 - idx;
+          html += '<div style="display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #f0f0f0;font-size:0.75rem">' +
+            '<span>' + (expCatIcons[e.category] || "📦") + '</span>' +
+            '<span style="flex:1">' + e.desc + '</span>' +
+            '<span style="font-weight:600">€' + e.amount.toFixed(0) + '</span>' +
+            '<span style="color:var(--muted);font-size:0.65rem">Day ' + e.day + '</span>' +
+            '<button onclick="removeExpense(' + i + ')" style="background:none;border:none;color:#dc2626;cursor:pointer;font-size:0.7rem">✕</button>' +
+            '</div>';
+        });
+        document.getElementById("expList").innerHTML = html || '<span style="color:var(--muted);font-size:0.75rem">No expenses logged yet</span>';
+      }
+
+      function addExpense() {
+        var amt = parseFloat(document.getElementById("expAmt").value);
+        var cat = document.getElementById("expCat").value;
+        var desc = document.getElementById("expDesc").value.trim();
+        if (!amt || amt <= 0) return;
+        if (!desc) desc = expCatIcons[cat] + " " + cat;
+
+        // Determine which day based on current Paris time
+        var now = new Date();
+        var parisDate = (now.getUTCDate());
+        var dayNum = 1;
+        if (parisDate === 23) dayNum = 2;
+        else if (parisDate === 24) dayNum = 3;
+        else if (parisDate === 25) dayNum = 4;
+
+        expenses.push({ amount: amt, category: cat, desc: desc, day: dayNum, time: now.getTime() });
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+        document.getElementById("expAmt").value = "";
+        document.getElementById("expDesc").value = "";
+        renderExpenses();
+      }
+
+      function removeExpense(idx) {
+        expenses.splice(idx, 1);
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+        renderExpenses();
+      }
+
+      renderExpenses();
     </script>
   </body>
 </html>
