@@ -1596,21 +1596,6 @@
       .maplink:hover {
         text-decoration: underline;
       }
-      .photolink {
-        display: inline-block;
-        color: var(--accent);
-        text-decoration: none;
-        font-size: 0.72rem;
-        font-weight: 600;
-        padding: 4px 10px;
-        margin: 4px 4px 4px 0;
-        background: rgba(233,69,96,0.08);
-        border: 1px solid rgba(233,69,96,0.2);
-        border-radius: 6px;
-        vertical-align: middle;
-      }
-      .photolink i { margin-right: 0.3em; }
-      .photolink:hover { background: rgba(233,69,96,0.15); text-decoration: none; }
       #imgOverlay {
         display: none;
         position: fixed;
@@ -1726,6 +1711,78 @@
       .res-item .rprice {
         color: var(--muted);
         font-size: 0.7rem;
+      }
+      .res-order {
+        display: inline-block;
+        background: rgba(233,69,96,0.08);
+        border: 1px solid rgba(233,69,96,0.15);
+        border-radius: 6px;
+        padding: 3px 8px;
+        font-size: 0.72rem;
+        color: var(--accent);
+        font-weight: 600;
+        margin-top: 6px;
+      }
+      .price-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .price-badge.budget {
+        background: rgba(22,163,74,0.12);
+        color: #16a34a;
+      }
+      .price-badge.mid {
+        background: rgba(234,179,8,0.12);
+        color: #b45309;
+      }
+      .meal-collapse {
+        cursor: pointer;
+        user-select: none;
+      }
+      .meal-collapse h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .meal-collapse h3::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 0.7em;
+        margin-left: auto;
+        transition: transform 0.2s;
+        color: var(--muted);
+      }
+      .meal-collapse.expanded h3::after {
+        transform: rotate(180deg);
+      }
+      .meal-collapse .meal-summary {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+      .meal-collapse .meal-summary .meal-chip {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: rgba(0,0,0,0.04);
+        color: var(--muted);
+      }
+      .meal-collapse .res-grid,
+      .meal-collapse .res-grid + p,
+      .meal-collapse .res-grid + span {
+        display: none;
+      }
+      .meal-collapse.expanded .res-grid,
+      .meal-collapse.expanded .res-grid + p,
+      .meal-collapse.expanded .res-grid + span {
+        display: grid;
       }
 
       .cal {
@@ -9430,200 +9487,221 @@
         </table>
       </div>
 
-      <div class="card">
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
         <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Day 1 — Wednesday (Arrival Day)</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">🥐 Boulangerie</span>
+          <span class="meal-chip">🥖 Airport or street</span>
+          <span class="meal-chip">🍽️ Bouillon Chartier</span>
+        </div>
         <p style="font-size:0.76rem;color:var(--muted);margin-bottom:6px">You land at 14:25, arrive apartment ~16:00. Keep it simple.</p>
 
         <div class="res-grid">
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Breakfast / Snack</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Maison Landemaine</b> — 26 Rue de Surène (5 min walk)<br>
-              Best croissants in the neighbourhood. Grab a pain au chocolat + croissant for ~€3. Opens 07:00. Rated 4.6. Your go-to bakery all trip.<br>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a>
+              Best croissants in the neighbourhood. Grab a pain au chocolat + croissant for ~€3. Opens 07:00. Rated 4.6. Your go-to bakery all trip.
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: croissant + pain au chocolat + café crème</div>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Lunch (at airport or on arrival)</span>
-              <span class="res-price">€-€€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Option A:</b> Eat at Beauvais before shuttle — airport café, basic but fine (~€8-12).<br>
               <b>Option B:</b> Wait for apartment, grab a jambon-beurre from any boulangerie (~€5). Cheaper, more Parisian.
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: jambon-beurre + water bottle</div>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Dinner</span>
-              <span class="res-price">€€</span>
+              <span class="price-badge mid">Mid-range</span>
             </div>
             <div class="res-body">
               <b>Bouillon Chartier</b> — 7 Rue du Faubourg Montmartre (10 min metro L9)<br>
               Historic Parisian bouillon (since 1896). Fixed-price menus: entrée+plat or plat+dessert from €12-15. Steak-frites €14. Crème brûlée €4.50. Décor: Belle Époque, marble, brass rails. <b>Crowded but worth it</b> — arrive at 18:30 to skip the queue. No reservations.<br>
-              <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take:</b> Food is solid (not gourmet), portion sizes are generous, and the atmosphere is unforgettable. It's a Parisian institution — not a tourist trap. The downside: it's loud and service is brisk.</span><br>
+              <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take:</b> Food is solid (not gourmet), portion sizes are generous, and the atmosphere is unforgettable. It's a Parisian institution — not a tourist trap. The downside: it's loud and service is brisk.</span>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: plat du jour + crème brûlée + carafe d'eau</div>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Chartier+7+Rue+du+Faubourg+Montmartre+Paris" target="_blank">Open in Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Chartier+7+Rue+du+Faubourg+Montmartre+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
         <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Day 2 — Thursday (Louvre + Galeries Lafayette)</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">🥐 Maison Landemaine</span>
+          <span class="meal-chip">🥖 Boulangerie near Louvre</span>
+          <span class="meal-chip">🧁 Galeries Lafayette</span>
+          <span class="meal-chip">🍽️ Bouillon Pigalle</span>
+        </div>
         <p style="font-size:0.76rem;color:var(--muted);margin-bottom:6px">Big day: Louvre at 14:00, Galeries Lafayette rooftop, Eiffel sparkle at night.</p>
 
         <div class="res-grid">
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Breakfast</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Maison Landemaine</b> — 26 Rue de Surène (5 min)<br>
-              Same as yesterday. Croissant + café crème = ~€4. Opens 07:00. Grab an extra pain au chocolat for the Louvre — you won't find food inside easily.<br>
+              Same as yesterday. Croissant + café crème = ~€4. Opens 07:00. Grab an extra pain au chocolat for the Louvre — you won't find food inside easily.
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: croissant + pain au chocolat + café crème</div>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Open in Maps</a>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Lunch (before Louvre)</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Marché des Halles area</b> — around Les Halles / Rue de Rivoli<br>
               <b>Coco Palais</b> (12 Rue de Rivoli) — boulangerie with good sandwiches (~€6-8). Or any of the boulangeries along Rue de Rivoli. Eat before the Louvre — museum food is overpriced.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Coco+Palais+12+Rue+de+Rivoli+Paris" target="_blank">Coco Palais on Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Coco+Palais+12+Rue+de+Rivoli+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Les+Halles+Rue+de+Rivoli+Paris" target="_blank">Les Halles area on Maps</a><br>
-              <span style="font-size:0.72rem;color:var(--muted)"><b>Tip:</b> Grab a jambon-beurre + fruit from a supermarket and eat in the Tuileries garden before entering. Free, scenic, zero queue.</span>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Coco+Palais+12+Rue+de+Rivoli+Paris" target="_blank">Coco Palais on Maps</a><br>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Les+Halles+Rue+de+Rivoli+Paris" target="_blank">Les Halles area on Maps</a>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: jambon-beurre + fruit, eat in Tuileries garden</div>
+              <span style="font-size:0.72rem;color:var(--muted)"><b>Tip:</b> Grab from a supermarket and eat in the Tuileries garden before entering. Free, scenic, zero queue.</span>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Snack (after Louvre)</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Galeries Lafayette food hall</b> (ground floor)<br>
               Walk through after the rooftop — beautiful display, grab a pastry or macaron (~€3-5). Not the cheapest but the experience is worth it.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Paris" target="_blank">Open in Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Paris" target="_blank">Open in Maps</a><br>
               Or: nearby <b>Café de la Paix</b> for a fancy coffee (€6-8, sit on the terrace).<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+de+la+Paix+Paris" target="_blank">Café de la Paix on Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+de+la+Paix+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: pastry from food hall or café crème at terrace</div>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Dinner</span>
-              <span class="res-price">€€</span>
+              <span class="price-badge mid">Mid-range</span>
             </div>
             <div class="res-body">
               <b>Le Bouillon Pigalle</b> — 22 Boulevard de Clichy (near Anvers metro, on your way home from GL)<br>
               Same concept as Chartier — classic bouillon, €12-15 for a full menu. Their roast chicken is excellent. Ratatouille €5. Less touristy than Chartier.<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Pigalle+22+Boulevard+de+Clichy+Paris" target="_blank">Open in Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+Pigalle+22+Boulevard+de+Clichy+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: roast chicken + ratatouille + carafe d'eau</div>
               <b>Alternative:</b> <b>Bouillon République</b> — 39 Boulevard du Temple (near your route). Same quality, same prices.<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+R%C3%A9publique+39+Boulevard+du+Temple+Paris" target="_blank">Bouillon République on Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Bouillon+R%C3%A9publique+39+Boulevard+du+Temple+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take:</b> These bouillons are the best value in Paris. Don't expect fine dining — expect generous portions, historic atmosphere, and happy wallets. Perfect after a long museum day.</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
         <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Day 3 — Friday (Flowers + Montmartre)</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">🥐 Café du Marché</span>
+          <span class="meal-chip">🍽️ Le Consulat</span>
+          <span class="meal-chip">🥞 Crêperie</span>
+          <span class="meal-chip">🍽️ Le Petit Cler</span>
+        </div>
         <p style="font-size:0.76rem;color:var(--muted);margin-bottom:6px">Flower market, Notre-Dame, Montmartre, Eiffel sparkle. Pack tonight!</p>
 
         <div class="res-grid">
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Breakfast</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Café near flower market</b> — Place Louis Lépin / Marché aux Fleurs<br>
               Grab a croissant from the flower market area. <b>Café du Marché</b> (38 Rue de Montorgueil area) for a sit-down café crème (~€4-5). Or walk to <b>Maison Landemaine</b> first, then metro.<br>
-              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+du+March%C3%A9+38+Rue+de+Montorgueil+Paris" target="_blank">Café du Marché on Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+du+March%C3%A9+38+Rue+de+Montorgueil+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+du+March%C3%A9+38+Rue+de+Montorgueil+Paris" target="_blank">Café du Marché on Maps</a><br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Maison Landemaine on Maps</a>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: croissant + café crème at the terrace</div>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Lunch (Montmartre)</span>
-              <span class="res-price">€€</span>
+              <span class="price-badge mid">Mid-range</span>
             </div>
             <div class="res-body">
               <b>Le Consulat</b> — 18 Rue Norvins (Montmartre)<br>
               Iconic Montmartre café. Famous terrace facing a cobbled square. Plat du jour ~€14. Coffee €4.50. Touristy? Yes. Worth it? Also yes — the atmosphere is postcard-perfect. Sit outside, watch artists, absorb Montmartre.<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Consulat+18+Rue+Norvins+Paris" target="_blank">Open in Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Le+Consulat+18+Rue+Norvins+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: plat du jour outside, watch the artists</div>
               <b>Budget option:</b> <b>Café des Deux Moulins</b> (15 Rue Lepic) — the Amélie café. Croque-monsieur €9. Good coffee. More local than touristy.<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+des+Deux+Moulins+15+Rue+Lepic+Paris" target="_blank">Café des Deux Moulins on Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+des+Deux+Moulins+15+Rue+Lepic+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take about Montmartre dining:</b> Most restaurants around Place du Tertre are overpriced tourist traps (€18 for mediocre pasta). Walk 2 streets away from the square and prices drop 40%. Le Consulat is the exception — it's legit.</span>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Afternoon snack</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Crêperie</b> near Montmartre or on Rue du Mont-Cenis<br>
               Sweet crêpe with Nutella or sugar = ~€4-5. Perfect walking fuel. Or: grab fruit from a nearby supermarket. Froggy's hummingbird fuel!
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: crêpe Nutella or galette complète</div>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Dinner</span>
-              <span class="res-price">€€</span>
+              <span class="price-badge mid">Mid-range</span>
             </div>
             <div class="res-body">
               <b>Le Petit Cler</b> — 29 Rue Cler (near École Militaire metro L8/L10, on the way to Eiffel Tower)<br>
               Classic French bistro. Warm lighting, wooden tables. Steak-frites €16, duck confit €17. Excellent wine list. Reservations recommended but walk-ins usually work at 18:30.<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Petit+Cler+29+Rue+Cler+Paris" target="_blank">Open in Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Le+Petit+Cler+29+Rue+Cler+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: steak-frites or confit de canard + a glass of wine</div>
               <b>Alternative (near home):</b> <b>Le Bistrot du 8ème</b> — 8 Rue de Miromesnil (3 min walk!). Small, quiet, €15-20 for a full meal. Your neighbourhood secret.<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le+Bistrot+du+8%C3%A8me+8+Rue+de+Miromesnil+Paris" target="_blank">Le Bistrot du 8ème on Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Le+Bistrot+du+8%C3%A8me+8+Rue+de+Miromesnil+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Honest take:</b> After the bouillons, a proper bistro dinner feels like a splurge. But it's still affordable by Paris standards. Both options have warm, local energy — not the cold tourist-restaurant vibe.</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card meal-collapse" onclick="this.classList.toggle('expanded')">
         <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Day 4 — Saturday (Departure Day)</h3>
+        <div class="meal-summary">
+          <span class="meal-chip">🥐 Last croissant</span>
+          <span class="meal-chip">🥖 Boulangerie Julien</span>
+        </div>
         <p style="font-size:0.76rem;color:var(--muted);margin-bottom:6px">Early start, check out, neighbourhood stroll, shuttle at ~13:15.</p>
 
         <div class="res-grid">
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Breakfast</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Maison Landemaine</b> — last croissant run! Take one for the road. Or: eat any leftover supermarket fruit/yoghurt. Simple morning — you're leaving.<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maison+Landemaine+26+Rue+de+Sur%C3%A8ne+Paris" target="_blank">Open in Maps</a>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: last croissant + café crème — you'll miss this!</div>
             </div>
           </div>
           <div class="res-item">
             <div class="res-header">
               <span class="res-name">Lunch (last Paris meal)</span>
-              <span class="res-price">€</span>
+              <span class="price-badge budget">Budget</span>
             </div>
             <div class="res-body">
               <b>Boulangerie Julien</b> — 9 Rue de Castellane (4 min walk, near apartment)<br>
               Final jambon-beurre or croque-monsieur for the road. ~€5-7. Or: grab something at Beauvais airport (overpriced but you're on holiday).<br>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Boulangerie+Julien+9+Rue+de+Castellane+Paris" target="_blank">Open in Maps</a>
-              <a class="photolink" href="https://www.google.com/maps/search/?api=1&query=Boulangerie+Julien+9+Rue+de+Castellane+Paris" target="_blank"><i class="fa-solid fa-camera"></i> See what it looks like</a><br>
+              <div class="res-order"><i class="fa-solid fa-utensils"></i> Get: jambon-beurre for the road</div>
               <span style="font-size:0.72rem;color:var(--muted)"><b>Tip:</b> Don't skip eating. The shuttle is 75-80 min and you'll be hungry. Eat before boarding.</span>
             </div>
           </div>
