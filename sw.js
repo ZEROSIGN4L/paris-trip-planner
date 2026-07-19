@@ -1,4 +1,4 @@
-const CACHE_NAME = 'paris-trip-v6';
+const CACHE_NAME = 'paris-trip-v7';
 const ASSETS = [
   './',
   './index.html',
@@ -8,7 +8,9 @@ const ASSETS = [
   './ticket-page1.png',
   './ticket-page2.png',
   './document.pdf',
-  './Screenshot%202026-07-19%20012546.png'
+  './Screenshot%202026-07-19%20012546.png',
+  './images.jpg',
+  './port-maillot-from-beauvais.jpg'
 ];
 
 self.addEventListener('install', e => {
