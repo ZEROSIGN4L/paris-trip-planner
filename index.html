@@ -2685,7 +2685,7 @@
           <div class="hdr-dropdown" id="hdrDropdown">
             <button onclick="window.print()">Print Itinerary</button>
             <button onclick="exportICS()">Export Calendar</button>
-            <button id="installMenuBtn" onclick="installApp()" class="hidden">Install App</button>
+            <button id="installMenuBtn" onclick="installApp()">Install App</button>
           </div>
         </span>
       </div>
@@ -10868,7 +10868,6 @@
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        document.getElementById("installMenuBtn").classList.remove("hidden");
         document.getElementById("installBanner").classList.add("show");
         document.getElementById("installBtnAction").textContent = "Install";
         document.getElementById("installBtnAction").onclick = function() { installApp(); };
@@ -10911,6 +10910,16 @@
               document.getElementById("installBanner").classList.remove("show");
             deferredPrompt = null;
           });
+        } else {
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+          const isAndroid = /Android/.test(navigator.userAgent);
+          if (isIOS) {
+            alert("To install on iPhone/iPad:\n\n1. Tap the Share button (⬆) at the bottom\n2. Scroll down and tap 'Add to Home Screen'\n3. Tap 'Add' in the top right\n\nThe app will appear on your home screen!");
+          } else if (isAndroid) {
+            alert("To install on Android:\n\n1. Tap the three dots menu (⋮) in Chrome\n2. Tap 'Install app' or 'Add to Home Screen'\n3. Confirm installation");
+          } else {
+            alert("To install this app:\n\nChrome: Click ⋮ → 'Install app'\nEdge: Click '...' → 'App installed'\nSafari: Share → 'Add to Home Screen'");
+          }
         }
       }
 
