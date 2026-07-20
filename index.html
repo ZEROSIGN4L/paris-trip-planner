@@ -3369,7 +3369,6 @@
 
     <!-- DAY 1 -->
     <div id="day1" class="sec" data-t="Day 1 - Wednesday: Arrival">
-      <img src="splash.png" alt="Welcome to Paris" style="width:100%;max-height:220px;object-fit:cover;object-position:center 80%;border-radius:var(--r);margin-bottom:10px;display:block" />
       <div class="day-div">
         <div class="day-num">1</div>
         <div class="day-info">
@@ -11794,47 +11793,56 @@
 
         // Pool messages — pick one based on day index
         var morningMsgs = [
-          "Good morning! Time to start the Paris adventure! Brush your teeth, grab a coffee... today: Beauvais bound! ✈️",
-          "Bonjour! Rise and shine in Paris! Shower, coffee, croissant vibes... Today: the Louvre awaits your art-loving soul! 🎨",
-          "Morning! Montmartre day! Coffee first, then Sacré-Cœur views and flower markets! 🌸",
-          "Last day! Coffee, pack up, soak in those final Paris moments! Today: homeward bound 🏠"
+          "Good morning. Take a deep breath — today you fly to Paris. Brush your teeth, grab a coffee, enjoy every moment. It starts now. ☁️",
+          "Bonjour. A new day in Paris. No rush — just enjoy being here. Coffee, a croissant, whatever feels right. 🥐",
+          "Morning. Today is Montmartre and flowers. There's no hurry — Paris will wait for you. ☕🌸",
+          "Last morning in Paris. Take it slow. Enjoy your coffee one more time. ☕🤍"
         ];
         var eveningMsgs = [
-          "Hope today was wonderful! Rest well, tomorrow has more Paris waiting! 🌙",
-          "What a day! Louvre done! Time to rest. Sweet dreams! 🌙✨",
-          "Almost bedtime! Hope Montmartre was magical! Tomorrow's the last day 🌙",
-          "Last night in Paris... What a trip! Rest well, you've earned it! 🌙❤️"
+          "Today was the beginning. Rest well — tomorrow, Paris welcomes you fully. 🌙",
+          "What a day. Let it settle. Sleep well, and let Paris recharge you for tomorrow. 🌙✨",
+          "Take a moment to remember what made you smile today. Sleep well. 🌙💛",
+          "The present moment is filled with joy and happiness. If you are attentive, you will see it. — Thich Nhat Hanh. Rest well. 🙏🌙"
         ];
         var duolingoMsgs = [
-          "Froggy here! Did you do your Duolingo today? The owl is watching... 👀💚",
-          "Hey! Your streak is counting on you! Quick Spanish practice? 🦉",
-          "¡Hola! A word a day keeps... well, it helps! Duolingo time! 🇪🇸",
-          "Psst... have you practiced Spanish today? Even 5 minutes counts! 🐸",
-          "The owl sends its regards... ¡vamos a practicar! 🦉💚"
+          "Froggy here. Did you do your Duolingo today? The owl is watching. 👀💚",
+          "Your streak is counting on you. Quick Spanish practice? 🦉",
+          "¡Hola! A word a day... Duolingo time. 🇪🇸",
+          "Psst — even 5 minutes of Spanish counts. 🐸",
+          "The owl sends its regards. ¡Vamos a practicar! 🦉💚"
         ];
 
         // Notifications: [id, month, day, hour, minute, title, message, catchUpMinutes]
         var notifs = [
+          // Day before departure
+          ["eve_depart", 6, 21, 20, 0, "🐸 Tomorrow the adventure begins", "Pack your bags, charge your phone, get some rest. Paris is waiting for you. 🗼💛", 120],
           // Day 1
           ["morning1", 6, 22, 8, 0, "🐸 Bonjour!", morningMsgs[0], 60],
-          ["flight_out_2h", 6, 22, 10, 5, "✈️ Flight FR3722", "FR3722 departs at 12:05 BST from Manchester T3 → Beauvais. 2 hours to go!", 30],
-          ["flight_out_1h", 6, 22, 11, 5, "✈️ FR3722 in 1 hour!", "Flight FR3722 departs at 12:05 BST. Head to the gate! Don't forget your boarding pass!", 30],
-          ["shuttle1", 6, 22, 15, 30, "🚌 Shuttle time!", "Head to Porte Maillot for the Aérobus to Beauvais! Sit near the front for easier exit.", 30],
+          ["flight_out_2h", 6, 22, 10, 5, "✈️ Flight FR3722", "FR3722 departs at 12:05 BST from Manchester T3. No rush yet — just making sure you know.", 30],
+          ["flight_out_1h", 6, 22, 11, 5, "✈️ FR3722 in about an hour", "When you're ready, head to the gate. You've got this.", 30],
+          ["shuttle1", 6, 22, 15, 30, "🚌 Shuttle time", "Head to Porte Maillot for the Aérobus whenever you're ready. Sit back, watch Paris roll by.", 30],
+          ["eiffel_sparkle1", 6, 22, 22, 0, "🌟 Eiffel Tower sparkle", "The Eiffel Tower sparkles at the top of every hour until 01:00. Step outside and look up — it's magical. ✨", 60],
           ["evening1", 6, 22, 23, 40, "🌙 Bonne nuit", eveningMsgs[0], 30],
           // Day 2
           ["morning2", 6, 23, 8, 0, "🐸 Bonjour!", morningMsgs[1], 60],
-          ["louvre", 6, 23, 13, 45, "🎨 Louvre in 15 min!", "Louvre entry at 14:00 — Passage Richelieu entrance. There may be a line, so head there now! Don't forget your tickets! 🎟️", 30],
-          ["duolingo2", 6, 23, 15, 0, "🦉 Duolingo time!", duolingoMsgs[Math.floor(Math.random() * duolingoMsgs.length)], 60],
+          ["water2", 6, 23, 9, 0, "☀️ Stay hydrated", "It's a Paris summer — grab a water bottle before heading out. 💧", 60],
+          ["louvre", 6, 23, 13, 45, "🎨 The Louvre at 14:00", "Passage Richelieu entrance. There may be a small line — that's part of the experience. Tickets in hand? Enjoy every room.", 30],
+          ["duolingo2", 6, 23, 15, 0, "🦉 Duolingo time", duolingoMsgs[Math.floor(Math.random() * duolingoMsgs.length)], 60],
+          ["eiffel_sparkle2", 6, 23, 22, 0, "🌟 Eiffel Tower sparkle", "The Eiffel Tower sparkles at the top of every hour until 01:00. Step outside and look up — it's magical. ✨", 60],
           ["evening2", 6, 23, 23, 40, "🌙 Bonne nuit", eveningMsgs[1], 30],
           // Day 3
           ["morning3", 6, 24, 8, 0, "🐸 Bonjour!", morningMsgs[2], 60],
-          ["duolingo3", 6, 24, 15, 0, "🦉 Duolingo time!", duolingoMsgs[Math.floor(Math.random() * duolingoMsgs.length)], 60],
+          ["flowers3", 6, 24, 9, 0, "💐 The flower market", "The flower market is best in the morning when everything is fresh. Take your time. 🌸", 60],
+          ["duolingo3", 6, 24, 15, 0, "🦉 Duolingo time", duolingoMsgs[Math.floor(Math.random() * duolingoMsgs.length)], 60],
+          ["eiffel_sparkle3", 6, 24, 22, 0, "🌟 Last chance for the sparkle", "Last chance to see the Eiffel sparkle! It's there every hour until 01:00. ✨", 60],
           ["evening3", 6, 24, 23, 40, "🌙 Bonne nuit", eveningMsgs[2], 30],
           // Day 4
           ["morning4", 6, 25, 8, 0, "🐸 Bonjour!", morningMsgs[3], 60],
-          ["shuttle4", 6, 25, 11, 30, "🚌 Au revoir, Paris!", "Time to say au revoir to the apartment! Head to Porte Maillot for the Aérobus shuttle. FR3725 departs 17:35.", 30],
-          ["flight_ret_2h", 6, 25, 15, 0, "✈️ Flight FR3725", "FR3725 departs at 17:35 CEST from Beauvais → Manchester T3. Start heading to the airport!", 30],
-          ["flight_ret_1h", 6, 25, 16, 30, "✈️ FR3725 in ~1 hour!", "Flight FR3725 departs at 17:35 CEST. You should be at the gate by now! Safe travels home! ✈️", 30]
+          ["pack4", 6, 25, 8, 30, "🧳 Pack slowly", "Last morning. Check the drawers, check the safe. No rush — you've got time.", 60],
+          ["shuttle4", 6, 25, 11, 30, "🚌 Au revoir, Paris", "No rush — just enough time to get to Porte Maillot comfortably for the Aérobus.", 30],
+          ["flight_ret_2h", 6, 25, 15, 0, "✈️ Flight FR3725", "FR3725 departs at 17:35 CEST from Beauvais. When it feels right, start heading to the airport. No rush.", 30],
+          ["flight_ret_1h", 6, 25, 16, 30, "✈️ FR3725 in about an hour", "Head to the gate when you're ready. Safe travels home.", 30],
+          ["twain4", 6, 25, 20, 0, "🌙 Travel is fatal to prejudice", "Travel is fatal to prejudice, bigotry, and narrow-mindedness. — Mark Twain. Sleep well, you earned this. 🙏🌙", 60]
         ];
 
         function checkNotifs() {
