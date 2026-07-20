@@ -2175,6 +2175,38 @@
       .nw-time { color: var(--muted); font-size: 0.7rem; flex-shrink: 0; }
       .nw-title { font-weight: 600; color: var(--text); }
 
+      .weather-grid { display: flex; gap: 6px; }
+      .weather-day {
+        flex: 1; text-align: center; padding: 8px 4px; border-radius: 8px;
+        background: var(--bg); font-size: 0.75rem;
+      }
+      .weather-day .wd-icon { font-size: 1.4rem; margin-bottom: 2px; }
+      .weather-day .wd-high { font-weight: 600; }
+      .weather-day .wd-low { color: var(--muted); }
+      .weather-day .wd-rain { color: #4a90d9; font-size: 0.68rem; }
+      .weather-day .wd-wind { color: var(--muted); font-size: 0.68rem; }
+      .weather-day .wd-label { font-weight: 600; margin-bottom: 4px; }
+
+      .flight-row { display: flex; gap: 10px; }
+      .flight-leg {
+        flex: 1; padding: 10px; border-radius: 8px;
+        background: var(--bg); font-size: 0.78rem;
+      }
+      .fl-label { font-weight: 600; margin-bottom: 4px; }
+      .fl-route { color: var(--muted); font-size: 0.72rem; margin-bottom: 2px; }
+      .fl-detail { margin-bottom: 6px; }
+      .fl-status {
+        display: inline-block; padding: 4px 10px; border-radius: 6px;
+        background: var(--blue); color: #fff; font-size: 0.72rem;
+        text-decoration: none; font-weight: 500;
+      }
+      .fl-status:active { opacity: 0.7; }
+      @media (max-width: 500px) {
+        .flight-row { flex-direction: column; }
+        .weather-day { padding: 6px 2px; font-size: 0.7rem; }
+        .weather-day .wd-icon { font-size: 1.2rem; }
+      }
+
       @media print {
         .hdr,
         .tabs,
@@ -2680,6 +2712,11 @@
         <button onclick="installApp()" id="installBtnAction">Install</button>
       </div>
       <div class="card" id="liveCard" style="text-align:center;padding:20px 16px;"></div>
+      <div class="card" id="weatherCard" style="display:none">
+        <h3>☁️ Paris Weather · Jul 22–25</h3>
+        <div id="weatherDays" class="weather-grid"></div>
+        <p style="font-size:0.68rem;color:var(--muted);margin-top:6px;text-align:right">Open-Meteo · updates every 3h</p>
+      </div>
       <div id="nextWidget" class="next-widget">
         <div class="nw-day" id="nwDay">—</div>
         <div class="nw-row">
@@ -2716,6 +2753,23 @@
             <span class="tag-chip">Gardens</span>
             <span class="tag-chip">French</span>
             <span class="tag-chip"><i class="fa-solid fa-hands-praying" style="font-size:0.55rem"></i> Buddhist</span>
+          </div>
+        </div>
+      </div>
+      <div class="card" id="flightCard">
+        <h3>✈️ Flights</h3>
+        <div class="flight-row">
+          <div class="flight-leg">
+            <div class="fl-label">Wed 22 Jul — Outbound</div>
+            <div class="fl-route">Manchester (MAN) → Beauvais (BVA)</div>
+            <div class="fl-detail">FR3722 · Dep 12:05 BST · Arr 14:25 CEST</div>
+            <a href="https://www.google.com/search?q=FR3722+flight+status" target="_blank" rel="noopener noreferrer" class="fl-status">Check status <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.6rem"></i></a>
+          </div>
+          <div class="flight-leg">
+            <div class="fl-label">Sat 25 Jul — Return</div>
+            <div class="fl-route">Beauvais (BVA) → Manchester T3 (MAN)</div>
+            <div class="fl-detail">FR3725 · Dep 17:35 CEST · Arr ~18:55 CEST</div>
+            <a href="https://www.google.com/search?q=FR3725+flight+status" target="_blank" rel="noopener noreferrer" class="fl-status">Check status <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.6rem"></i></a>
           </div>
         </div>
       </div>
@@ -11044,6 +11098,7 @@
       // dynamic links generate bad queries.
       function setDynamicMapLinks() {
         document.querySelectorAll("a.maplink").forEach((link) => {
+          if (link.href && !link.href.endsWith("#") && !link.href.endsWith("maplink")) return;
           const place =
             link.dataset.place || link.textContent.replace(/\s+/g, " ").trim();
           if (!place) return;
@@ -11523,6 +11578,39 @@
         if (fromEl) fromEl.addEventListener("change", calc);
         if (toEl) toEl.addEventListener("change", calc);
         calc();
+      })();
+
+      // Weather forecast — Open-Meteo free API
+      (async () => {
+        const card = document.getElementById("weatherCard");
+        const container = document.getElementById("weatherDays");
+        if (!card || !container) return;
+        const cache = JSON.parse(localStorage.getItem("wx2") || "null");
+        const now = Date.now();
+        if (cache && now - cache.ts < 3 * 3600 * 1000) { renderWeather(cache.data); return; }
+        try {
+          const r = await fetch("https://api.open-meteo.com/v1/forecast?latitude=48.8566&longitude=2.3522&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode,windspeed_10m_max&timezone=Europe/Paris&start_date=2026-07-22&end_date=2026-07-25");
+          const data = await r.json();
+          localStorage.setItem("wx2", JSON.stringify({ ts: now, data }));
+          renderWeather(data);
+        } catch (e) { /* offline — card stays hidden */ }
+        function renderWeather(d) {
+          if (!d || !d.daily) return;
+          const codes = {0:"☀️",1:"🌤️",2:"⛅",3:"⛅",45:"🌫️",48:"🌫️",51:"🌦️",53:"🌧️",55:"🌧️",61:"🌧️",63:"🌧️",65:"🌧️",71:"❄️",73:"❄️",75:"❄️",80:"🌦️",81:"🌧️",82:"⛈️",95:"⛈️",96:"⛈️",99:"⛈️"};
+          const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+          container.innerHTML = d.daily.time.map((date, i) => {
+            const dt = new Date(date + "T12:00:00");
+            return '<div class="weather-day">' +
+              '<div class="wd-label">' + days[dt.getDay()] + ' ' + dt.getDate() + '/7</div>' +
+              '<div class="wd-icon">' + (codes[d.daily.weathercode[i]] || "🌤️") + '</div>' +
+              '<div class="wd-high">' + Math.round(d.daily.temperature_2m_max[i]) + '°</div>' +
+              '<div class="wd-low">' + Math.round(d.daily.temperature_2m_min[i]) + '°</div>' +
+              '<div class="wd-rain">💧' + d.daily.precipitation_probability_max[i] + '%</div>' +
+              '<div class="wd-wind">💨' + (d.daily.windspeed_10m_max ? Math.round(d.daily.windspeed_10m_max[i]) : '—') + ' km/h</div>' +
+            '</div>';
+          }).join("");
+          card.style.display = "";
+        }
       })();
 
       // Scroll: top button + header hide/show on day sections
