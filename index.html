@@ -11,7 +11,6 @@
     />
     <link rel="manifest" href="manifest.json" />
     <link rel="apple-touch-icon" href="icon-192.png" />
-    <link rel="apple-touch-startup-image" href="splash.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Paris Trip</title>
     <style>
@@ -2713,6 +2712,7 @@
         </div>
         <button onclick="installApp()" id="installBtnAction">Install</button>
       </div>
+      <img src="splash.png" alt="Froggy in Paris" style="width:100%;max-height:170px;object-fit:cover;object-position:center 80%;border-radius:var(--r);margin-bottom:10px;display:block" />
       <div class="card" id="liveCard" style="text-align:center;padding:20px 16px;"></div>
       <div class="card" id="weatherCard" style="display:none">
         <h3>☁️ Paris Weather · Jul 22–25</h3>
@@ -3369,6 +3369,7 @@
 
     <!-- DAY 1 -->
     <div id="day1" class="sec" data-t="Day 1 - Wednesday: Arrival">
+      <img src="splash.png" alt="Welcome to Paris" style="width:100%;max-height:220px;object-fit:cover;object-position:center 80%;border-radius:var(--r);margin-bottom:10px;display:block" />
       <div class="day-div">
         <div class="day-num">1</div>
         <div class="day-info">
@@ -11078,19 +11079,8 @@
             '<div style="font-size:2.2rem;font-weight:800;color:var(--blue);margin-bottom:4px">-' + dayDiff + '</div>' +
             '<div style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px">day' + (dayDiff !== 1 ? 's' : '') + ' until Paris</div>' +
             '<div style="font-size:0.75rem;color:var(--muted)">Wed 22 — Sat 25 July 2026</div>';
-        } else if (now <= TRIP_END) {
-          // During trip — show current day
-          const di = Math.min(3, Math.max(0, Math.floor((now - TRIP_START) / (1000 * 60 * 60 * 24))));
-          card.innerHTML =
-            '<div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:6px">Currently in Paris</div>' +
-            '<div style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px">' + dayNames[di] + '</div>' +
-            '<div style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;line-height:1.5">' + daySummaries[di] + '</div>' +
-            '<button onclick="show(\'' + days[di] + '\')" style="background:var(--blue);color:#fff;border:none;padding:10px 24px;border-radius:20px;font-size:0.85rem;font-weight:700;cursor:pointer">Go to ' + dayNames[di].split(' — ')[0] + ' <i class="fa-solid fa-arrow-right" style="margin-left:6px"></i></button>';
         } else {
-          // After trip — show last day
-          card.innerHTML =
-            '<div style="font-size:0.9rem;color:var(--muted);margin-bottom:4px">Hope Paris was amazing!</div>' +
-            '<div style="font-size:0.75rem;color:var(--muted)">22 — 25 July 2026</div>';
+          card.style.display = 'none';
         }
       })();
       // Highlight today button if within trip
@@ -11733,7 +11723,7 @@
                 nextTitleEl.textContent = nx.title;
               } else {
                 nextTimeEl.textContent = "";
-                nextTitleEl.textContent = "Last activity of the day";
+                nextTitleEl.textContent = "Au revoir! Safe flight home 🐸";
               }
             } else {
               nowTimeEl.textContent = "";
@@ -11782,6 +11772,95 @@
 
         update();
         setInterval(update, 60000);
+      })();
+
+      // ── In-page notifications ──
+      (function() {
+        if (!("Notification" in window)) return;
+        if (Notification.permission === "default") {
+          setTimeout(function() { Notification.requestPermission(); }, 5000);
+        }
+        var shown = JSON.parse(localStorage.getItem("notif_shown") || "[]");
+        function markShown(id) { shown.push(id); localStorage.setItem("notif_shown", JSON.stringify(shown)); }
+        function wasShown(id) { return shown.indexOf(id) !== -1; }
+        function notify(title, body) {
+          if (Notification.permission !== "granted") return;
+          try { new Notification(title, { body: body, icon: "icon-192.png", tag: title }); } catch(e) {}
+        }
+
+        // Jul 22 = month 6 (0-indexed)
+        var tripDates = [22, 23, 24, 25];
+        var tripMonth = 6;
+
+        // Pool messages — pick one based on day index
+        var morningMsgs = [
+          "Good morning! Time to start the Paris adventure! Brush your teeth, grab a coffee... today: Beauvais bound! ✈️",
+          "Bonjour! Rise and shine in Paris! Shower, coffee, croissant vibes... Today: the Louvre awaits your art-loving soul! 🎨",
+          "Morning! Montmartre day! Coffee first, then Sacré-Cœur views and flower markets! 🌸",
+          "Last day! Coffee, pack up, soak in those final Paris moments! Today: homeward bound 🏠"
+        ];
+        var eveningMsgs = [
+          "Hope today was wonderful! Rest well, tomorrow has more Paris waiting! 🌙",
+          "What a day! Louvre done! Time to rest. Sweet dreams! 🌙✨",
+          "Almost bedtime! Hope Montmartre was magical! Tomorrow's the last day 🌙",
+          "Last night in Paris... What a trip! Rest well, you've earned it! 🌙❤️"
+        ];
+        var duolingoMsgs = [
+          "Froggy here! Did you do your Duolingo today? The owl is watching... 👀💚",
+          "Hey! Your streak is counting on you! Quick Spanish practice? 🦉",
+          "¡Hola! A word a day keeps... well, it helps! Duolingo time! 🇪🇸",
+          "Psst... have you practiced Spanish today? Even 5 minutes counts! 🐸",
+          "The owl sends its regards... ¡vamos a practicar! 🦉💚"
+        ];
+
+        // Notifications: [id, month, day, hour, minute, title, message, catchUpMinutes]
+        var notifs = [
+          // Day 1
+          ["morning1", 6, 22, 8, 0, "🐸 Bonjour!", morningMsgs[0], 60],
+          ["flight_out_2h", 6, 22, 10, 5, "✈️ Flight FR3722", "FR3722 departs at 12:05 BST from Manchester T3 → Beauvais. 2 hours to go!", 30],
+          ["flight_out_1h", 6, 22, 11, 5, "✈️ FR3722 in 1 hour!", "Flight FR3722 departs at 12:05 BST. Head to the gate! Don't forget your boarding pass!", 30],
+          ["shuttle1", 6, 22, 15, 30, "🚌 Shuttle time!", "Head to Porte Maillot for the Aérobus to Beauvais! Sit near the front for easier exit.", 30],
+          ["evening1", 6, 22, 23, 40, "🌙 Bonne nuit", eveningMsgs[0], 30],
+          // Day 2
+          ["morning2", 6, 23, 8, 0, "🐸 Bonjour!", morningMsgs[1], 60],
+          ["louvre", 6, 23, 13, 45, "🎨 Louvre in 15 min!", "Louvre entry at 14:00 — Passage Richelieu entrance. There may be a line, so head there now! Don't forget your tickets! 🎟️", 30],
+          ["duolingo2", 6, 23, 15, 0, "🦉 Duolingo time!", duolingoMsgs[Math.floor(Math.random() * duolingoMsgs.length)], 60],
+          ["evening2", 6, 23, 23, 40, "🌙 Bonne nuit", eveningMsgs[1], 30],
+          // Day 3
+          ["morning3", 6, 24, 8, 0, "🐸 Bonjour!", morningMsgs[2], 60],
+          ["duolingo3", 6, 24, 15, 0, "🦉 Duolingo time!", duolingoMsgs[Math.floor(Math.random() * duolingoMsgs.length)], 60],
+          ["evening3", 6, 24, 23, 40, "🌙 Bonne nuit", eveningMsgs[2], 30],
+          // Day 4
+          ["morning4", 6, 25, 8, 0, "🐸 Bonjour!", morningMsgs[3], 60],
+          ["shuttle4", 6, 25, 11, 30, "🚌 Au revoir, Paris!", "Time to say au revoir to the apartment! Head to Porte Maillot for the Aérobus shuttle. FR3725 departs 17:35.", 30],
+          ["flight_ret_2h", 6, 25, 15, 0, "✈️ Flight FR3725", "FR3725 departs at 17:35 CEST from Beauvais → Manchester T3. Start heading to the airport!", 30],
+          ["flight_ret_1h", 6, 25, 16, 30, "✈️ FR3725 in ~1 hour!", "Flight FR3725 departs at 17:35 CEST. You should be at the gate by now! Safe travels home! ✈️", 30]
+        ];
+
+        function checkNotifs() {
+          var now = new Date();
+          var pHour = (now.getUTCHours() + 2) % 24;
+          var pMin = now.getUTCMinutes();
+          var pDate = now.getUTCDate();
+          var pMonth = now.getUTCMonth();
+          var nowMins = pHour * 60 + pMin;
+
+          notifs.forEach(function(n) {
+            var id = n[0], month = n[1], day = n[2], h = n[3], min = n[4], title = n[5], body = n[6], catchUp = n[7];
+            if (wasShown(id)) return;
+            if (pMonth !== month || pDate !== day) return;
+            var schedMins = h * 60 + min;
+            var diff = nowMins - schedMins;
+            // Show if within catch-up window (0 to +catchUp minutes after scheduled time)
+            if (diff >= 0 && diff <= catchUp) {
+              notify(title, body);
+              markShown(id);
+            }
+          });
+        }
+
+        checkNotifs();
+        setInterval(checkNotifs, 60000);
       })();
 
       // Expense tracker
