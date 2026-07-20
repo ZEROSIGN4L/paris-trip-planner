@@ -1,10 +1,11 @@
-const CACHE_NAME = 'paris-trip-v25';
+const CACHE_NAME = 'paris-trip-v26';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './icon-192.png',
   './icon-512.png',
+  './splash.png',
   './ticket-page1.png',
   './ticket-page2.png',
   './document.pdf',
