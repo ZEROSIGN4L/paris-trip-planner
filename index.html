@@ -155,6 +155,9 @@
       .now-badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #16a34a; }
       .ti.past { opacity: 0.55; }
       .ti.past .tn { text-decoration: line-through; }
+      .recipe { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; }
+      .recipe-step { display: flex; align-items: flex-start; gap: 10px; font-size: 0.82rem; line-height: 1.5; }
+      .recipe-num { flex-shrink: 0; width: 26px; height: 26px; background: #92400e; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; }
       .tab { flex: none; padding: 11px 13px; font-size: 0.76rem; font-weight: 500; color: var(--muted); cursor: pointer; border: none; border-bottom: 2px solid transparent; white-space: nowrap; background: none; }
       .tab.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 600; }
       .sec { display: none; padding: 14px; max-width: 700px; margin: 0 auto; }
@@ -496,7 +499,7 @@
       <div class="tl">
         <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> This is your plan, not your boss. Skip anything, linger anywhere.</div>
         <div class="ti dep"><div class="tt">08:00</div><div class="tn">Wake up + pack the car</div><div class="td">Load the car. Check: snacks, water, chargers, hotel booking, NT card, parking app.</div></div>
-        <div class="ti"><div class="tt">08:30</div><div class="tn">Breakfast</div><div class="td">Quick breakfast at home. Coffee + something to eat. On the road by 09:00.</div></div>
+        <div class="ti"><div class="tt">08:30</div><div class="tn">Breakfast</div><div class="td">Quick breakfast at home. Coffee + something to eat. On the road by 09:00.<br><a href="#" onclick="event.preventDefault();show('recipes')" style="font-size:0.72rem;color:var(--blue);font-weight:600"><i class="fa-solid fa-mug-hot fa-icon"></i> Coffee recipe <i class="fa-solid fa-arrow-right" style="font-size:0.6rem"></i></a></div></div>
         <div class="ti trans"><div class="tt">09:00</div><div class="tn">Drive Manchester &rarr; Alcester</div><div class="td">M6 southbound to J4, then A435 to Alcester. ~2.5 hours.</div>
           <div class="steps"><b>Route:</b>
             <div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Manchester</div><div class="rf-line"></div><span class="rf-badge road">M6</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Alcester</div></div>
@@ -784,6 +787,35 @@
       </div>
     </div>
 
+    <!-- RECIPES -->
+    <div id="recipes" class="sec" data-t="Recipes">
+      <div class="day-div">Recipes</div>
+      <div class="card">
+        <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Cafetière Coffee</h3>
+        <p style="font-size: 0.78rem; margin-bottom: 8px; color: var(--muted)">Froggy is bringing the cafetière. You just need ground coffee, milk, and sugar.</p>
+        <div class="recipe">
+          <div class="recipe-step"><span class="recipe-num">1</span><span>Put <b>1 heaped spoon of ground coffee</b> in the cafetière.</span></div>
+          <div class="recipe-step"><span class="recipe-num">2</span><span>Fill the kettle with water and bring to the <b>boil</b>. While you wait, take the <b>milk</b> out of the fridge.</span></div>
+          <div class="recipe-step"><span class="recipe-num">3</span><span>Pour the hot water into the cafetière over the coffee.</span></div>
+          <div class="recipe-step"><span class="recipe-num">4</span><span><b>Stir gently</b> with a spoon to mix.</span></div>
+          <div class="recipe-step"><span class="recipe-num">5</span><span>Press the plunger down <b>slowly and steadily</b>.</span></div>
+          <div class="recipe-step"><span class="recipe-num">6</span><span>Pour <b>¼ milk</b> into your mug first.</span></div>
+          <div class="recipe-step"><span class="recipe-num">7</span><span>Pour the coffee from the cafetière into the mug. <b>Mix</b>. The colour should be <b>brownish</b>.</span></div>
+          <div class="recipe-step"><span class="recipe-num">8</span><span>Add <b>1 teaspoon of sugar</b>. Stir. Enjoy! (Froggy usually has 2 coffees in the morning.)</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-mug-saucer fa-icon" style="color:#065f46"></i> Tea</h3>
+        <div class="recipe">
+          <div class="recipe-step"><span class="recipe-num">1</span><span>Put the <b>tea bag</b> in your mug.</span></div>
+          <div class="recipe-step"><span class="recipe-num">2</span><span>Fill the kettle with water and bring to the <b>boil</b>. While you wait, take the <b>milk</b> out of the fridge.</span></div>
+          <div class="recipe-step"><span class="recipe-num">3</span><span>Pour the boiling water over the tea bag. Let it <b>brew 3-4 minutes</b>.</span></div>
+          <div class="recipe-step"><span class="recipe-num">4</span><span>Remove the tea bag. Pour in <b>¼ milk</b>.</span></div>
+          <div class="recipe-step"><span class="recipe-num">5</span><span>Add <b>1 teaspoon of sugar</b>. Stir. Enjoy!</span></div>
+        </div>
+      </div>
+    </div>
+
     <!-- TIPS -->
     <div id="tips" class="sec" data-t="Tips & Info">
       <div class="day-div">Tips &amp; Useful Info</div>
@@ -847,6 +879,10 @@
           </tbody>
         </table>
       </div>
+      <div class="card" style="cursor:pointer" onclick="show('recipes')">
+        <h3><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Recipes</h3>
+        <p style="font-size:0.78rem;color:var(--muted)">Coffee, tea &amp; how to use the cafetière</p>
+      </div>
       <div class="card">
         <h3><i class="fa-solid fa-phone fa-icon" style="color:#c62828"></i> Useful Numbers</h3>
         <ul>
@@ -877,6 +913,7 @@
     </div>
 
     <div class="more-overlay no-print" id="moreOverlay">
+      <button onclick="show('recipes');toggleMore()"><i class="fa-solid fa-mug-hot"></i> Recipes</button>
       <button onclick="show('colleges');toggleMore()"><i class="fa-solid fa-graduation-cap"></i> Colleges</button>
       <button onclick="show('pack');toggleMore()"><i class="fa-solid fa-suitcase"></i> Packing List</button>
       <button onclick="show('tips');toggleMore()"><i class="fa-solid fa-lightbulb"></i> Tips &amp; Info</button>
@@ -890,7 +927,7 @@
     <script>
       const tabs = document.querySelectorAll('.tab');
       const secs = document.querySelectorAll('.sec');
-      const dayIds = ['overview','day1','day2','day3','day4','colleges','pack','tips'];
+      const dayIds = ['overview','day1','day2','day3','day4','colleges','pack','recipes','tips'];
       const dayNames = ['Overview','Day 1','Day 2','Day 3','Day 4'];
 
       function show(id) {
@@ -909,15 +946,20 @@
       function updateBottomNav(id) {
         const btns = document.querySelectorAll('#bottomNav button');
         btns.forEach(b => b.classList.remove('active'));
-        const idx = ['overview','day1','day2','day3','day4'].indexOf(id);
+        const mainIds = ['overview','day1','day2','day3','day4'];
+        const idx = mainIds.indexOf(id);
         if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
+        else if (btns[5]) btns[5].classList.add('active');
       }
 
       function updateDayNav(id) {
         const idx = dayIds.indexOf(id);
+        const nav = document.getElementById('dayNav');
         const prev = document.getElementById('dayPrev');
         const next = document.getElementById('dayNext');
         const label = document.getElementById('dayNavLabel');
+        const isDay = ['overview','day1','day2','day3','day4'].includes(id);
+        nav.style.display = isDay ? 'flex' : 'none';
         if (idx <= 0) { prev.classList.add('disabled'); } else { prev.classList.remove('disabled'); }
         if (idx >= dayIds.length - 1) { next.classList.add('disabled'); } else { next.classList.remove('disabled'); }
         label.textContent = dayNames[idx] || '';
@@ -1111,7 +1153,8 @@
           const el = document.getElementById('weatherDays');
           el.innerHTML = '';
           for (let i = 0; i < 4; i++) {
-            el.innerHTML += '<div class="weather-day"><div class="wd-label">'+names[i]+'</div><div class="wd-icon">'+(codes[d.daily.weathercode[i]]||'\uD83C\uDF24\uFE0F')+'</div><div class="wd-high">'+Math.round(d.daily.temperature_2m_max[i])+'\u00B0</div><div class="wd-low">'+Math.round(d.daily.temperature_2m_min[i])+'\u00B0</div></div>';
+            const precip = d.daily.precipitation_probability_max[i];
+            el.innerHTML += '<div class="weather-day"><div class="wd-label">'+names[i]+'</div><div class="wd-icon">'+(codes[d.daily.weathercode[i]]||'\uD83C\uDF24\uFE0F')+'</div><div class="wd-high">'+Math.round(d.daily.temperature_2m_max[i])+'\u00B0</div><div class="wd-low">'+Math.round(d.daily.temperature_2m_min[i])+'\u00B0</div>'+(precip!=null?'<div style="font-size:0.6rem;color:var(--accent)">'+precip+'%</div>':'')+'</div>';
           }
           document.getElementById('weatherCard').style.display = 'block';
         } catch(e) {}
