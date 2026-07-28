@@ -317,12 +317,17 @@
       .nw-time { color: var(--muted); font-size: 0.7rem; flex-shrink: 0; }
       .nw-title { font-weight: 600; color: var(--text); }
       @media print {
-        .hdr, .tabs, .hdr-btns, .inst, .no-print, .bottom-nav, .more-overlay { display: none !important; }
+        .hdr, .tabs, .hdr-btns, .inst, .no-print, .bottom-nav, .more-overlay, .day-nav, #topBtn { display: none !important; }
         .sec { display: block !important; padding: 0 !important; }
         .sec::before { content: attr(data-t); display: block; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid #000; }
+        .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 8px; }
         * { color: #000 !important; background: #fff !important; }
-        body { padding: 0; font-size: 10pt; }
-        #topBtn { display: none !important; }
+        body { padding: 0; font-size: 10pt; line-height: 1.4; }
+        .day-div { background: #f5f5f5 !important; border: 1px solid #ccc !important; }
+        .day-num { color: #333 !important; }
+        .ti.now { border-left: 3px solid #333 !important; }
+        a { text-decoration: none !important; }
+        .maplink { color: #000 !important; }
       }
     </style>
   </head>
@@ -334,6 +339,7 @@
       </div>
       <div class="hdr-btns no-print">
         <button onclick="toggleDark()" id="darkBtn" title="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <button onclick="window.print()" title="Print itinerary"><i class="fa-solid fa-print"></i></button>
         <button onclick="goToday()" id="todayBtn" title="Jump to today's day"><i class="fa-solid fa-calendar-check"></i></button>
         <span id="hdrMenuBtn" style="position:relative">
           <button title="More" onclick="document.getElementById('hdrDropdown').classList.toggle('open')"><i class="fa-solid fa-bars"></i> <span class="btn-label">More</span></button>
@@ -962,7 +968,8 @@
         nav.style.display = isDay ? 'flex' : 'none';
         if (idx <= 0) { prev.classList.add('disabled'); } else { prev.classList.remove('disabled'); }
         if (idx >= dayIds.length - 1) { next.classList.add('disabled'); } else { next.classList.remove('disabled'); }
-        label.textContent = dayNames[idx] || '';
+        const labels = { overview:'Overview', day1:'Day 1 — Thu 30 Jul', day2:'Day 2 — Fri 31 Jul', day3:'Day 3 — Sat 1 Aug', day4:'Day 4 — Sun 2 Aug' };
+        label.textContent = labels[id] || dayNames[idx] || '';
       }
 
       function navDay(dir) {
@@ -977,7 +984,11 @@
         document.documentElement.classList.toggle('dark');
         localStorage.setItem('ox-dark', document.documentElement.classList.contains('dark'));
       }
-      if (localStorage.getItem('ox-dark') === 'true') document.documentElement.classList.add('dark');
+      if (localStorage.getItem('ox-dark') === null) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
+      } else if (localStorage.getItem('ox-dark') === 'true') {
+        document.documentElement.classList.add('dark');
+      }
 
       function goToday() {
         const now = new Date();
@@ -1170,7 +1181,9 @@
           const diff = tripStart - now;
           const days = Math.floor(diff / 86400000);
           const hrs = Math.floor((diff % 86400000) / 3600000);
-          el.innerHTML = '<div style="font-size:2rem;font-weight:800;color:var(--accent)">'+days+'d '+hrs+'h</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford Trip</div>';
+          const mins = Math.floor((diff % 3600000) / 60000);
+          const secs = Math.floor((diff % 60000) / 1000);
+          el.innerHTML = '<div style="font-size:1.8rem;font-weight:800;color:var(--accent)">'+days+'d '+hrs+'h '+mins+'m '+secs+'s</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford Trip</div>';
         } else if (now > tripEnd) {
           el.innerHTML = '<div style="font-size:1.2rem;font-weight:700;color:var(--muted)">Trip complete! \uD83C\uDF89</div>';
         } else {
@@ -1178,6 +1191,7 @@
         }
       }
       updateLive();
+      setInterval(updateLive, 1000);
 
       function updateNext() {
         const now = new Date();
