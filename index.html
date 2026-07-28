@@ -97,9 +97,10 @@
       .bottom-nav { display: none; }
       .day-nav { display: none; }
       @media (max-width: 640px) {
-        body { padding-bottom: 180px; }
+        body { padding-bottom: 180px; padding-top: 52px; }
         .tabs { display: none; }
-        .hdr { padding: 10px 14px; }
+        .hdr { padding: 10px 14px; position: fixed; border: none; transition: top 0.25s ease; }
+        .hdr.hidden { transform: none; top: -60px; }
         .hdr h1 { font-size: 1.05rem; }
         .hdr-sub { display: none; }
         .hdr-btns button { padding: 6px 8px; font-size: 0.8rem; }
@@ -1055,13 +1056,19 @@
       window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; });
       function installApp() { if (deferredPrompt) deferredPrompt.prompt(); }
 
-      let lastScroll = 0;
+      let lastScroll = 0, ticking = false;
       window.addEventListener('scroll', () => {
-        const hdr = document.querySelector('.hdr');
-        const cur = window.scrollY;
-        if (cur > lastScroll && cur > 100) hdr.classList.add('hidden');
-        else hdr.classList.remove('hidden');
-        lastScroll = cur;
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const hdr = document.querySelector('.hdr');
+            const cur = window.scrollY;
+            if (cur > lastScroll && cur > 100) hdr.classList.add('hidden');
+            else hdr.classList.remove('hidden');
+            lastScroll = cur;
+            ticking = false;
+          });
+          ticking = true;
+        }
       });
 
       function updateTimeline() {
