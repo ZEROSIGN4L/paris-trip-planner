@@ -52,7 +52,7 @@
       .dark .more-overlay button { color: var(--text) !important; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 80px; }
-      .hdr { background: linear-gradient(135deg, var(--blue), #001a33); color: #fff; padding: 16px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: transform 0.3s ease; }
+      .hdr { background: linear-gradient(135deg, var(--blue), #001a33); color: #fff; padding: 16px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: transform 0.3s ease; will-change: transform; backface-visibility: hidden; }
       .hdr.hidden { transform: translateY(-100%); }
       .hdr-left { min-width: 0; }
       .hdr h1 { font-size: 1.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -499,10 +499,9 @@
         <div class="ti trans"><div class="tt">09:00</div><div class="tn">Drive Manchester &rarr; Alcester</div><div class="td">M6 southbound to J4, then A435 to Alcester. ~2.5 hours.</div>
           <div class="steps"><b>Route:</b>
             <div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Manchester</div><div class="rf-line"></div><span class="rf-badge road">M6</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Alcester</div></div>
-            <ol><li>M6 south &mdash; left lanes, avoid lorries</li><li>Junction 4 &mdash; exit onto A435</li><li>Follow A435 to Alcester (~15 min)</li><li>Total: ~2h15 driving (150km / 93mi)</li></ol>
+            <ol><li>M6 south, follow signs for Birmingham</li><li>Junction 31 &mdash; exit onto A435 towards Alcester</li><li>Follow A435 for ~15 min &mdash; you're there</li><li>Total: ~2h15 driving (150km / 93mi)</li></ol>
           </div>
           <div class="car-tip">Services at Knutsford (J19) and Hilton Park (J11) &mdash; good for coffee + stretch.</div>
-          <div class="backup">M6 congestion around Birmingham. If heavy, consider M6 Toll (~&pound;7, avoids queues).</div>
         </div>
         <div class="ti brk"><div class="tt">~10:15</div><div class="tn">Service stop</div><div class="td">Coffee + comfort break. Stretch legs. Buy snacks for the rest of the journey.</div></div>
         <div class="ti"><div class="tt">~11:30</div><div class="tn">Arrive Alcester &mdash; Check in</div><div class="td">Hotel check-in. Drop bags, freshen up. Alcester is a small historic market town &mdash; worth a quick wander.</div></div>
@@ -519,6 +518,7 @@
         <div class="ti"><div class="tt">13:00-17:00</div><div class="tn">Stratford-upon-Avon afternoon</div><div class="td">Explore Shakespeare's birthplace town. Choose what interests you.</div>
           <div class="prep"><b>Must do:</b> Historic centre walk (free) &bull; Guild Chapel (free) &bull; River Avon walk (free)</div>
           <div class="prep"><b>If time:</b> Birthplace (~&pound;20) &bull; Schoolroom &amp; Guildhall (~&pound;15) &bull; MAD Museum (~&pound;8) &bull; Butterfly Farm (~&pound;7) &bull; River trip (~&pound;10, 30-45 min)</div>
+          <div class="prep" style="background:#fff3e0;border-left-color:#ff9800"><b>Book ahead:</b> Birthplace &amp; Schoolroom sell out in summer &mdash; book online to skip queues. River trips run on the day but check times.</div>
           <div class="act-grid">
             <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Shakespeare's Birthplace</span><span class="adesc">Go inside the house where Shakespeare was born. ~&pound;20 pp. Optional.</span></div>
             <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Shakespeare's Schoolroom &amp; Guildhall</span><span class="adesc">Where Shakespeare learned to write. Interactive exhibits. ~&pound;15 pp.</span></div>
@@ -800,6 +800,20 @@
         </table>
       </div>
       <div class="card">
+        <h3><i class="fa-solid fa-calendar-check fa-icon" style="color:#c0392b"></i> Book in Advance</h3>
+        <div class="hbox" style="margin-bottom:6px"><p><b>July = peak season!</b> These need booking ahead of time. Don't leave to the day.</p></div>
+        <table class="tt-table">
+          <thead><tr><th>Item</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><b>Footprint Tours (Fri 31)</b></td><td>Already booked. Check confirmation for meeting point &amp; time.</td></tr>
+            <tr><td><b>Christ Church (if visiting)</b></td><td>Book online at <a href="https://www.chch.ox.ac.uk/visiting" target="_blank" style="color:var(--blue)">chch.ox.ac.uk</a> &mdash; sells out in summer</td></tr>
+            <tr><td><b>Bodleian Library tour</b></td><td>Book at <a href="https://www.bodleian.ox.ac.uk/visiting/tours" target="_blank" style="color:var(--blue)">bodleian.ox.ac.uk</a> &mdash; best experience in Oxford</td></tr>
+            <tr><td><b>Lambs (Stratford dinner)</b></td><td>Phone ahead &mdash; popular restaurant, especially July evenings</td></tr>
+            <tr><td><b>King's Court hotel</b></td><td>Confirmed. Keep booking reference in Key Info card.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
         <h3><i class="fa-solid fa-landmark fa-icon" style="color:var(--blue)"></i> Oxford Tips</h3>
         <table class="tt-table">
           <thead><tr><th>Tip</th><th>Detail</th></tr></thead>
@@ -1052,6 +1066,9 @@
 
       function updateTimeline() {
         const now = new Date();
+        const tripStart = new Date('2026-07-30');
+        const tripEnd = new Date('2026-08-02T23:59:59');
+        if (now < tripStart || now > tripEnd) return;
         const h = now.getHours(), m = now.getMinutes();
         const nowMinutes = h * 60 + m;
         document.querySelectorAll('.sec.active .ti').forEach(ti => {
