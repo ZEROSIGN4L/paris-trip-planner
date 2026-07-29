@@ -125,7 +125,7 @@
         .ti::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 10px; top: 12px; font-size: 0.55rem; color: var(--muted); transition: transform 0.25s ease; }
         .ti.expanded::after { transform: rotate(180deg); }
         .sec .ti > .td, .sec .ti > .th, .sec .ti > .steps, .sec .ti > .bath, .sec .ti > .backup, .sec .ti > .prep, .sec .ti > .calm, .sec .ti > .hbox, .sec .ti > .quote, .sec .ti > .maplink, .sec .ti > .res-grid, .sec .ti > .act-grid, .sec .ti > .route-flow, .sec .ti > .res-item, .sec .ti > .act-item { display: none; }
-        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .quote, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; }
+        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .quote, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; will-change: transform, opacity; }
         .ti > .tn { margin-right: 20px; }
         @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
         .day-div { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
@@ -151,7 +151,8 @@
         .more-overlay button i { width: 20px; text-align: center; color: var(--muted); }
       }
       .ti.now { border-left: 3px solid #16a34a !important; background: rgba(22,163,74,0.06); z-index: 2; }
-      .ti.now::before { background: #16a34a !important; box-shadow: 0 0 0 2px #16a34a, 0 0 8px rgba(22,163,74,0.4) !important; }
+      .ti.now::before { background: #16a34a !important; box-shadow: 0 0 0 2px #16a34a, 0 0 8px rgba(22,163,74,0.4) !important; animation: nowPulse 2s ease-in-out infinite !important; }
+      @keyframes nowPulse { 0%, 100% { box-shadow: 0 0 0 2px #16a34a, 0 0 8px rgba(22,163,74,0.4); } 50% { box-shadow: 0 0 0 4px #16a34a, 0 0 16px rgba(22,163,74,0.6); } }
       .now-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #16a34a; background: rgba(22,163,74,0.1); padding: 2px 8px; border-radius: 8px; margin-left: 8px; }
       .now-badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #16a34a; }
       .ti.past { opacity: 0.55; }
@@ -161,9 +162,21 @@
       .recipe-num { flex-shrink: 0; width: 26px; height: 26px; background: #92400e; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; }
       .tab { flex: none; padding: 11px 13px; font-size: 0.76rem; font-weight: 500; color: var(--muted); cursor: pointer; border: none; border-bottom: 2px solid transparent; white-space: nowrap; background: none; }
       .tab.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 600; }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
       .sec { display: none; padding: 14px; max-width: 700px; margin: 0 auto; }
-      .sec.active { display: block; }
-      .card { background: var(--card); border-radius: var(--r); padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+      .sec.active { display: block; animation: fadeUp 0.3s ease; }
+      .sec.active .card { animation: fadeIn 0.4s ease both; }
+      .sec.active .card:nth-child(2) { animation-delay: 0.05s; }
+      .sec.active .card:nth-child(3) { animation-delay: 0.1s; }
+      .sec.active .card:nth-child(4) { animation-delay: 0.15s; }
+      .sec.active .card:nth-child(5) { animation-delay: 0.2s; }
+      .sec.active .card:nth-child(6) { animation-delay: 0.25s; }
+      .sec.active .card:nth-child(7) { animation-delay: 0.3s; }
+      .sec.active .card:nth-child(8) { animation-delay: 0.35s; }
+      .card { background: var(--card); border-radius: var(--r); padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border: 1px solid var(--border); transition: box-shadow 0.25s ease, transform 0.25s ease; }
+      .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); transform: translateY(-1px); }
+      .dark .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
       .card h3 { font-size: 0.9rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
       .card p, .card li { font-size: 0.82rem; line-height: 1.6; color: #444; }
       .card ul { padding-left: 16px; }
@@ -347,7 +360,7 @@
         <div class="hdr-sub">Thu 30 Jul &mdash; Sat 1 Aug 2026 | 3 Days | Kings Court Hotel, Alveston</div>
       </div>
       <div class="hdr-btns no-print">
-        <button onclick="toggleDark()" id="darkBtn" title="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+        <button onclick="toggleDark()" id="darkBtn" title="Toggle dark mode"><i id="darkIcon" class="fa-solid fa-moon"></i></button>
         <button onclick="window.print()" title="Print itinerary"><i class="fa-solid fa-print"></i></button>
         <button onclick="goToday()" id="todayBtn" title="Jump to today's day"><i class="fa-solid fa-calendar-check"></i></button>
         <span id="hdrMenuBtn" style="position:relative">
@@ -445,6 +458,53 @@
           <li>Restaurant open 12PM&ndash;9PM daily</li>
         </ul>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alveston" target="_blank" style="margin-top:4px">Kings Court Hotel on maps</a>
+      </div>
+      <div class="card" style="padding:16px">
+        <h3><i class="fa-solid fa-gauge-high fa-icon" style="color:var(--blue)"></i> Trip at a Glance</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px;margin-top:8px">
+          <div style="text-align:center;padding:8px 4px;background:var(--card-bg);border-radius:10px;border:1px solid var(--border);animation:fadeIn 0.4s ease 0s both">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--accent)">~7h</div>
+            <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Total driving</div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;background:var(--card-bg);border-radius:10px;border:1px solid var(--border);animation:fadeIn 0.4s ease 0.05s both">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--accent)">4</div>
+            <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Villages</div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;background:var(--card-bg);border-radius:10px;border:1px solid var(--border);animation:fadeIn 0.4s ease 0.1s both">
+            <div style="font-size:1.2rem;font-weight:800;color:#2e7d32">4</div>
+            <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Free museums</div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;background:var(--card-bg);border-radius:10px;border:1px solid var(--border);animation:fadeIn 0.4s ease 0.15s both">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--accent)">2</div>
+            <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Walking tours</div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;background:var(--card-bg);border-radius:10px;border:1px solid var(--border);animation:fadeIn 0.4s ease 0.2s both">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--blue)">2</div>
+            <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">NT gardens</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-route fa-icon" style="color:var(--accent)"></i> Route</h3>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;justify-content:center;padding:8px 0">
+          <span style="font-weight:700;color:var(--accent)">Devonport</span>
+          <span style="color:var(--muted);font-size:0.7rem">M5 &bull; 2h20m</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span><span style="width:20px;height:2px;background:var(--accent);display:inline-block;opacity:0.3"></span><span style="width:6px;height:6px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);display:inline-block;opacity:0.5"></span></span>
+          <span style="font-weight:600">Stratford</span>
+          <span style="color:var(--muted);font-size:0.7rem">A46 &bull; 10m</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block"></span><span style="width:20px;height:2px;background:var(--muted);display:inline-block"></span><span style="width:6px;height:6px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);display:inline-block"></span></span>
+          <span style="font-weight:600">Hotel</span>
+          <span style="color:var(--muted);font-size:0.7rem">M40 &bull; 1h7m</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span><span style="width:20px;height:2px;background:var(--blue);display:inline-block"></span><span style="width:6px;height:6px;border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg);display:inline-block"></span></span>
+          <span style="font-weight:600">Oxford</span>
+          <span style="color:var(--muted);font-size:0.7rem">M40 &bull; 1h7m</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block"></span><span style="width:20px;height:2px;background:var(--blue);display:inline-block"></span><span style="width:6px;height:6px;border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg);display:inline-block"></span></span>
+          <span style="font-weight:600">Hotel</span>
+          <span style="color:var(--muted);font-size:0.7rem">M5 &bull; 3h</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span><span style="width:20px;height:2px;background:var(--accent);display:inline-block"></span><span style="width:6px;height:6px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);display:inline-block"></span></span>
+          <span style="font-weight:700;color:var(--accent)">Home</span>
+        </div>
+        <div style="text-align:center;font-size:0.68rem;color:var(--muted);margin-top:4px">A loop through history, spires &amp; honey-coloured stone</div>
       </div>
       <div class="hbox green">
         <p><b><i class="fa-solid fa-frog fa-icon" style="color:#4caf50"></i> Froggy Comfort Plan:</b> Car available everywhere | NT houses with cafes | Museum benches in Oxford | Long drives with comfort stops | Max ~4-5km walking per day</p>
@@ -933,17 +993,21 @@
         if (next >= 0 && next < dayIds.length) show(dayIds[next]);
       }
 
-      tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.s)));
+      tabs.forEach(t => t.addEventListener('click', () => { show(t.dataset.s); setTimeout(showTapHint, 100); }));
 
       function toggleDark() {
         document.documentElement.classList.toggle('dark');
         localStorage.setItem('ox-dark', document.documentElement.classList.contains('dark'));
+        const icon = document.getElementById('darkIcon');
+        if (icon) icon.className = document.documentElement.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
       }
       if (localStorage.getItem('ox-dark') === null) {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
       } else if (localStorage.getItem('ox-dark') === 'true') {
         document.documentElement.classList.add('dark');
       }
+      const darkIcon = document.getElementById('darkIcon');
+      if (darkIcon) darkIcon.className = document.documentElement.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 
       function goToday() {
         const now = new Date();
@@ -968,17 +1032,19 @@
         });
       });
 
-      if (window.innerWidth <= 640) {
-        const firstTi = document.querySelector('.sec.active .ti');
-        if (firstTi && !firstTi.querySelector('.expand-hint')) {
-          const hint = document.createElement('div');
-          hint.className = 'expand-hint';
-          hint.textContent = 'Tap to expand';
-          hint.style.cssText = 'font-size:0.6rem;color:var(--muted);text-align:center;padding:4px;margin-top:2px;';
-          document.querySelector('.sec.active .tl')?.prepend(hint);
-          setTimeout(() => { hint.style.display = 'none'; }, 4000);
-        }
+      function showTapHint() {
+        if (window.innerWidth > 640) return;
+        document.querySelectorAll('.expand-hint').forEach(e => e.remove());
+        const tl = document.querySelector('.sec.active .tl');
+        if (!tl) return;
+        const hint = document.createElement('div');
+        hint.className = 'expand-hint';
+        hint.textContent = 'Tap items to expand \u25BC';
+        hint.style.cssText = 'font-size:0.6rem;color:var(--muted);text-align:center;padding:4px 8px;margin-bottom:6px;background:var(--card-bg);border-radius:20px;opacity:1;transition:opacity 0.6s;';
+        tl.parentNode.insertBefore(hint, tl);
+        setTimeout(() => { hint.style.opacity = '0'; setTimeout(() => hint.remove(), 600); }, 3000);
       }
+      showTapHint();
 
       document.querySelectorAll('.meal-collapse').forEach(mc => {
         mc.addEventListener('click', function(e) {
@@ -1136,7 +1202,9 @@
             const precip = d.daily.precipitation_probability_max[i];
             el.innerHTML += '<div class="weather-day"><div class="wd-label">'+names[i]+'</div><div class="wd-icon">'+(codes[d.daily.weathercode[i]]||'\uD83C\uDF24\uFE0F')+'</div><div class="wd-high">'+Math.round(d.daily.temperature_2m_max[i])+'\u00B0</div><div class="wd-low">'+Math.round(d.daily.temperature_2m_min[i])+'\u00B0</div>'+(precip!=null?'<div style="font-size:0.6rem;color:var(--accent)">'+precip+'%</div>':'')+'</div>';
           }
-          document.getElementById('weatherCard').style.display = 'block';
+          const wc = document.getElementById('weatherCard');
+          wc.style.display = 'block';
+          wc.style.animation = 'fadeIn 0.5s ease';
         } catch(e) {}
       }
       loadWeather();
@@ -1153,7 +1221,7 @@
           const mins = Math.floor((diff % 3600000) / 60000);
           const secs = Math.floor((diff % 60000) / 1000);
           const dayStr = days > 0 ? days+'d ' : '';
-          el.innerHTML = '<div style="font-size:1.8rem;font-weight:800;color:var(--accent)">'+dayStr+hrs+'h '+mins+'m '+secs+'s</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford &amp; Cotswolds Trip</div>';
+          el.innerHTML = '<div style="font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),#e67e22);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+dayStr+hrs+'h '+mins+'m '+secs+'s</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford &amp; Cotswolds Trip</div>';
         } else if (now > tripEnd) {
           el.innerHTML = '<div style="font-size:1.2rem;font-weight:700;color:var(--muted)">Trip complete! \uD83C\uDF89</div>';
         } else {
