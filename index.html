@@ -50,6 +50,7 @@
       .dark .energy-note { color: var(--muted) !important; }
       .dark a.maplink { color: #64b5f6 !important; }
       .dark .more-overlay button { color: var(--text) !important; }
+      #progressBar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #f59e0b, #c0392b); z-index: 1001; transition: width 0.1s; width: 0%; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 80px; }
       .hdr { background: linear-gradient(135deg, var(--blue), #001a33); color: #fff; padding: 16px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: transform 0.3s ease; will-change: transform; backface-visibility: hidden; }
@@ -123,8 +124,8 @@
         .ti:active { background: var(--card-bg); }
         .ti::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 10px; top: 12px; font-size: 0.55rem; color: var(--muted); transition: transform 0.25s ease; }
         .ti.expanded::after { transform: rotate(180deg); }
-        .sec .ti > .td, .sec .ti > .th, .sec .ti > .steps, .sec .ti > .bath, .sec .ti > .backup, .sec .ti > .prep, .sec .ti > .calm, .sec .ti > .hbox, .sec .ti > .maplink, .sec .ti > .res-grid, .sec .ti > .act-grid, .sec .ti > .route-flow, .sec .ti > .res-item, .sec .ti > .act-item { display: none; }
-        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; }
+        .sec .ti > .td, .sec .ti > .th, .sec .ti > .steps, .sec .ti > .bath, .sec .ti > .backup, .sec .ti > .prep, .sec .ti > .calm, .sec .ti > .hbox, .sec .ti > .quote, .sec .ti > .maplink, .sec .ti > .res-grid, .sec .ti > .act-grid, .sec .ti > .route-flow, .sec .ti > .res-item, .sec .ti > .act-item { display: none; }
+        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .quote, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; }
         .ti > .tn { margin-right: 20px; }
         @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
         .day-div { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
@@ -171,6 +172,12 @@
       .hbox p { font-size: 0.8rem; line-height: 1.5; }
       .hbox.blue { background: linear-gradient(135deg, #e3f2fd, #e8eaf6); border-left-color: var(--blue); }
       .hbox.green { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border-left-color: var(--green); }
+      .quote { font-style: italic; font-size: 0.78rem; color: #8b6914; background: linear-gradient(135deg, #fff8e1, #fffde7); border-left: 3px solid #b8860b; padding: 8px 12px; border-radius: 0 8px 8px 0; margin: 6px 0; line-height: 1.6; }
+      .quote::before { content: "\f10d"; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-right: 0.4em; font-size: 0.8em; color: #b8860b; }
+      .pack-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+      .pack-progress-bar { flex: 1; height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
+      .pack-progress-fill { height: 100%; background: var(--blue); border-radius: 99px; transition: width 0.3s ease; width: 0%; }
+      .pack-progress-text { font-size: 0.72rem; font-weight: 700; color: var(--muted); min-width: 30px; text-align: right; }
       .igrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
       .icard { background: var(--card); border-radius: var(--r); padding: 14px 10px 12px; text-align: center; border: 2px solid var(--border); }
       .icard .icon { width: 52px; height: 52px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 6px; }
@@ -332,6 +339,8 @@
     </style>
   </head>
   <body>
+    <div id="progressBar"></div>
+
     <div class="hdr">
       <div class="hdr-left">
         <h1>Oxford &amp; Cotswolds Trip</h1>
@@ -430,6 +439,7 @@
       <div class="hbox green">
         <p><b><i class="fa-solid fa-frog fa-icon" style="color:#4caf50"></i> Froggy Comfort Plan:</b> Car available everywhere | NT houses with cafes | Museum benches in Oxford | Max ~4-5km walking per day</p>
       </div>
+      <div class="quote">The mind is everything. What you think you become. &mdash; Buddha</div>
       <div class="card">
         <h3>Day-by-Day</h3>
         <ul>
@@ -498,6 +508,7 @@
       </div>
       <div class="tl">
         <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Short drive from home. Walking tour booked at 2PM &mdash; arrive with time to park and find the meeting point.</div>
+        <div class="quote">The way is not in the sky. The way is in the heart. &mdash; Buddha</div>
         <div class="ti"><div class="tt">09:00</div><div class="tn">Wake up + breakfast at home</div><div class="td">Relaxed morning. Pack bags. No rush.</div></div>
         <div class="ti dep"><div class="tt">10:30</div><div class="tn">Drive to Stratford-upon-Avon</div><div class="td">Short drive from home (B49 5QQ). ~15 min. Park in the town centre.</div>
           <div class="steps"><b>Parking:</b><ol><li><b>Bridge Street car park</b> &mdash; closest to centre</li><li><b>Riverside car park</b> &mdash; near the river</li><li>Pay by phone or pay-and-display</li></ol></div>
@@ -509,6 +520,8 @@
             <div class="act-item"><span class="aname"><i class="fa-solid fa-church fa-icon" style="color:#8b6914"></i> Guild Chapel</span><span class="adesc">Free. Medieval wall paintings. Quiet and atmospheric.</span></div>
             <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Harris &amp; Hoole</span><span class="adesc">Independent coffee shop. Good cakes.</span></div>
           </div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Guild+Chapel+Stratford+upon+Avon" target="_blank">Guild Chapel</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Harris+and+Hoole+Stratford+upon+Avon" target="_blank">Harris &amp; Hoole</a>
         </div>
         <div class="ti brk"><div class="tt">12:00</div><div class="tn">Lunch in Stratford</div><div class="td">
           <div class="res-grid">
@@ -527,6 +540,9 @@
             <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> River trip</span><span class="adesc">Scenic boat trip on the Avon. ~&pound;10 pp, 30-45 min.</span></div>
             <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Shops + historic streets</span><span class="adesc">Half-timbered Tudor buildings, independent shops.</span></div>
           </div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Shakespeare+Birthplace+Stratford+upon+Avon" target="_blank">Shakespeare's Birthplace</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MAD+Museum+Stratford+upon+Avon" target="_blank">MAD Museum</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Butterfly+Farm+Stratford+upon+Avon" target="_blank">Butterfly Farm</a>
         </div>
         <div class="ti"><div class="tt">~17:00</div><div class="tn">Check in: Kings Court Hotel</div><div class="td">Head to the hotel (10 min drive from Stratford). Premier Double Room. Room ready from 3PM (early check-in available &pound;10/hr from 12PM).</div>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alveston" target="_blank">Kings Court Hotel</a>
@@ -538,6 +554,8 @@
             <div class="res-item budget"><span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> The Dirty Duck</span><span class="rdesc">Riverside pub. Classic British. RSC actors eat here.</span><span class="rprice">&pound;12-20 pp</span></div>
             <div class="res-item budget"><span class="rname">Kings Court restaurant</span><span class="rdesc">Hotel restaurant. Convenient if you're tired.</span><span class="rprice">&pound;12-18 pp</span></div>
           </div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Lambs+restaurant+Sheep+Street+Stratford+upon+Avon" target="_blank">Lambs Restaurant</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=The+Dirty+Duck+Stratford+upon+Avon" target="_blank">The Dirty Duck</a>
         </div>
         <div class="ti rest"><div class="tt">20:00</div><div class="tn">Hotel &mdash; relax <i class="fa-solid fa-bed fa-icon"></i></div><div class="td">Settle in. Oxford tomorrow!</div></div>
       </div>
@@ -551,6 +569,7 @@
       </div>
       <div class="tl">
         <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Your day to decide. This is a flexible framework &mdash; pick what looks good.</div>
+        <div class="quote">Peace comes from within. Do not seek it without. &mdash; Buddha</div>
         <div class="ti"><div class="tt">08:00</div><div class="tn">Wake up + breakfast at hotel</div><div class="td">Hotel breakfast 6:30-9:30AM. Fuel up for the day.</div></div>
         <div class="ti trans"><div class="tt">09:30</div><div class="tn">Drive to Oxford Parkway Park &amp; Ride</div><div class="td">~1 hour via M40. Park at Oxford Parkway (OX2 8HA) &mdash; cheap parking, frequent bus into city centre (15 min).</div>
           <div class="steps"><b>Route:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Kings Court Hotel</div><div class="rf-line"></div><span class="rf-badge road">A429</span><div class="rf-line"></div><span class="rf-badge road">M40</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Oxford Parkway P&amp;R</div></div>
@@ -573,6 +592,13 @@
             <div class="act-item"><span class="aname"><i class="fa-solid fa-shopping-bag fa-icon"></i> Covered Market</span><span class="adesc">Historic market (since 1774). Food stalls, indie shops.</span></div>
             <div class="act-item"><span class="aname"><i class="fa-solid fa-university fa-icon" style="color:var(--blue)"></i> Colleges walk</span><span class="adesc">Walk through the college quarter. Free to admire from outside.</span></div>
           </div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Radcliffe+Camera+Oxford" target="_blank">Radcliffe Camera</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=History+of+Science+Museum+Oxford" target="_blank">History of Science Museum</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Museum+of+Natural+History+Oxford" target="_blank">Natural History Museum</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Ashmolean+Museum+Oxford" target="_blank">Ashmolean Museum</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Christ+Church+Oxford" target="_blank">Christ Church</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Covered+Market+Oxford" target="_blank">Covered Market</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Oxford+city+centre+colleges" target="_blank">Colleges quarter</a>
         </div>
         <div class="ti brk"><div class="tt">lunch</div><div class="tn">Lunch in Oxford</div><div class="td">
           <div class="res-grid">
@@ -600,6 +626,7 @@
       </div>
       <div class="tl">
         <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Check-out 11AM. Pack the car before breakfast if needed.</div>
+        <div class="quote">In the end, only three things matter: how much you loved, how gently you lived, and how gracefully you let go of things not meant for you. &mdash; Buddha</div>
         <div class="ti"><div class="tt">08:00</div><div class="tn">Wake up + pack the car</div><div class="td">Pack bags, load the car. Last chance to check the room.</div></div>
         <div class="ti"><div class="tt">08:30</div><div class="tn">Breakfast at hotel</div><div class="td">Sat breakfast 7:30-10:00AM. Enjoy it!</div></div>
         <div class="ti"><div class="tt">10:00-11:00</div><div class="tn">Check out</div><div class="td">Check out by 11AM. Late check-out (12PM) available for &pound;10 if you want more time.</div></div>
@@ -624,6 +651,8 @@
             <div class="act-item"><span class="aname"><i class="fa-solid fa-water fa-icon" style="color:#1565c0"></i> Bourton-on-the-Water</span><span class="adesc">"Venice of the Cotswolds" &mdash; low bridges over the River Windrush. Charming.</span></div>
             <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Tea rooms</span><span class="adesc">Plenty of options in both villages for a quick stop.</span></div>
           </div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Stow+on+the+Wold+market+square" target="_blank">Stow-on-the-Wold</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bourton+on+the+Water" target="_blank">Bourton-on-the-Water</a>
         </div>
         <div class="ti trans"><div class="tt">14:45</div><div class="tn">Drive to Broadway</div><div class="td">~15 min. One of the prettiest Cotswolds villages. Honey-coloured stone.</div></div>
         <div class="ti"><div class="tt">15:00-15:45</div><div class="tn">Broadway</div><div class="td">Beautiful Cotswolds village with a famous wide main street lined with antique shops and tea rooms.</div>
@@ -631,6 +660,7 @@
             <div class="act-item"><span class="aname"><i class="fa-solid fa-person-walking fa-icon"></i> The Green + High Street</span><span class="adesc">Wide village green, honey-coloured stone buildings. Beautiful photo spot.</span></div>
             <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Cream tea stop</span><span class="adesc">Last chance for a proper Cotswolds cream tea.</span></div>
           </div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Broadway+Cotswolds" target="_blank">Broadway village</a>
         </div>
         <div class="ti trans"><div class="tt">15:45</div><div class="tn">Drive via Worcester &rarr; Home</div><div class="td">~30 min to Worcester, then ~40 min home. Nice drive.</div>
           <div class="steps"><b>Route:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Broadway</div><div class="rf-line"></div><span class="rf-badge road">A44</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Worcester</div><div class="rf-line"></div><span class="rf-badge road">M5</span><div class="rf-line"></div><span class="rf-badge road">A44</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Home</div></div></div>
@@ -657,6 +687,7 @@
           <li><b>Highlight:</b> The Great Hall (dining hall), Tom Tower, Christ Church Cathedral</li>
         </ul>
         <div class="hbox"><p><b>Book ASAP!</b> Christ Church often sells out days in advance in July. Don't leave it to the day.</p></div>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Christ+Church+Oxford" target="_blank">Christ Church on maps</a>
       </div>
       <div class="card">
         <h3><i class="fa-solid fa-deer fa-icon" style="color:#2e7d32"></i> Magdalen College</h3>
@@ -667,6 +698,7 @@
           <li><b>Allow:</b> 1-1.5 hours</li>
           <li><b>Highlight:</b> Deer park, Great Quad, riverside walk, chapel</li>
         </ul>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Magdalen+College+Oxford" target="_blank">Magdalen College on maps</a>
       </div>
       <div class="card">
         <h3><i class="fa-solid fa-door-open fa-icon" style="color:#8b6914"></i> New College</h3>
@@ -677,6 +709,7 @@
           <li><b>Allow:</b> 30-45 min</li>
           <li><b>Highlight:</b> Cloisters (Chapel Cloister &amp; War Memorial Garden)</li>
         </ul>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=New+College+Oxford" target="_blank">New College on maps</a>
       </div>
       <div class="card">
         <h3><i class="fa-solid fa-book fa-icon" style="color:var(--blue)"></i> Merton College</h3>
@@ -687,6 +720,7 @@
           <li><b>Allow:</b> 30-45 min</li>
           <li><b>Highlight:</b> The Mob Library, Fellows' Quad</li>
         </ul>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Merton+College+Oxford" target="_blank">Merton College on maps</a>
       </div>
       <div class="card">
         <h3><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Practical Tips</h3>
@@ -839,6 +873,8 @@
           <li><b>Warwick Castle</b> &mdash; Medieval castle with towers, ramparts, shows. ~&pound;25 pp. Full day.</li>
           <li><b>Kenilworth Castle</b> &mdash; Ruined Elizabethan castle. Atmospheric, less touristy. ~&pound;12 pp. Half day.</li>
         </ul>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Warwick+Castle" target="_blank">Warwick Castle</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kenilworth+Castle" target="_blank">Kenilworth Castle</a>
       </div>
     </div>
     <button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
@@ -897,7 +933,7 @@
         const prev = document.getElementById('dayPrev');
         const next = document.getElementById('dayNext');
         const label = document.getElementById('dayNavLabel');
-        const isDay = ['overview','day1','day2','day3','day4'].includes(id);
+        const isDay = ['overview','day1','day2','day3'].includes(id);
         nav.style.display = isDay ? 'flex' : 'none';
         if (idx <= 0) { prev.classList.add('disabled'); } else { prev.classList.remove('disabled'); }
         if (idx >= dayIds.length - 1) { next.classList.add('disabled'); } else { next.classList.remove('disabled'); }
@@ -945,6 +981,18 @@
           this.classList.toggle('expanded');
         });
       });
+
+      if (window.innerWidth <= 640) {
+        const firstTi = document.querySelector('.sec.active .ti');
+        if (firstTi && !firstTi.querySelector('.expand-hint')) {
+          const hint = document.createElement('div');
+          hint.className = 'expand-hint';
+          hint.textContent = 'Tap to expand';
+          hint.style.cssText = 'font-size:0.6rem;color:var(--muted);text-align:center;padding:4px;margin-top:2px;';
+          document.querySelector('.sec.active .tl')?.prepend(hint);
+          setTimeout(() => { hint.style.display = 'none'; }, 4000);
+        }
+      }
 
       document.querySelectorAll('.meal-collapse').forEach(mc => {
         mc.addEventListener('click', function(e) {
@@ -1043,6 +1091,9 @@
 
       let lastScroll = 0, ticking = false;
       window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        document.getElementById('progressBar').style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + '%' : '0%';
         if (!ticking) {
           requestAnimationFrame(() => {
             const hdr = document.querySelector('.hdr');
@@ -1059,7 +1110,7 @@
       function updateTimeline() {
         const now = new Date();
         const tripStart = new Date('2026-07-30');
-        const tripEnd = new Date('2026-08-02T23:59:59');
+        const tripEnd = new Date('2026-08-01T23:59:59');
         if (now < tripStart || now > tripEnd) return;
         const h = now.getHours(), m = now.getMinutes();
         const nowMinutes = h * 60 + m;
