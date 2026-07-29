@@ -338,6 +338,41 @@
       .nw-label.nw-label-next { color: #ca8a04; }
       .nw-time { color: var(--muted); font-size: 0.7rem; flex-shrink: 0; }
       .nw-title { font-weight: 600; color: var(--text); }
+      .bk-hdr { font-size:0.8rem;font-weight:700;color:var(--blue);margin:10px 0 6px;display:flex;align-items:center;gap:6px; }
+      .bk-hdr i { color:var(--muted); }
+      .bk-sub { font-size:0.72rem;color:var(--muted);margin-bottom:10px; }
+      .bk-grid { display:grid;gap:8px; }
+      .bk-card { background:var(--card);border-radius:10px;border:1px solid var(--border);padding:0;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s,transform 0.2s;position:relative; }
+      .bk-card:hover { box-shadow:0 3px 16px rgba(0,0,0,0.08);transform:translateY(-1px); }
+      .bk-card-inner { padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1; }
+      .bk-top { display:flex;justify-content:space-between;align-items:flex-start;gap:8px; }
+      .bk-title { font-size:0.88rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px; }
+      .bk-title i { width:18px;text-align:center;flex-shrink:0; }
+      .bk-check { width:20px;height:20px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.2s;background:var(--bg); }
+      .bk-check.checked { background:var(--blue);border-color:var(--blue); }
+      .bk-check.checked::after { content:"\2713";color:#fff;font-size:0.75rem;font-weight:700; }
+      .bk-desc { font-size:0.75rem;color:var(--muted);line-height:1.5; }
+      .bk-footer { display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:2px;flex-wrap:wrap; }
+      .bk-price { font-weight:700;font-size:0.78rem;color:var(--accent); }
+      .bk-price.free { color:var(--green); }
+      .bk-tag { font-size:0.6rem;padding:2px 8px;border-radius:99px;font-weight:600; }
+      .bk-tag.booked { background:rgba(22,163,74,0.1);color:#16a34a; }
+      .bk-tag.must { background:rgba(192,57,43,0.1);color:var(--accent); }
+      .bk-tag.optional { background:rgba(245,127,23,0.1);color:#e65100; }
+      .bk-tag.free { background:rgba(76,175,80,0.1);color:var(--green); }
+      .bk-link { display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:var(--blue);text-decoration:none;font-weight:600;padding:4px 10px;border-radius:6px;background:rgba(0,33,71,0.06); }
+      .bk-link:hover { background:rgba(0,33,71,0.12); }
+      .bk-link i { font-size:0.65rem; }
+      .dark .bk-card { border-color:#333; }
+      .dark .bk-check { background:#222;border-color:#555; }
+      .dark .bk-link { background:rgba(100,181,246,0.1); }
+      @media (min-width:641px) {
+        .bk-grid { grid-template-columns:1fr 1fr; }
+      }
+      @media (max-width:640px) {
+        .bk-grid { grid-template-columns:1fr; }
+        .bk-card-inner { padding:10px 12px; }
+      }
       @media print {
         .hdr, .tabs, .hdr-btns, .inst, .no-print, .bottom-nav, .more-overlay, .day-nav, #topBtn { display: none !important; }
         .sec { display: block !important; padding: 0 !important; }
@@ -368,6 +403,7 @@
         <span id="hdrMenuBtn" style="position:relative">
           <button title="More" onclick="document.getElementById('hdrDropdown').classList.toggle('open')"><i class="fa-solid fa-bars"></i> <span class="btn-label">More</span></button>
           <div class="hdr-dropdown" id="hdrDropdown">
+            <button onclick="show('book');document.getElementById('hdrDropdown').classList.remove('open')"><i class="fa-solid fa-ticket"></i> Book These</button>
             <button onclick="show('colleges');document.getElementById('hdrDropdown').classList.remove('open')"><i class="fa-solid fa-graduation-cap"></i> Colleges</button>
             <button onclick="show('pack');document.getElementById('hdrDropdown').classList.remove('open')"><i class="fa-solid fa-suitcase"></i> Packing</button>
             <button onclick="show('tips');document.getElementById('hdrDropdown').classList.remove('open')"><i class="fa-solid fa-lightbulb"></i> Tips</button>
@@ -384,6 +420,7 @@
       <button class="tab" data-s="day1">Day 1</button>
       <button class="tab" data-s="day2">Day 2</button>
       <button class="tab" data-s="day3">Day 3</button>
+      <button class="tab" data-s="book">Book These</button>
       <button class="tab" data-s="colleges">Colleges</button>
       <button class="tab" data-s="pack">Packing</button>
       <button class="tab" data-s="tips">Tips</button>
@@ -920,9 +957,176 @@
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Warwick+Castle" target="_blank">Warwick Castle</a>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kenilworth+Castle" target="_blank">Kenilworth Castle</a>
       </div>
-    </div>
-    <button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
 
+    <!-- BOOK THESE -->
+    <div id="book" class="sec" data-t="Book These">
+      <div class="day-div">Book These <span style="font-size:0.72rem;color:var(--muted);font-weight:400">&mdash; Tick what you want to do, then book them</span></div>
+      <div class="card" style="text-align:center;padding:14px">
+        <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px">
+          <div><span style="font-size:0.65rem;color:var(--muted)">Selected</span><br><span id="bkCount" style="font-size:1.6rem;font-weight:800;color:var(--blue)">0</span></div>
+          <div><span style="font-size:0.65rem;color:var(--muted)">Est. cost</span><br><span id="bkCost" style="font-size:1.6rem;font-weight:800;color:var(--accent)">&pound;0</span></div>
+          <div><span style="font-size:0.65rem;color:var(--muted)">To book now</span><br><span id="bkToBook" style="font-size:1.6rem;font-weight:800;color:#e65100">0</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-car fa-icon"></i> Day 1 &mdash; Stratford-upon-Avon</h3>
+        <div class="bk-sub">Thu 30 July. Arrive ~12:50, walking tour at 14:00, evening free.</div>
+        <div class="bk-grid">
+          <div class="bk-card" data-bk="s-town-walk">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-person-walking" style="color:#283593"></i> Stratford Town Walk</div>              <div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Guided walking tour of Shakespeare's Stratford. Covers history, Tudor buildings, hidden stories. 1.5 hours.</div>
+              <div class="bk-footer"><span class="bk-price free">FREE</span><span class="bk-tag booked">&#10003; Booked</span><a class="bk-link" href="https://www.google.com/maps/search/?api=1&query=Stratford+upon+Avon" target="_blank"><i class="fa-solid fa-location-dot"></i> Meeting point</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="s-birthplace">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-feather-pointed" style="color:#8b6914"></i> Shakespeare's Birthplace</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">The Bard's childhood home on Henley Street. Tudor house, period gardens, live performances. Allow 1 hour.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;20</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.shakespeare.org.uk/visit/shakespeares-birthplace/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Book</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="s-mad">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-robot" style="color:#7b1fa2"></i> MAD Museum</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Mechanical art &amp; weird machines. Interactive, playful, super fun. 30-45 min.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;8</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://themadmuseum.co.uk/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="s-butterfly">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-butterfly" style="color:#e65100"></i> Butterfly Farm</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Tropical butterfly house. Hundreds of free-flying butterflies, tropical plants. 30 min.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;7</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.butterflyfarm.co.uk/stratford/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="s-river">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-sailboat" style="color:#1565c0"></i> River Avon Trip</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">30-min boat cruise on the River Avon. Views of the RSC theatre, Bancroft Gardens, swans.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;10</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.stratfordavoncruises.co.uk/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="s-lambs">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-utensils" style="color:#92400e"></i> Lambs Restaurant (dinner)</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Family-run British restaurant on Sheep Street. Cosy, traditional, near the hotel. Popular in July.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;15-25 pp</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.lambsrestaurant.co.uk/book-a-table/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Book table</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-flask fa-icon"></i> Day 2 &mdash; Oxford</h3>
+        <div class="bk-sub">Fri 31 July. Free Walking Tour at 14:00 (booked). Museums &amp; colleges in between.</div>
+        <div class="bk-grid">
+          <div class="bk-card" data-bk="o-walk">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-person-walking" style="color:#283593"></i> Oxford Free Walking Tour</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Free 2-hour tour. Covers the university, colleges, history. Ref FOO-98885118. Meet 16 Broad St, OX1 3AS.</div>
+              <div class="bk-footer"><span class="bk-price free">FREE</span><span class="bk-tag booked">&#10003; Booked</span><a class="bk-link" href="https://www.google.com/maps/search/?api=1&query=16+Broad+Street+Oxford+OX1+3AS" target="_blank"><i class="fa-solid fa-location-dot"></i> Meeting point</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-christ">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-church" style="color:#8b6914"></i> Christ Church</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Harry Potter staircase &amp; Great Hall. College, cathedral, meadow. Oxford's most famous college. <b>Book ahead in summer.</b> Great Hall closed 12-2.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;18-24</span><span class="bk-tag must">Must book</span><a class="bk-link" href="https://www.chch.ox.ac.uk/visit/tickets-and-information" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Book tickets</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-bod">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-book" style="color:var(--blue)"></i> Duke Humfrey's Tour</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">30-min tour of the oldest reading room at the Bodleian. Divinity School closed 31 Jul. <b>Buy on the day at Weston Library from 9AM</b> — sells out by noon.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;12.50</span><span class="bk-tag must">Buy on day</span><a class="bk-link" href="https://visit.bodleian.ox.ac.uk/plan-your-visit" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check times</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-ash">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-landmark" style="color:#5c6bc0"></i> Ashmolean Museum</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Britain's oldest public museum. Egyptian mummies, art galleries, "In Bloom" exhibition until 16 Aug. Rooftop restaurant.</div>
+              <div class="bk-footer"><span class="bk-price free">FREE</span><span class="bk-tag free">Free</span><a class="bk-link" href="https://www.ashmolean.org/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-histsci">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-microscope" style="color:#00838f"></i> History of Science</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Oldest purpose-built museum building in the world. Einstein's blackboard, early telescopes, chemistry sets. No toilets.</div>
+              <div class="bk-footer"><span class="bk-price free">FREE</span><span class="bk-tag free">Free</span><a class="bk-link" href="https://www.hsm.ox.ac.uk/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-nathist">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-dinosaur" style="color:#2e7d32"></i> Natural History Museum</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Dodo skeleton, dinosaur exhibits, stunning Victorian glass-roofed hall. Good cafe. Connects to Pitt Rivers.</div>
+              <div class="bk-footer"><span class="bk-price free">FREE</span><span class="bk-tag free">Free</span><a class="bk-link" href="https://oumnh.ox.ac.uk/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-pitt">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-mask" style="color:#6a1b9a"></i> Pitt Rivers Museum</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">600,000 objects from around the world. Shrunken heads, totem poles, amulets. Dark, atmospheric, fascinating. Entry via Natural History.</div>
+              <div class="bk-footer"><span class="bk-price free">FREE</span><span class="bk-tag free">Free</span><a class="bk-link" href="https://www.prm.ox.ac.uk/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-magdalen">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-deer" style="color:#2e7d32"></i> Magdalen College</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Deer park, riverside walks, stunning chapel. Most beautiful college grounds. Peaceful. Open until 6PM.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;8</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.magd.ox.ac.uk/visiting/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-new">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-door-open" style="color:#8b6914"></i> New College</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Harry Potter cloisters. Medieval college with atmospheric gardens and the original city wall.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;5</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.new.ox.ac.uk/visiting/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="o-merton">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-book-open" style="color:#5c6bc0"></i> Merton College</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Oldest library still in use (1373). Intimate, rarely crowded. The Mob Library is extraordinary.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;5</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.merton.ox.ac.uk/visit-us" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-tree fa-icon"></i> Day 3 &mdash; Cotswolds</h3>
+        <div class="bk-sub">Sat 1 August. Hidcote in the morning, villages in the afternoon, drive home by ~19:00.</div>
+        <div class="bk-grid">
+          <div class="bk-card" data-bk="c-hidcote">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-seedling" style="color:#2e7d32"></i> Hidcote Manor Garden</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">One of England's finest Arts &amp; Crafts gardens. Garden rooms, rare plants, stunning July borders. Free with NT card.</div>
+              <div class="bk-footer"><span class="bk-price free">FREE (NT)</span><span class="bk-tag free">Member</span><a class="bk-link" href="https://www.nationaltrust.org.uk/hidcote" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> NT page</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="c-warwick">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-chess-rook" style="color:#5c6bc0"></i> Warwick Castle</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Medieval castle with towers, ramparts, live shows. Full day. On the way home if you have time.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;25</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.warwick-castle.com/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Book</a></div>
+            </div>
+          </div>
+          <div class="bk-card" data-bk="c-kenilworth">
+            <div class="bk-card-inner">
+              <div class="bk-top"><div class="bk-title"><i class="fa-solid fa-monument" style="color:#8b6914"></i> Kenilworth Castle</div><div class="bk-check" onclick="toggleBk(this)"></div></div>
+              <div class="bk-desc">Ruined Elizabethan castle. Atmospheric, less touristy than Warwick. Half day. On the way home.</div>
+              <div class="bk-footer"><span class="bk-price">~&pound;12</span><span class="bk-tag optional">Optional</span><a class="bk-link" href="https://www.english-heritage.org.uk/visit/places/kenilworth-castle/" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> Check</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
     <div class="bottom-nav no-print" id="bottomNav">
       <button class="active" onclick="show('overview')"><i class="fa-solid fa-house"></i><span>Overview</span></button>
       <button onclick="show('day1')"><i class="fa-solid fa-car"></i><span>Day 1</span></button>
@@ -932,6 +1136,7 @@
     </div>
 
     <div class="more-overlay no-print" id="moreOverlay">
+      <button onclick="show('book');toggleMore()"><i class="fa-solid fa-ticket"></i> Book These</button>
       <button onclick="show('recipes');toggleMore()"><i class="fa-solid fa-mug-hot"></i> Recipes</button>
       <button onclick="show('colleges');toggleMore()"><i class="fa-solid fa-graduation-cap"></i> Colleges</button>
       <button onclick="show('pack');toggleMore()"><i class="fa-solid fa-suitcase"></i> Packing List</button>
@@ -1276,7 +1481,7 @@
 
       document.addEventListener('keydown', function(e) {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-        const map = { '1':'day1', '2':'day2', '3':'day3', '4':'day3', 'o':'overview', 'p':'pack', 't':'tips', 'c':'colleges', 'r':'recipes', 'd':null };
+        const map = { '1':'day1', '2':'day2', '3':'day3', '4':'day3', 'o':'overview', 'b':'book', 'p':'pack', 't':'tips', 'c':'colleges', 'r':'recipes', 'd':null };
         if (e.key === 'd') { toggleDark(); return; }
         if (e.key === 'ArrowLeft') { navDay(-1); e.preventDefault(); }
         if (e.key === 'ArrowRight') { navDay(1); e.preventDefault(); }
@@ -1306,6 +1511,54 @@
         const nowItem = document.querySelector('.sec.active .ti.now');
         if (nowItem) { nowItem.classList.add('expanded'); }
       }
+
+      const bkPrices = {'s-town-walk':0,'s-birthplace':20,'s-mad':8,'s-butterfly':7,'s-river':10,'s-lambs':20,'o-walk':0,'o-christ':22,'o-bod':12.5,'o-ash':0,'o-histsci':0,'o-nathist':0,'o-pitt':0,'o-magdalen':8,'o-new':5,'o-merton':5,'c-hidcote':0,'c-warwick':25,'c-kenilworth':12};
+      const bkMustBook = {'o-christ':1,'o-bod':1,'s-lambs':1};
+
+      function toggleBk(el) {
+        el.classList.toggle('checked');
+        const id = el.closest('.bk-card')?.dataset.bk;
+        if (id) {
+          const state = el.classList.contains('checked');
+          const stored = JSON.parse(localStorage.getItem('ox-bk') || '{}');
+          stored[id] = state;
+          localStorage.setItem('ox-bk', JSON.stringify(stored));
+        }
+        updateBkSummary();
+      }
+
+      function loadBk() {
+        let stored = JSON.parse(localStorage.getItem('ox-bk') || '{}');
+        if (Object.keys(stored).length === 0) {
+          stored = {'s-town-walk':true,'o-walk':true};
+          localStorage.setItem('ox-bk', JSON.stringify(stored));
+        }
+        document.querySelectorAll('.bk-card').forEach(card => {
+          const id = card.dataset.bk;
+          const check = card.querySelector('.bk-check');
+          if (stored[id]) check.classList.add('checked');
+          else check.classList.remove('checked');
+        });
+        updateBkSummary();
+      }
+
+      function updateBkSummary() {
+        let count = 0, cost = 0, toBook = 0;
+        document.querySelectorAll('.bk-card').forEach(card => {
+          const id = card.dataset.bk;
+          const checked = card.querySelector('.bk-check').classList.contains('checked');
+          if (checked) {
+            count++;
+            cost += bkPrices[id] || 0;
+            if (bkMustBook[id]) toBook++;
+          }
+        });
+        document.getElementById('bkCount').textContent = count;
+        document.getElementById('bkCost').textContent = '\u00A3' + cost;
+        document.getElementById('bkToBook').textContent = toBook;
+      }
+
+      loadBk();
     </script>
   </body>
 </html>
