@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#002147" />
-    <meta name="description" content="4-day Oxford road trip itinerary: Stratford-upon-Avon, Oxford museums and colleges, Cotswolds villages" />
+    <meta name="description" content="3-day Oxford &amp; Cotswolds road trip itinerary: Stratford-upon-Avon, Oxford, Cotswolds villages" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="manifest.json" />
     <link rel="apple-touch-icon" href="icon-192.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Oxford Trip</title>
+    <title>Oxford &amp; Cotswolds Trip</title>
     <style>
       :root { --blue: #002147; --accent: #c0392b; --bg: #f8f9fa; --card: #fff; --text: #1a1a2e; --muted: #6c757d; --border: #dee2e6; --green: #4caf50; --r: 12px; --card-bg: #f0f2f5; }
       .dark { --bg: #0d0d0d; --card: #1a1a1a; --text: #f0f0f0; --muted: #b0b0b0; --border: #444; --card-bg: #222; }
@@ -334,8 +334,8 @@
   <body>
     <div class="hdr">
       <div class="hdr-left">
-        <h1>Oxford Trip</h1>
-        <div class="hdr-sub">Thu 30 Jul &mdash; Sun 2 Aug 2026 | 4 Days | 2 Travellers | Manchester &rarr; Alcester &rarr; Oxford</div>
+        <h1>Oxford &amp; Cotswolds Trip</h1>
+        <div class="hdr-sub">Thu 30 Jul &mdash; Sat 1 Aug 2026 | 3 Days | Kings Court Hotel, Alveston</div>
       </div>
       <div class="hdr-btns no-print">
         <button onclick="toggleDark()" id="darkBtn" title="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
@@ -360,7 +360,6 @@
       <button class="tab" data-s="day1">Day 1</button>
       <button class="tab" data-s="day2">Day 2</button>
       <button class="tab" data-s="day3">Day 3</button>
-      <button class="tab" data-s="day4">Day 4</button>
       <button class="tab" data-s="colleges">Colleges</button>
       <button class="tab" data-s="pack">Packing</button>
       <button class="tab" data-s="tips">Tips</button>
@@ -395,16 +394,16 @@
       <div class="card">
         <h3><i class="fa-solid fa-car fa-icon" style="color:var(--muted)"></i> Travel Details</h3>
         <ul>
-          <li><b>Thu 30</b> &mdash; Drive Manchester &rarr; Alcester (~2.5hrs). Afternoon: Stratford-upon-Avon</li>
-          <li><b>Fri 31</b> &mdash; Drive to Oxford. Museums + walking tour. Return to Alcester.</li>
-          <li><b>Sat 1 Aug</b> &mdash; Morning: Charlecote Park (NT). Afternoon: Chipping Campden + Stow</li>
-          <li><b>Sun 2 Aug</b> &mdash; Relaxed breakfast. Drive home.</li>
-          <li><b>Optional extra:</b> Warwick Castle / Kenilworth Castle</li>
+          <li><b>Thu 30</b> &mdash; Drive B49 5QQ &rarr; Stratford-upon-Avon. Walking tour at 2PM (booked). Explore town.</li>
+          <li><b>Fri 31</b> &mdash; Oxford via Parkway Park &amp; Ride. Mateo's choices.</li>
+          <li><b>Sat 1 Aug</b> &mdash; Hidcote Gardens &rarr; Stow-on-Wold &rarr; Bourton-on-Water &rarr; Broadway &rarr; Worcester &rarr; Home</li>
+          <li><b>Hotel:</b> Kings Court, Alveston (2 nights, Booking.com ref KC00689011)</li>
+          <li><b>Bonus:</b> 3-4 Aug &mdash; Harrogate trip by train</li>
         </ul>
       </div>
       <div class="card keyinfo-card">
         <h3><i class="fa-solid fa-key fa-icon"></i> Key Info &mdash; Print This</h3>
-        <div class="ki-row"><div class="ki-field"><label>Hotel name</label><input type="text" id="ki_hotel" placeholder="King's Court, Alcester" oninput="saveKi()" /></div><div class="ki-field"><label>Booking ref</label><input type="text" id="ki_booking" placeholder="e.g. ABC123" oninput="saveKi()" /></div></div>
+        <div class="ki-row"><div class="ki-field"><label>Hotel name</label><input type="text" id="ki_hotel" placeholder="Kings Court Hotel, Alveston" oninput="saveKi()" /></div><div class="ki-field"><label>Booking ref</label><input type="text" id="ki_booking" placeholder="KC00689011" oninput="saveKi()" /></div></div>
         <div class="ki-row"><div class="ki-field"><label>Hotel phone</label><input type="text" id="ki_hotelphone" placeholder="+44..." oninput="saveKi()" /></div><div class="ki-field"><label>NT membership #</label><input type="text" id="ki_nt" placeholder="Membership number" oninput="saveKi()" /></div></div>
         <div class="ki-row"><div class="ki-field"><label>Emergency contact</label><input type="text" id="ki_emerg" placeholder="Name + phone" oninput="saveKi()" /></div><div class="ki-field"><label>Notes</label><input type="text" id="ki_notes" placeholder="Allergies, meds, car details..." oninput="saveKi()" /></div></div>
         <div class="ki-print"><button onclick="printKeyInfo()"><i class="fa-solid fa-print fa-icon"></i> Print Key Info</button></div>
@@ -414,17 +413,18 @@
         <div id="budget-tracker" style="font-size:0.76rem">
           <div class="bday"><span class="bname">Day 1 (Thu)</span><input type="number" id="bd1" placeholder="&pound;" oninput="saveB()" style="width:70px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;font:inherit;background:var(--bg);color:var(--text);" /><span class="brem">Budget: &pound;80</span></div>
           <div class="bday"><span class="bname">Day 2 (Fri)</span><input type="number" id="bd2" placeholder="&pound;" oninput="saveB()" style="width:70px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;font:inherit;background:var(--bg);color:var(--text);" /><span class="brem">Budget: &pound;80</span></div>
-          <div class="bday"><span class="bname">Day 3 (Sat)</span><input type="number" id="bd3" placeholder="&pound;" oninput="saveB()" style="width:70px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;font:inherit;background:var(--bg);color:var(--text);" /><span class="brem">Budget: &pound;100</span></div>
-          <div class="bday"><span class="bname">Day 4 (Sun)</span><input type="number" id="bd4" placeholder="&pound;" oninput="saveB()" style="width:70px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;font:inherit;background:var(--bg);color:var(--text);" /><span class="brem">Budget: &pound;40</span></div>
-          <div style="margin-top:4px;font-weight:600">Total: <span id="bTotal">&pound;0</span> / &pound;300</div>
+          <div class="bday"><span class="bname">Day 3 (Sat)</span><input type="number" id="bd3" placeholder="&pound;" oninput="saveB()" style="width:70px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;font:inherit;background:var(--bg);color:var(--text);" /><span class="brem">Budget: &pound;60</span></div>
+          <div style="margin-top:4px;font-weight:600">Total: <span id="bTotal">&pound;0</span> / &pound;220</div>
         </div>
       </div>
       <div class="card">
         <h3>Accommodation</h3>
         <ul>
-          <li><b>King's Court, Alcester</b> &mdash; Base for the whole trip</li>
-          <li>~25 min to Stratford, ~30 min to Chipping Campden</li>
-          <li>~1hr to Oxford via M40. Car available throughout.</li>
+          <li><b>Kings Court Hotel, Alveston</b> &mdash; 2 nights (30 Jul &ndash; 1 Aug)</li>
+          <li>Premier Double Room &bull; Booking.com ref KC00689011 &bull; &pound;187.92 total</li>
+          <li>Check-in 3PM &bull; Check-out 11AM &bull; Early check-in from 12PM (&pound;10/hr)</li>
+          <li>Breakfast: Mon&ndash;Fri 6:30&ndash;9:30AM, Sat/Sun 7:30&ndash;10:00AM</li>
+          <li>Restaurant open 12PM&ndash;9PM daily</li>
         </ul>
       </div>
       <div class="hbox green">
@@ -433,46 +433,39 @@
       <div class="card">
         <h3>Day-by-Day</h3>
         <ul>
-          <li><b>Thu 30 Jul</b> &mdash; Drive to Alcester, afternoon Stratford-upon-Avon (~3-5km walking)</li>
-          <li><b>Fri 31 Jul</b> &mdash; Oxford: museums + walking tour (~4-5km walking)</li>
-          <li><b>Sat 1 Aug</b> &mdash; Charlecote Park (NT) + Cotswolds villages (~3-5km walking)</li>
-          <li><b>Sun 2 Aug</b> &mdash; Relaxed breakfast, drive home</li>
+          <li><b>Thu 30 Jul</b> &mdash; Drive B49 5QQ &rarr; Stratford. Walking tour 2PM. Evening explore.</li>
+          <li><b>Fri 31 Jul</b> &mdash; Oxford via Parkway Park &amp; Ride. Mateo's choices.</li>
+          <li><b>Sat 1 Aug</b> &mdash; Hidcote &rarr; Stow &rarr; Bourton &rarr; Broadway &rarr; Worcester &rarr; Home</li>
         </ul>
       </div>
       <div class="card">
         <h3><i class="fa-solid fa-calendar-days fa-icon"></i> Calendar Overview</h3>
         <div class="table-wrap">
         <div class="cal">
-          <div class="cal-hdr"></div><div class="cal-hdr">Thu 30</div><div class="cal-hdr">Fri 31</div><div class="cal-hdr">Sat 1</div><div class="cal-hdr">Sun 2</div>
+          <div class="cal-hdr"></div><div class="cal-hdr">Thu 30</div><div class="cal-hdr">Fri 31</div><div class="cal-hdr">Sat 1</div>
           <div class="cal-time">09:00</div>
-          <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Drive</div></div>
-          <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Drive Oxford</div></div>
-          <div class="cal-cell"><div class="cal-act nt"><i class="fa-solid fa-tree fa-icon"></i> Charlecote</div></div>
-          <div class="cal-cell"><div class="cal-act rest">Relaxed</div></div>
+          <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Drive B49&rarr;Stratford</div></div>
+          <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Drive to Oxford</div></div>
+          <div class="cal-cell"><div class="cal-act nt"><i class="fa-solid fa-seedling fa-icon"></i> Hidcote</div></div>
           <div class="cal-time">11:00</div>
-          <div class="cal-cell"><div class="cal-act travel">Arrive Alcester</div></div>
-          <div class="cal-cell"><div class="cal-act museum"><i class="fa-solid fa-flask fa-icon"></i> Science Museum</div></div>
-          <div class="cal-cell"><div class="cal-act nt">House + Gardens</div></div>
-          <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Home</div></div>
+          <div class="cal-cell"><div class="cal-act walk">Arrive Stratford</div></div>
+          <div class="cal-cell"><div class="cal-act museum">Oxford (Mateo's choice)</div></div>
+          <div class="cal-cell"><div class="cal-act walk">Stow/Bourton</div></div>
           <div class="cal-time">13:00</div>
-          <div class="cal-cell"><div class="cal-act walk"><i class="fa-solid fa-person-walking fa-icon"></i> Stratford</div></div>
-          <div class="cal-cell"><div class="cal-act food">Lunch Oxford</div></div>
-          <div class="cal-cell"><div class="cal-act food">Lunch NT</div></div>
-          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-act food">Lunch</div></div>
+          <div class="cal-cell"><div class="cal-act food">Lunch</div></div>
+          <div class="cal-cell"><div class="cal-act walk">Broadway</div></div>
           <div class="cal-time">15:00</div>
-          <div class="cal-cell"><div class="cal-act walk">River Avon</div></div>
           <div class="cal-cell"><div class="cal-act tour">Walking Tour</div></div>
-          <div class="cal-cell"><div class="cal-act walk">Chipping Campden</div></div>
-          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-act food">Explore</div></div>
+          <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Via Worcester</div></div>
           <div class="cal-time">17:00</div>
-          <div class="cal-cell"><div class="cal-act food">Dinner</div></div>
-          <div class="cal-cell"><div class="cal-act museum">Natural History</div></div>
-          <div class="cal-cell"><div class="cal-act walk">Stow-on-Wold</div></div>
-          <div class="cal-cell empty"></div>
+          <div class="cal-cell"><div class="cal-act food">Explore town</div></div>
+          <div class="cal-cell"><div class="cal-act rest">Return hotel</div></div>
+          <div class="cal-cell"><div class="cal-act rest">Arrive home</div></div>
           <div class="cal-time">19:00</div>
-          <div class="cal-cell"><div class="cal-act rest"><i class="fa-solid fa-bed fa-icon"></i></div></div>
-          <div class="cal-cell"><div class="cal-act rest">Return Alcester</div></div>
-          <div class="cal-cell"><div class="cal-act rest">Return Alcester</div></div>
+          <div class="cal-cell"><div class="cal-act rest">Hotel check-in</div></div>
+          <div class="cal-cell"><div class="cal-act rest">Kings Court</div></div>
           <div class="cal-cell empty"></div>
         </div>
         </div>
@@ -482,236 +475,171 @@
         <table class="cost">
           <thead><tr><th>Item</th><th>&pound;</th></tr></thead>
           <tbody>
-            <tr><td>Fuel (round trip)</td><td>~60-80</td></tr>
-            <tr><td>Hotel (3 nights)</td><td>~300-450</td></tr>
-            <tr><td>National Trust</td><td>Free (member)</td></tr>
-            <tr><td>Oxford museums</td><td>Free!</td></tr>
-            <tr><td>Footprint walking tour</td><td>~15-25 pp</td></tr>
-            <tr><td>Colleges (1-2)</td><td>~10-20</td></tr>
-            <tr><td>Meals (4 days, 2 people)</td><td>~200-300</td></tr>
-            <tr><td>Misc (parking, snacks)</td><td>~30-50</td></tr>
-            <tr><td><b>Total</b></td><td><b>~630-950</b></td></tr>
+            <tr><td>Fuel (Stratford + Oxford + Cotswolds)</td><td>~30-50</td></tr>
+            <tr><td>Hotel (2 nights Kings Court, Premier Double)</td><td>187.92</td></tr>
+            <tr><td>National Trust (Hidcote)</td><td>Free (member)</td></tr>
+            <tr><td>Oxford activities</td><td>~20-40</td></tr>
+            <tr><td>Stratford walking tour</td><td>~15-25 (booked)</td></tr>
+            <tr><td>Oxford parking (Park &amp; Ride)</td><td>~5-10</td></tr>
+            <tr><td>Meals (3 days, 2 people)</td><td>~120-200</td></tr>
+            <tr><td>Harrogate train (Aug 3-4)</td><td>~50-100</td></tr>
+            <tr><td>Misc (parking, snacks)</td><td>~15-30</td></tr>
+            <tr><td><b>Total</b></td><td><b>~445-640</b></td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <!-- DAY 1 -->
-    <div id="day1" class="sec" data-t="Day 1 - Thursday: Travel + Stratford">
-      <div class="day-div"><div class="day-num">1</div><div class="day-info"><div class="day-title">Travel + Stratford-upon-Avon</div><div class="day-date">Thursday 30 July</div><div class="day-meta"><span class="energy-badge energy-yellow"><i class="fa-solid fa-circle" style="font-size:0.5em"></i> Driving day</span></div></div></div>
+    <div id="day1" class="sec" data-t="Day 1 - Thursday: Stratford">
+      <div class="day-div"><div class="day-num">1</div><div class="day-info"><div class="day-title">Stratford-upon-Avon</div><div class="day-date">Thursday 30 July</div><div class="day-meta"><span class="energy-badge energy-green"><i class="fa-solid fa-circle" style="font-size:0.5em"></i> Easy day</span></div></div></div>
       <div class="sched">
-        <div class="sched-row"><span class="sched-label">AM</span><span class="sched-stop"><span class="sched-time">09:00</span> <span class="sched-name">Leave Manchester</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~11:30</span> <span class="sched-name">Arrive Alcester</span></span></div>
-        <div class="sched-row"><span class="sched-label">PM</span><span class="sched-stop"><span class="sched-time">12:30</span> <span class="sched-name">Stratford</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">17:00</span> <span class="sched-name">Dinner</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">19:00</span> <span class="sched-name">Hotel</span></span></div>
+        <div class="sched-row"><span class="sched-label">AM</span><span class="sched-stop"><span class="sched-time">10:30</span> <span class="sched-name">Drive to Stratford</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~11:00</span> <span class="sched-name">Arrive Stratford</span></span></div>
+        <div class="sched-row"><span class="sched-label">PM</span><span class="sched-stop"><span class="sched-time">14:00</span> <span class="sched-name">Walking Tour</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">15:30</span> <span class="sched-name">Explore town</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~17:00</span> <span class="sched-name">Hotel check-in</span></span></div>
       </div>
       <div class="tl">
-        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> This is your plan, not your boss. Skip anything, linger anywhere.</div>
-        <div class="ti dep"><div class="tt">08:00</div><div class="tn">Wake up + pack the car</div><div class="td">Load the car. Check: snacks, water, chargers, hotel booking, NT card, parking app.</div></div>
-        <div class="ti"><div class="tt">08:30</div><div class="tn">Breakfast</div><div class="td">Quick breakfast at home. Coffee + something to eat. On the road by 09:00.<br><a href="#" onclick="event.preventDefault();show('recipes')" style="font-size:0.72rem;color:var(--blue);font-weight:600"><i class="fa-solid fa-mug-hot fa-icon"></i> Coffee recipe <i class="fa-solid fa-arrow-right" style="font-size:0.6rem"></i></a></div></div>
-        <div class="ti trans"><div class="tt">09:00</div><div class="tn">Drive Manchester &rarr; Alcester</div><div class="td">M6 southbound to J4, then A435 to Alcester. ~2.5 hours.</div>
-          <div class="steps"><b>Route:</b>
-            <div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Manchester</div><div class="rf-line"></div><span class="rf-badge road">M6</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Alcester</div></div>
-            <ol><li>M6 south, follow signs for Birmingham</li><li>Junction 31 &mdash; exit onto A435 towards Alcester</li><li>Follow A435 for ~15 min &mdash; you're there</li><li>Total: ~2h15 driving (150km / 93mi)</li></ol>
-          </div>
-          <div class="car-tip">Services at Knutsford (J19) and Hilton Park (J11) &mdash; good for coffee + stretch.</div>
-        </div>
-        <div class="ti brk"><div class="tt">~10:15</div><div class="tn">Service stop</div><div class="td">Coffee + comfort break. Stretch legs. Buy snacks for the rest of the journey.</div></div>
-        <div class="ti"><div class="tt">~11:30</div><div class="tn">Arrive Alcester &mdash; Check in</div><div class="td">Hotel check-in. Drop bags, freshen up. Alcester is a small historic market town &mdash; worth a quick wander.</div></div>
-        <div class="ti brk"><div class="tt">12:00</div><div class="tn">Lunch in Alcester</div><div class="td">Quick lunch before Stratford.</div>
-          <div class="res-grid">
-            <div class="res-item budget"><span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> The Blue Pig</span><span class="rdesc">Pub on the High Street. Good value pub lunch.</span><span class="rprice">&pound;8-15 pp</span></div>
-            <div class="res-item quick"><span class="rname">Cafe on High Street</span><span class="rdesc">Quick sandwich + tea. Keep it light.</span><span class="rprice">&pound;5-8 pp</span></div>
-          </div>
-        </div>
-        <div class="ti trans"><div class="tt">12:30</div><div class="tn">Drive to Stratford-upon-Avon</div><div class="td">15-min drive. Head to town centre and park.</div>
-          <div class="steps"><b>Parking:</b><ol><li><b>Bridge Street car park</b> &mdash; closest to centre</li><li><b>Riverside car park</b> &mdash; near the river</li><li>Pay by phone (Ringo) or pay-and-display</li></ol></div>
+        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Short drive from home. Walking tour booked at 2PM &mdash; arrive with time to park and find the meeting point.</div>
+        <div class="ti"><div class="tt">09:00</div><div class="tn">Wake up + breakfast at home</div><div class="td">Relaxed morning. Pack bags. No rush.</div></div>
+        <div class="ti dep"><div class="tt">10:30</div><div class="tn">Drive to Stratford-upon-Avon</div><div class="td">Short drive from home (B49 5QQ). ~15 min. Park in the town centre.</div>
+          <div class="steps"><b>Parking:</b><ol><li><b>Bridge Street car park</b> &mdash; closest to centre</li><li><b>Riverside car park</b> &mdash; near the river</li><li>Pay by phone or pay-and-display</li></ol></div>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bridge+Street+car+park+Stratford+upon+Avon" target="_blank">Bridge Street Car Park</a>
         </div>
-        <div class="ti"><div class="tt">13:00-17:00</div><div class="tn">Stratford-upon-Avon afternoon</div><div class="td">Explore Shakespeare's birthplace town. Choose what interests you.</div>
-          <div class="prep"><b>Must do:</b> Historic centre walk (free) &bull; Guild Chapel (free) &bull; River Avon walk (free)</div>
-          <div class="prep"><b>If time:</b> Birthplace (~&pound;20) &bull; Schoolroom &amp; Guildhall (~&pound;15) &bull; MAD Museum (~&pound;8) &bull; Butterfly Farm (~&pound;7) &bull; River trip (~&pound;10, 30-45 min)</div>
-          <div class="prep" style="background:#fff3e0;border-left-color:#ff9800"><b>Book ahead:</b> Birthplace &amp; Schoolroom sell out in summer &mdash; book online to skip queues. River trips run on the day but check times.</div>
+        <div class="ti"><div class="tt">~11:00</div><div class="tn">Arrive Stratford &mdash; explore before the tour</div><div class="td">Grab a coffee, wander the streets, find the river. Plenty of time before the 2PM walking tour.</div>
           <div class="act-grid">
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Shakespeare's Birthplace</span><span class="adesc">Go inside the house where Shakespeare was born. ~&pound;20 pp. Optional.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Shakespeare's Schoolroom &amp; Guildhall</span><span class="adesc">Where Shakespeare learned to write. Interactive exhibits. ~&pound;15 pp.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> MAD Museum</span><span class="adesc">Mechanical Art &amp; Design. Whimsical kinetic sculptures. ~&pound;8 pp.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Butterfly Farm</span><span class="adesc">Tropical butterflies in a glasshouse. Relaxing. ~&pound;7 pp.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Historic centre walk</span><span class="adesc">Half-timbered Tudor buildings, independent shops, market square. Free.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Guild Chapel</span><span class="adesc">Free. Medieval wall paintings. Very quiet and atmospheric.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> River Avon walk</span><span class="adesc">Flat riverside path, willow trees, swans. Bancroft Gardens. Beautiful in July.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> River trip</span><span class="adesc">Scenic boat trip on the Avon. ~&pound;10 pp, 30-45 min.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-person-walking fa-icon"></i> Riverside walk</span><span class="adesc">Flat path along the Avon. Swans, willows, Bancroft Gardens. Free.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-church fa-icon" style="color:#8b6914"></i> Guild Chapel</span><span class="adesc">Free. Medieval wall paintings. Quiet and atmospheric.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Harris &amp; Hoole</span><span class="adesc">Independent coffee shop. Good cakes.</span></div>
           </div>
         </div>
-        <div class="ti rest"><div class="tt">15:00</div><div class="tn">Coffee / tea break</div><div class="td">Sit down and rest. Plenty of cafes around the centre.</div>
-          <div class="res-grid"><div class="res-item mid"><span class="rname">Harris &amp; Hoole</span><span class="rdesc">Independent coffee shop. Good cakes, proper coffee.</span><span class="rprice">&pound;3-6 pp</span></div></div>
-        </div>
-        <div class="ti"><div class="tt">17:00</div><div class="tn">Dinner</div><div class="td">Dinner in Stratford or back in Alcester (15 min drive).</div>
+        <div class="ti brk"><div class="tt">12:00</div><div class="tn">Lunch in Stratford</div><div class="td">
           <div class="res-grid">
-            <div class="res-item budget"><span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> The Dirty Duck</span><span class="rdesc">Riverside pub. Classic British. RSC actors eat here.</span><span class="rprice">&pound;12-20 pp</span></div>
-            <div class="res-item mid"><span class="rname">Lambs (Sheep Street)</span><span class="rdesc">Family-run, cosy, traditional. <a href="https://www.lambsrestaurant.co.uk/book-a-table/" target="_blank" style="color:var(--blue)">Book online</a> or call 01789 292554.</span><span class="rprice">&pound;15-25 pp</span></div>
-            <div class="res-item budget"><span class="rname">The Crown, Alcester</span><span class="rdesc">Back in Alcester. Good value near hotel.</span><span class="rprice">&pound;12-18 pp</span></div>
+            <div class="res-item budget"><span class="rname">Your choice</span><span class="rdesc">Plenty of cafes, pubs and restaurants around the centre.</span><span class="rprice">&pound;8-15 pp</span></div>
+            <div class="res-item quick"><span class="rname">Market options</span><span class="rdesc">Grab something quick from a market stall or cafe.</span><span class="rprice">&pound;5-8 pp</span></div>
+          </div>
+        </div></div>
+        <div class="ti"><div class="tt">14:00-15:30</div><div class="tn"><i class="fa-solid fa-person-walking fa-icon" style="color:#283593"></i> Stratford Town Walk <span class="icon-badge" style="background:rgba(40,53,147,0.1);color:#283593;border-color:rgba(40,53,147,0.2)">BOOKED</span></div><div class="td">Guided walking tour of Stratford-upon-Avon. Covers Shakespeare's town, history, hidden stories.</div>
+          <div class="th">Booked at 2PM. Arrive at the meeting point by 13:55.</div>
+        </div>
+        <div class="ti"><div class="tt">15:30-17:00</div><div class="tn">Wander Stratford (Mateo's choice)</div><div class="td">After the tour, explore whatever catches your eye. Mateo picks what to do.</div>
+          <div class="act-grid">
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Shakespeare's Birthplace</span><span class="adesc">The actual house where Shakespeare was born. ~&pound;20 pp. Book online in summer.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> MAD Museum</span><span class="adesc">Mechanical Art &amp; Design. Whimsical kinetic sculptures. ~&pound;8 pp.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Butterfly Farm</span><span class="adesc">Tropical butterflies in a glasshouse. ~&pound;7 pp.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> River trip</span><span class="adesc">Scenic boat trip on the Avon. ~&pound;10 pp, 30-45 min.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-star fa-icon" style="color:#f59e0b"></i> Shops + historic streets</span><span class="adesc">Half-timbered Tudor buildings, independent shops.</span></div>
           </div>
         </div>
-        <div class="ti rest"><div class="tt">19:00</div><div class="tn">Return to hotel</div><div class="td">Drive back to Alcester (15 min). Relaxed evening. Oxford day tomorrow!</div></div>
-        <div class="ti rest"><div class="tt">22:00</div><div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div><div class="td">Oxford museums tomorrow!</div></div>
+        <div class="ti"><div class="tt">~17:00</div><div class="tn">Check in: Kings Court Hotel</div><div class="td">Head to the hotel (10 min drive from Stratford). Premier Double Room. Room ready from 3PM (early check-in available &pound;10/hr from 12PM).</div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alveston" target="_blank">Kings Court Hotel</a>
+          <div class="th">Booking ref: KC00689011</div>
+        </div>
+        <div class="ti"><div class="tt">18:30</div><div class="tn">Dinner</div><div class="td">Dinner in Stratford or at the hotel restaurant (open 12PM-9PM).</div>
+          <div class="res-grid">
+            <div class="res-item mid"><span class="rname">Lambs (Sheep Street)</span><span class="rdesc">Family-run, cosy, traditional. <a href="https://www.lambsrestaurant.co.uk/book-a-table/" target="_blank" style="color:var(--blue)">Book online</a> or call 01789 292554.</span><span class="rprice">&pound;15-25 pp</span></div>
+            <div class="res-item budget"><span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> The Dirty Duck</span><span class="rdesc">Riverside pub. Classic British. RSC actors eat here.</span><span class="rprice">&pound;12-20 pp</span></div>
+            <div class="res-item budget"><span class="rname">Kings Court restaurant</span><span class="rdesc">Hotel restaurant. Convenient if you're tired.</span><span class="rprice">&pound;12-18 pp</span></div>
+          </div>
+        </div>
+        <div class="ti rest"><div class="tt">20:00</div><div class="tn">Hotel &mdash; relax <i class="fa-solid fa-bed fa-icon"></i></div><div class="td">Settle in. Oxford tomorrow!</div></div>
       </div>
     </div>
     <!-- DAY 2 -->
     <div id="day2" class="sec" data-t="Day 2 - Friday: Oxford">
-      <div class="day-div"><div class="day-num">2</div><div class="day-info"><div class="day-title">Oxford &mdash; Museums + Walking Tour</div><div class="day-date">Friday 31 July</div><div class="day-meta"><span class="energy-badge energy-yellow"><i class="fa-solid fa-circle" style="font-size:0.5em"></i> Full day</span><span class="energy-note">World-class free museums + walking tour</span></div></div></div>
+      <div class="day-div"><div class="day-num">2</div><div class="day-info"><div class="day-title">Oxford &mdash; Mateo's Choice</div><div class="day-date">Friday 31 July</div><div class="day-meta"><span class="energy-badge energy-yellow"><i class="fa-solid fa-circle" style="font-size:0.5em"></i> Full day</span></div></div></div>
       <div class="sched">
-        <div class="sched-row"><span class="sched-label">AM</span><span class="sched-stop"><span class="sched-time">08:00</span> <span class="sched-name">Breakfast</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">09:00</span> <span class="sched-name"><i class="fa-solid fa-car fa-icon"></i> Drive Oxford</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~10:30</span> <span class="sched-name">Arrive Oxford</span></span></div>
-        <div class="sched-row"><span class="sched-label">PM</span><span class="sched-stop"><span class="sched-time">10:30</span> <span class="sched-name">Radcliffe Camera</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">11:30</span> <span class="sched-name">Science Museum</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">14:00</span> <span class="sched-name">Walking Tour</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">16:15</span> <span class="sched-name">Natural History</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">17:30</span> <span class="sched-name">Return</span></span></div>
+        <div class="sched-row"><span class="sched-label">AM</span><span class="sched-stop"><span class="sched-time">09:00</span> <span class="sched-name">Breakfast at hotel</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">09:30</span> <span class="sched-name"><i class="fa-solid fa-car fa-icon"></i> Drive Oxford</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~10:30</span> <span class="sched-name">Oxford Parkway P&amp;R</span></span></div>
+        <div class="sched-row"><span class="sched-label">PM</span><span class="sched-stop"><span class="sched-time">10:30</span> <span class="sched-name">Mateo's choices</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~17:00</span> <span class="sched-name">Return hotel</span></span></div>
       </div>
       <div class="tl">
-        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> All Oxford museums are FREE. All within 2-3 km in city centre. Walk at your own pace.</div>
-        <div class="ti dep"><div class="tt">07:30</div><div class="tn">Wake up + coffee</div><div class="td">Early start. Pack water and snacks.</div></div>
-        <div class="ti"><div class="tt">08:00</div><div class="tn">Breakfast</div><div class="td">Good breakfast &mdash; walking around Oxford all day.</div></div>
-        <div class="ti trans"><div class="tt">09:00</div><div class="tn">Drive Alcester &rarr; Oxford</div><div class="td">~1 hour via M40. Straightforward.</div>
-          <div class="steps"><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Alcester</div><div class="rf-line"></div><span class="rf-badge road">A435</span><div class="rf-line"></div><span class="rf-badge road">M40</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Oxford</div></div>
-            <ol><li>A435 north to A46, then M40 south</li><li>M40 to J8A/9, then A34 to Oxford</li><li>Follow signs to city centre / car parks</li></ol>
+        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Mateo's day to decide. This is a flexible framework &mdash; pick what looks good.</div>
+        <div class="ti"><div class="tt">08:00</div><div class="tn">Wake up + breakfast at hotel</div><div class="td">Hotel breakfast 6:30-9:30AM. Fuel up for the day.</div></div>
+        <div class="ti trans"><div class="tt">09:30</div><div class="tn">Drive to Oxford Parkway Park &amp; Ride</div><div class="td">~1 hour via M40. Park at Oxford Parkway (OX2 8HA) &mdash; cheap parking, frequent bus into city centre (15 min).</div>
+          <div class="steps"><b>Route:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Kings Court Hotel</div><div class="rf-line"></div><span class="rf-badge road">A429</span><div class="rf-line"></div><span class="rf-badge road">M40</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Oxford Parkway P&amp;R</div></div>
+            <ol><li>Take A429 to M40 J15</li><li>M40 south to J9, then A34 north</li><li>Follow signs to Oxford Parkway Park &amp; Ride</li></ol>
           </div>
-          <div class="car-tip"><b>Parking in Oxford:</b> <b>Westgate Oxford car park</b> (largest, central, ~&pound;15-20/day) or <b>Gloucester Green car park</b> (~&pound;12-18/day). Both walking distance to all museums. Arrive before 10:30 for spaces.</div>
-          <div class="backup">If both full: <b>St Giles car park</b> (north side, cheaper) or <b>Brook Street car park</b> (east, bus to centre).</div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Oxford+Parkway+Park+and+Ride" target="_blank">Oxford Parkway Park &amp; Ride</a>
+          <div class="car-tip"><b>Park &amp; Ride:</b> ~&pound;2-4 all day. Buses every 10-15 min into city centre. Better than city parking!</div>
         </div>
-        <div class="ti"><div class="tt">10:30</div><div class="tn"><i class="fa-solid fa-camera fa-icon" style="color:var(--muted)"></i> Radcliffe Camera / Radcliffe Square</div><div class="td">The most photographed building in Oxford. Stand in the square and look up &mdash; the dome is stunning.</div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Radcliffe+Camera+Oxford" target="_blank">Radcliffe Camera</a>
-          <div class="th">Allow 15 min. Free &mdash; admire from outside.</div>
-        </div>
-        <div class="ti"><div class="tt">10:45</div><div class="tn">Bodleian Library + Bridge of Sighs</div><div class="td">Walk around one of Europe's oldest libraries (1602). See the <b>Bridge of Sighs</b> (Hertford Bridge) over New College Lane.</div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bodleian+Library+Oxford" target="_blank">Bodleian Library</a>
-          <div class="hbox blue"><p><b>Bodleian tours</b> &mdash; Guided tours ~&pound;10-16. See the Divinity School (Hogwarts dungeon!) and Duke Humfrey's Library (Hogwarts library!). Book at <a href="https://www.bodleian.ox.ac.uk/visiting/tours" target="_blank" style="color:var(--blue);font-weight:600">bodleian.ox.ac.uk</a>. <b>Highly recommended!</b></p></div>
-          <div class="prep" style="background:#fff3e0;border-left-color:#ff9800"><b>Timing:</b> Tours run at set times (~11:00, 13:00, 14:00). If you book ~11:00, skip the Science Museum visit and go straight to Christ Church after lunch. If you skip the tour, admire the exterior (5 min) and continue.</div>
-          <div class="th">Allow 30-45 min. Free to admire from outside.</div>
-        </div>
-        <div class="ti trans"><div class="tt">11:15</div><div class="tn">Walk to History of Science Museum <i style="color:var(--muted);font-size:0.7rem;font-weight:400">(or Christ Church if visiting)</i></div><div class="td">10-min walk down Broad Street. If you booked Christ Church this morning, visit 11:30-12:30 instead of the Science Museum.</div></div>
-        <div class="ti"><div class="tt">11:30-12:15</div><div class="tn"><i class="fa-solid fa-flask fa-icon" style="color:#e65100"></i> History of Science Museum (FREE)</div><div class="td">World's first purpose-built museum. Perfect for science lovers.</div>
+        <div class="ti"><div class="tt">10:30+</div><div class="tn">Oxford &mdash; Mateo's choices</div><div class="td">Mateo picks what to do today. Here's what Oxford has to offer:</div>
+          <div class="prep"><b>Free museums:</b> History of Science (Einstein's blackboard), Natural History (dodo skeleton), Pitt Rivers (shrunken heads) &mdash; all within walking distance.</div>
+          <div class="prep"><b>Colleges:</b> Christ Church (Harry Potter, ~&pound;18, book ahead), Magdalen (deer park, ~&pound;8), New College (cloisters), Merton (oldest library).</div>
+          <div class="prep"><b>Other:</b> Radcliffe Camera, Bodleian Library tours (~&pound;10-16, book ahead), Covered Market, Ashmolean Museum.</div>
           <div class="act-grid">
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-chalkboard fa-icon"></i> Einstein's Blackboard</span><span class="adesc">The actual blackboard Einstein wrote on during 1931 Oxford lectures. Chalk equations still visible.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-telescope fa-icon"></i> Astronomy Instruments</span><span class="adesc">Astrolabes, telescopes, sundials. Centuries of astronomical observation.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-microscope fa-icon"></i> Early Microscopes</span><span class="adesc">Beautiful brass microscopes from the 17th-18th century.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-puzzle-piece fa-icon"></i> Penicillin Model</span><span class="adesc">Model of the penicillin molecule &mdash; Fleming's discovery. Oxford connection!</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-camera fa-icon" style="color:var(--muted)"></i> Radcliffe Camera</span><span class="adesc">Most photographed building in Oxford. Free to admire from outside.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-flask fa-icon" style="color:#e65100"></i> History of Science Museum</span><span class="adesc">Einstein's blackboard, astrolabes, early microscopes. Free. 45 min.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-bone fa-icon" style="color:#e65100"></i> Natural History + Pitt Rivers</span><span class="adesc">Dodo skeleton, T-Rex, shrunken heads. Stunning Gothic building. Free.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-landmark fa-icon" style="color:#8b6914"></i> Ashmolean Museum</span><span class="adesc">Britain's oldest public museum. Egyptian mummies, art. Free.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-church fa-icon" style="color:#8b6914"></i> Christ Church</span><span class="adesc">Harry Potter Great Hall staircase. ~&pound;18. Must book ahead.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-book fa-icon" style="color:var(--blue)"></i> Bodleian Library tour</span><span class="adesc">Divinity School (Hogwarts). ~&pound;10-16. Book ahead.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-shopping-bag fa-icon"></i> Covered Market</span><span class="adesc">Historic market (since 1774). Food stalls, indie shops.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-university fa-icon" style="color:var(--blue)"></i> Colleges walk</span><span class="adesc">Walk through the college quarter. Free to admire from outside.</span></div>
           </div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=History+of+Science+Museum+Oxford" target="_blank">History of Science Museum</a>
-          <div class="th">Open Tue-Sun. Free. Allow 45 min.</div>
         </div>
-        <div class="ti brk"><div class="tt">12:15</div><div class="tn">Lunch</div><div class="td">
+        <div class="ti brk"><div class="tt">lunch</div><div class="tn">Lunch in Oxford</div><div class="td">
           <div class="res-grid">
-            <div class="res-item mid"><span class="rname">Oxford Covered Market</span><span class="rdesc">Historic market (since 1774). Independent food stalls, cafes.</span><span class="rprice">&pound;8-14 pp</span></div>
-            <div class="res-item budget"><span class="rname">Tesco meal deal</span><span class="rdesc">Grab a meal deal. Eat on a bench in Radcliffe Square.</span><span class="rprice">&pound;4-6 pp</span></div>
+            <div class="res-item mid"><span class="rname">Covered Market</span><span class="rdesc">Food stalls, cafes, grab something good.</span><span class="rprice">&pound;6-12 pp</span></div>
+            <div class="res-item budget"><span class="rname">Museum cafe</span><span class="rdesc">Natural History Museum has a good cafe.</span><span class="rprice">&pound;6-10 pp</span></div>
           </div>
         </div></div>
-        <div class="ti trans"><div class="tt">13:30</div><div class="tn">Walk to meeting point</div><div class="td">Wander through the city centre to the Footprint Tours meeting point.</div></div>
-        <div class="ti"><div class="tt">14:00-16:00</div><div class="tn"><i class="fa-solid fa-person-walking fa-icon" style="color:#283593"></i> Footprint Tours Walking Tour <span class="icon-badge" style="background:rgba(40,53,147,0.1);color:#283593;border-color:rgba(40,53,147,0.2)">BOOKED</span></div><div class="td">2-hour guided walking tour of Oxford. Covers colleges, history, stories and hidden gems. Highly rated student-led tours.</div>
-          <div class="act-grid">
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-graduation-cap fa-icon" style="color:var(--blue)"></i> College exteriors</span><span class="adesc">Tour passes multiple colleges with stories and history.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-landmark fa-icon" style="color:#8b6914"></i> Hidden Oxford</span><span class="adesc">Back alleys, hidden courtyards, local legends.</span></div>
-          </div>
-          <div class="th">Booked &mdash; arrive at meeting point by 13:55.</div>
-        </div>
-        <div class="ti brk"><div class="tt">16:00-16:15</div><div class="tn">Break / choose your next move</div><div class="td">
-          <b>Option A:</b> Christ Church <i style="color:#c0392b;font-weight:600">(must be pre-booked)</i> &mdash; walking tour usually ends near here. Visit 16:00-16:45 before it closes at 17:00.
-          <br><b>Option B:</b> Natural History Museum + Pitt Rivers &mdash; 10-min walk north, open until 17:00.
-          <br><b>Option C:</b> Covered Market &mdash; browse before heading back.
-        </div></div>
-        <div class="ti trans"><div class="tt">16:15</div><div class="tn">Walk to Natural History Museum <i style="color:var(--muted);font-size:0.7rem;font-weight:400">(skip if visiting Christ Church)</i></div><div class="td">10-min walk south through the Science Area. Stunning neo-Gothic building.</div></div>
-        <div class="ti"><div class="tt">16:15-17:00</div><div class="tn"><i class="fa-solid fa-bone fa-icon" style="color:#e65100"></i> Natural History Museum + Pitt Rivers (FREE)</div><div class="td">One of Britain's best natural history museums. The building itself is a masterpiece.</div>
-          <div class="act-grid">
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-dragon fa-icon"></i> Dinosaur Skeletons</span><span class="adesc">T-Rex, Triceratops, Stegosaurus. Central hall full of impressive skeletons.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-dove fa-icon"></i> Dodo</span><span class="adesc">Complete dodo skeleton &mdash; the museum's most famous specimen.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-masks-theater fa-icon"></i> Pitt Rivers Collection</span><span class="adesc">Enter through Natural History Museum. Ethnographic objects from around the world. Densely packed, atmospheric, dark-lit. Shrunken heads!</span></div>
-          </div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Museum+of+Natural+History+Oxford" target="_blank">Natural History Museum</a>
-          <div class="th">Daily 10:00-17:00. Free. Allow 45 min.</div>
-          <div class="hbox green"><p><b>Froggy will love:</b> Victorian Gothic building, ornate columns, glass roof. The dodo is iconic. Benches throughout.</p></div>
-        </div>
-        <div class="ti brk"><div class="tt">17:00</div><div class="tn">Optional: Covered Market</div><div class="td">Oxford Covered Market (since 1774). Independent shops, food stalls, cafes. Good for a quick browse before heading back.</div></div>
-        <div class="ti trans"><div class="tt">17:30</div><div class="tn">Drive back to Alcester</div><div class="td">~1 hour via M40. Tired but happy!</div></div>
-        <div class="ti rest"><div class="tt">18:30</div><div class="tn">Dinner in Alcester</div><div class="td">
+        <div class="ti rest"><div class="tt">afternoon</div><div class="tn">Continue exploring</div><div class="td">Mateo's choice &mdash; keep going or head back when ready.</div></div>
+        <div class="ti trans"><div class="tt">~17:00</div><div class="tn">Return to Kings Court Hotel</div><div class="td">Bus back to Parkway, drive home. ~1 hour.</div></div>
+        <div class="ti"><div class="tt">18:30</div><div class="tn">Dinner</div><div class="td">
           <div class="res-grid">
-            <div class="res-item budget"><span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> The Bull</span><span class="rdesc">Traditional pub. Good value food, real ales.</span><span class="rprice">&pound;10-18 pp</span></div>
-            <div class="res-item mid"><span class="rname">The Crown</span><span class="rdesc">Slightly more refined pub food.</span><span class="rprice">&pound;12-22 pp</span></div>
+            <div class="res-item budget"><span class="rname">Kings Court restaurant</span><span class="rdesc">Hotel restaurant. Open 12PM-9PM.</span><span class="rprice">&pound;12-18 pp</span></div>
+            <div class="res-item budget"><span class="rname">The Bull, Alcester</span><span class="rdesc">Traditional pub. Good value food.</span><span class="rprice">&pound;10-18 pp</span></div>
           </div>
         </div></div>
-        <div class="ti rest"><div class="tt">22:00</div><div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div><div class="td">Charlecote + Cotswolds tomorrow!</div></div>
+        <div class="ti rest"><div class="tt">20:00</div><div class="tn">Hotel <i class="fa-solid fa-bed fa-icon"></i></div><div class="td">Last night at Kings Court. Check-out tomorrow 11AM. Pack up.</div></div>
       </div>
     </div>
     <!-- DAY 3 -->
-    <div id="day3" class="sec" data-t="Day 3 - Saturday: Charlecote + Cotswolds">
-      <div class="day-div"><div class="day-num">3</div><div class="day-info"><div class="day-title">Charlecote Park + Cotswolds</div><div class="day-date">Saturday 1 August</div><div class="day-meta"><span class="energy-badge energy-green"><i class="fa-solid fa-circle" style="font-size:0.5em"></i> Relaxed day</span><span class="energy-note">House, gardens, deer, Cotswolds villages</span></div></div></div>
+    <div id="day3" class="sec" data-t="Day 3 - Saturday: Cotswolds + Home">
+      <div class="day-div"><div class="day-num">3</div><div class="day-info"><div class="day-title">Cotswolds &mdash; Scenic Drive Home</div><div class="day-date">Saturday 1 August</div><div class="day-meta"><span class="energy-badge energy-green"><i class="fa-solid fa-circle" style="font-size:0.5em"></i> Relaxed day</span></div></div></div>
       <div class="sched">
-        <div class="sched-row"><span class="sched-label">AM</span><span class="sched-stop"><span class="sched-time">08:30</span> <span class="sched-name">Breakfast</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">10:00</span> <span class="sched-name"><i class="fa-solid fa-tree fa-icon" style="color:#2e7d32"></i> Charlecote Park</span></span></div>
-        <div class="sched-row"><span class="sched-label">PM</span><span class="sched-stop"><span class="sched-time">13:45</span> <span class="sched-name"><i class="fa-solid fa-car fa-icon"></i> Chipping Campden</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">15:20</span> <span class="sched-name"><i class="fa-solid fa-car fa-icon"></i> Stow-on-Wold</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">16:15</span> <span class="sched-name">Return Alcester</span></span></div>
+        <div class="sched-row"><span class="sched-label">AM</span><span class="sched-stop"><span class="sched-time">08:30</span> <span class="sched-name">Breakfast</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">11:00</span> <span class="sched-name">Check out</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">11:30</span> <span class="sched-name"><i class="fa-solid fa-seedling fa-icon" style="color:#2e7d32"></i> Hidcote Gardens</span></span></div>
+        <div class="sched-row"><span class="sched-label">PM</span><span class="sched-stop"><span class="sched-time">13:00</span> <span class="sched-name">Stow/Bourton/Broadway</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">16:00</span> <span class="sched-name">Worcester</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~17:00</span> <span class="sched-name">Home</span></span></div>
       </div>
       <div class="tl">
-        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> NT days are about slowing down. Linger in the garden. Sit on a bench in the deer park.</div>
-        <div class="ti"><div class="tt">08:00</div><div class="tn">Wake up + coffee</div><div class="td">Two cups of coffee. Gentle day &mdash; no need to rush.</div></div>
-        <div class="ti"><div class="tt">08:30</div><div class="tn">Breakfast at hotel</div><div class="td">Fuel up for the morning.</div></div>
-        <div class="ti trans"><div class="tt">09:30</div><div class="tn">Drive to Charlecote Park</div><div class="td">~25-30 min through Warwickshire countryside.</div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Charlecote+Park+National+Trust" target="_blank">Charlecote Park</a>
-          <div class="car-tip">NT car park is free for members. Show membership at the gate.</div>
+        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Check-out 11AM. Pack the car before breakfast if needed.</div>
+        <div class="ti"><div class="tt">08:00</div><div class="tn">Wake up + pack the car</div><div class="td">Pack bags, load the car. Last chance to check the room.</div></div>
+        <div class="ti"><div class="tt">08:30</div><div class="tn">Breakfast at hotel</div><div class="td">Sat breakfast 7:30-10:00AM. Enjoy it!</div></div>
+        <div class="ti"><div class="tt">10:00-11:00</div><div class="tn">Check out</div><div class="td">Check out by 11AM. Late check-out (12PM) available for &pound;10 if you want more time.</div></div>
+        <div class="ti trans"><div class="tt">11:15</div><div class="tn">Drive to Hidcote Manor Garden</div><div class="td">~20 min drive. One of the finest Arts &amp; Crafts gardens in England.</div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Hidcote+Manor+Garden+NT" target="_blank">Hidcote Manor Garden</a>
+          <div class="car-tip">Free NT parking. Show your membership card at the entrance.</div>
         </div>
-        <div class="ti"><div class="tt">10:00-12:30</div><div class="tn">Charlecote Park (National Trust) <span class="icon-badge">NT</span></div><div class="td">Stunning Elizabethan house with deer park. Shakespeare allegedly caught poaching deer here!</div>
+        <div class="ti"><div class="tt">11:30-13:00</div><div class="tn">Hidcote Manor Garden (National Trust) <span class="icon-badge">NT</span></div><div class="td">One of the most beautiful Arts &amp; Crafts gardens in the country. Designed by Lawrence Johnston in the early 1900s. Garden rooms, rare plants, stunning borders.</div>
           <div class="act-grid">
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-house fa-icon" style="color:#8b6914"></i> The House</span><span class="adesc">Elizabethan country house, largely unchanged since the 16th century. Victorian interiors.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-seedling fa-icon" style="color:#4caf50"></i> Gardens</span><span class="adesc">Formal gardens along the River Avon. Herbaceous borders, Victorian kitchen garden.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-paw fa-icon" style="color:#8b6914"></i> Deer Park</span><span class="adesc">Fallow deer roaming since the 12th century. Walk through the park &mdash; often visible.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> NT Cafe</span><span class="adesc">Good quality cafe. Cakes, light lunches. Courtyard seating in summer.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-seedling fa-icon" style="color:#4caf50"></i> Garden Rooms</span><span class="adesc">Outdoor rooms divided by hedges &mdash; each with its own character and colour scheme.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-tree fa-icon" style="color:#2e7d32"></i> Long Walk</span><span class="adesc">Iconic herbaceous border. Stunning in July.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-eye fa-icon" style="color:#8b6914"></i> Red Borders</span><span class="adesc">The famous red borders &mdash; one of the most photographed garden features in England.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> NT cafe</span><span class="adesc">Good cafe for lunch. Courtyard seating.</span></div>
           </div>
-          <div class="hbox green"><p><b>Froggy will love:</b> Gardens at peak in July. Deer park is magical. Atmospheric house without being overwhelming.</p></div>
-          <div class="bath">Toilets in the main house and courtyard</div>
+          <div class="hbox green"><p><b>July peak:</b> Borders will be at their absolute best. Allow 1.5 hr to wander.</p></div>
         </div>
-        <div class="ti brk"><div class="tt">12:30</div><div class="tn">Lunch at Charlecote cafe</div><div class="td">Eat at the NT cafe or bring a picnic for the gardens.</div></div>
-        <div class="ti trans"><div class="tt">13:15</div><div class="tn">Drive to Chipping Campden</div><div class="td">~25 min through the Cotswolds. One of England's prettiest drives &mdash; honey-coloured stone villages.</div>
-          <div class="steps"><b>Route:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Charlecote</div><div class="rf-line"></div><span class="rf-badge road">B4081</span><div class="rf-line"></div><span class="rf-badge road">A44</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Chipping Campden</div></div></div>
-        </div>
-        <div class="ti"><div class="tt">13:45-14:45</div><div class="tn">Chipping Campden</div><div class="td">One of the most beautiful villages in the Cotswolds.</div>
+        <div class="ti"><div class="tt">~13:00</div><div class="tn">Drive to Stow-on-the-Wold</div><div class="td">~25 min through beautiful Cotswolds countryside.</div></div>
+        <div class="ti"><div class="tt">13:30-14:30</div><div class="tn">Stow-on-the-Wold + Bourton-on-the-Water</div><div class="td">Two classic Cotswolds villages, close together (~10 min apart).</div>
           <div class="act-grid">
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-landmark fa-icon" style="color:#8b6914"></i> Market Hall (1627)</span><span class="adesc">Iconic covered market hall in the centre. Free.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-person-walking fa-icon"></i> Historic High Street</span><span class="adesc">One of the finest High Streets in England. No chain stores.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Cream tea at The Bantam Tea Rooms</span><span class="adesc">Traditional cream tea &mdash; scones, clotted cream, jam. ~&pound;5-10 pp.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-church fa-icon" style="color:#8b6914"></i> St James' Church</span><span class="adesc">Perpendicular wool church. Impressive tower. Free.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-landmark fa-icon" style="color:#8b6914"></i> Stow Market Square</span><span class="adesc">One of the largest market squares in England. Antique shops, cafes.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-door-open fa-icon" style="color:#8b6914"></i> Stow "Door in the Wall"</span><span class="adesc">Stone doorway on Church Street &mdash; local legend says it inspired Tolkien's Doors of Durin.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-water fa-icon" style="color:#1565c0"></i> Bourton-on-the-Water</span><span class="adesc">"Venice of the Cotswolds" &mdash; low bridges over the River Windrush. Charming.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Tea rooms</span><span class="adesc">Plenty of options in both villages for a quick stop.</span></div>
           </div>
-          <div class="car-tip">Pay-and-display near centre (~&pound;2-3). Walkable from car park.</div>
         </div>
-        <div class="ti rest"><div class="tt">14:30</div><div class="tn">Cream tea</div><div class="td">Sit down for a cream tea at The Bantam Tea Rooms. Earned it!</div>
-          <div class="res-grid"><div class="res-item mid"><span class="rname">The Bantam Tea Rooms</span><span class="rdesc">Cosy tea rooms. Proper cream teas.</span><span class="rprice">&pound;5-10 pp</span></div></div>
-        </div>
-        <div class="ti trans"><div class="tt">15:00</div><div class="tn">Drive to Stow-on-the-Wold</div><div class="td">~20 min. Another beautiful Cotswolds drive.</div></div>
-        <div class="ti"><div class="tt">15:20-16:15</div><div class="tn">Stow-on-the-Wold</div><div class="td">Historic market town on top of a hill. Tolkien fans: the door in the wall may have inspired the gates of Moria!</div>
+        <div class="ti trans"><div class="tt">14:45</div><div class="tn">Drive to Broadway</div><div class="td">~15 min. One of the prettiest Cotswolds villages. Honey-coloured stone.</div></div>
+        <div class="ti"><div class="tt">15:00-15:45</div><div class="tn">Broadway</div><div class="td">Beautiful Cotswolds village with a famous wide main street lined with antique shops and tea rooms.</div>
           <div class="act-grid">
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-landmark fa-icon" style="color:#8b6914"></i> Market Square</span><span class="adesc">One of the largest market squares in England. Ancient cross in the centre.</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-door-open fa-icon" style="color:#8b6914"></i> Door in the Wall</span><span class="adesc">A stone doorway built into a wall on Church Street. Local legend says it inspired Tolkien's Doors of Durin (Moria).</span></div>
-            <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Tea rooms</span><span class="adesc">Plenty of charming tea rooms for a quick stop.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-person-walking fa-icon"></i> The Green + High Street</span><span class="adesc">Wide village green, honey-coloured stone buildings. Beautiful photo spot.</span></div>
+            <div class="act-item"><span class="aname"><i class="fa-solid fa-mug-hot fa-icon" style="color:#92400e"></i> Cream tea stop</span><span class="adesc">Last chance for a proper Cotswolds cream tea.</span></div>
           </div>
         </div>
-        <div class="ti trans"><div class="tt">16:15</div><div class="tn">Drive back to Alcester</div><div class="td">~30 min. Relaxed drive through countryside.</div></div>
-        <div class="ti rest"><div class="tt">17:00</div><div class="tn">Hotel &mdash; relax</div><div class="td">Freshen up. Light dinner nearby.</div></div>
-        <div class="ti"><div class="tt">18:30</div><div class="tn">Dinner in Alcester</div><div class="td">
-          <div class="res-grid">
-            <div class="res-item budget"><span class="rname"><i class="fa-solid fa-bullseye fa-icon" style="color:#dc2626"></i> The Bull</span><span class="rdesc">Traditional pub. Good value food, real ales.</span><span class="rprice">&pound;10-18 pp</span></div>
-            <div class="res-item mid"><span class="rname">The Crown</span><span class="rdesc">Slightly more refined pub food.</span><span class="rprice">&pound;12-22 pp</span></div>
-          </div>
-        </div></div>
-        <div class="ti rest"><div class="tt">22:00</div><div class="tn">Bed <i class="fa-solid fa-bed fa-icon"></i></div><div class="td">Drive home tomorrow!</div></div>
+        <div class="ti trans"><div class="tt">15:45</div><div class="tn">Drive via Worcester &rarr; Home</div><div class="td">~30 min to Worcester, then ~40 min home. Nice drive.</div>
+          <div class="steps"><b>Route:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Broadway</div><div class="rf-line"></div><span class="rf-badge road">A44</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Worcester</div><div class="rf-line"></div><span class="rf-badge road">M5</span><div class="rf-line"></div><span class="rf-badge road">A44</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Home</div></div></div>
+        </div>
+        <div class="ti rest"><div class="tt">~17:00</div><div class="tn">Arrive home</div><div class="td">Trip complete! Unpack, rest. Harrogate in 2 days!</div></div>
       </div>
     </div>
 
-    <!-- DAY 4 -->
-    <div id="day4" class="sec" data-t="Day 4 - Sunday: Drive Home">
-      <div class="day-div"><div class="day-num">4</div><div class="day-info"><div class="day-title">Drive Home</div><div class="day-date">Sunday 2 August</div><div class="day-meta"><span class="energy-badge energy-green"><i class="fa-solid fa-circle" style="font-size:0.5em"></i> Easy day</span></div></div></div>
-      <div class="sched">
-        <div class="sched-row"><span class="sched-label">AM</span><span class="sched-stop"><span class="sched-time">09:00</span> <span class="sched-name">Breakfast</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">10:30</span> <span class="sched-name">Check out</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">11:00</span> <span class="sched-name"><i class="fa-solid fa-car fa-icon"></i> Drive home</span></span></div>
-      </div>
-      <div class="tl">
-        <div class="ti"><div class="tt">08:00</div><div class="tn">Wake up</div><div class="td">Relaxed morning. No rush today.</div></div>
-        <div class="ti"><div class="tt">08:30</div><div class="tn">Breakfast</div><div class="td">Last hotel breakfast. Enjoy it.</div></div>
-        <div class="ti"><div class="tt">09:30</div><div class="tn">Pack up + check out</div><div class="td">Load the car. Check room. Say goodbye to Alcester.</div></div>
-        <div class="ti trans"><div class="tt">10:30-11:00</div><div class="tn">Drive Alcester &rarr; Manchester</div><div class="td">~2.5 hours via M40/M6. Same route as Day 1 in reverse.</div>
-          <div class="steps"><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Alcester</div><div class="rf-line"></div><span class="rf-badge road">A435</span><div class="rf-line"></div><span class="rf-badge road">M6</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Manchester</div></div></div>
-          <div class="car-tip">Stop at Knutsford (J19) or Hilton Park (J11) for a comfort break halfway.</div>
-        </div>
-        <div class="ti rest"><div class="tt">~13:30</div><div class="tn">Arrive home</div><div class="td">Home safe. Unpack, rest. What a trip!</div></div>
-      </div>
-    </div>
+    <!-- DAY 4 - removed; trip is 3 days + Harrogate bonus -->
     <!-- COLLEGES -->
     <div id="colleges" class="sec" data-t="Oxford Colleges">
       <div class="day-div">Oxford University Colleges &mdash; Visitor Guide</div>
@@ -788,9 +716,8 @@
           <li><input type="checkbox" onchange="savePack()"/> Rain jacket (it's England)</li>
           <li><input type="checkbox" onchange="savePack()"/> Water bottles (x2)</li>
           <li><input type="checkbox" onchange="savePack()"/> Snacks for the car</li>
-          <li><input type="checkbox" onchange="savePack()"/> King's Court hotel booking confirmation</li>
+          <li><input type="checkbox" onchange="savePack()"/> Kings Court hotel booking confirmation</li>
           <li><input type="checkbox" onchange="savePack()"/> Christ Church booking (if visiting)</li>
-          <li><input type="checkbox" onchange="savePack()"/> Footprint Tours booking confirmation</li>
           <li><input type="checkbox" onchange="savePack()"/> Cash for parking</li>
           <li><input type="checkbox" onchange="savePack()"/> Day bag / backpack</li>
           <li><input type="checkbox" onchange="savePack()"/> Medication / first aid</li>
@@ -836,9 +763,8 @@
         <table class="tt-table">
           <thead><tr><th>Tip</th><th>Detail</th></tr></thead>
           <tbody>
-            <tr><td><b>M6 congestion</b></td><td>Common around Birmingham. Use M6 Toll to bypass (~&pound;8).</td></tr>
-            <tr><td><b>Oxford parking</b></td><td>Westgate or Gloucester Green. ~&pound;12-20/day. Arrive before 10:30.</td></tr>
-            <tr><td><b>Fuel</b></td><td>Fill up before leaving Manchester. Alcester has petrol stations.</td></tr>
+            <tr><td><b>Oxford parking</b></td><td>Oxford Parkway Park &amp; Ride. ~&pound;2-4 all day. Bus into centre.</td></tr>
+            <tr><td><b>Fuel</b></td><td>Fill up at home before leaving. Local stations in Alcester/Stratford.</td></tr>
             <tr><td><b>Cotswolds roads</b></td><td>Narrow, winding. Drive slowly. Enjoy the views!</td></tr>
             <tr><td><b>Speed cameras</b></td><td>Common on A-roads. Stick to limits.</td></tr>
           </tbody>
@@ -850,17 +776,15 @@
         <table class="tt-table">
           <thead><tr><th>Item</th><th>Status</th><th>Action</th></tr></thead>
           <tbody>
-            <tr style="background:rgba(22,163,74,0.06)"><td><b>King's Court hotel</b></td><td><span style="color:#16a34a;font-weight:700">&#10003; Confirmed</span></td><td>Keep booking reference in Key Info card above</td></tr>
-            <tr style="background:rgba(22,163,74,0.06)"><td><b>Footprint Tours (Fri 31, 14:00)</b></td><td><span style="color:#16a34a;font-weight:700">&#10003; Booked</span></td><td>Check confirmation email for meeting point. Arrive by 13:55.</td></tr>
-            <tr><td><b>Christ Church (Fri 31)</b></td><td><span style="color:#c0392b;font-weight:700">&#9888; Not booked</span></td><td><a href="https://www.chch.ox.ac.uk/visiting" target="_blank" style="color:var(--blue);font-weight:600">chch.ox.ac.uk</a> &mdash; ~&pound;18 pp. Sells out days in advance. Visit 11:30-12:30 or 16:00-16:45 after walking tour.</td></tr>
-            <tr><td><b>Bodleian Library tour</b></td><td><span style="color:#c0392b;font-weight:700">&#9888; Not booked</span></td><td><a href="https://www.bodleian.ox.ac.uk/visiting/tours" target="_blank" style="color:var(--blue);font-weight:600">bodleian.ox.ac.uk</a> &mdash; ~&pound;10-16 pp. Tours run ~11:00, 13:00, 14:00. <b>Best experience in Oxford.</b></td></tr>
-            <tr><td><b>Shakespeare's Birthplace (Thu 30)</b></td><td><span style="color:#c0392b;font-weight:700">&#9888; Not booked</span></td><td><a href="https://www.shakespeare.org.uk/visit/shakespeares-birthplace/" target="_blank" style="color:var(--blue);font-weight:600">shakespeare.org.uk</a> &mdash; ~&pound;20 pp. Book online for a timed slot, skip queues.</td></tr>
-            <tr><td><b>Schoolroom &amp; Guildhall (Thu 30)</b></td><td><span style="color:#c0392b;font-weight:700">&#9888; Not booked</span></td><td><a href="https://www.shakespearesschoolroom.org/" target="_blank" style="color:var(--blue);font-weight:600">shakespearesschoolroom.org</a> &mdash; ~&pound;15 pp. Book online.</td></tr>
+            <tr style="background:rgba(22,163,74,0.06)"><td><b>Kings Court hotel</b></td><td><span style="color:#16a34a;font-weight:700">&#10003; Confirmed</span></td><td>Ref KC00689011. Premier Double Room. &pound;187.92 total.</td></tr>
+            <tr style="background:rgba(22,163,74,0.06)"><td><b>Stratford Town Walk (Thu 30, 14:00)</b></td><td><span style="color:#16a34a;font-weight:700">&#10003; Booked</span></td><td>Walking tour at 2PM. Arrive by 13:55.</td></tr>
+            <tr><td><b>Christ Church (Fri 31)</b></td><td><span style="color:#c0392b;font-weight:700">&#9888; Not booked</span></td><td><a href="https://www.chch.ox.ac.uk/visiting" target="_blank" style="color:var(--blue);font-weight:600">chch.ox.ac.uk</a> &mdash; ~&pound;18 pp. Sells out days in advance.</td></tr>
+            <tr><td><b>Bodleian Library tour</b></td><td><span style="color:#c0392b;font-weight:700">&#9888; Not booked</span></td><td><a href="https://www.bodleian.ox.ac.uk/visiting/tours" target="_blank" style="color:var(--blue);font-weight:600">bodleian.ox.ac.uk</a> &mdash; ~&pound;10-16 pp. Tours run ~11:00, 13:00, 14:00.</td></tr>
+            <tr><td><b>Shakespeare's Birthplace (Thu 30)</b></td><td><span style="color:#c0392b;font-weight:700">&#9888; Not booked</span></td><td>Optional. Only if Mateo wants. ~&pound;20 pp.</td></tr>
             <tr><td><b>Lambs restaurant (Thu 30 dinner)</b></td><td><span style="color:#e65100;font-weight:700">&#9744; Book</span></td><td><a href="https://www.lambsrestaurant.co.uk/book-a-table/" target="_blank" style="color:var(--blue);font-weight:600">lambsrestaurant.co.uk</a> or call 01789 292554. Popular in July.</td></tr>
-            <tr><td><b>NT membership card</b></td><td><span style="color:#e65100;font-weight:700">&#9744; Pack it</span></td><td>Remember NT card for free entry at Charlecote Park. Add to Packing List.</td></tr>
           </tbody>
         </table>
-        <div style="font-size:0.75rem;color:var(--muted);margin-top:8px"><b>Total booking cost (if all):</b> ~&pound;60-80 pp (Christ Church + Bodleian tour + Birthplace). Museums are free!</div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:8px"><b>Booking cost (if all optional booked):</b> ~&pound;28-38 pp (Christ Church + Bodleian tour). Most museums are free!</div>
       </div>
       <div class="card">
         <h3><i class="fa-solid fa-landmark fa-icon" style="color:var(--blue)"></i> Oxford Tips</h3>
@@ -878,9 +802,9 @@
       <div class="card">
         <h3><i class="fa-solid fa-ticket fa-icon" style="color:#16a34a"></i> National Trust</h3>
         <ul>
-          <li><b>Charlecote Park:</b> Free entry with NT membership. Show card at the gate.</li>
-          <li><b>If not a member:</b> ~&pound;15 adult entry. Worth it for the house + deer park.</li>
-          <li><b>Cafe:</b> Good quality NT cafe. Courtyard seating in summer.</li>
+          <li><b>Hidcote Manor Garden:</b> Free entry with NT membership. Show card at the gate.</li>
+          <li><b>Parking:</b> Free NT car park at Hidcote.</li>
+          <li><b>Cafe:</b> Good quality NT cafe. Courtyard seating.</li>
         </ul>
       </div>
       <div class="card">
@@ -888,10 +812,9 @@
         <table class="tt-table">
           <thead><tr><th>Day</th><th>Lunch</th><th>Dinner</th></tr></thead>
           <tbody>
-            <tr><td><b>Day 1</b></td><td>Alcester (Blue Pig or cafe)</td><td>Stratford (Dirty Duck) or Alcester (Crown)</td></tr>
-            <tr><td><b>Day 2</b></td><td>Oxford (Covered Market or Tesco)</td><td>Alcester (Bull or Crown)</td></tr>
-            <tr><td><b>Day 3</b></td><td>Charlecote NT cafe</td><td>Alcester (Bull or Crown)</td></tr>
-            <tr><td><b>Day 4</b></td><td>Motorway services</td><td>Home!</td></tr>
+            <tr><td><b>Day 1</b></td><td>Stratford cafes</td><td>Stratford (Lambs/Dirty Duck) or hotel</td></tr>
+            <tr><td><b>Day 2</b></td><td>Oxford (Covered Market or museum cafe)</td><td>Hotel restaurant or Alcester pubs</td></tr>
+            <tr><td><b>Day 3</b></td><td>Hidcote NT cafe</td><td>Home!</td></tr>
           </tbody>
         </table>
       </div>
@@ -905,12 +828,12 @@
           <li><b>Emergency:</b> 999</li>
           <li><b>Non-emergency police:</b> 101</li>
           <li><b>NHS 111:</b> 111</li>
-          <li><b>King's Court hotel:</b> (fill in from key info)</li>
+          <li><b>Kings Court Hotel:</b> (fill in from key info)</li>
         </ul>
       </div>
       <div class="card">
         <h3><i class="fa-solid fa-chess-rook fa-icon" style="color:var(--blue)"></i> Optional Extras</h3>
-        <p>These deserve a full day each and could be added if you extend the trip:</p>
+        <p>Nearby if you have extra time:</p>
         <ul>
           <li><b>Warwick Castle</b> &mdash; Medieval castle with towers, ramparts, shows. ~&pound;25 pp. Full day.</li>
           <li><b>Kenilworth Castle</b> &mdash; Ruined Elizabethan castle. Atmospheric, less touristy. ~&pound;12 pp. Half day.</li>
@@ -924,7 +847,6 @@
       <button onclick="show('day1')"><i class="fa-solid fa-car"></i><span>Day 1</span></button>
       <button onclick="show('day2')"><i class="fa-solid fa-flask"></i><span>Day 2</span></button>
       <button onclick="show('day3')"><i class="fa-solid fa-tree"></i><span>Day 3</span></button>
-      <button onclick="show('day4')"><i class="fa-solid fa-car"></i><span>Day 4</span></button>
       <button onclick="toggleMore()"><i class="fa-solid fa-ellipsis"></i><span>More</span></button>
     </div>
 
@@ -943,8 +865,8 @@
     <script>
       const tabs = document.querySelectorAll('.tab');
       const secs = document.querySelectorAll('.sec');
-      const dayIds = ['overview','day1','day2','day3','day4','colleges','pack','recipes','tips'];
-      const dayNames = ['Overview','Day 1','Day 2','Day 3','Day 4'];
+      const dayIds = ['overview','day1','day2','day3','colleges','pack','recipes','tips'];
+      const dayNames = ['Overview','Day 1','Day 2','Day 3'];
 
       function show(id) {
         secs.forEach(s => s.classList.remove('active'));
@@ -962,10 +884,10 @@
       function updateBottomNav(id) {
         const btns = document.querySelectorAll('#bottomNav button');
         btns.forEach(b => b.classList.remove('active'));
-        const mainIds = ['overview','day1','day2','day3','day4'];
+        const mainIds = ['overview','day1','day2','day3'];
         const idx = mainIds.indexOf(id);
         if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
-        else if (btns[5]) btns[5].classList.add('active');
+        else if (btns[4]) btns[4].classList.add('active');
       }
 
       function updateDayNav(id) {
@@ -978,7 +900,7 @@
         nav.style.display = isDay ? 'flex' : 'none';
         if (idx <= 0) { prev.classList.add('disabled'); } else { prev.classList.remove('disabled'); }
         if (idx >= dayIds.length - 1) { next.classList.add('disabled'); } else { next.classList.remove('disabled'); }
-        const labels = { overview:'Overview', day1:'Day 1 — Thu 30 Jul', day2:'Day 2 — Fri 31 Jul', day3:'Day 3 — Sat 1 Aug', day4:'Day 4 — Sun 2 Aug' };
+        const labels = { overview:'Overview', day1:'Day 1 — Thu 30 Jul', day2:'Day 2 — Fri 31 Jul', day3:'Day 3 — Sat 1 Aug' };
         label.textContent = labels[id] || dayNames[idx] || '';
       }
 
@@ -1003,10 +925,10 @@
       function goToday() {
         const now = new Date();
         const tripStart = new Date('2026-07-30T09:00:00');
-        const tripEnd = new Date('2026-08-02T18:00:00');
+        const tripEnd = new Date('2026-08-01T18:00:00');
         if (now < tripStart || now > tripEnd) { show('overview'); return; }
         const dayNum = Math.floor((now - tripStart) / 86400000) + 1;
-        if (dayNum >= 1 && dayNum <= 4) show('day' + dayNum);
+        if (dayNum >= 1 && dayNum <= 3) show('day' + dayNum);
         else show('overview');
       }
 
@@ -1055,7 +977,7 @@
       loadPack();
 
       function saveB() {
-        const ids = ['bd1','bd2','bd3','bd4'];
+        const ids = ['bd1','bd2','bd3'];
         let total = 0;
         ids.forEach(id => { total += parseFloat(document.getElementById(id).value) || 0; });
         document.getElementById('bTotal').textContent = '\u00A3' + total;
@@ -1063,7 +985,7 @@
       }
       function loadB() {
         const vals = JSON.parse(localStorage.getItem('ox-budget') || '[]');
-        const ids = ['bd1','bd2','bd3','bd4'];
+        const ids = ['bd1','bd2','bd3'];
         ids.forEach((id, i) => { if (vals[i]) document.getElementById(id).value = vals[i]; });
         saveB();
       }
@@ -1098,10 +1020,9 @@
 
       function exportICS() {
         const events = [
-          { title: 'Oxford Trip - Day 1: Travel + Stratford', start: '20260730T090000', end: '20260730T190000' },
-          { title: 'Oxford Trip - Day 2: Oxford Museums + Walking Tour', start: '20260731T080000', end: '20260731T183000' },
-          { title: 'Oxford Trip - Day 3: Charlecote + Cotswolds', start: '20260801T090000', end: '20260801T190000' },
-          { title: 'Oxford Trip - Day 4: Drive Home', start: '20260802T090000', end: '20260802T140000' }
+          { title: 'Oxford & Cotswolds - Day 1: Stratford', start: '20260730T090000', end: '20260730T190000' },
+          { title: 'Oxford & Cotswolds - Day 2: Oxford', start: '20260731T080000', end: '20260731T183000' },
+          { title: 'Oxford & Cotswolds - Day 3: Hidcote + Cotswolds Home', start: '20260801T080000', end: '20260801T180000' }
         ];
         let ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Oxford Trip//EN\n';
         events.forEach(e => {
@@ -1186,14 +1107,14 @@
         const el = document.getElementById('liveCard');
         const now = new Date();
         const tripStart = new Date('2026-07-30T09:00:00');
-        const tripEnd = new Date('2026-08-02T18:00:00');
+        const tripEnd = new Date('2026-08-01T18:00:00');
         if (now < tripStart) {
           const diff = tripStart - now;
           const days = Math.floor(diff / 86400000);
           const hrs = Math.floor((diff % 86400000) / 3600000);
           const mins = Math.floor((diff % 3600000) / 60000);
           const secs = Math.floor((diff % 60000) / 1000);
-          el.innerHTML = '<div style="font-size:1.8rem;font-weight:800;color:var(--accent)">'+days+'d '+hrs+'h '+mins+'m '+secs+'s</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford Trip</div>';
+          el.innerHTML = '<div style="font-size:1.8rem;font-weight:800;color:var(--accent)">'+days+'d '+hrs+'h '+mins+'m '+secs+'s</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford &amp; Cotswolds Trip</div>';
         } else if (now > tripEnd) {
           el.innerHTML = '<div style="font-size:1.2rem;font-weight:700;color:var(--muted)">Trip complete! \uD83C\uDF89</div>';
         } else {
@@ -1209,9 +1130,7 @@
         const h = now.getHours(), m = now.getMinutes();
         let dayNum = 0;
         if (month === 6 && day >= 30) dayNum = day - 29;
-        else if (month === 6 && day === 31) dayNum = 2;
         else if (month === 7 && day === 1) dayNum = 3;
-        else if (month === 7 && day === 2) dayNum = 4;
         if (dayNum === 0) { document.getElementById('nextWidget').classList.add('hidden'); return; }
         const sec = document.getElementById('day' + dayNum);
         if (!sec) return;
@@ -1226,7 +1145,7 @@
           if (tiMin <= nowMinutes) currentItem = ti;
           if (tiMin > nowMinutes && !nextItem) nextItem = { minutes: tiMin, name: ti.querySelector('.tn')?.textContent || '' };
         });
-        const dayNames2 = ['', 'Thu 30 Jul', 'Fri 31 Jul', 'Sat 1 Aug', 'Sun 2 Aug'];
+        const dayNames2 = ['', 'Thu 30 Jul', 'Fri 31 Jul', 'Sat 1 Aug'];
         document.getElementById('nwDay').textContent = dayNames2[dayNum];
         if (currentItem) {
           document.getElementById('nwNowTime').textContent = '';
