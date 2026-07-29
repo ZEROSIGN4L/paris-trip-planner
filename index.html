@@ -126,9 +126,10 @@
         .ti::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 10px; top: 12px; font-size: 0.55rem; color: var(--muted); transition: transform 0.25s ease; }
         .ti.expanded::after { transform: rotate(180deg); }
         .sec .ti > .td, .sec .ti > .th, .sec .ti > .steps, .sec .ti > .bath, .sec .ti > .backup, .sec .ti > .prep, .sec .ti > .calm, .sec .ti > .hbox, .sec .ti > .quote, .sec .ti > .maplink, .sec .ti > .res-grid, .sec .ti > .act-grid, .sec .ti > .route-flow, .sec .ti > .res-item, .sec .ti > .act-item { display: none; }
-        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .quote, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; will-change: transform, opacity; }
+        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .quote, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item { display: block; margin-top: 6px; padding-top: 4px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; will-change: transform, opacity; }
         .ti > .tn { margin-right: 20px; }
         @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+        .sec .ti.expanded > .calm { max-height: 40vh; overflow-y: auto; }
         .day-div { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
         .day-num { font-size: 2rem; font-weight: 800; line-height: 1; color: var(--accent); min-width: 44px; text-align: center; }
         .day-info { flex: 1; min-width: 0; }
@@ -628,29 +629,26 @@
         <div class="sched-row"><span class="sched-label">PM</span><span class="sched-stop"><span class="sched-time">14:00</span> <span class="sched-name">Free Walking Tour</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">16:00</span> <span class="sched-name">your choice</span></span><span class="sched-arr">&rarr;</span><span class="sched-stop"><span class="sched-time">~17:00</span> <span class="sched-name">Return hotel</span></span></div>
       </div>
       <div class="tl">
-        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Free Walking Tour booked at 2PM (ref FOO-98885118, 16 Broad St). Morning is yours &mdash; pick a museum or college before the tour.</div>
-        <div class="hbox" style="border-left-color:#c0392b;background:linear-gradient(135deg,#fce4ec,#ffebee)"><p><b>&#9888; Bodleian Library alert — Fri 31 July:</b> The Divinity School is <b>closed all day</b>. Only 30-min Duke Humfrey's Library tours available (buy on the day at Weston Library info desk from 9AM, ~£12.50). <a href="https://visit.bodleian.ox.ac.uk/plan-your-visit" target="_blank" style="color:var(--blue);font-weight:600">Check updates</a></p></div>
+        <div class="skip-note"><i class="fa-solid fa-lightbulb fa-icon" style="color:#f59e0b"></i> Free Walking Tour 2PM (ref FOO-98885118, 16 Broad St). Morning is yours — pick a museum or college before the tour.</div>
+        <div class="hbox" style="border-left-color:#c0392b;background:linear-gradient(135deg,#fce4ec,#ffebee);padding:8px 10px"><p style="font-size:0.76rem"><b>&#9888; Bodleian — Fri 31 Jul:</b> Divinity School <b>closed</b>. Only 30-min Duke Humfrey's tours (~£12.50, buy at Weston Library from 9AM). <a href="https://visit.bodleian.ox.ac.uk/plan-your-visit" target="_blank" style="color:var(--blue);font-weight:600">Check</a></p></div>
         <div class="quote">Peace comes from within. Do not seek it without. &mdash; Buddha</div>
         <div class="ti"><div class="tt">09:00</div><div class="tn">Wake up + breakfast at hotel</div><div class="td">Hotel breakfast 6:30-9:30AM (weekday). Fuel up for the day.</div></div>
         <div class="ti trans"><div class="tt">10:00</div><div class="tn">Drive from Kings Court to Oxford</div><div class="td">~1h7min via M40.</div>
           <div class="steps"><b>Route:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Kings Court Hotel</div><div class="rf-line"></div><span class="rf-badge road">A429</span><div class="rf-line"></div><span class="rf-badge road">M40</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Oxford</div></div>
             <ol><li>Take A429 to M40 J15</li><li>M40 south to J9, then A34 north</li><li>Follow signs into Oxford city centre</li></ol>
           </div>
-          <div class="hbox blue"><p><b>Option A — Park &amp; Ride (recommended):</b> Park at Oxford Parkway (OX2 8HA). ~&pound;2-4 all day. Bus every 10-15 min into city centre (15 min ride). Cheaper and avoids city traffic jams.</p></div>
-          <div class="hbox" style="border-left-color:#9c27b0;background:linear-gradient(135deg,#f3e5f5,#fce4ec)"><p><b>Option B — Drive straight in:</b> City centre car parks (e.g. Westgate, Worcester Street) ~&pound;15-25/day. Convenient but expensive and traffic builds up midday. Best if you arrive early or don't want to wait for buses.</p></div>
+          <div class="hbox blue" style="padding:6px 10px"><p style="font-size:0.76rem"><b>Option A — Park &amp; Ride (recommended):</b> Oxford Parkway OX2 8HA, ~£2-4, bus every 10-15 min (&pound;15 min ride). Avoids city traffic.</p></div>
+          <div class="hbox" style="border-left-color:#9c27b0;background:linear-gradient(135deg,#f3e5f5,#fce4ec);padding:6px 10px"><p style="font-size:0.76rem"><b>Option B — Drive in:</b> Westgate/Worcester St car parks ~&pound;15-25/day. Convenient if you arrive early.</p></div>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Oxford+Parkway+Park+and+Ride" target="_blank">Oxford Parkway Park &amp; Ride</a>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Westgate+Oxford+car+park" target="_blank">Westgate car park</a>
         </div>
-        <div class="ti"><div class="tt">~11:30+</div><div class="tn">Oxford &mdash; morning plan</div><div class="td">In the city centre (by bus from Parkway or driving in). You have ~2.5 hours before the walking tour. Pick a museum or college:</div>
-          <div class="calm"><b>Option A — Quick &amp; Free:</b> History of Science Museum (Tue-Sun 10-5, free, Einstein's blackboard, oldest museum building in the world) → Radcliffe Camera photo → Covered Market lunch. Minimal walking. Note: no toilets inside museum.</div>
-          <div class="calm"><b>Option B — Nature &amp; Lunch:</b> Natural History Museum (daily 10-5, free, dodo skeleton) + Pitt Rivers (Mon 12-5, Tue-Sun 10-5, free, shrunken heads, 600k objects). All in one building through connecting door. Museum cafe.</div>
-          <div class="calm"><b>Option C — Splurge:</b> Christ Church (~£18-24, Harry Potter staircase, book ahead) → quick lunch at Covered Market. Great Hall closed 12-2 for student lunches.</div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=History+of+Science+Museum+Oxford" target="_blank">History of Science Museum</a>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Museum+of+Natural+History+Oxford" target="_blank">Natural History Museum</a>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Pitt+Rivers+Museum+Oxford" target="_blank">Pitt Rivers Museum</a>
+        <div class="ti"><div class="tt">~11:30+</div><div class="tn">Oxford &mdash; morning plan</div><div class="td">~2.5 hours before the walking tour. Pick one:</div>
+          <div class="calm"><b>A — Quick &amp; Free:</b> History of Science Museum (free, Einstein's blackboard) → Radcliffe Camera photo. No toilets inside.</div>
+          <div class="calm"><b>B — Nature &amp; Lunch:</b> Natural History + Pitt Rivers (both free, dodo, shrunken heads) — same building, museum cafe.</div>
+          <div class="calm"><b>C — Splurge:</b> Christ Church (~£18-24, Harry Potter staircase, book ahead. Great Hall closed 12-2).</div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=History+of+Science+Museum+Oxford" target="_blank">History of Science</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Museum+of+Natural+History+Oxford" target="_blank">Natural History / Pitt Rivers</a>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Christ+Church+Oxford" target="_blank">Christ Church</a>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Radcliffe+Camera+Oxford" target="_blank">Radcliffe Camera</a>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Covered+Market+Oxford" target="_blank">Covered Market</a>
         </div>
         <div class="ti brk"><div class="tt">lunch</div><div class="tn">Lunch in Oxford</div><div class="td">Covered Market (food stalls, £6-12 pp) or Natural History Museum cafe (£6-10 pp).</div>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Covered+Market+Oxford" target="_blank">Covered Market</a>
@@ -660,13 +658,12 @@
           <div class="th">Ref FOO-98885118 &bull; Meet at 16 Broad Street (OX1 3AS) &mdash; Oxford Tourist Information Centre &bull; Arrive 5 min before</div>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=16+Broad+Street+Oxford+OX1+3AS" target="_blank">Meeting point: 16 Broad Street</a>
         </div>
-        <div class="ti"><div class="tt">16:00+</div><div class="tn">Oxford &mdash; afternoon plan (1hr window)</div><div class="td">After the tour ends at 4PM, you have about an hour before heading back. Pick one:</div>
-          <div class="calm"><b>Option A — Ashmolean Museum:</b> 5 min walk from Broad St. Britain's oldest public museum (Egyptian mummies, art). Free entry, open daily 10-5 (last entry 4:45). Special exhibition "In Bloom: How Plants Changed Our World" until 16 Aug ★★★★. Rooftop restaurant with city views.</div>
-          <div class="calm"><b>Option B — Magdalen College:</b> 10 min walk. Deer park by the river. ~£8 entry. Open 12-6 in July. Peaceful end to the day.</div>
-          <div class="calm"><b>Option C — Covered Market:</b> 2 min from Broad St. Grab a snack, browse the stalls, pick up souvenirs.</div>
+        <div class="ti"><div class="tt">16:00+</div><div class="tn">Oxford &mdash; afternoon plan</div><div class="td">After the tour ends at 4PM. ~1 hour before heading back:</div>
+          <div class="calm"><b>A — Ashmolean:</b> 5 min walk, free (last entry 4:45), Egyptian mummies, "In Bloom" exhibition, rooftop views.</div>
+          <div class="calm"><b>B — Magdalen College:</b> 10 min walk, deer park, ~£8, open until 6PM.</div>
+          <div class="calm"><b>C — Covered Market:</b> 2 min walk, snacks &amp; souvenirs.</div>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Ashmolean+Museum+Oxford" target="_blank">Ashmolean Museum</a>
           <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Magdalen+College+Oxford" target="_blank">Magdalen College</a>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Covered+Market+Oxford" target="_blank">Covered Market</a>
         </div>
         <div class="ti trans"><div class="tt">~17:00</div><div class="tn">Return to Kings Court Hotel</div><div class="td">If at P&amp;R: bus back to Parkway, drive ~1h7min. If parked in city: drive straight back. Arrive hotel ~18:15.</div></div>
         <div class="ti"><div class="tt">18:30</div><div class="tn">Dinner</div><div class="td">Kings Court restaurant (£12-18 pp) or The Bull in Alcester, a traditional pub (£10-18 pp).</div></div>
