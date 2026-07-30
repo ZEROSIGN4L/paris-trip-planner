@@ -1227,7 +1227,7 @@
       function show(id) {
         secs.forEach(s => {
           s._animCancelled = true;
-          s.classList.remove('slide-in', 'slide-out');
+          s.classList.remove('active', 'slide-in', 'slide-out');
           s.style.removeProperty('--from-x');
           s.style.removeProperty('--to-x');
         });
