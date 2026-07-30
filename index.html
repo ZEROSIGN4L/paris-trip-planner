@@ -477,12 +477,6 @@
         <h3><i class="fa-solid fa-key fa-icon"></i> Key Info &mdash; Print This</h3>
         <div class="ki-row"><div class="ki-field"><label>Hotel name</label><input type="text" id="ki_hotel" placeholder="Kings Court Hotel, Alveston" oninput="saveKi()" /></div><div class="ki-field"><label>Booking ref</label><input type="text" id="ki_booking" placeholder="KC00689011" oninput="saveKi()" /></div></div>
         <div class="ki-row"><div class="ki-field"><label>Hotel phone</label><input type="text" id="ki_hotelphone" placeholder="01789 763 111" oninput="saveKi()" /></div><div class="ki-field"><label>NT membership #</label><input type="text" id="ki_nt" placeholder="Membership number" oninput="saveKi()" /></div></div>
-        <div class="ki-row"><div class="ki-field" style="flex:2"><label>Locations</label><input type="text" id="ki_locations" placeholder="Hotel: Kings Court, Alcester B49 5QQ | Stratford: CV37 6YX" oninput="saveKi()" /></div></div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alcester+B49+5QQ" target="_blank">Hotel on maps</a>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=CV37+6YX+Stratford+upon+Avon" target="_blank">Stratford car park</a>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Swan+Fountain+Waterside+Stratford+upon+Avon" target="_blank">Tour meeting point</a>
-        </div>
         <div class="ki-row"><div class="ki-field"><label>Emergency contact</label><input type="text" id="ki_emerg" placeholder="Name + phone" oninput="saveKi()" /></div><div class="ki-field"><label>Notes</label><input type="text" id="ki_notes" placeholder="Allergies, meds, car details..." oninput="saveKi()" /></div></div>
         <div class="ki-print"><button onclick="printKeyInfo()"><i class="fa-solid fa-print fa-icon"></i> Print Key Info</button></div>
       </div>
@@ -634,7 +628,10 @@
           </div>
           <div class="steps" style="margin-top:6px"><b>Route M5 → A46:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Devonport</div><div class="rf-line"></div><span class="rf-badge road">M5</span><div class="rf-line"></div><span class="rf-badge road">A46</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Stratford area</div></div>            <ol><li>M5 north to junction 9 (Tewkesbury)</li><li>A46 towards Stratford-upon-Avon</li></ol>
           </div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alveston" target="_blank">Kings Court Hotel</a>
+          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
+            <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alveston" target="_blank">Kings Court Hotel</a>
+            <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=CV37+6YX+Stratford+upon+Avon" target="_blank">Stratford car park CV37 6YX</a>
+          </div>
         </div>
         <div class="ti"><div class="tt">~12:45</div><div class="tn">Hotel — try check-in or drop bags</div><div class="td">If you choose option A: Kings Court is on the A46, before Stratford. Stop here first.</div>
           <div style="margin-top:4px;padding:8px 10px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border);font-size:0.72rem">
@@ -652,6 +649,10 @@
         </div>
         <div class="ti"><div class="tt">14:00-15:30</div><div class="tn"><i class="fa-solid fa-person-walking fa-icon" style="color:#283593"></i> Stratford Town Walk <span class="icon-badge" style="background:rgba(40,53,147,0.1);color:#283593;border-color:rgba(40,53,147,0.2)">PAID</span></div><div class="td">Guided walking tour of Shakespeare's Stratford. All outdoors. Guide (wearing yellow) by a lamppost near the Swan Fountain, Waterside, near the RSC, opposite Sheep Street junction. Arrive 5 min early to check in.</div>
           <div class="calm" style="border-left-color:#16a34a;margin-top:4px"><b>£20 paid.</b> Car park: CV37 6YX. Use <a href="https://bit.ly/4ryeXd3" target="_blank" style="color:var(--blue)">bit.ly/4ryeXd3</a> for exclusive discounts.</div>
+          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
+            <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Swan+Fountain+Waterside+Stratford+upon+Avon" target="_blank">Swan Fountain meeting point</a>
+            <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=CV37+6YX+Stratford+upon+Avon" target="_blank">CV37 6YX car park</a>
+          </div>
         </div>
         <div class="ti"><div class="tt">15:30-17:00</div><div class="tn">Wander Stratford — free &amp; close</div><div class="td">Everything below is free and within a 5-10 min walk of each other. No need to rush.</div>
           <div class="act-grid">
@@ -1318,7 +1319,7 @@
       loadB();
 
       function saveKi() {
-        const fields = ['ki_hotel','ki_booking','ki_hotelphone','ki_nt','ki_locations','ki_emerg','ki_notes'];
+        const fields = ['ki_hotel','ki_booking','ki_hotelphone','ki_nt','ki_emerg','ki_notes'];
         const data = {};
         fields.forEach(f => { data[f] = document.getElementById(f)?.value || ''; });
         localStorage.setItem('ox-ki', JSON.stringify(data));
