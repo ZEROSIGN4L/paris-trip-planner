@@ -181,8 +181,8 @@
       .sec.active { display: block; }
       .sec.slide-in { animation: slideIn 0.28s cubic-bezier(0.25,0.46,0.45,0.94) both; }
       .sec.slide-out { animation: slideOut 0.2s cubic-bezier(0.55,0.085,0.68,0.53) both; }
-      @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-      @keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-30px); } }
+      @keyframes slideIn { from { opacity: 0; transform: translateX(var(--from-x, 30px)); } to { opacity: 1; transform: translateX(0); } }
+      @keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(var(--to-x, -30px)); } }
       .sec.active .card { animation: fadeIn 0.4s ease both; }
       .sec.active .card:nth-child(2) { animation-delay: 0.05s; }
       .sec.active .card:nth-child(3) { animation-delay: 0.1s; }
@@ -1193,13 +1193,15 @@
       function show(id) {
         const prevEl = document.getElementById(prevSection);
         const nextEl = document.getElementById(id);
+        const prevDayIdx = dayIds.indexOf(prevSection);
+        const nextDayIdx = dayIds.indexOf(id);
+        const isAdjacent = prevDayIdx >= 0 && nextDayIdx >= 0 && Math.abs(prevDayIdx - nextDayIdx) <= 1;
+        const forward = nextDayIdx > prevDayIdx;
         if (prevEl && prevEl.classList.contains('active')) {
           prevEl.classList.remove('slide-in', 'slide-out');
-          const prevDayIdx = dayIds.indexOf(prevSection);
-          const nextDayIdx = dayIds.indexOf(id);
-          if (prevDayIdx >= 0 && nextDayIdx >= 0 && Math.abs(prevDayIdx - nextDayIdx) <= 1) {
+          if (isAdjacent) {
+            prevEl.style.setProperty('--to-x', forward ? '-30px' : '30px');
             prevEl.classList.add('slide-out');
-            prevEl.style.setProperty('--ani-dir', nextDayIdx > prevDayIdx ? '' : 'reverse');
           }
         }
         secs.forEach(s => s.classList.remove('active'));
@@ -1208,7 +1210,10 @@
           nextEl.classList.add('active');
           nextEl.classList.remove('slide-in');
           void nextEl.offsetWidth;
-          nextEl.classList.add('slide-in');
+          if (isAdjacent) {
+            nextEl.style.setProperty('--from-x', forward ? '30px' : '-30px');
+            nextEl.classList.add('slide-in');
+          }
         }
         const tab = document.querySelector('.tab[data-s="'+id+'"]');
         if (tab) tab.classList.add('active');
