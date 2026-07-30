@@ -477,6 +477,12 @@
         <h3><i class="fa-solid fa-key fa-icon"></i> Key Info &mdash; Print This</h3>
         <div class="ki-row"><div class="ki-field"><label>Hotel name</label><input type="text" id="ki_hotel" placeholder="Kings Court Hotel, Alveston" oninput="saveKi()" /></div><div class="ki-field"><label>Booking ref</label><input type="text" id="ki_booking" placeholder="KC00689011" oninput="saveKi()" /></div></div>
         <div class="ki-row"><div class="ki-field"><label>Hotel phone</label><input type="text" id="ki_hotelphone" placeholder="01789 763 111" oninput="saveKi()" /></div><div class="ki-field"><label>NT membership #</label><input type="text" id="ki_nt" placeholder="Membership number" oninput="saveKi()" /></div></div>
+        <div class="ki-row"><div class="ki-field" style="flex:2"><label>Locations</label><input type="text" id="ki_locations" placeholder="Hotel: Kings Court, Alcester B49 5QQ | Stratford: CV37 6YX" oninput="saveKi()" /></div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alcester+B49+5QQ" target="_blank">Hotel on maps</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=CV37+6YX+Stratford+upon+Avon" target="_blank">Stratford car park</a>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Swan+Fountain+Waterside+Stratford+upon+Avon" target="_blank">Tour meeting point</a>
+        </div>
         <div class="ki-row"><div class="ki-field"><label>Emergency contact</label><input type="text" id="ki_emerg" placeholder="Name + phone" oninput="saveKi()" /></div><div class="ki-field"><label>Notes</label><input type="text" id="ki_notes" placeholder="Allergies, meds, car details..." oninput="saveKi()" /></div></div>
         <div class="ki-print"><button onclick="printKeyInfo()"><i class="fa-solid fa-print fa-icon"></i> Print Key Info</button></div>
       </div>
@@ -1312,7 +1318,7 @@
       loadB();
 
       function saveKi() {
-        const fields = ['ki_hotel','ki_booking','ki_hotelphone','ki_nt','ki_emerg','ki_notes'];
+        const fields = ['ki_hotel','ki_booking','ki_hotelphone','ki_nt','ki_locations','ki_emerg','ki_notes'];
         const data = {};
         fields.forEach(f => { data[f] = document.getElementById(f)?.value || ''; });
         localStorage.setItem('ox-ki', JSON.stringify(data));
