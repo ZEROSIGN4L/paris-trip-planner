@@ -282,8 +282,9 @@
       .cal-hdr { background: linear-gradient(135deg, #4a6cf7, #6366f1); color: #fff; padding: 8px 4px; text-align: center; font-weight: 700; font-size: 0.72rem; }
       .cal-hdr:first-child { background: linear-gradient(135deg, #e0e6ed, #c7d2e0); }
       .cal-time { background: linear-gradient(135deg, #f0f4ff, #e8edf8); padding: 5px 3px; text-align: center; font-weight: 700; color: var(--blue); font-size: 0.66rem; border-bottom: 1px solid #e8edf5; display: flex; align-items: center; justify-content: center; }
-      .cal-cell { padding: 4px 5px; border-bottom: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; min-height: 30px; display: flex; align-items: center; }
-      .cal-cell.empty { background: #fafbfd; }
+      .cal-cell { padding: 4px 5px; border-bottom: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; min-height: 30px; display: flex; align-items: center; cursor: pointer; transition: background 0.15s; }
+      .cal-cell:hover { background: #f5f7ff; }
+      .dark .cal-cell:hover { background: #2a2a3a; }
       .cal-act { padding: 3px 7px; border-radius: 6px; font-size: 0.65rem; line-height: 1.3; width: 100%; font-weight: 600; }
       .cal-act.travel { background: linear-gradient(135deg, #e3f2fd, #bbdefb); color: #1565c0; }
       .cal-act.museum { background: linear-gradient(135deg, #fff3e0, #ffe0b2); color: #e65100; }
@@ -564,7 +565,7 @@
         <h3><i class="fa-solid fa-calendar-days fa-icon"></i> Calendar Overview</h3>
         <div class="table-wrap">
         <div class="cal">
-          <div class="cal-hdr"></div><div class="cal-hdr">Thu 30</div><div class="cal-hdr">Fri 31</div><div class="cal-hdr">Sat 1</div>
+          <div class="cal-hdr"></div><div class="cal-hdr" style="cursor:pointer" onclick="show('day1')">Thu 30</div><div class="cal-hdr" style="cursor:pointer" onclick="show('day2')">Fri 31</div><div class="cal-hdr" style="cursor:pointer" onclick="show('day3')">Sat 1</div>
           <div class="cal-time">10:30</div>
           <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Drive Devonport&rarr;Stratford</div></div>
           <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> Drive to Oxford</div></div>
@@ -583,7 +584,7 @@
           <div class="cal-cell"><div class="cal-act travel"><i class="fa-solid fa-car fa-icon"></i> M5 &rarr; Devonport</div></div>
           <div class="cal-time">16:00</div>
           <div class="cal-cell"><div class="cal-act food">Wander</div></div>
-          <div class="cal-cell"><div class="cal-act rest">your choice</div></div>
+          <div class="cal-cell"><div class="cal-act rest">Ashmolean / wander</div></div>
           <div class="cal-cell"><div class="cal-act rest">Drive home</div></div>
           <div class="cal-time">18:00</div>
           <div class="cal-cell"><div class="cal-act rest">Dinner</div></div>
@@ -1575,6 +1576,11 @@
       }
 
       loadBk();
+
+      document.querySelectorAll('.cal-cell:not(.empty)').forEach((cell, i) => {
+        const days = ['day1', 'day2', 'day3'];
+        cell.addEventListener('click', () => show(days[i % 3]));
+      });
     </script>
   </body>
 </html>
