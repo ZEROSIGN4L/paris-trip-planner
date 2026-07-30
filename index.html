@@ -125,8 +125,8 @@
         .ti:active { background: var(--card-bg); }
         .ti::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 10px; top: 12px; font-size: 0.55rem; color: var(--muted); transition: transform 0.25s ease; }
         .ti.expanded::after { transform: rotate(180deg); }
-        .sec .ti > .td, .sec .ti > .th, .sec .ti > .steps, .sec .ti > .bath, .sec .ti > .backup, .sec .ti > .prep, .sec .ti > .calm, .sec .ti > .hbox, .sec .ti > .quote, .sec .ti > .maplink, .sec .ti > .res-grid, .sec .ti > .act-grid, .sec .ti > .route-flow, .sec .ti > .res-item, .sec .ti > .act-item { display: none; }
-        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .quote, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item { display: block; margin-top: 6px; padding-top: 4px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; will-change: transform, opacity; }
+        .sec .ti > .td, .sec .ti > .th, .sec .ti > .steps, .sec .ti > .bath, .sec .ti > .backup, .sec .ti > .prep, .sec .ti > .calm, .sec .ti > .hbox, .sec .ti > .quote, .sec .ti > .maplink, .sec .ti > .res-grid, .sec .ti > .act-grid, .sec .ti > .route-flow, .sec .ti > .res-item, .sec .ti > .act-item, .sec .ti > .ml-group { display: none; }
+        .sec .ti.expanded > .td, .sec .ti.expanded > .th, .sec .ti.expanded > .steps, .sec .ti.expanded > .bath, .sec .ti.expanded > .backup, .sec .ti.expanded > .prep, .sec .ti.expanded > .calm, .sec .ti.expanded > .quote, .sec .ti.expanded > .hbox, .sec .ti.expanded > .maplink, .sec .ti.expanded > .res-grid, .sec .ti.expanded > .act-grid, .sec .ti.expanded > .route-flow, .sec .ti.expanded > .res-item, .sec .ti.expanded > .act-item, .sec .ti.expanded > .ml-group { display: block; margin-top: 6px; padding-top: 4px; border-top: 1px solid var(--border); animation: fadeSlideIn 0.2s ease; will-change: transform, opacity; }
         .ti > .tn { margin-right: 20px; }
         @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
         .sec .ti.expanded > .calm { max-height: 40vh; overflow-y: auto; }
@@ -140,6 +140,8 @@
         .day-date { font-size: 0.72rem; color: var(--muted); margin-top: 1px; }
         .day-meta { display: flex; align-items: center; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
         .maplink { display: inline-flex; align-items: center; gap: 4px; color: var(--blue); text-decoration: none; font-size: 0.8rem; font-weight: 600; padding: 8px 0; min-height: 44px; margin-top: 4px; }
+        .ml-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+        .ml-group .maplink { padding: 6px 12px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; margin: 0; }
         .route-flow { padding: 8px 10px; margin: 6px 0; border-radius: 8px; }
         .card { padding: 12px; margin-bottom: 8px; }
         .card h3 { font-size: 0.85rem; }
@@ -629,7 +631,7 @@
           </div>
           <div class="steps" style="margin-top:6px"><b>Route M5 → A46:</b><div class="route-flow"><div class="rf-dot rf-start"></div><div class="rf-name">Devonport</div><div class="rf-line"></div><span class="rf-badge road">M5</span><div class="rf-line"></div><span class="rf-badge road">A46</span><div class="rf-line"></div><div class="rf-dot rf-end"></div><div class="rf-name">Stratford area</div></div>            <ol><li>M5 north to junction 9 (Tewkesbury)</li><li>A46 towards Stratford-upon-Avon</li></ol>
           </div>
-          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
+          <div class="ml-group">
             <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kings+Court+Hotel+Alveston" target="_blank">Kings Court Hotel</a>
             <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=CV37+6YX+Stratford+upon+Avon" target="_blank">Stratford car park CV37 6YX</a>
           </div>
@@ -650,7 +652,7 @@
         </div>
         <div class="ti"><div class="tt">14:00-15:30</div><div class="tn"><i class="fa-solid fa-person-walking fa-icon" style="color:#283593"></i> Stratford Town Walk <span class="icon-badge" style="background:rgba(40,53,147,0.1);color:#283593;border-color:rgba(40,53,147,0.2)">PAID</span></div><div class="td">Guided walking tour of Shakespeare's Stratford. All outdoors. Guide (wearing yellow) by a lamppost near the Swan Fountain, Waterside, near the RSC, opposite Sheep Street junction. Arrive 5 min early to check in.</div>
           <div class="calm" style="border-left-color:#16a34a;margin-top:4px"><b>£20 paid.</b> Car park: CV37 6YX. Use <a href="https://bit.ly/4ryeXd3" target="_blank" style="color:var(--blue)">bit.ly/4ryeXd3</a> for exclusive discounts.</div>
-          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
+          <div class="ml-group">
             <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Swan+Fountain+Waterside+Stratford+upon+Avon" target="_blank">Swan Fountain meeting point</a>
             <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=CV37+6YX+Stratford+upon+Avon" target="_blank">CV37 6YX car park</a>
           </div>
