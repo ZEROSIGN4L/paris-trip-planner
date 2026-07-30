@@ -1193,27 +1193,44 @@
       let prevSection = '';
 
       function animateSlide(fromId, toEl, forward) {
+        const cleanup = (el) => {
+          if (!el) return;
+          el._animCancelled = true;
+          el.classList.remove('slide-in', 'slide-out');
+          el.style.removeProperty('--from-x');
+          el.style.removeProperty('--to-x');
+        };
         const fromEl = document.getElementById(fromId);
+        cleanup(fromEl); cleanup(toEl);
         if (fromEl) {
+          fromEl._animCancelled = false;
           fromEl.style.setProperty('--to-x', forward ? '-30px' : '30px');
           fromEl.classList.add('slide-out');
           fromEl.addEventListener('animationend', function cl() {
+            fromEl.removeEventListener('animationend', cl);
+            if (fromEl._animCancelled) return;
             fromEl.classList.remove('slide-out');
             fromEl.style.removeProperty('--to-x');
-            fromEl.removeEventListener('animationend', cl);
           });
         }
+        toEl._animCancelled = false;
         toEl.style.setProperty('--from-x', forward ? '30px' : '-30px');
         toEl.classList.add('slide-in');
         toEl.addEventListener('animationend', function cl() {
+          toEl.removeEventListener('animationend', cl);
+          if (toEl._animCancelled) return;
           toEl.classList.remove('slide-in');
           toEl.style.removeProperty('--from-x');
-          toEl.removeEventListener('animationend', cl);
         });
       }
 
       function show(id) {
-        secs.forEach(s => s.classList.remove('active'));
+        secs.forEach(s => {
+          s._animCancelled = true;
+          s.classList.remove('slide-in', 'slide-out');
+          s.style.removeProperty('--from-x');
+          s.style.removeProperty('--to-x');
+        });
         tabs.forEach(t => t.classList.remove('active'));
         const nextEl = document.getElementById(id);
         if (!nextEl) return;
