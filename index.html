@@ -1450,7 +1450,8 @@
           const mins = Math.floor((diff % 3600000) / 60000);
           const secs = Math.floor((diff % 60000) / 1000);
           const dayStr = days > 0 ? days+'d ' : '';
-          el.innerHTML = '<div style="font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),#e67e22);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+dayStr+hrs+'h '+mins+'m '+secs+'s</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford &amp; Cotswolds Trip</div>';
+          const hrsStr = hrs > 0 || days > 0 ? hrs+'h ' : '';
+          el.innerHTML = '<div style="font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),#e67e22);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+dayStr+hrsStr+mins+'m '+secs+'s</div><div style="font-size:0.82rem;color:var(--muted)">Until Oxford &amp; Cotswolds Trip</div>';
         } else if (now > tripEnd) {
           el.innerHTML = '<div style="font-size:1.2rem;font-weight:700;color:var(--muted)">Trip complete! \uD83C\uDF89</div>';
         } else {
@@ -1484,12 +1485,12 @@
         const dayNames2 = ['', 'Thu 30 Jul', 'Fri 31 Jul', 'Sat 1 Aug'];
         document.getElementById('nwDay').textContent = dayNames2[dayNum];
         if (currentItem) {
-          document.getElementById('nwNowTime').textContent = '';
+          document.getElementById('nwNowTime').textContent = currentItem.querySelector('.tt')?.textContent || '';
           document.getElementById('nwNow').textContent = currentItem.querySelector('.tn')?.textContent || 'Enjoying the trip!';
         }
         if (nextItem) {
           const nh = Math.floor(nextItem.minutes / 60), nm = nextItem.minutes % 60;
-          document.getElementById('nwNextTime').textContent = nh + ':' + String(nm).padStart(2, '0');
+          document.getElementById('nwNextTime').textContent = nh > 0 ? nh + ':' + String(nm).padStart(2, '0') : nm + 'm';
           document.getElementById('nwNext').textContent = nextItem.name;
         } else {
           document.getElementById('nwNextTime').textContent = '';
