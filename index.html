@@ -1394,20 +1394,26 @@
 
       function updateTimeline() {
         const now = new Date();
+        const today = now.getMonth() + '-' + now.getDate();
         const tripStart = new Date('2026-07-30');
         const tripEnd = new Date('2026-08-01T23:59:59');
         if (now < tripStart || now > tripEnd) return;
         const h = now.getHours(), m = now.getMinutes();
         const nowMinutes = h * 60 + m;
+        const dayDates = ['7-30', '7-31', '8-1'];
         document.querySelectorAll('.sec.active .ti').forEach(ti => {
+          const sec = ti.closest('.sec');
+          const dayNum = parseInt(sec?.id?.replace('day', '') || '0');
+          const isToday = today === dayDates[dayNum - 1];
+          ti.classList.remove('now', 'past');
+          const existingBadge = ti.querySelector('.now-badge');
+          if (existingBadge) existingBadge.remove();
+          if (!isToday) return;
           const timeText = ti.querySelector('.tt')?.textContent;
           if (!timeText) return;
           const match = timeText.match(/(\d{1,2}):(\d{2})/);
           if (!match) return;
           const tiMinutes = parseInt(match[1]) * 60 + parseInt(match[2]);
-          ti.classList.remove('now', 'past');
-          const existingBadge = ti.querySelector('.now-badge');
-          if (existingBadge) existingBadge.remove();
           if (tiMinutes < nowMinutes) {
             ti.classList.add('past');
           } else if (tiMinutes >= nowMinutes && tiMinutes <= nowMinutes + 30) {
