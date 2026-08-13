@@ -1,24 +1,10 @@
-const CACHE_NAME = 'paris-trip-v30';
+const CACHE_NAME = 'oxford-trip-v1';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './icon-192.png',
-  './icon-512.png',
-  './splash.png',
-  './ticket-page1.png',
-  './ticket-page2.png',
-  './document.pdf',
-  './Screenshot%202026-07-19%20012546.png',
-  './images.jpg',
-  './port-maillot-from-beauvais.jpg',
-  './csm_Plan_site_web_plateforme_GB_juin_2024_0a82a5ca67.png',
-  './metro-l1.png',
-  './metro-l4.png',
-  './metro-l9.svg',
-  './metro-l12.svg',
-  './metro-l13.svg',
-  './metro-l14.svg'
+  './icon-512.png'
 ];
 
 self.addEventListener('install', e => {

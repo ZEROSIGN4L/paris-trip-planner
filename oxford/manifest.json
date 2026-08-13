@@ -1,12 +1,12 @@
 {
-  "name": "Paris Trip",
-  "short_name": "Paris Trip",
-  "description": "4-day Paris trip itinerary and organizer",
+  "name": "Oxford Trip",
+  "short_name": "Oxford Trip",
+  "description": "4-day Oxford road trip itinerary and organizer",
   "start_url": "index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#1a1a2e",
+  "theme_color": "#002147",
   "icons": [
     {
       "src": "icon-192.png",
